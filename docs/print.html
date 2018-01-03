@@ -1,0 +1,444 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Kubernetes CSI Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="CSI support for Kubernetes 1.9 (Alpha)">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="Home.html"><strong>1.</strong> Introduction</a></li><li><a href="Setup.html"><strong>2.</strong> Using a CSI Driver</a></li><li><ul class="section"><li><a href="Deployment.html"><strong>2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong>2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong>2.3.</strong> Usage</a></li></ul></li><li><a href="Development.html"><strong>3.</strong> Deployment</a></li><li><ul class="section"><li><a href="CSI-Driver.html"><strong>3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong>3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong>3.3.</strong> Testing</a></li><li><ul class="section"><li><a href="Testing-Clients.html"><strong>3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong>3.3.2.</strong> Drivers</a></li></ul></li></ul></li><li><a href="References.html"><strong>4.</strong> References</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Kubernetes CSI Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="print.html#introduction" id="introduction"><h1>Introduction</h1></a>
+<a class="header" href="print.html#kubernetes-csi-documentation" id="kubernetes-csi-documentation"><h2>Kubernetes CSI Documentation</h2></a>
+<p>Welcome to the CSI for Kubernetes documentation repository. Here you will find information on how to use, develop, and deploy CSI plugins, or drivers, with Kubernetes.</p>
+<a class="header" href="print.html#-project-status-alpha-" id="-project-status-alpha-"><h2>‼️ Project status: Alpha ‼️</h2></a>
+<p>CSI support for Kubernetes 1.9 is released as Alpha. This means that while we have worked hard to integrate CSI with Kubernetes, there may be issues. We recommend use only for testing due to increased risk.</p>
+<a class="header" href="print.html#installation" id="installation"><h2>Installation</h2></a>
+<p>Please see the <a href="Setup.html">Setup</a> page for instructions on how to setup Kubernetes support with CSI.</p>
+<a class="header" href="print.html#setup" id="setup"><h1>Setup</h1></a>
+<p>This page shows the user how to setup their Kubernetes cluster enable support for CSI drivers.</p>
+<a class="header" href="print.html#cluster-requirements" id="cluster-requirements"><h2>Cluster Requirements</h2></a>
+<p>Kubernetes v1.9 must be setup to support the new technologies required to enable CSI integration. To enable this new technology please setup the following flags:</p>
+<ul>
+<li>API Server binary:</li>
+</ul>
+<pre><code>--feature-gates=CSIPersistentVolume=true \
+--runtime-config=storage.k8s.io/v1alpha1=true
+</code></pre>
+<ul>
+<li>API Server binary and kubelet binaries:</li>
+</ul>
+<pre><code>--feature-gates=MountPropagation=true \
+--allow-privileged=true
+</code></pre>
+<a class="header" href="print.html#developers" id="developers"><h3>Developers</h3></a>
+<p>If you are a developer and are using the script <code>cluster/kube-up.sh</code> from the Kubernetes repo, then you can set values using the following environment variables:</p>
+<pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
+export KUBE_FEATURE_GATES=&quot;CSIPersistentVolume=true&quot;
+</code></pre>
+<a class="header" href="print.html#confirming-the-setup" id="confirming-the-setup"><h3>Confirming the setup</h3></a>
+<p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>
+<pre><code class="language-bash">$ kubectl get volumeattachments
+</code></pre>
+<p>To confirm that the feature gate has taken effect, submit the following fake PersistentVolume specification. If it is accepted, then we can confirm that the feature gate has been set correctly, and you may go ahead and delete it:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: fakepv
+spec:
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteMany
+    csi:
+        driver: fake
+        volumeHandle: &quot;1&quot;
+        readOnly: false
+</code></pre>
+<a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
+<p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver.</p>
+<a class="header" href="print.html#drivers" id="drivers"><h1>Drivers</h1></a>
+<p>The following are a set of CSI driver which can be used on Kubernetes 1.9:</p>
+<blockquote>
+<p>NOTE: If you would like your driver to be added to this table, please create an issue in this repo with the information you would like to add here.</p>
+</blockquote>
+<a class="header" href="print.html#sample-drivers" id="sample-drivers"><h3>Sample Drivers</h3></a>
+<table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs">NFS</a> </td><td> Sample </td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a> </td><td> Sample </td><td> Only use for a single node tests.</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter">Flexvolume</a> </td><td> Sample </td></tr>
+<tr><td><a href="https://github.com/thecodeteam/gocsi/tree/master/mock">Mock Driver</a> </td><td> Sample </td><td> Only use for development tests.</td></tr>
+</tbody></table>
+<a class="header" href="print.html#production-drivers" id="production-drivers"><h3>Production Drivers</h3></a>
+<table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
+<tr><td><a href="https://portworx.com/">Portworx</a> </td><td> Alpha </td><td> CSI implementation is available <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">here</a> which can be used as an example also.</td></tr>
+<tr><td><a href="https://www.opensds.io/">OpenSDS</a> </td><td> Beta </td><td> For more information, please visit <a href="https://github.com/opensds/nbp/releases">releases</a> and https://github.com/opensds/nbp/tree/master/csi</td></tr>
+</tbody></table>
+<a class="header" href="print.html#testing" id="testing"><h2>Testing</h2></a>
+<p>There are multiple ways to test your driver. Please see <a href="Testing-Drivers.html">Testing Drivers</a> for more information.</p>
+<a class="header" href="print.html#usage" id="usage"><h1>Usage</h1></a>
+<p>There are two main models of how to use storage in Kubernetes with CSI drivers. These models include either the usage of pre-provisioned volumes or dynamic provisioned volumes. Please check the documentation of your specific driver for more information.</p>
+<a class="header" href="print.html#pre-provisioned-volumes" id="pre-provisioned-volumes"><h3>Pre-provisioned volumes</h3></a>
+<p>Pre-provisioned drivers work just as they did before, where the administrator would create a <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes"><em>PersistentVolume</em></a> specification which would describe the volume to be used. The PersistentVolume specification would need to be setup according to your driver, the difference here is that there is a new section called <em>csi</em> which needs to be setup accordingly. Please see Kubernetes Documentation on CSI Volumes (<strong>LINK TBD</strong>).</p>
+<p>Here is an example of a <em>PersistentVolume</em> specification of a pre-provisioned volume managed by a CSI driver:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: manually-created-pv
+spec:
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: com.example.team/csi-driver
+    volumeHandle: existingVolumeName
+    readOnly: false
+</code></pre>
+<a class="header" href="print.html#dynamic-provisioning" id="dynamic-provisioning"><h3>Dynamic Provisioning</h3></a>
+<p>To setup the system for dynamic provisioning, the administrator needs to setup a <a href="https://kubernetes.io/docs/concepts/storage/storage-classes"><em>StorageClass</em></a> pointing to the CSI driver’s external-provisioner and specifying any parameters required by the driver. Here is an example of a StorageClass:</p>
+<pre><code class="language-yaml">kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast-storage
+provisioner: com.example.team/csi-driver
+parameters:
+  type: pd-ssd
+</code></pre>
+<p>Where,</p>
+<ul>
+<li><em>provisioner</em>: Must be set to the name of the CSI driver</li>
+<li><em>parameters</em>: Must contain any parameters specific to the CSI driver.</li>
+</ul>
+<p>The user can then create a <em>PersistentVolumeClaim</em> utilizing this StorageClass as follows:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: request-for-storage
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: fast-storage
+</code></pre>
+<a class="header" href="print.html#development" id="development"><h1>Development</h1></a>
+<p>This section describes to developers how to create and deploy a CSI driver for Kubernetes.</p>
+<a class="header" href="print.html#developing-a-csi-driver" id="developing-a-csi-driver"><h1>Developing a CSI driver</h1></a>
+<p>To write a CSI Driver, a developer must create an application which implements the three <em>Identity</em>, <em>Controller</em>, and <em>Node</em> services as described in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#rpc-interface">CSI specification</a>.</p>
+<p>The <a href="Drivers.html">Drivers</a> page contains a set of drivers which may be used as an example of how to write a CSI driver.</p>
+<a class="header" href="print.html#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
+<p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes 1.9 cluster.</p>
+<a class="header" href="print.html#overview" id="overview"><h2>Overview</h2></a>
+<p>In Kubernetes 1.9 there are three new components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. The new components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
+<a class="header" href="print.html#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
+<p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
+<p>Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the <em>external attacher</em>, <em>external provisioner</em>, and the <em>driver registrar</em>.</p>
+<a class="header" href="print.html#external-attacher" id="external-attacher"><h3>External Attacher</h3></a>
+<p><a href="https://github.com/kubernetes-csi/external-attacher">external-attacher</a> is a sidecar container that watches Kubernetes <em>VolumeAttachment</em> objects and triggers CSI <em>ControllerPublish</em> and <em>ControllerUnpublish</em> operations against a driver endpoint. As of this writing, the external attacher does not support leader election and therefore there can be only one running per CSI driver.  For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#attaching-and-detaching"><em>Attaching and Detaching</em></a>.</p>
+<p>Note, even though this is called the <em>external attacher</em>, its function is to call the CSI API calls <em>ControllerPublish</em> and <em>ControllerUnpublish</em>. These calls most likely will occur in a node which is <em>not</em> the one that will mount the volume. For this reason, many CSI drivers do not support these calls, instead doing the attach/detach and mount/unmount both in the CSI <em>NodePublish</em> and <em>NodeUnpublish</em> calls done by the kubelet at the node which is supposed to mount.</p>
+<a class="header" href="print.html#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
+<p><a href="https://github.com/kubernetes-csi/external-provisioner">external-provisioner</a> is a Sidecar container that watches Kubernetes <em>PersistentVolumeClaim</em> objects and triggers CSI <em>CreateVolume</em> and <em>DeleteVolume</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#provisioning-and-deleting"><em>Provisioning and Deleting</em></a>.</p>
+<a class="header" href="print.html#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
+<p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
+<pre><code class="language-yaml">        - name: csi-driver-registrar
+          imagePullPolicy: Always
+          image: docker.io/k8scsi/driver-registrar
+          args:
+            - &quot;--v=5&quot;
+            - &quot;--csi-address=$(ADDRESS)&quot;
+          env:
+            - name: ADDRESS
+              value: /csi/csi.sock
+            - name: KUBE_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
+          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+</code></pre>
+<a class="header" href="print.html#kubelet" id="kubelet"><h3>Kubelet</h3></a>
+<p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1NXaVNDh3mSDhog7Q3Y9eELyEF24F8Z-Kk0ujR3pyOes/edit?usp=sharing"><img src="images/kubelet.png" alt="kubelet" /></a></p>
+<p>The Kubernetes kubelet runs on every node and is responsible for making the CSI calls <em>NodePublish</em> and <em>NodeUnpublish</em>. These calls mount and unmount the storage volume from the storage system, making it available to the Pod to consume. As shown in the <em>external-attacher</em>, most CSI drivers choose to implement both their attach/detach and mount/unmount calls in the <em>NodePublish</em> and <em>NodeUnpublish</em> calls. They do this because the kubelet makes the request on the node which is to consume the volume.</p>
+<a class="header" href="print.html#mount-point" id="mount-point"><h3>Mount point</h3></a>
+<p>The mount point used by the CSI driver must be set to <em>Bidirectional</em>. See the example below:</p>
+<pre><code class="language-yaml">          volumeMounts:
+            - name: socket-dir
+              mountPath: /csi
+            - name: mountpoint-dir
+              mountPath: /var/lib/kubelet/pods
+              mountPropagation: &quot;Bidirectional&quot;
+      volumes:
+        - name: socket-dir
+          hostPath:
+            path: /var/lib/kubelet/plugins/csi-hostpath
+            type: DirectoryOrCreate
+        - name: mountpoint-dir
+          hostPath:
+            path: /var/lib/kubelet/pods
+            type: Directory
+</code></pre>
+<a class="header" href="print.html#rbac-rules" id="rbac-rules"><h3>RBAC Rules</h3></a>
+<p>Side car containers need the appropriate permissions to be able to access and manipulate Kubernetes objects. Here are the RBAC rules needed:</p>
+<pre><code class="language-yaml">kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: csi-hostpath-role
+rules:
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;persistentvolumes&quot;]
+    verbs: [&quot;create&quot;, &quot;delete&quot;, &quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;persistentvolumeclaims&quot;]
+    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
+  - apiGroups: [&quot;&quot;]
+    resources: [&quot;nodes&quot;]
+    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
+  - apiGroups: [&quot;storage.k8s.io&quot;]
+    resources: [&quot;storageclasses&quot;]
+    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;]
+  - apiGroups: [&quot;storage.k8s.io&quot;]
+    resources: [&quot;volumeattachments&quot;]
+    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
+</code></pre>
+<a class="header" href="print.html#deploying" id="deploying"><h2>Deploying</h2></a>
+<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes">Section: <em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>, so we will provide here a brief explanation</p>
+<a class="header" href="print.html#example-deployment" id="example-deployment"><h3>Example Deployment</h3></a>
+<p>For full example deployment of the hostPath driver see <a href="https://github.com/lpabon/csi-workspace/blob/master/hostpath.yaml">hostpath.yaml</a>. This example also contains all the RBAC rules needed to be set so that the external-attacher and the external-provisioner operate correctly.</p>
+<blockquote>
+<p>Note: This example uses a <em>DaemonSet</em> to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of <em>hostPath</em> driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.</p>
+</blockquote>
+<a class="header" href="print.html#more-information" id="more-information"><h2>More information</h2></a>
+<p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
+<a class="header" href="print.html#testing-1" id="testing-1"><h1>Testing</h1></a>
+<p>This document describes to developers how they can test their CSI clients or drivers.</p>
+<a class="header" href="print.html#testing-csi-clients" id="testing-csi-clients"><h1>Testing CSI Clients</h1></a>
+<p>If you are writing a CSI client, like a CO or a side car container, then you can use some of the following methods to test your application.</p>
+<ul>
+<li><em>csi-test unit test mock driver</em>: The csi-test repo provides an automatically generated Golang mock code to be used for unit tests.</li>
+<li><em>mock-driver</em>: This driver can be used as an external service to test your gRPC calls.</li>
+<li><em>hostPath driver</em>: This driver can be used on a single node to tests for mounting and unmounting of storage.</li>
+</ul>
+<a class="header" href="print.html#csi-test-unit-test-mock-driver" id="csi-test-unit-test-mock-driver"><h1>CSI-Test Unit Test Mock Driver</h1></a>
+<p>The <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a> unit test mock driver enables Golang clients to test all aspects of their code. This is done by using the mock driver generated using <a href="https://github.com/golang/mock">GoMock</a>, which let's the caller verify parameters and test for returned values. Here is a small example:</p>
+<pre><code class="language-go">    // Setup mock
+    m := gomock.NewController(&amp;mock_utils.SafeGoroutineTester{})
+    defer m.Finish()
+    driver := mock_driver.NewMockIdentityServer(m)
+
+    // Setup input
+    in := &amp;csi.GetPluginInfoRequest{
+        Version: &amp;csi.Version{
+            Major: 0,
+            Minor: 1,
+            Patch: 0,
+        },
+    }
+
+    // Setup mock outout
+    out := &amp;csi.GetPluginInfoResponse{
+        Name:          &quot;mock&quot;,
+        VendorVersion: &quot;0.1.1&quot;,
+        Manifest: map[string]string{
+            &quot;hello&quot;: &quot;world&quot;,
+        },
+    }
+
+    // Setup expectation
+    // !IMPORTANT!: Must set context expected value to gomock.Any() to match any value
+    driver.EXPECT().GetPluginInfo(gomock.Any(), in).Return(out, nil).Times(1)
+
+    // Create a new RPC
+    server := mock_driver.NewMockCSIDriver(&amp;mock_driver.MockCSIDriverServers{
+        Identity: driver,
+    })
+    conn, err := server.Nexus()
+    if err != nil {
+        t.Errorf(&quot;Error: %s&quot;, err.Error())
+    }
+    defer server.Close()
+
+    // Make call
+    c := csi.NewIdentityClient(conn)
+    r, err := c.GetPluginInfo(context.Background(), in)
+    if err != nil {
+        t.Errorf(&quot;Error: %s&quot;, err.Error())
+    }
+
+    name := r.GetName()
+    if name != &quot;mock&quot; {
+        t.Errorf(&quot;Unknown name: %s\n&quot;, name)
+    }
+</code></pre>
+<a class="header" href="print.html#more-information-1" id="more-information-1"><h2>More Information</h2></a>
+<p>For more examples and information see:</p>
+<ul>
+<li><a href="https://github.com/kubernetes-csi/external-attacher/blob/master/pkg/connection/connection_test.go">external-attacher side car container</a></li>
+<li><a href="https://github.com/golang/mock">Golang GoMock</a></li>
+</ul>
+<a class="header" href="print.html#mock-driver" id="mock-driver"><h1>Mock Driver</h1></a>
+<p>The <a href="https://github.com/thecodeteam/gocsi/tree/master/mock">mock driver</a> from <a href="https://github.com/thecodeteam"><em>TheCodeTeam</em></a> can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:</p>
+<pre><code>$ docker run -d --rm -e CSI_ENDPOINT=tcp://:34555 -p 34555:34555 docker.io/k8scsi/mock-plugin
+$ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
+</code></pre>
+<p>Where <a href="https://github.com/thecodeteam/gocsi/tree/master/csc"><em>csc</em></a> is <em>TheCodeTeam</em>'s sample test client.</p>
+<a class="header" href="print.html#hostpath-driver" id="hostpath-driver"><h1>HostPath Driver</h1></a>
+<p>The <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">hostPath</a> driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. Note: Deployment and documentation will be added to the repo</p>
+<a class="header" href="print.html#testing-csi-drivers" id="testing-csi-drivers"><h1>Testing CSI Drivers</h1></a>
+<p>There are multiple ways to test your driver, some still in development. This page will describe each of the multiple methods to test your driver.</p>
+<a class="header" href="print.html#unit-testing" id="unit-testing"><h2>Unit Testing</h2></a>
+<p>There are multiple ways to test your driver. One way is to exercise every call by writing your own client for your unit tests as done in the <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">Portworx driver</a>.</p>
+<p>Another way to test your driver is to use the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity"><code>sanity</code></a> package from <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a>. This simple package contains a single call which will test your driver according to the CSI specification. Here is an example of how it can be used:</p>
+<pre><code class="language-go">func TestMyDriver(t *testing.T) {
+    // Setup the full driver and its environment
+    ... setup driver ...
+
+    // Now call the test suite
+    sanity.Test(t, driverEndpointAddress)
+}
+</code></pre>
+<a class="header" href="print.html#functional-testing" id="functional-testing"><h2>Functional Testing</h2></a>
+<p>For functional testing you can again provide your own model, or some of the following tools:</p>
+<a class="header" href="print.html#csi-sanity" id="csi-sanity"><h3>csi-sanity</h3></a>
+<p><a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a> is a program from <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a> which tests your driver based on the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity"><code>sanity</code></a> package.</p>
+<p>Here is a sample way to use it:</p>
+<pre><code>$ csi-sanity --ginkgo.v --csi.endpoint=&lt;your csi driver endpoint&gt;
+</code></pre>
+<p>For more information please see <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></p>
+<a class="header" href="print.html#container-storage-client" id="container-storage-client"><h3>Container Storage Client</h3></a>
+<p>Container Storage client, or <a href="https://github.com/thecodeteam/gocsi/tree/master/csc">csc</a> is a program created by <a href="https://github.com/thecodeteam"><em>thecodeteam</em></a> to execute commands to a driver. With this program you can manually send commands to your driver. Here is an example:</p>
+<pre><code>$ csc controller list-volumes -v 0.1.0 --endpoint &lt;your csi driver endpoint&gt;
+</code></pre>
+<a class="header" href="print.html#references" id="references"><h1>References</h1></a>
+<ul>
+<li><a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI Specification</a></li>
+<li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md">CSI Volume Plugins in Kubernetes Design Doc</a></li>
+</ul>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+
+                
+
+            </div>
+
+            
+
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+        <script>
+            $(document).ready(function() {
+                window.print();
+            })
+        </script>
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

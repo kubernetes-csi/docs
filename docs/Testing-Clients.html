@@ -1,0 +1,217 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Clients - Kubernetes CSI Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="CSI support for Kubernetes 1.9 (Alpha)">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="Home.html"><strong>1.</strong> Introduction</a></li><li><a href="Setup.html"><strong>2.</strong> Using a CSI Driver</a></li><li><ul class="section"><li><a href="Deployment.html"><strong>2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong>2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong>2.3.</strong> Usage</a></li></ul></li><li><a href="Development.html"><strong>3.</strong> Deployment</a></li><li><ul class="section"><li><a href="CSI-Driver.html"><strong>3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong>3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong>3.3.</strong> Testing</a></li><li><ul class="section"><li><a href="Testing-Clients.html" class="active"><strong>3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong>3.3.2.</strong> Drivers</a></li></ul></li></ul></li><li><a href="References.html"><strong>4.</strong> References</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Kubernetes CSI Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="Testing-Clients.html#testing-csi-clients" id="testing-csi-clients"><h1>Testing CSI Clients</h1></a>
+<p>If you are writing a CSI client, like a CO or a side car container, then you can use some of the following methods to test your application.</p>
+<ul>
+<li><em>csi-test unit test mock driver</em>: The csi-test repo provides an automatically generated Golang mock code to be used for unit tests.</li>
+<li><em>mock-driver</em>: This driver can be used as an external service to test your gRPC calls.</li>
+<li><em>hostPath driver</em>: This driver can be used on a single node to tests for mounting and unmounting of storage.</li>
+</ul>
+<a class="header" href="Testing-Clients.html#csi-test-unit-test-mock-driver" id="csi-test-unit-test-mock-driver"><h1>CSI-Test Unit Test Mock Driver</h1></a>
+<p>The <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a> unit test mock driver enables Golang clients to test all aspects of their code. This is done by using the mock driver generated using <a href="https://github.com/golang/mock">GoMock</a>, which let's the caller verify parameters and test for returned values. Here is a small example:</p>
+<pre><code class="language-go">    // Setup mock
+    m := gomock.NewController(&amp;mock_utils.SafeGoroutineTester{})
+    defer m.Finish()
+    driver := mock_driver.NewMockIdentityServer(m)
+
+    // Setup input
+    in := &amp;csi.GetPluginInfoRequest{
+        Version: &amp;csi.Version{
+            Major: 0,
+            Minor: 1,
+            Patch: 0,
+        },
+    }
+
+    // Setup mock outout
+    out := &amp;csi.GetPluginInfoResponse{
+        Name:          &quot;mock&quot;,
+        VendorVersion: &quot;0.1.1&quot;,
+        Manifest: map[string]string{
+            &quot;hello&quot;: &quot;world&quot;,
+        },
+    }
+
+    // Setup expectation
+    // !IMPORTANT!: Must set context expected value to gomock.Any() to match any value
+    driver.EXPECT().GetPluginInfo(gomock.Any(), in).Return(out, nil).Times(1)
+
+    // Create a new RPC
+    server := mock_driver.NewMockCSIDriver(&amp;mock_driver.MockCSIDriverServers{
+        Identity: driver,
+    })
+    conn, err := server.Nexus()
+    if err != nil {
+        t.Errorf(&quot;Error: %s&quot;, err.Error())
+    }
+    defer server.Close()
+
+    // Make call
+    c := csi.NewIdentityClient(conn)
+    r, err := c.GetPluginInfo(context.Background(), in)
+    if err != nil {
+        t.Errorf(&quot;Error: %s&quot;, err.Error())
+    }
+
+    name := r.GetName()
+    if name != &quot;mock&quot; {
+        t.Errorf(&quot;Unknown name: %s\n&quot;, name)
+    }
+</code></pre>
+<a class="header" href="Testing-Clients.html#more-information" id="more-information"><h2>More Information</h2></a>
+<p>For more examples and information see:</p>
+<ul>
+<li><a href="https://github.com/kubernetes-csi/external-attacher/blob/master/pkg/connection/connection_test.go">external-attacher side car container</a></li>
+<li><a href="https://github.com/golang/mock">Golang GoMock</a></li>
+</ul>
+<a class="header" href="Testing-Clients.html#mock-driver" id="mock-driver"><h1>Mock Driver</h1></a>
+<p>The <a href="https://github.com/thecodeteam/gocsi/tree/master/mock">mock driver</a> from <a href="https://github.com/thecodeteam"><em>TheCodeTeam</em></a> can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:</p>
+<pre><code>$ docker run -d --rm -e CSI_ENDPOINT=tcp://:34555 -p 34555:34555 docker.io/k8scsi/mock-plugin
+$ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
+</code></pre>
+<p>Where <a href="https://github.com/thecodeteam/gocsi/tree/master/csc"><em>csc</em></a> is <em>TheCodeTeam</em>'s sample test client.</p>
+<a class="header" href="Testing-Clients.html#hostpath-driver" id="hostpath-driver"><h1>HostPath Driver</h1></a>
+<p>The <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">hostPath</a> driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. Note: Deployment and documentation will be added to the repo</p>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="Testing.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="Testing-Drivers.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="Testing.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="Testing-Drivers.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>

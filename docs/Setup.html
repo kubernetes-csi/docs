@@ -1,0 +1,185 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Using a CSI Driver - Kubernetes CSI Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="CSI support for Kubernetes 1.9 (Alpha)">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <base href="">
+
+        <link rel="stylesheet" href="book.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <link rel="shortcut icon" href="favicon.png">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme -->
+        
+
+        
+
+        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
+        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
+        <script>
+            if (typeof Clipboard == 'undefined') {
+                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch JQuery from CDN but have a local fallback -->
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            if (typeof jQuery == 'undefined') {
+                document.write(unescape("%3Cscript src='jquery.js'%3E%3C/script%3E"));
+            }
+        </script>
+
+        <!-- Fetch store.js from local - TODO add CDN when 2.x.x is available on cdnjs -->
+        <script src="store.js"></script>
+
+    </head>
+    <body class="light">
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme = store.get('mdbook-theme');
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            $('body').removeClass().addClass(theme);
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var sidebar = store.get('mdbook-sidebar');
+            if (sidebar === "hidden") { $("html").addClass("sidebar-hidden") }
+            else if (sidebar === "visible") { $("html").addClass("sidebar-visible") }
+        </script>
+
+        <div id="sidebar" class="sidebar">
+            <ul class="chapter"><li><a href="Home.html"><strong>1.</strong> Introduction</a></li><li><a href="Setup.html" class="active"><strong>2.</strong> Using a CSI Driver</a></li><li><ul class="section"><li><a href="Deployment.html"><strong>2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong>2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong>2.3.</strong> Usage</a></li></ul></li><li><a href="Development.html"><strong>3.</strong> Deployment</a></li><li><ul class="section"><li><a href="CSI-Driver.html"><strong>3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong>3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong>3.3.</strong> Testing</a></li><li><ul class="section"><li><a href="Testing-Clients.html"><strong>3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong>3.3.2.</strong> Drivers</a></li></ul></li></ul></li><li><a href="References.html"><strong>4.</strong> References</a></li></ul>
+        </div>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page" tabindex="-1">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div class="left-buttons">
+                        <i id="sidebar-toggle" class="fa fa-bars" title="Toggle sidebar"></i>
+                        <i id="theme-toggle" class="fa fa-paint-brush" title="Change theme"></i>
+                    </div>
+
+                    <h1 class="menu-title">Kubernetes CSI Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html">
+                            <i id="print-button" class="fa fa-print" title="Print this book"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="content" class="content">
+                    <a class="header" href="Setup.html#setup" id="setup"><h1>Setup</h1></a>
+<p>This page shows the user how to setup their Kubernetes cluster enable support for CSI drivers.</p>
+<a class="header" href="Setup.html#cluster-requirements" id="cluster-requirements"><h2>Cluster Requirements</h2></a>
+<p>Kubernetes v1.9 must be setup to support the new technologies required to enable CSI integration. To enable this new technology please setup the following flags:</p>
+<ul>
+<li>API Server binary:</li>
+</ul>
+<pre><code>--feature-gates=CSIPersistentVolume=true \
+--runtime-config=storage.k8s.io/v1alpha1=true
+</code></pre>
+<ul>
+<li>API Server binary and kubelet binaries:</li>
+</ul>
+<pre><code>--feature-gates=MountPropagation=true \
+--allow-privileged=true
+</code></pre>
+<a class="header" href="Setup.html#developers" id="developers"><h3>Developers</h3></a>
+<p>If you are a developer and are using the script <code>cluster/kube-up.sh</code> from the Kubernetes repo, then you can set values using the following environment variables:</p>
+<pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
+export KUBE_FEATURE_GATES=&quot;CSIPersistentVolume=true&quot;
+</code></pre>
+<a class="header" href="Setup.html#confirming-the-setup" id="confirming-the-setup"><h3>Confirming the setup</h3></a>
+<p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>
+<pre><code class="language-bash">$ kubectl get volumeattachments
+</code></pre>
+<p>To confirm that the feature gate has taken effect, submit the following fake PersistentVolume specification. If it is accepted, then we can confirm that the feature gate has been set correctly, and you may go ahead and delete it:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: fakepv
+spec:
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteMany
+    csi:
+        driver: fake
+        volumeHandle: &quot;1&quot;
+        readOnly: false
+</code></pre>
+
+                </div>
+
+                <!-- Mobile navigation buttons -->
+                
+                    <a rel="prev" href="Home.html" class="mobile-nav-chapters previous" title="Previous chapter">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="Deployment.html" class="mobile-nav-chapters next" title="Next chapter">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+
+            </div>
+
+            
+                <a href="Home.html" class="nav-chapters previous" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+            
+
+            
+                <a href="Deployment.html" class="nav-chapters next" title="You can navigate through the chapters using the arrow keys">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            
+
+        </div>
+
+
+        <!-- Local fallback for Font Awesome -->
+        <script>
+            if ($(".fa").css("font-family") !== "FontAwesome") {
+                $('<link rel="stylesheet" type="text/css" href="_FontAwesome/css/font-awesome.css">').prependTo('head');
+            }
+        </script>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        
+
+        
+
+        
+
+        
+
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS script -->
+        
+
+    </body>
+</html>
