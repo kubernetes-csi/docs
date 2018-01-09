@@ -100,19 +100,25 @@
 <ul>
 <li>API Server binary:</li>
 </ul>
-<pre><code>--feature-gates=CSIPersistentVolume=true \
+<pre><code>--allow-privileged=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true
 --runtime-config=storage.k8s.io/v1alpha1=true
 </code></pre>
 <ul>
-<li>API Server binary and kubelet binaries:</li>
+<li>Controller-manager binary</li>
 </ul>
-<pre><code>--feature-gates=MountPropagation=true \
---allow-privileged=true
+<pre><code>--feature-gates=CSIPersistentVolume=true
+</code></pre>
+<ul>
+<li>Kubelet</li>
+</ul>
+<pre><code>--allow-privileged=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true
 </code></pre>
 <a class="header" href="print.html#developers" id="developers"><h3>Developers</h3></a>
 <p>If you are a developer and are using the script <code>cluster/kube-up.sh</code> from the Kubernetes repo, then you can set values using the following environment variables:</p>
 <pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
-export KUBE_FEATURE_GATES=&quot;CSIPersistentVolume=true&quot;
+export KUBE_FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
 </code></pre>
 <a class="header" href="print.html#confirming-the-setup" id="confirming-the-setup"><h3>Confirming the setup</h3></a>
 <p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>

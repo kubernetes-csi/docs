@@ -7,15 +7,22 @@ Kubernetes v1.9 must be setup to support the new technologies required to enable
 * API Server binary:
 
 ```
---feature-gates=CSIPersistentVolume=true \
+--allow-privileged=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true
 --runtime-config=storage.k8s.io/v1alpha1=true
 ```
 
-* API Server binary and kubelet binaries:
+* Controller-manager binary
 
 ```
---feature-gates=MountPropagation=true \
+--feature-gates=CSIPersistentVolume=true
+```
+
+* Kubelet
+
+```
 --allow-privileged=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true
 ```
 
 ### Developers
@@ -24,7 +31,7 @@ If you are a developer and are using the script `cluster/kube-up.sh` from the Ku
 
 ```
 export KUBE_RUNTIME_CONFIG="storage.k8s.io/v1alpha1=true"
-export KUBE_FEATURE_GATES="CSIPersistentVolume=true"
+export KUBE_FEATURE_GATES="MountPropagation=true,CSIPersistentVolume=true"
 ```
 
 ### Confirming the setup
