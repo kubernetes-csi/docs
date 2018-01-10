@@ -157,9 +157,11 @@ spec:
 <table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
 <tr><td><a href="https://portworx.com/">Portworx</a> </td><td> Alpha </td><td> CSI implementation is available <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">here</a> which can be used as an example also.</td></tr>
 <tr><td><a href="https://www.opensds.io/">OpenSDS</a> </td><td> Beta </td><td> For more information, please visit <a href="https://github.com/opensds/nbp/releases">releases</a> and https://github.com/opensds/nbp/tree/master/csi</td></tr>
+<tr><td><a href="https://github.com/thecodeteam/csi-scaleio">ScaleIO</a></td><td>v0.1.0</td><td>A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO</td></tr>
+<tr><td><a href="https://github.com/thecodeteam/csi-vsphere">vSphere</a></td><td>v0.1.0</td><td>A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere</td></tr>
+<tr><td>## Testing</td></tr>
+<tr><td>There are multiple ways to test your driver. Please see <a href="Testing-Drivers.html">Testing Drivers</a> for more information.</td></tr>
 </tbody></table>
-<a class="header" href="print.html#testing" id="testing"><h2>Testing</h2></a>
-<p>There are multiple ways to test your driver. Please see <a href="Testing-Drivers.html">Testing Drivers</a> for more information.</p>
 <a class="header" href="print.html#usage" id="usage"><h1>Usage</h1></a>
 <p>There are two main models of how to use storage in Kubernetes with CSI drivers. These models include either the usage of pre-provisioned volumes or dynamic provisioned volumes. Please check the documentation of your specific driver for more information.</p>
 <a class="header" href="print.html#pre-provisioned-volumes" id="pre-provisioned-volumes"><h3>Pre-provisioned volumes</h3></a>
@@ -297,7 +299,7 @@ rules:
 </blockquote>
 <a class="header" href="print.html#more-information" id="more-information"><h2>More information</h2></a>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
-<a class="header" href="print.html#testing-1" id="testing-1"><h1>Testing</h1></a>
+<a class="header" href="print.html#testing" id="testing"><h1>Testing</h1></a>
 <p>This document describes to developers how they can test their CSI clients or drivers.</p>
 <a class="header" href="print.html#testing-csi-clients" id="testing-csi-clients"><h1>Testing CSI Clients</h1></a>
 <p>If you are writing a CSI client, like a CO or a side car container, then you can use some of the following methods to test your application.</p>
