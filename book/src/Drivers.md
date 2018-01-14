@@ -19,6 +19,7 @@ Name | Status | More Information
 [OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
 [vSphere](https://github.com/thecodeteam/csi-vsphere)|v0.1.0|A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere
+[RBD](https://github.com/ceph/ceph-csi)|Alpha|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
