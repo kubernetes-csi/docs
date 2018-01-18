@@ -9,10 +9,10 @@ Name | Status | More Information
 [NFS](https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs) | Sample | 
 [HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | Sample | Only use for a single node tests.
 [Flexvolume](https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter) | Sample |
-[Mock Driver](https://github.com/thecodeteam/gocsi/tree/master/mock) | Sample | Only use for development tests.
+[Mock Driver](https://github.com/thecodeteam/gocsi/tree/master/mock) | Released | A mock CSI plugin usable as a stand-alone binary or in code.
+[VFS Driver](https://github.com/thecodeteam/csi-vfs) | Released | A CSI plugin that provides a virtual file system.
 
 ### Production Drivers
-
 Name | Status | More Information
 -----|--------|-------
 [Portworx](https://portworx.com/) | Alpha | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
