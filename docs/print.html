@@ -154,6 +154,10 @@
 <pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
 export KUBE_FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
 </code></pre>
+<p>When using the script <code>hack/local-up-cluster.sh</code>, set the same variables without the <code>KUBE_</code> prefix:</p>
+<pre><code>export RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
+export FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
+</code></pre>
 <a class="header" href="print.html#confirming-the-setup" id="confirming-the-setup"><h3>Confirming the setup</h3></a>
 <p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>
 <pre><code class="language-bash">$ kubectl get volumeattachments
