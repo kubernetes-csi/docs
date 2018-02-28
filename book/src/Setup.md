@@ -34,6 +34,13 @@ export KUBE_RUNTIME_CONFIG="storage.k8s.io/v1alpha1=true"
 export KUBE_FEATURE_GATES="MountPropagation=true,CSIPersistentVolume=true"
 ```
 
+When using the script `hack/local-up-cluster.sh`, set the same variables without the `KUBE_` prefix:
+
+```
+export RUNTIME_CONFIG="storage.k8s.io/v1alpha1=true"
+export FEATURE_GATES="MountPropagation=true,CSIPersistentVolume=true"
+```
+
 ### Confirming the setup
 
 Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:
