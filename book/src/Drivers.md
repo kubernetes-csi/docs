@@ -7,7 +7,7 @@ The following are a set of CSI driver which can be used on Kubernetes 1.9:
 Name | Status | More Information
 -----|--------|-------
 [NFS](https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs) | Sample | 
-[HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | v0.2.0 | Only use for a single node tests.
+[HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | v0.2.0 | Only use for a single node tests. See the [Example](Example.html) page for Kubernetes-specific instructions.
 [Flexvolume](https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter) | Sample |
 [Mock Driver](https://github.com/kubernetes-csi/drivers/mock) | v0.2.0 | A mock CSI plugin usable as a stand-alone binary or in code.
 [VFS Driver](https://github.com/thecodeteam/csi-vfs) | Released | A CSI plugin that provides a virtual file system.

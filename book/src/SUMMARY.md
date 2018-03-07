@@ -5,6 +5,7 @@
     - [Deployment](Deployment.md)
     - [Drivers](Drivers.md)
     - [Usage](Usage.md)
+    - [Example](Example.md)
 - [Development](Development.md)
     - [Developing a CSI driver](CSI-Driver.md)
     - [Deploying in Kubernetes](CSI-Kubernetes.md)
