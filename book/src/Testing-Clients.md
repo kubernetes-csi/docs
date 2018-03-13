@@ -76,4 +76,5 @@ $ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
 Where [_csc_](https://github.com/thecodeteam/gocsi/tree/master/csc) is _TheCodeTeam_'s sample test client.
 
 # HostPath Driver
-The [hostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. Note: Deployment and documentation will be added to the repo
+The [hostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. See the [Example](Example.html) page for deployment and usage instructions.
+

@@ -74,7 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="References.html"><strong aria-hidden="true">4.</strong> References</a></li></ol>
+            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="References.html"><strong aria-hidden="true">4.</strong> References</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -178,7 +178,7 @@ spec:
         readOnly: false
 </code></pre>
 <a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
-<p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver.</p>
+<p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver. A functional example based on the HostPath driver is presented in the <a href="Example.html">Example</a> section.</p>
 <a class="header" href="print.html#drivers" id="drivers"><h1>Drivers</h1></a>
 <p>The following are a set of CSI driver which can be used on Kubernetes 1.9:</p>
 <blockquote>
@@ -187,7 +187,7 @@ spec:
 <a class="header" href="print.html#sample-drivers" id="sample-drivers"><h3>Sample Drivers</h3></a>
 <table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs">NFS</a> </td><td> Sample </td></tr>
-<tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a> </td><td> v0.2.0 </td><td> Only use for a single node tests.</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a> </td><td> v0.2.0 </td><td> Only use for a single node tests. See the <a href="Example.html">Example</a> page for Kubernetes-specific instructions.</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter">Flexvolume</a> </td><td> Sample </td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/mock">Mock Driver</a> </td><td> v0.2.0 </td><td> A mock CSI plugin usable as a stand-alone binary or in code.</td></tr>
 <tr><td><a href="https://github.com/thecodeteam/csi-vfs">VFS Driver</a> </td><td> Released </td><td> A CSI plugin that provides a virtual file system.</td></tr>
@@ -249,6 +249,369 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: fast-storage
+</code></pre>
+<a class="header" href="print.html#example" id="example"><h1>Example</h1></a>
+<p>The
+<a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a>
+can be used to provision local storage in a single node test. This
+section shows how to deploy and use that driver in Kubernetes.</p>
+<a class="header" href="print.html#deployment-1" id="deployment-1"><h3>Deployment</h3></a>
+<p>The following .yaml file will deploy a <code>csi-pod</code> with the HostPath CSI driver and the
+<a href="CSI-Kubernetes.md#sidecar-containers">sidecar containers</a> which integrate the driver into Kubernetes.
+Use it with a cluster that is <a href="Setup.html">set up for CSI</a>, either by copying it into a local file or
+by referencing the latest version directly:</p>
+<pre><code>$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-setup.yaml
+storageclass.storage.k8s.io &quot;csi-hostpath-sc&quot; created
+serviceaccount &quot;csi-service-account&quot; created
+clusterrole.rbac.authorization.k8s.io &quot;csi-cluster-role&quot; created
+clusterrolebinding.rbac.authorization.k8s.io &quot;csi-role-binding&quot; created
+pod &quot;csi-pod&quot; created
+$ kubectl get pods
+NAME      READY     STATUS    RESTARTS   AGE
+csi-pod   4/4       Running   0          24s
+</code></pre>
+<pre><code class="language-yaml">apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: csi-hostpath-sc
+provisioner: csi-hostpath
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: csi-service-account
+  namespace: default
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: csi-cluster-role
+rules:
+- apiGroups:
+  - &quot;&quot;
+  resources:
+  - persistentvolumes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - &quot;&quot;
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - &quot;&quot;
+  resources:
+  - persistentvolumeclaims
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - &quot;&quot;
+  resources:
+  - nodes
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - volumeattachments
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - &quot;&quot;
+  resources:
+  - events
+  verbs:
+  - list
+  - watch
+  - create
+  - update
+  - patch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: csi-role-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: csi-cluster-role
+subjects:
+- kind: ServiceAccount
+  name: csi-service-account
+  namespace: default
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: hostpath-driver
+  name: csi-pod
+  namespace: default
+spec:
+  serviceAccount: csi-service-account
+  containers:
+  - name: external-provisioner
+    args:
+    - --v=5
+    - --provisioner=csi-hostpath
+    - --csi-address=/csi/csi.sock
+    image: quay.io/k8scsi/csi-provisioner:v0.2.0
+    imagePullPolicy: Always
+    volumeMounts:
+    - mountPath: /csi
+      name: socket-dir
+  - name: driver-registrar
+    args:
+    - --v=5
+    - --csi-address=/csi/csi.sock
+    env:
+    - name: KUBE_NODE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    image: quay.io/k8scsi/driver-registrar:v0.2.0
+    imagePullPolicy: Always
+    volumeMounts:
+    - mountPath: /csi
+      name: socket-dir
+  - name: external-attacher
+    args:
+    - --v=5
+    - --csi-address=$(ADDRESS)
+    env:
+    - name: ADDRESS
+      value: /csi/csi.sock
+    image: quay.io/k8scsi/csi-attacher:v0.2.0
+    imagePullPolicy: Always
+    volumeMounts:
+    - mountPath: /csi
+      name: socket-dir
+  - name: hostpath-driver
+    args:
+    - --v=5
+    - --endpoint=$(CSI_ENDPOINT)
+    - --nodeid=$(KUBE_NODE_NAME)
+    env:
+    - name: CSI_ENDPOINT
+      value: unix:///csi/csi.sock
+    - name: KUBE_NODE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    image: quay.io/k8scsi/hostpathplugin:v0.2.0
+    imagePullPolicy: Always
+    securityContext:
+      privileged: true
+    volumeMounts:
+    - mountPath: /csi
+      name: socket-dir
+    - mountPath: /var/lib/kubelet/pods
+      mountPropagation: Bidirectional
+      name: mountpoint-dir
+  volumes:
+  - hostPath:
+      path: /var/lib/kubelet/plugins/csi-hostpath
+      type: DirectoryOrCreate
+    name: socket-dir
+  - hostPath:
+      path: /var/lib/kubelet/pods
+      type: DirectoryOrCreate
+    name: mountpoint-dir
+</code></pre>
+<a class="header" href="print.html#usage-1" id="usage-1"><h3>Usage</h3></a>
+<p>Dynamic provisioning was enabled by the .yaml file above via the
+<code>csi-hostpath-sc</code> storage class. We can use this to create and claim a
+new volume:</p>
+<pre><code>$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-pvc.yaml
+persistentvolumeclaim &quot;csi-pvc&quot; created
+$ kubectl get pvc
+NAME      STATUS    VOLUME                                   CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+csi-pvc   Bound     kubernetes-dynamic-pv-bb3d8e2a23d611e8   1Gi        RWO            csi-hostpath-sc   5s
+$ kubectl get pv
+NAME                                     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS    CLAIM             STORAGECLASS      REASON    AGE
+kubernetes-dynamic-pv-bb3d8e2a23d611e8   1Gi        RWO            Delete           Bound     default/csi-pvc   csi-hostpath-sc             8s
+</code></pre>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: csi-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: csi-hostpath-sc # defined in csi-setup.yaml
+</code></pre>
+<p>The HostPath driver is configured to create new volumes under <code>/tmp</code>
+inside the <code>csi-pod/hostpath-driver</code> and thus persist as long as the <code>csi-pod</code> itself.
+We can use such volumes in another pod like this:</p>
+<pre><code>$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-app.yaml
+pod &quot;my-csi-app&quot; created
+$ kubectl get pods
+NAME         READY     STATUS    RESTARTS   AGE
+csi-pod      4/4       Running   0          3m
+my-csi-app   1/1       Running   0          8s
+$ kubectl describe pods/my-csi-app
+Name:         my-csi-app
+Namespace:    default
+Node:         127.0.0.1/127.0.0.1
+Start Time:   Fri, 09 Mar 2018 21:17:21 +0100
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+Status:       Running
+IP:           172.17.0.3
+Containers:
+  my-frontend:
+    Container ID:  docker://52ea6c569abea710166059005416297a654b3216f7ce632516c50498fe130639
+    Image:         busybox
+    Image ID:      docker-pullable://busybox@sha256:2107a35b58593c58ec5f4e8f2c4a70d195321078aebfadfbfb223a2ff4a4ed21
+    Port:          &lt;none&gt;
+    Host Port:     &lt;none&gt;
+    Command:
+      sleep
+      1000000
+    State:          Running
+      Started:      Fri, 09 Mar 2018 21:17:25 +0100
+    Ready:          True
+    Restart Count:  0
+    Environment:    &lt;none&gt;
+    Mounts:
+      /data from my-csi-volume (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from default-token-hw8rs (ro)
+Conditions:
+  Type           Status
+  Initialized    True 
+  Ready          True 
+  PodScheduled   True 
+Volumes:
+  my-csi-volume:
+    Type:       PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:  csi-pvc
+    ReadOnly:   false
+  default-token-hw8rs:
+    Type:        Secret (a volume populated by a Secret)
+    SecretName:  default-token-hw8rs
+    Optional:    false
+QoS Class:       BestEffort
+Node-Selectors:  &lt;none&gt;
+Tolerations:     node.kubernetes.io/not-ready:NoExecute for 300s
+                 node.kubernetes.io/unreachable:NoExecute for 300s
+Events:
+  Type    Reason                  Age   From                     Message
+  ----    ------                  ----  ----                     -------
+  Normal  Scheduled               59s   default-scheduler        Successfully assigned my-csi-app to 127.0.0.1
+  Normal  SuccessfulAttachVolume  59s   attachdetach-controller  AttachVolume.Attach succeeded for volume &quot;kubernetes-dynamic-pv-bb3d8e2a23d611e8&quot;
+  Normal  SuccessfulMountVolume   59s   kubelet, 127.0.0.1       MountVolume.SetUp succeeded for volume &quot;default-token-hw8rs&quot;
+  Normal  SuccessfulMountVolume   58s   kubelet, 127.0.0.1       MountVolume.SetUp succeeded for volume &quot;kubernetes-dynamic-pv-bb3d8e2a23d611e8&quot;
+  Normal  Pulling                 58s   kubelet, 127.0.0.1       pulling image &quot;busybox&quot;
+  Normal  Pulled                  55s   kubelet, 127.0.0.1       Successfully pulled image &quot;busybox&quot;
+  Normal  Created                 55s   kubelet, 127.0.0.1       Created container
+  Normal  Started                 55s   kubelet, 127.0.0.1       Started container
+
+</code></pre>
+<pre><code>kind: Pod
+apiVersion: v1
+metadata:
+  name: my-csi-app
+spec:
+  containers:
+    - name: my-frontend
+      image: busybox
+      volumeMounts:
+      - mountPath: &quot;/data&quot;
+        name: my-csi-volume
+      command: [ &quot;sleep&quot;, &quot;1000000&quot; ]
+  volumes:
+    - name: my-csi-volume
+      persistentVolumeClaim:
+        claimName: csi-pvc # defined in csi-pvs.yaml
+</code></pre>
+<a class="header" href="print.html#troubleshooting" id="troubleshooting"><h2>Troubleshooting</h2></a>
+<p>When using <code>local-cluster-up.sh</code>, double-check that it gets started with the right features, for example like this:</p>
+<pre><code>RUNTIME_CONFIG=storage.k8s.io/v1alpha1=true \
+ALLOW_PRIVILEGED=1 \
+FEATURE_GATES=&quot;BlockVolume=true,MountPropagation=true,CSIPersistentVolume=true&quot; \
+RUNTIME_CONFIG=storage.k8s.io/v1alpha1=true \
+   hack/local-up-cluster.sh
+</code></pre>
+<p>Writing inside the app container should be visible in <code>/tmp</code> of the <code>hostpath-driver</code> container:</p>
+<pre><code>$ kubectl exec -ti my-csi-app /bin/sh
+/ # touch /data/hello-world
+/ # exit
+$ kubectl exec -ti csi-pod -c hostpath-driver /bin/sh
+/ # find / -name hello-world
+/tmp/aba238a3-21f9-11e8-9164-0242ac110002/hello-world
+</code></pre>
+<p>There should be a <code>VolumeAttachment</code> while the app has the volume mounted:</p>
+<pre><code>$ kubectl get VolumeAttachment
+NAME                                                                   AGE
+csi-7bf49991faecc67f5049ed4b72e56b5935d92fb21b69fe782e74ea26e25863a3   7m
+$ kubectl describe VolumeAttachment
+Name:         csi-7bf49991faecc67f5049ed4b72e56b5935d92fb21b69fe782e74ea26e25863a3
+Namespace:    
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  storage.k8s.io/v1beta1
+Kind:         VolumeAttachment
+Metadata:
+  Creation Timestamp:  2018-03-09T20:17:21Z
+  Resource Version:    597
+  Self Link:           /apis/storage.k8s.io/v1beta1/volumeattachments/csi-7bf49991faecc67f5049ed4b72e56b5935d92fb21b69fe782e74ea26e25863a3
+  UID:                 dfaffa08-23d6-11e8-bf78-fcaa1497a416
+Spec:
+  Attacher:   csi-hostpath
+  Node Name:  127.0.0.1
+  Source:
+    Persistent Volume Name:  kubernetes-dynamic-pv-bb3d8e2a23d611e8
+Status:
+  Attached:  true
+Events:      &lt;none&gt;
+</code></pre>
+<p>Not being able to list <code>VolumeAttachment</code> and the following error are
+caused by running on a cluster which lacks the
+<code>storage.k8s.io/v1alpha1=true</code> runtime configuration:</p>
+<pre><code>$ kubectl logs csi-pod external-attacher
+...
+I0306 16:34:50.976069       1 reflector.go:240] Listing and watching *v1alpha1.VolumeAttachment from github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86
+
+E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86: Failed to list *v1alpha1.VolumeAttachment: the server could not find the requested resource
+...
+</code></pre>
+<p>The images used by the <code>csi-pod</code> are under active development. It can
+happen that they become incompatible with each other. If the
+configuration issues mentioned above have been ruled out, <a href="https://github.com/kubernetes/community/tree/master/sig-storage">contact the sig-storage
+team</a> and/or
+<a href="https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#local-clusters">run the e2e test</a>:</p>
+<pre><code>go run hack/e2e.go -- --provider=local --test --test_args=&quot;--ginkgo.focus=Feature:CSI&quot;
 </code></pre>
 <a class="header" href="print.html#development" id="development"><h1>Development</h1></a>
 <p>This section describes to developers how to create and deploy a CSI driver for Kubernetes.</p>
@@ -412,7 +775,7 @@ $ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
 </code></pre>
 <p>Where <a href="https://github.com/thecodeteam/gocsi/tree/master/csc"><em>csc</em></a> is <em>TheCodeTeam</em>'s sample test client.</p>
 <a class="header" href="print.html#hostpath-driver" id="hostpath-driver"><h1>HostPath Driver</h1></a>
-<p>The <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">hostPath</a> driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. Note: Deployment and documentation will be added to the repo</p>
+<p>The <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">hostPath</a> driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. See the <a href="Example.html">Example</a> page for deployment and usage instructions.</p>
 <a class="header" href="print.html#testing-csi-drivers" id="testing-csi-drivers"><h1>Testing CSI Drivers</h1></a>
 <p>There are multiple ways to test your driver, some still in development. This page will describe each of the multiple methods to test your driver.</p>
 <a class="header" href="print.html#unit-testing" id="unit-testing"><h2>Unit Testing</h2></a>
