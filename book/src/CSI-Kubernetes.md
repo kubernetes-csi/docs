@@ -1,8 +1,8 @@
 # Deploying in Kubernetes
-This page describes to CSI driver developers how to deploy their driver onto a Kubernetes 1.9 cluster.
+This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.
 
 ## Overview
-In Kubernetes 1.9 there are three new components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. The new components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.
+There are three components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. These components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.
 
 ## Sidecar Containers
 [![sidecar-container](images/sidecar-container.png)](https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing)
