@@ -23,7 +23,7 @@ Note, even though this is called the _external attacher_, its function is to cal
 ```yaml
         - name: csi-driver-registrar
           imagePullPolicy: Always
-          image: docker.io/k8scsi/driver-registrar
+          image: quay.io/k8scsi/driver-registrar:v0.2.0
           args:
             - "--v=5"
             - "--csi-address=$(ADDRESS)"
@@ -92,12 +92,10 @@ rules:
 ```
 
 ## Deploying
-Deploying a CSI driver onto Kubernetes is highlighted in detail in [Section: _Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes), so we will provide here a brief explanation
+Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). You will find a full example deployment in the [Example](Example.html).
 
-### Example Deployment
-For full example deployment of the hostPath driver see [hostpath.yaml](https://github.com/lpabon/csi-workspace/blob/master/hostpath.yaml). This example also contains all the RBAC rules needed to be set so that the external-attacher and the external-provisioner operate correctly.
+> Note: The example uses a _DaemonSet_ to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of _hostPath_ driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.
 
-> Note: This example uses a _DaemonSet_ to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of _hostPath_ driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.
 
 ## More information
 For more information, please read [_CSI Volume Plugins in Kubernetes Design Doc_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md).
