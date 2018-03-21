@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Kubernetes CSI Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="CSI support for Kubernetes 1.9 (Alpha)">
+        <meta name="description" content="CSI support for Kubernetes">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -74,7 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="References.html"><strong aria-hidden="true">4.</strong> References</a></li></ol>
+            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="References.html"><strong aria-hidden="true">4.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">5.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">5.1.</strong> Kubernetes 1.9</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -123,64 +123,20 @@
                         <a class="header" href="print.html#introduction" id="introduction"><h1>Introduction</h1></a>
 <a class="header" href="print.html#kubernetes-csi-documentation" id="kubernetes-csi-documentation"><h2>Kubernetes CSI Documentation</h2></a>
 <p>Welcome to the CSI for Kubernetes documentation repository. Here you will find information on how to use, develop, and deploy CSI plugins, or drivers, with Kubernetes.</p>
-<a class="header" href="print.html#-project-status-alpha-" id="-project-status-alpha-"><h2>‼️ Project status: Alpha ‼️</h2></a>
-<p>CSI support for Kubernetes 1.9 is released as Alpha. This means that while we have worked hard to integrate CSI with Kubernetes, there may be issues. We recommend use only for testing due to increased risk.</p>
+<a class="header" href="print.html#project-status" id="project-status"><h2>Project status</h2></a>
+<table><thead><tr><th> Kubernetes </th><th> CSI spec </th><th> Status </th></tr></thead><tbody>
+<tr><td> v1.9       </td><td> v0.1     </td><td> Alpha  </td></tr>
+<tr><td> v1.10      </td><td> v0.2     </td><td> Beta   </td></tr>
+</tbody></table>
 <a class="header" href="print.html#installation" id="installation"><h2>Installation</h2></a>
 <p>Please see the <a href="Setup.html">Setup</a> page for instructions on how to setup Kubernetes support with CSI.</p>
 <a class="header" href="print.html#setup" id="setup"><h1>Setup</h1></a>
-<p>This page shows the user how to setup their Kubernetes cluster enable support for CSI drivers.</p>
-<a class="header" href="print.html#cluster-requirements" id="cluster-requirements"><h2>Cluster Requirements</h2></a>
-<p>Kubernetes v1.9 must be setup to support the new technologies required to enable CSI integration. To enable this new technology please setup the following flags:</p>
-<ul>
-<li>API Server binary:</li>
-</ul>
-<pre><code>--allow-privileged=true
---feature-gates=CSIPersistentVolume=true,MountPropagation=true
---runtime-config=storage.k8s.io/v1alpha1=true
-</code></pre>
-<ul>
-<li>Controller-manager binary</li>
-</ul>
-<pre><code>--feature-gates=CSIPersistentVolume=true
-</code></pre>
-<ul>
-<li>Kubelet</li>
-</ul>
-<pre><code>--allow-privileged=true
---feature-gates=CSIPersistentVolume=true,MountPropagation=true
-</code></pre>
-<a class="header" href="print.html#developers" id="developers"><h3>Developers</h3></a>
-<p>If you are a developer and are using the script <code>cluster/kube-up.sh</code> from the Kubernetes repo, then you can set values using the following environment variables:</p>
-<pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
-export KUBE_FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
-</code></pre>
-<p>When using the script <code>hack/local-up-cluster.sh</code>, set the same variables without the <code>KUBE_</code> prefix:</p>
-<pre><code>export RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
-export FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
-</code></pre>
-<a class="header" href="print.html#confirming-the-setup" id="confirming-the-setup"><h3>Confirming the setup</h3></a>
-<p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>
-<pre><code class="language-bash">$ kubectl get volumeattachments
-</code></pre>
-<p>To confirm that the feature gate has taken effect, submit the following fake PersistentVolume specification. If it is accepted, then we can confirm that the feature gate has been set correctly, and you may go ahead and delete it:</p>
-<pre><code class="language-yaml">apiVersion: v1
-kind: PersistentVolume
-metadata:
-    name: fakepv
-spec:
-    capacity:
-        storage: 1Gi
-    accessModes:
-        - ReadWriteMany
-    csi:
-        driver: fake
-        volumeHandle: &quot;1&quot;
-        readOnly: false
-</code></pre>
+<p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
+<p>If you are on Kubernetes 1.9, some extra setup is required. Please check <a href="Kubernetes-1.9.html">this page</a>.</p>
 <a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
 <p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver. A functional example based on the HostPath driver is presented in the <a href="Example.html">Example</a> section.</p>
 <a class="header" href="print.html#drivers" id="drivers"><h1>Drivers</h1></a>
-<p>The following are a set of CSI driver which can be used on Kubernetes 1.9:</p>
+<p>The following are a set of CSI driver which can be used with Kubernetes:</p>
 <blockquote>
 <p>NOTE: If you would like your driver to be added to this table, please create an issue in this repo with the information you would like to add here.</p>
 </blockquote>
@@ -205,7 +161,7 @@ spec:
 <a class="header" href="print.html#usage" id="usage"><h1>Usage</h1></a>
 <p>There are two main models of how to use storage in Kubernetes with CSI drivers. These models include either the usage of pre-provisioned volumes or dynamic provisioned volumes. Please check the documentation of your specific driver for more information.</p>
 <a class="header" href="print.html#pre-provisioned-volumes" id="pre-provisioned-volumes"><h3>Pre-provisioned volumes</h3></a>
-<p>Pre-provisioned drivers work just as they did before, where the administrator would create a <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes"><em>PersistentVolume</em></a> specification which would describe the volume to be used. The PersistentVolume specification would need to be setup according to your driver, the difference here is that there is a new section called <em>csi</em> which needs to be setup accordingly. Please see Kubernetes Documentation on CSI Volumes (<strong>LINK TBD</strong>).</p>
+<p>Pre-provisioned drivers work just as they did before, where the administrator would create a <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes"><em>PersistentVolume</em></a> specification which would describe the volume to be used. The PersistentVolume specification would need to be setup according to your driver, the difference here is that there is a new section called <em>csi</em> which needs to be setup accordingly. Please see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi">Kubernetes Documentation on CSI Volumes</a>.</p>
 <p>Here is an example of a <em>PersistentVolume</em> specification of a pre-provisioned volume managed by a CSI driver:</p>
 <pre><code class="language-yaml">apiVersion: v1
 kind: PersistentVolume
@@ -619,9 +575,9 @@ team</a> and/or
 <p>To write a CSI Driver, a developer must create an application which implements the three <em>Identity</em>, <em>Controller</em>, and <em>Node</em> services as described in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#rpc-interface">CSI specification</a>.</p>
 <p>The <a href="Drivers.html">Drivers</a> page contains a set of drivers which may be used as an example of how to write a CSI driver.</p>
 <a class="header" href="print.html#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
-<p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes 1.9 cluster.</p>
+<p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
 <a class="header" href="print.html#overview" id="overview"><h2>Overview</h2></a>
-<p>In Kubernetes 1.9 there are three new components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. The new components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
+<p>There are three components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. These components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
 <a class="header" href="print.html#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
 <p>Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the <em>external attacher</em>, <em>external provisioner</em>, and the <em>driver registrar</em>.</p>
@@ -634,7 +590,7 @@ team</a> and/or
 <p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
 <pre><code class="language-yaml">        - name: csi-driver-registrar
           imagePullPolicy: Always
-          image: docker.io/k8scsi/driver-registrar
+          image: quay.io/k8scsi/driver-registrar:v0.2.0
           args:
             - &quot;--v=5&quot;
             - &quot;--csi-address=$(ADDRESS)&quot;
@@ -694,11 +650,9 @@ rules:
     verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
 </code></pre>
 <a class="header" href="print.html#deploying" id="deploying"><h2>Deploying</h2></a>
-<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes">Section: <em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>, so we will provide here a brief explanation</p>
-<a class="header" href="print.html#example-deployment" id="example-deployment"><h3>Example Deployment</h3></a>
-<p>For full example deployment of the hostPath driver see <a href="https://github.com/lpabon/csi-workspace/blob/master/hostpath.yaml">hostpath.yaml</a>. This example also contains all the RBAC rules needed to be set so that the external-attacher and the external-provisioner operate correctly.</p>
+<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. You will find a full example deployment in the <a href="Example.html">Example</a>.</p>
 <blockquote>
-<p>Note: This example uses a <em>DaemonSet</em> to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of <em>hostPath</em> driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.</p>
+<p>Note: The example uses a <em>DaemonSet</em> to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of <em>hostPath</em> driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.</p>
 </blockquote>
 <a class="header" href="print.html#more-information" id="more-information"><h2>More information</h2></a>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
@@ -769,7 +723,7 @@ rules:
 <li><a href="https://github.com/golang/mock">Golang GoMock</a></li>
 </ul>
 <a class="header" href="print.html#mock-driver" id="mock-driver"><h1>Mock Driver</h1></a>
-<p>The <a href="https://github.com/thecodeteam/gocsi/tree/master/mock">mock driver</a> from <a href="https://github.com/thecodeteam"><em>TheCodeTeam</em></a> can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:</p>
+<p>The <a href="https://github.com/kubernetes-csi/csi-test/tree/master/mock">mock driver</a> can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:</p>
 <pre><code>$ docker run -d --rm -e CSI_ENDPOINT=tcp://:34555 -p 34555:34555 docker.io/k8scsi/mock-plugin
 $ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
 </code></pre>
@@ -806,6 +760,56 @@ $ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
 <li><a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI Specification</a></li>
 <li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md">CSI Volume Plugins in Kubernetes Design Doc</a></li>
 </ul>
+<a class="header" href="print.html#archive" id="archive"><h1>Archive</h1></a>
+<p>In this section, you will find information about CSI support in older Kubernetes versions.</p>
+<a class="header" href="print.html#csi-with-kubernetes-19" id="csi-with-kubernetes-19"><h1>CSI with Kubernetes 1.9</h1></a>
+<p>Since CSI support is alpha in Kubernetes 1.9, the following flags must be set explictly:</p>
+<ul>
+<li>API Server binary:</li>
+</ul>
+<pre><code>--allow-privileged=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true
+--runtime-config=storage.k8s.io/v1alpha1=true
+</code></pre>
+<ul>
+<li>Controller-manager binary</li>
+</ul>
+<pre><code>--feature-gates=CSIPersistentVolume=true
+</code></pre>
+<ul>
+<li>Kubelet</li>
+</ul>
+<pre><code>--allow-privileged=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true
+</code></pre>
+<a class="header" href="print.html#developers" id="developers"><h2>Developers</h2></a>
+<p>If you are a developer and are using the script <code>cluster/kube-up.sh</code> from the Kubernetes repo, then you can set values using the following environment variables:</p>
+<pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
+export KUBE_FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
+</code></pre>
+<p>When using the script <code>hack/local-up-cluster.sh</code>, set the same variables without the <code>KUBE_</code> prefix:</p>
+<pre><code>export RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
+export FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
+</code></pre>
+<a class="header" href="print.html#confirming-the-setup" id="confirming-the-setup"><h2>Confirming the setup</h2></a>
+<p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>
+<pre><code class="language-bash">$ kubectl get volumeattachments
+</code></pre>
+<p>To confirm that the feature gate has taken effect, submit the following fake PersistentVolume specification. If it is accepted, then we can confirm that the feature gate has been set correctly, and you may go ahead and delete it:</p>
+<pre><code class="language-yaml">apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: fakepv
+spec:
+    capacity:
+        storage: 1Gi
+    accessModes:
+        - ReadWriteMany
+    csi:
+        driver: fake
+        volumeHandle: &quot;1&quot;
+        readOnly: false
+</code></pre>
 
                     </main>
 

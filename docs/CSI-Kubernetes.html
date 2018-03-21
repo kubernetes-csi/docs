@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title>Deploying in Kubernetes - Kubernetes CSI Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="CSI support for Kubernetes 1.9 (Alpha)">
+        <meta name="description" content="CSI support for Kubernetes">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -74,7 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html" class="active"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="References.html"><strong aria-hidden="true">4.</strong> References</a></li></ol>
+            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html" class="active"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="References.html"><strong aria-hidden="true">4.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">5.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">5.1.</strong> Kubernetes 1.9</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -121,9 +121,9 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="CSI-Kubernetes.html#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
-<p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes 1.9 cluster.</p>
+<p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
 <a class="header" href="CSI-Kubernetes.html#overview" id="overview"><h2>Overview</h2></a>
-<p>In Kubernetes 1.9 there are three new components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. The new components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
+<p>There are three components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. These components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
 <a class="header" href="CSI-Kubernetes.html#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
 <p>Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the <em>external attacher</em>, <em>external provisioner</em>, and the <em>driver registrar</em>.</p>
@@ -136,7 +136,7 @@
 <p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
 <pre><code class="language-yaml">        - name: csi-driver-registrar
           imagePullPolicy: Always
-          image: docker.io/k8scsi/driver-registrar
+          image: quay.io/k8scsi/driver-registrar:v0.2.0
           args:
             - &quot;--v=5&quot;
             - &quot;--csi-address=$(ADDRESS)&quot;
@@ -196,11 +196,9 @@ rules:
     verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
 </code></pre>
 <a class="header" href="CSI-Kubernetes.html#deploying" id="deploying"><h2>Deploying</h2></a>
-<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes">Section: <em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>, so we will provide here a brief explanation</p>
-<a class="header" href="CSI-Kubernetes.html#example-deployment" id="example-deployment"><h3>Example Deployment</h3></a>
-<p>For full example deployment of the hostPath driver see <a href="https://github.com/lpabon/csi-workspace/blob/master/hostpath.yaml">hostpath.yaml</a>. This example also contains all the RBAC rules needed to be set so that the external-attacher and the external-provisioner operate correctly.</p>
+<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. You will find a full example deployment in the <a href="Example.html">Example</a>.</p>
 <blockquote>
-<p>Note: This example uses a <em>DaemonSet</em> to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of <em>hostPath</em> driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.</p>
+<p>Note: The example uses a <em>DaemonSet</em> to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of <em>hostPath</em> driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.</p>
 </blockquote>
 <a class="header" href="CSI-Kubernetes.html#more-information" id="more-information"><h2>More information</h2></a>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
