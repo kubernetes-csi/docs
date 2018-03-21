@@ -2,7 +2,7 @@
 There are two main models of how to use storage in Kubernetes with CSI drivers. These models include either the usage of pre-provisioned volumes or dynamic provisioned volumes. Please check the documentation of your specific driver for more information.
 
 ### Pre-provisioned volumes
-Pre-provisioned drivers work just as they did before, where the administrator would create a [_PersistentVolume_](https://kubernetes.io/docs/concepts/storage/persistent-volumes) specification which would describe the volume to be used. The PersistentVolume specification would need to be setup according to your driver, the difference here is that there is a new section called _csi_ which needs to be setup accordingly. Please see Kubernetes Documentation on CSI Volumes (**LINK TBD**).
+Pre-provisioned drivers work just as they did before, where the administrator would create a [_PersistentVolume_](https://kubernetes.io/docs/concepts/storage/persistent-volumes) specification which would describe the volume to be used. The PersistentVolume specification would need to be setup according to your driver, the difference here is that there is a new section called _csi_ which needs to be setup accordingly. Please see [Kubernetes Documentation on CSI Volumes][csi-volume].
 
 Here is an example of a _PersistentVolume_ specification of a pre-provisioned volume managed by a CSI driver:
 
@@ -57,5 +57,4 @@ spec:
   storageClassName: fast-storage
 ```
 
-
-
+[csi-volume]: https://kubernetes.io/docs/concepts/storage/volumes/#csi
