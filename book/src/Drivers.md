@@ -1,5 +1,5 @@
 # Drivers
-The following are a set of CSI driver which can be used on Kubernetes 1.9:
+The following are a set of CSI driver which can be used with Kubernetes:
 
 > NOTE: If you would like your driver to be added to this table, please create an issue in this repo with the information you would like to add here.
 

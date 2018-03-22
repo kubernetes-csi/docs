@@ -1,6 +1,6 @@
 [book]
 title = "Kubernetes CSI Documentation"
-description = "CSI support for Kubernetes 1.9 (Alpha)"
+description = "CSI support for Kubernetes"
 authors = ["Luis Pabón", "Contributions from the Kubernetes and CSI Community"]
 
 [build]

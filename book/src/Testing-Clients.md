@@ -66,7 +66,7 @@ For more examples and information see:
 * [Golang GoMock](https://github.com/golang/mock)
 
 # Mock Driver
-The [mock driver](https://github.com/thecodeteam/gocsi/tree/master/mock) from [_TheCodeTeam_](https://github.com/thecodeteam) can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:
+The [mock driver](https://github.com/kubernetes-csi/csi-test/tree/master/mock) can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:
 
 ```
 $ docker run -d --rm -e CSI_ENDPOINT=tcp://:34555 -p 34555:34555 docker.io/k8scsi/mock-plugin
