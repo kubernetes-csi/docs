@@ -5,7 +5,7 @@ The
 can be used to provision local storage in a single node test. This
 section shows how to deploy and use that driver in Kubernetes.
 
-### Deployment
+## Deployment
 
 The following .yaml file will deploy a `csi-pod` with the HostPath CSI driver and the
 [sidecar containers](CSI-Kubernetes.md#sidecar-containers) which integrate the driver into Kubernetes.
@@ -28,7 +28,7 @@ csi-pod   4/4       Running   0          24s
 ```
 
 
-### Usage
+## Usage
 
 Dynamic provisioning was enabled by the .yaml file above via the
 `csi-hostpath-sc` storage class. We can use this to create and claim a
@@ -121,16 +121,7 @@ Events:
 {{#include example/csi-app.yaml}}
 ```
 
-## Troubleshooting
-
-When using `local-cluster-up.sh`, double-check that it gets started with the right features, for example like this:
-```
-RUNTIME_CONFIG=storage.k8s.io/v1alpha1=true \
-ALLOW_PRIVILEGED=1 \
-FEATURE_GATES="BlockVolume=true,MountPropagation=true,CSIPersistentVolume=true" \
-RUNTIME_CONFIG=storage.k8s.io/v1alpha1=true \
-   hack/local-up-cluster.sh
-```
+## Confirming the setup
 
 Writing inside the app container should be visible in `/tmp` of the `hostpath-driver` container:
 ```
@@ -169,23 +160,5 @@ Status:
 Events:      <none>
 ```
 
-Not being able to list `VolumeAttachment` and the following error are
-caused by running on a cluster which lacks the
-`storage.k8s.io/v1alpha1=true` runtime configuration:
-```
-$ kubectl logs csi-pod external-attacher
-...
-I0306 16:34:50.976069       1 reflector.go:240] Listing and watching *v1alpha1.VolumeAttachment from github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86
+If you encounter any problems, please check the [Troubleshooting page](Troubleshooting.html).
 
-E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86: Failed to list *v1alpha1.VolumeAttachment: the server could not find the requested resource
-...
-```
-
-The images used by the `csi-pod` are under active development. It can
-happen that they become incompatible with each other. If the
-configuration issues mentioned above have been ruled out, [contact the sig-storage
-team](https://github.com/kubernetes/community/tree/master/sig-storage) and/or
-[run the e2e test](https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#local-clusters):
-```
-go run hack/e2e.go -- --provider=local --test --test_args="--ginkgo.focus=Feature:CSI"
-```

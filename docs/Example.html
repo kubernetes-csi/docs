@@ -125,7 +125,7 @@
 <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a>
 can be used to provision local storage in a single node test. This
 section shows how to deploy and use that driver in Kubernetes.</p>
-<a class="header" href="Example.html#deployment" id="deployment"><h3>Deployment</h3></a>
+<a class="header" href="Example.html#deployment" id="deployment"><h2>Deployment</h2></a>
 <p>The following .yaml file will deploy a <code>csi-pod</code> with the HostPath CSI driver and the
 <a href="CSI-Kubernetes.md#sidecar-containers">sidecar containers</a> which integrate the driver into Kubernetes.
 Use it with a cluster that is <a href="Setup.html">set up for CSI</a>, either by copying it into a local file or
@@ -316,7 +316,7 @@ spec:
       type: DirectoryOrCreate
     name: mountpoint-dir
 </code></pre>
-<a class="header" href="Example.html#usage" id="usage"><h3>Usage</h3></a>
+<a class="header" href="Example.html#usage" id="usage"><h2>Usage</h2></a>
 <p>Dynamic provisioning was enabled by the .yaml file above via the
 <code>csi-hostpath-sc</code> storage class. We can use this to create and claim a
 new volume:</p>
@@ -425,14 +425,7 @@ spec:
       persistentVolumeClaim:
         claimName: csi-pvc # defined in csi-pvs.yaml
 </code></pre>
-<a class="header" href="Example.html#troubleshooting" id="troubleshooting"><h2>Troubleshooting</h2></a>
-<p>When using <code>local-cluster-up.sh</code>, double-check that it gets started with the right features, for example like this:</p>
-<pre><code>RUNTIME_CONFIG=storage.k8s.io/v1alpha1=true \
-ALLOW_PRIVILEGED=1 \
-FEATURE_GATES=&quot;BlockVolume=true,MountPropagation=true,CSIPersistentVolume=true&quot; \
-RUNTIME_CONFIG=storage.k8s.io/v1alpha1=true \
-   hack/local-up-cluster.sh
-</code></pre>
+<a class="header" href="Example.html#confirming-the-setup" id="confirming-the-setup"><h2>Confirming the setup</h2></a>
 <p>Writing inside the app container should be visible in <code>/tmp</code> of the <code>hostpath-driver</code> container:</p>
 <pre><code>$ kubectl exec -ti my-csi-app /bin/sh
 / # touch /data/hello-world
@@ -466,23 +459,7 @@ Status:
   Attached:  true
 Events:      &lt;none&gt;
 </code></pre>
-<p>Not being able to list <code>VolumeAttachment</code> and the following error are
-caused by running on a cluster which lacks the
-<code>storage.k8s.io/v1alpha1=true</code> runtime configuration:</p>
-<pre><code>$ kubectl logs csi-pod external-attacher
-...
-I0306 16:34:50.976069       1 reflector.go:240] Listing and watching *v1alpha1.VolumeAttachment from github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86
-
-E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86: Failed to list *v1alpha1.VolumeAttachment: the server could not find the requested resource
-...
-</code></pre>
-<p>The images used by the <code>csi-pod</code> are under active development. It can
-happen that they become incompatible with each other. If the
-configuration issues mentioned above have been ruled out, <a href="https://github.com/kubernetes/community/tree/master/sig-storage">contact the sig-storage
-team</a> and/or
-<a href="https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#local-clusters">run the e2e test</a>:</p>
-<pre><code>go run hack/e2e.go -- --provider=local --test --test_args=&quot;--ginkgo.focus=Feature:CSI&quot;
-</code></pre>
+<p>If you encounter any problems, please check the <a href="Troubleshooting.html">Troubleshooting page</a>.</p>
 
                     </main>
 
