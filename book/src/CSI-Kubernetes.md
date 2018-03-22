@@ -92,10 +92,14 @@ rules:
 ```
 
 ## Deploying
-Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). You will find a full example deployment in the [Example](Example.html).
+Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). 
 
-> Note: The example uses a _DaemonSet_ to deploy the CSI driver on each of the nodes so that the kubelet can communicate with it. This is probably the correct method to deploy your driver. In the case of _hostPath_ driver, this will cause an issue if the application pod is scheduled on a different node as the one where the volume was allocated. This is there just as an example.
+### Examples
 
+- Simple deployment example using a single pod for all components: see the [hostpath example](Example.html).
+- Full deployment example using a _DaemonSet_ for the node plugin and _StatefulSet_ for the controller plugin: check the [NFS driver deployment files][nfs-driver]. 
 
 ## More information
 For more information, please read [_CSI Volume Plugins in Kubernetes Design Doc_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md).
+
+[nfs-driver]: https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs/deploy/kubernetes
