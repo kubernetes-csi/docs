@@ -12,6 +12,7 @@
     - [Testing](Testing.md)
         - [Clients](Testing-Clients.md)
         - [Drivers](Testing-Drivers.md)
+- [Troubleshooting](Troubleshooting.md)
 - [References](References.md)
 - [Archive](Archive.md)
   - [Kubernetes 1.9](Kubernetes-1.9.md)
