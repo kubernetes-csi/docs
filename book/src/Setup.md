@@ -6,5 +6,5 @@ Moreover, as stated in the [mount propagation docs][mount-propagation-docs], the
 
 If you are on Kubernetes 1.9, some extra setup is required. Please check [this page](Kubernetes-1.9.html).
 
-[mount-propagation-docs]: https://kubernetes.io/docs/concepts/storage/volumes/#configuration
+[mount-propagation-docs]: https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation
 [docker-shared-mount]: https://docs.portworx.com/knowledgebase/shared-mount-propogation.html
