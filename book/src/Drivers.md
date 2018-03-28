@@ -21,6 +21,7 @@ Name | Status | More Information
 [vSphere](https://github.com/thecodeteam/csi-vsphere)|v0.1.0|A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere
 [RBD](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
 [Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
+[GCE Persistent Disk](https://github.com/GoogleCloudPlatform/compute-persistent-disk-csi-driver)|Alpha|A Container Storage Interface (CSI) Storage Plugin for Google Compute Engine Persistent Disk
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
