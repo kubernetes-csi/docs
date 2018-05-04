@@ -109,7 +109,7 @@ spec:
     - --v=5
     - --provisioner=csi-hostpath
     - --csi-address=/csi/csi.sock
-    image: quay.io/k8scsi/csi-provisioner:v0.2.0
+    image: quay.io/k8scsi/csi-provisioner:v0.2.1
     imagePullPolicy: Always
     volumeMounts:
     - mountPath: /csi
