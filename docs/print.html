@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" class="sidebar-visible">
     <head>
+        <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Kubernetes CSI Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -36,6 +37,14 @@
             }
         </script>
 
+        <noscript>
+            <style type="text/css">
+                .javascript-only {
+                    display: none;
+                }
+            </style>
+        </noscript>
+
     </head>
     <body class="light">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
@@ -65,12 +74,14 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script type="text/javascript">
+            var html = document.querySelector('html');
             var sidebar = 'hidden';
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             }
-            document.querySelector('html').classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
@@ -83,7 +94,7 @@
                 
                 <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
-                        <div class="left-buttons">
+                        <div class="left-buttons javascript-only">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
@@ -97,9 +108,14 @@
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                             </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
                         </div>
 
-                        <h1 class="menu-title">Kubernetes CSI Documentation</h1>
+                        <h1 class="menu-title">Kubernetes CSI Documentation</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -108,6 +124,17 @@
                         </div>
                     </div>
                 </div>
+
+                
+                <div id="searchbar-outer" class="searchbar-outer">
+                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                </div>
+                <div id="searchresults-outer" class="searchresults-outer">
+                    <div class="searchresults-header" id="searchresults-header"></div>
+                    <ul id="searchresults">
+                    </ul>
+                </div>
+                
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script type="text/javascript">
@@ -163,6 +190,7 @@
 <tr><td><a href="https://www.opensds.io/">OpenSDS</a> </td><td> Beta </td><td> For more information, please visit <a href="https://github.com/opensds/nbp/releases">releases</a> and https://github.com/opensds/nbp/tree/master/csi</td></tr>
 <tr><td><a href="https://portworx.com/">Portworx</a> </td><td> Alpha </td><td> CSI implementation is available <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">here</a> which can be used as an example also.</td></tr>
 <tr><td><a href="https://github.com/ceph/ceph-csi">RBD</a></td><td>v0.2.0</td><td>A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph</td></tr>
+<tr><td><a href="https://github.com/ceph/ceph-csi">CephFS</a></td><td>v0.2.0</td><td>A Container Storage Interface (CSI) Storage Plug-in for CephFS</td></tr>
 <tr><td><a href="https://github.com/thecodeteam/csi-scaleio">ScaleIO</a></td><td>v0.1.0</td><td>A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO</td></tr>
 <tr><td><a href="https://github.com/thecodeteam/csi-vsphere">vSphere</a></td><td>v0.1.0</td><td>A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere</td></tr>
 </tbody></table>
@@ -216,6 +244,94 @@ spec:
       storage: 5Gi
   storageClassName: fast-storage
 </code></pre>
+<a class="header" href="print.html#csi-provisioner-parameters" id="csi-provisioner-parameters"><h4>CSI Provisioner Parameters</h4></a>
+<p>The CSI dynamic provisioner makes <code>CreateVolumeRequest</code> and <code>DeleteVolumeRequest</code> calls to CSI drivers.
+The <code>controllerCreateSecrets</code> and <code>controllerDeleteSecrets</code> fields in those requests can be populated
+with data from a Kubernetes <code>Secret</code> object by setting <code>csiProvisionerSecretName</code> and <code>csiProvisionerSecretNamespace</code>
+parameters in the <code>StorageClass</code>. For example:</p>
+<pre><code class="language-yaml">kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast-storage
+provisioner: com.example.team/csi-driver
+parameters:
+  type: pd-ssd
+  csiProvisionerSecretName: fast-storage-provision-key
+  csiProvisionerSecretNamespace: pd-ssd-credentials
+</code></pre>
+<p>The <code>csiProvisionerSecretName</code> and <code>csiProvisionerSecretNamespace</code> parameters
+may specify literal values, or a template containing the following variables:</p>
+<ul>
+<li><code>${pv.name}</code> - replaced with the name of the PersistentVolume object being provisioned</li>
+</ul>
+<p>Once the CSI volume is created, a corresponding Kubernetes <code>PersistentVolume</code> object is created.
+The <code>controllerPublishSecretRef</code>, <code>nodeStageSecretRef</code>, and <code>nodePublishSecretRef</code> fields in the
+<code>PersistentVolume</code> object can be populated via the following storage class parameters:</p>
+<ul>
+<li><code>controllerPublishSecretRef</code> in the PersistentVolume is populated by setting these StorageClass parameters:
+<ul>
+<li><code>csiControllerPublishSecretName</code></li>
+<li><code>csiControllerPublishSecretNamespace</code></li>
+</ul>
+</li>
+<li><code>nodeStageSecretRef</code> in the PersistentVolume is populated by setting these StorageClass parameters:
+<ul>
+<li><code>csiNodeStageSecretName</code></li>
+<li><code>csiNodeStageSecretNamespace</code></li>
+</ul>
+</li>
+<li><code>nodePublishSecretRef</code> in the PersistentVolume is populated by setting these StorageClass parameters:
+<ul>
+<li><code>csiNodePublishSecretName</code></li>
+<li><code>csiNodePublishSecretNamespace</code></li>
+</ul>
+</li>
+</ul>
+<p>The <code>csiControllerPublishSecretName</code>, <code>csiNodeStageSecretName</code>, and <code>csiNodePublishSecretName</code> parameters
+may specify a literal secret name, or a template containing the following variables:</p>
+<ul>
+<li><code>${pv.name}</code> - replaced with the name of the PersistentVolume</li>
+<li><code>${pvc.name}</code> - replaced with the name of the PersistentVolumeClaim</li>
+<li><code>${pvc.namespace}</code> - replaced with the namespace of the PersistentVolumeClaim</li>
+<li><code>${pvc.annotations['&lt;ANNOTATION_KEY&gt;']}</code> (e.g. <code>${pvc.annotations['example.com/key']}</code>) - replaced with the value of the specified annotation in the PersistentVolumeClaim</li>
+</ul>
+<p>The <code>csiControllerPublishSecretNamespace</code>, <code>csiNodeStageSecretNamespace</code>, and <code>csiNodePublishSecretNamespace</code> parameters
+may specify a literal namespace name, or a template containing the following variables:</p>
+<ul>
+<li><code>${pv.name}</code> - replaced with the name of the PersistentVolume</li>
+<li><code>${pvc.namespace}</code> - replaced with the namespace of the PersistentVolumeClaim</li>
+</ul>
+<p>As an example, consider this StorageClass:</p>
+<pre><code class="language-yaml">kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast-storage
+provisioner: com.example.team/csi-driver
+parameters:
+  type: pd-ssd
+
+  csiProvisionerSecretName: fast-storage-provision-key
+  csiProvisionerSecretNamespace: pd-ssd-credentials
+
+  csiControllerPublishSecretName: ${pv.name}-publish
+  csiControllerPublishSecretNamespace: pd-ssd-credentials
+
+  csiNodeStageSecretName: ${pv.name}-stage
+  csiNodeStageSecretNamespace: pd-ssd-credentials
+
+  csiNodePublishSecretName: ${pvc.annotations['com.example.team/key']}
+  csiNodePublishSecretNamespace: ${pvc.namespace}
+</code></pre>
+<p>This StorageClass instructs the CSI provisioner to do the following:</p>
+<ul>
+<li>send the data in the <code>fast-storage-provision-key</code> secret in the <code>pd-ssd-credentials</code> namespace as part of the create request to the CSI driver</li>
+<li>create a PersistentVolume with:
+<ul>
+<li>a per-volume controller publish and node stage secret, both in the <code>pd-ssd-credentials</code> (those secrets would need to be created separately in response to the PersistentVolume creation before the PersistentVolume could be attached/mounted)</li>
+<li>a node publish secret in the same namespace as the PersistentVolumeClaim that triggered the provisioning, with a name specified as an annotation on the PersistentVolumeClaim. This could be used to give the creator of the PersistentVolumeClaim the ability to specify a secret containing a decryption key they have control over.</li>
+</ul>
+</li>
+</ul>
 <a class="header" href="print.html#example" id="example"><h1>Example</h1></a>
 <p>The
 <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a>
@@ -864,6 +980,15 @@ spec:
 
         
 
+        
+
+        
+        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
+        
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
         
