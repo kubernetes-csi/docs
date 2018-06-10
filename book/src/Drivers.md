@@ -21,6 +21,7 @@ Name | Status | More Information
 [OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
 [Portworx](https://portworx.com/) | Alpha | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
 [RBD](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
+[CephFS](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
 [vSphere](https://github.com/thecodeteam/csi-vsphere)|v0.1.0|A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere
 
