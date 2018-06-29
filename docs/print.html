@@ -85,7 +85,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="Troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li><a href="References.html"><strong aria-hidden="true">5.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">6.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">6.1.</strong> Kubernetes 1.9</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="Setup.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Deployment.html"><strong aria-hidden="true">2.1.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.2.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.3.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.4.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="Troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li><a href="References.html"><strong aria-hidden="true">5.</strong> References</a></li><li><ol class="section"><li><a href="CSI.html"><strong aria-hidden="true">5.1.</strong> CSI Reference</a></li></ol></li><li><a href="Archive.html"><strong aria-hidden="true">6.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">6.1.</strong> Kubernetes 1.9</a></li><li><a href="Kubernetes-1.10.html"><strong aria-hidden="true">6.2.</strong> Kubernetes 1.10</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -154,19 +154,21 @@
 <table><thead><tr><th> Kubernetes </th><th> CSI spec </th><th> Status </th></tr></thead><tbody>
 <tr><td> v1.9       </td><td> v0.1     </td><td> Alpha  </td></tr>
 <tr><td> v1.10      </td><td> v0.2     </td><td> Beta   </td></tr>
+<tr><td> v1.11      </td><td> v0.3     </td><td> Beta   </td></tr>
 </tbody></table>
 <a class="header" href="print.html#sidecar-container-status" id="sidecar-container-status"><h2>Sidecar container status</h2></a>
 <table><thead><tr><th> Container Name </th><th> CSI spec </th><th> Latest Release Tag </th></tr></thead><tbody>
-<tr><td> csi-provisioner </td><td> v0.2 </td><td> v0.2.1 </td></tr>
-<tr><td> csi-attacher </td><td> v0.2 </td><td> v0.2.0 </td></tr>
-<tr><td> driver-registrar </td><td> v0.2 </td><td> v0.2.0 </td></tr>
+<tr><td> csi-provisioner </td><td> v0.3 </td><td> v0.3.0 </td></tr>
+<tr><td> csi-attacher </td><td> v0.3 </td><td> v0.3.0 </td></tr>
+<tr><td> driver-registrar </td><td> v0.3 </td><td> v0.3.0 </td></tr>
 </tbody></table>
 <a class="header" href="print.html#installation" id="installation"><h2>Installation</h2></a>
 <p>Please see the <a href="Setup.html">Setup</a> page for instructions on how to setup Kubernetes support with CSI.</p>
 <a class="header" href="print.html#setup" id="setup"><h1>Setup</h1></a>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
 <p>Moreover, as stated in the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a>, the Docker daemon of the cluster nodes must allow shared mounts. <a href="https://docs.portworx.com/knowledgebase/shared-mount-propogation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
-<p>If you are on Kubernetes 1.9, some extra setup is required. Please check <a href="Kubernetes-1.9.html">this page</a>.</p>
+<p>This document has been updated to the latest version of Kubernetes v1.11.</p>
+<p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
 <a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
 <p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver. A functional example based on the HostPath driver is presented in the <a href="Example.html">Example</a> section.</p>
 <a class="header" href="print.html#drivers" id="drivers"><h1>Drivers</h1></a>
@@ -178,7 +180,7 @@
 <table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter">Flexvolume</a> </td><td> Sample </td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a> </td><td> v0.2.0 </td><td> Only use for a single node tests. See the <a href="Example.html">Example</a> page for Kubernetes-specific instructions.</td></tr>
-<tr><td><a href="https://github.com/kubernetes-csi/drivers/mock">Mock Driver</a> </td><td> v0.2.0 </td><td> A mock CSI plugin usable as a stand-alone binary or in code.</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/csi-test/tree/master/mock/service">In-memory Sample Mock Driver</a> </td><td> v0.3.0 </td><td> The sample mock driver used for <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs">NFS</a> </td><td> Sample </td></tr>
 <tr><td><a href="https://github.com/thecodeteam/csi-vfs">VFS Driver</a> </td><td> Released </td><td> A CSI plugin that provides a virtual file system.</td></tr>
 </tbody></table>
@@ -188,7 +190,7 @@
 <tr><td><a href="https://github.com/digitalocean/csi-digitalocean">DigitalOcean Block Storage</a> </td><td> v0.0.1 (alpha) </td><td> A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage</td></tr>
 <tr><td><a href="https://github.com/GoogleCloudPlatform/compute-persistent-disk-csi-driver">GCE Persistent Disk</a></td><td>Alpha</td><td>A Container Storage Interface (CSI) Storage Plugin for Google Compute Engine Persistent Disk</td></tr>
 <tr><td><a href="https://www.opensds.io/">OpenSDS</a> </td><td> Beta </td><td> For more information, please visit <a href="https://github.com/opensds/nbp/releases">releases</a> and https://github.com/opensds/nbp/tree/master/csi</td></tr>
-<tr><td><a href="https://portworx.com/">Portworx</a> </td><td> Alpha </td><td> CSI implementation is available <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">here</a> which can be used as an example also.</td></tr>
+<tr><td><a href="https://portworx.com/">Portworx</a> </td><td> 0.2.0 </td><td> CSI implementation is available <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">here</a> which can be used as an example also.</td></tr>
 <tr><td><a href="https://github.com/ceph/ceph-csi">RBD</a></td><td>v0.2.0</td><td>A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph</td></tr>
 <tr><td><a href="https://github.com/ceph/ceph-csi">CephFS</a></td><td>v0.2.0</td><td>A Container Storage Interface (CSI) Storage Plug-in for CephFS</td></tr>
 <tr><td><a href="https://github.com/thecodeteam/csi-scaleio">ScaleIO</a></td><td>v0.1.0</td><td>A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO</td></tr>
@@ -339,7 +341,7 @@ can be used to provision local storage in a single node test. This
 section shows how to deploy and use that driver in Kubernetes.</p>
 <a class="header" href="print.html#deployment-1" id="deployment-1"><h2>Deployment</h2></a>
 <p>The following .yaml file will deploy a <code>csi-pod</code> with the HostPath CSI driver and the
-<a href="CSI-Kubernetes.md#sidecar-containers">sidecar containers</a> which integrate the driver into Kubernetes.
+<a href="CSI-Kubernetes.html#sidecar-containers">sidecar containers</a> which integrate the driver into Kubernetes.
 Use it with a cluster that is <a href="Setup.html">set up for CSI</a>, either by copying it into a local file or
 by referencing the latest version directly:</p>
 <pre><code>$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-setup.yaml
@@ -677,6 +679,12 @@ Events:      &lt;none&gt;
 <a class="header" href="print.html#developing-a-csi-driver" id="developing-a-csi-driver"><h1>Developing a CSI driver</h1></a>
 <p>To write a CSI Driver, a developer must create an application which implements the three <em>Identity</em>, <em>Controller</em>, and <em>Node</em> services as described in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#rpc-interface">CSI specification</a>.</p>
 <p>The <a href="Drivers.html">Drivers</a> page contains a set of drivers which may be used as an example of how to write a CSI driver.</p>
+<p>If this is your first driver, you can start with the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/mock/service">in-memory sample Mock Driver</a> used for <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></p>
+<a class="header" href="print.html#other-resources" id="other-resources"><h1>Other Resources</h1></a>
+<p>Here are some other resources useful for writing CSI drivers:</p>
+<ul>
+<li><a href="https://arslan.io/2018/06/21/how-to-write-a-container-storage-interface-csi-plugin/">How to write a Container Storage Interface (CSI) plugin - by Fatih Arslan</a></li>
+</ul>
 <a class="header" href="print.html#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
 <a class="header" href="print.html#overview" id="overview"><h2>Overview</h2></a>
@@ -827,12 +835,6 @@ rules:
 <li><a href="https://github.com/kubernetes-csi/external-attacher/blob/master/pkg/connection/connection_test.go">external-attacher side car container</a></li>
 <li><a href="https://github.com/golang/mock">Golang GoMock</a></li>
 </ul>
-<a class="header" href="print.html#mock-driver" id="mock-driver"><h1>Mock Driver</h1></a>
-<p>The <a href="https://github.com/kubernetes-csi/csi-test/tree/master/mock">mock driver</a> can also be used to test your application for functional tests. For convenience, we provide a containerized version which can be used as follows:</p>
-<pre><code>$ docker run -d --rm -e CSI_ENDPOINT=tcp://:34555 -p 34555:34555 docker.io/k8scsi/mock-plugin
-$ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
-</code></pre>
-<p>Where <a href="https://github.com/thecodeteam/gocsi/tree/master/csc"><em>csc</em></a> is <em>TheCodeTeam</em>'s sample test client.</p>
 <a class="header" href="print.html#hostpath-driver" id="hostpath-driver"><h1>HostPath Driver</h1></a>
 <p>The <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">hostPath</a> driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. See the <a href="Example.html">Example</a> page for deployment and usage instructions.</p>
 <a class="header" href="print.html#testing-csi-drivers" id="testing-csi-drivers"><h1>Testing CSI Drivers</h1></a>
@@ -856,10 +858,6 @@ $ csc controller list-volumes -v 0.1.0 --endpoint tcp://127.0.0.1:34555
 <pre><code>$ csi-sanity --ginkgo.v --csi.endpoint=&lt;your csi driver endpoint&gt;
 </code></pre>
 <p>For more information please see <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></p>
-<a class="header" href="print.html#container-storage-client" id="container-storage-client"><h3>Container Storage Client</h3></a>
-<p>Container Storage client, or <a href="https://github.com/thecodeteam/gocsi/tree/master/csc">csc</a> is a program created by <a href="https://github.com/thecodeteam"><em>thecodeteam</em></a> to execute commands to a driver. With this program you can manually send commands to your driver. Here is an example:</p>
-<pre><code>$ csc controller list-volumes -v 0.1.0 --endpoint &lt;your csi driver endpoint&gt;
-</code></pre>
 <a class="header" href="print.html#troubleshooting" id="troubleshooting"><h1>Troubleshooting</h1></a>
 <a class="header" href="print.html#node-plugin-pod-does-not-start-with-runcontainererror-status" id="node-plugin-pod-does-not-start-with-runcontainererror-status"><h3>Node plugin pod does not start with <em>RunContainerError</em> status</h3></a>
 <p><code>kubectl describe pod your-nodeplugin-pod</code> shows:</p>
@@ -892,6 +890,848 @@ team</a> and/or
 <li><a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI Specification</a></li>
 <li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md">CSI Volume Plugins in Kubernetes Design Doc</a></li>
 </ul>
+<a class="header" href="print.html#api-reference" id="api-reference"><h1>API Reference</h1></a>
+<a class="header" href="print.html#table-of-contents" id="table-of-contents"><h1>Table of Contents</h1></a>
+<ul>
+<li>Services
+<ul>
+<li><a href="print.html#csiv0controller">Controller</a></li>
+<li><a href="print.html#csiv0identity">Identity</a></li>
+<li><a href="print.html#csiv0node">Node</a></li>
+</ul>
+</li>
+<li>Messages
+<ul>
+<li><a href="print.html#capacityrange">CapacityRange</a></li>
+<li><a href="print.html#controllergetcapabilitiesrequest">ControllerGetCapabilitiesRequest</a></li>
+<li><a href="print.html#controllergetcapabilitiesresponse">ControllerGetCapabilitiesResponse</a></li>
+<li><a href="print.html#controllerpublishvolumerequest">ControllerPublishVolumeRequest</a></li>
+<li><a href="print.html#controllerpublishvolumerequestcontrollerpublishsecretsentry">ControllerPublishVolumeRequest.ControllerPublishSecretsEntry</a></li>
+<li><a href="print.html#controllerpublishvolumerequestvolumeattributesentry">ControllerPublishVolumeRequest.VolumeAttributesEntry</a></li>
+<li><a href="print.html#controllerpublishvolumeresponse">ControllerPublishVolumeResponse</a></li>
+<li><a href="print.html#controllerpublishvolumeresponsepublishinfoentry">ControllerPublishVolumeResponse.PublishInfoEntry</a></li>
+<li><a href="print.html#controllerservicecapability">ControllerServiceCapability</a></li>
+<li><a href="print.html#controllerservicecapabilityrpc">ControllerServiceCapability.RPC</a></li>
+<li><a href="print.html#controllerunpublishvolumerequest">ControllerUnpublishVolumeRequest</a></li>
+<li><a href="print.html#controllerunpublishvolumerequestcontrollerunpublishsecretsentry">ControllerUnpublishVolumeRequest.ControllerUnpublishSecretsEntry</a></li>
+<li><a href="print.html#controllerunpublishvolumeresponse">ControllerUnpublishVolumeResponse</a></li>
+<li><a href="print.html#createsnapshotrequest">CreateSnapshotRequest</a></li>
+<li><a href="print.html#createsnapshotrequestcreatesnapshotsecretsentry">CreateSnapshotRequest.CreateSnapshotSecretsEntry</a></li>
+<li><a href="print.html#createsnapshotrequestparametersentry">CreateSnapshotRequest.ParametersEntry</a></li>
+<li><a href="print.html#createsnapshotresponse">CreateSnapshotResponse</a></li>
+<li><a href="print.html#createvolumerequest">CreateVolumeRequest</a></li>
+<li><a href="print.html#createvolumerequestcontrollercreatesecretsentry">CreateVolumeRequest.ControllerCreateSecretsEntry</a></li>
+<li><a href="print.html#createvolumerequestparametersentry">CreateVolumeRequest.ParametersEntry</a></li>
+<li><a href="print.html#createvolumeresponse">CreateVolumeResponse</a></li>
+<li><a href="print.html#deletesnapshotrequest">DeleteSnapshotRequest</a></li>
+<li><a href="print.html#deletesnapshotrequestdeletesnapshotsecretsentry">DeleteSnapshotRequest.DeleteSnapshotSecretsEntry</a></li>
+<li><a href="print.html#deletesnapshotresponse">DeleteSnapshotResponse</a></li>
+<li><a href="print.html#deletevolumerequest">DeleteVolumeRequest</a></li>
+<li><a href="print.html#deletevolumerequestcontrollerdeletesecretsentry">DeleteVolumeRequest.ControllerDeleteSecretsEntry</a></li>
+<li><a href="print.html#deletevolumeresponse">DeleteVolumeResponse</a></li>
+<li><a href="print.html#getcapacityrequest">GetCapacityRequest</a></li>
+<li><a href="print.html#getcapacityrequestparametersentry">GetCapacityRequest.ParametersEntry</a></li>
+<li><a href="print.html#getcapacityresponse">GetCapacityResponse</a></li>
+<li><a href="print.html#getplugincapabilitiesrequest">GetPluginCapabilitiesRequest</a></li>
+<li><a href="print.html#getplugincapabilitiesresponse">GetPluginCapabilitiesResponse</a></li>
+<li><a href="print.html#getplugininforequest">GetPluginInfoRequest</a></li>
+<li><a href="print.html#getplugininforesponse">GetPluginInfoResponse</a></li>
+<li><a href="print.html#getplugininforesponsemanifestentry">GetPluginInfoResponse.ManifestEntry</a></li>
+<li><a href="print.html#listsnapshotsrequest">ListSnapshotsRequest</a></li>
+<li><a href="print.html#listsnapshotsresponse">ListSnapshotsResponse</a></li>
+<li><a href="print.html#listsnapshotsresponseentry">ListSnapshotsResponse.Entry</a></li>
+<li><a href="print.html#listvolumesrequest">ListVolumesRequest</a></li>
+<li><a href="print.html#listvolumesresponse">ListVolumesResponse</a></li>
+<li><a href="print.html#listvolumesresponseentry">ListVolumesResponse.Entry</a></li>
+<li><a href="print.html#nodegetcapabilitiesrequest">NodeGetCapabilitiesRequest</a></li>
+<li><a href="print.html#nodegetcapabilitiesresponse">NodeGetCapabilitiesResponse</a></li>
+<li><a href="print.html#nodegetidrequest">NodeGetIdRequest</a></li>
+<li><a href="print.html#nodegetidresponse">NodeGetIdResponse</a></li>
+<li><a href="print.html#nodegetinforequest">NodeGetInfoRequest</a></li>
+<li><a href="print.html#nodegetinforesponse">NodeGetInfoResponse</a></li>
+<li><a href="print.html#nodepublishvolumerequest">NodePublishVolumeRequest</a></li>
+<li><a href="print.html#nodepublishvolumerequestnodepublishsecretsentry">NodePublishVolumeRequest.NodePublishSecretsEntry</a></li>
+<li><a href="print.html#nodepublishvolumerequestpublishinfoentry">NodePublishVolumeRequest.PublishInfoEntry</a></li>
+<li><a href="print.html#nodepublishvolumerequestvolumeattributesentry">NodePublishVolumeRequest.VolumeAttributesEntry</a></li>
+<li><a href="print.html#nodepublishvolumeresponse">NodePublishVolumeResponse</a></li>
+<li><a href="print.html#nodeservicecapability">NodeServiceCapability</a></li>
+<li><a href="print.html#nodeservicecapabilityrpc">NodeServiceCapability.RPC</a></li>
+<li><a href="print.html#nodestagevolumerequest">NodeStageVolumeRequest</a></li>
+<li><a href="print.html#nodestagevolumerequestnodestagesecretsentry">NodeStageVolumeRequest.NodeStageSecretsEntry</a></li>
+<li><a href="print.html#nodestagevolumerequestpublishinfoentry">NodeStageVolumeRequest.PublishInfoEntry</a></li>
+<li><a href="print.html#nodestagevolumerequestvolumeattributesentry">NodeStageVolumeRequest.VolumeAttributesEntry</a></li>
+<li><a href="print.html#nodestagevolumeresponse">NodeStageVolumeResponse</a></li>
+<li><a href="print.html#nodeunpublishvolumerequest">NodeUnpublishVolumeRequest</a></li>
+<li><a href="print.html#nodeunpublishvolumeresponse">NodeUnpublishVolumeResponse</a></li>
+<li><a href="print.html#nodeunstagevolumerequest">NodeUnstageVolumeRequest</a></li>
+<li><a href="print.html#nodeunstagevolumeresponse">NodeUnstageVolumeResponse</a></li>
+<li><a href="print.html#plugincapability">PluginCapability</a></li>
+<li><a href="print.html#plugincapabilityservice">PluginCapability.Service</a></li>
+<li><a href="print.html#proberequest">ProbeRequest</a></li>
+<li><a href="print.html#proberesponse">ProbeResponse</a></li>
+<li><a href="print.html#snapshot">Snapshot</a></li>
+<li><a href="print.html#snapshotstatus">SnapshotStatus</a></li>
+<li><a href="print.html#topology">Topology</a></li>
+<li><a href="print.html#topologysegmentsentry">Topology.SegmentsEntry</a></li>
+<li><a href="print.html#topologyrequirement">TopologyRequirement</a></li>
+<li><a href="print.html#validatevolumecapabilitiesrequest">ValidateVolumeCapabilitiesRequest</a></li>
+<li><a href="print.html#validatevolumecapabilitiesrequestvolumeattributesentry">ValidateVolumeCapabilitiesRequest.VolumeAttributesEntry</a></li>
+<li><a href="print.html#validatevolumecapabilitiesresponse">ValidateVolumeCapabilitiesResponse</a></li>
+<li><a href="print.html#volume">Volume</a></li>
+<li><a href="print.html#volumeattributesentry">Volume.AttributesEntry</a></li>
+<li><a href="print.html#volumecapability">VolumeCapability</a></li>
+<li><a href="print.html#volumecapabilityaccessmode">VolumeCapability.AccessMode</a></li>
+<li><a href="print.html#volumecapabilityblockvolume">VolumeCapability.BlockVolume</a></li>
+<li><a href="print.html#volumecapabilitymountvolume">VolumeCapability.MountVolume</a></li>
+<li><a href="print.html#volumecontentsource">VolumeContentSource</a></li>
+<li><a href="print.html#volumecontentsourcesnapshotsource">VolumeContentSource.SnapshotSource</a></li>
+</ul>
+</li>
+<li><a href="print.html#scalar-value-types">Scalar Value Types</a></li>
+</ul>
+<a class="header" href="print.html#controller-csiv0controller" id="controller-csiv0controller"><h1>Controller {#csiv0controller}</h1></a>
+<a class="header" href="print.html#createvolume" id="createvolume"><h2>CreateVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> CreateVolume(<a href="print.html#createvolumerequest">CreateVolumeRequest</a>)
+<a href="print.html#createvolumeresponse">CreateVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#deletevolume" id="deletevolume"><h2>DeleteVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> DeleteVolume(<a href="print.html#deletevolumerequest">DeleteVolumeRequest</a>)
+<a href="print.html#deletevolumeresponse">DeleteVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#controllerpublishvolume" id="controllerpublishvolume"><h2>ControllerPublishVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> ControllerPublishVolume(<a href="print.html#controllerpublishvolumerequest">ControllerPublishVolumeRequest</a>)
+<a href="print.html#controllerpublishvolumeresponse">ControllerPublishVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#controllerunpublishvolume" id="controllerunpublishvolume"><h2>ControllerUnpublishVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> ControllerUnpublishVolume(<a href="print.html#controllerunpublishvolumerequest">ControllerUnpublishVolumeRequest</a>)
+<a href="print.html#controllerunpublishvolumeresponse">ControllerUnpublishVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#validatevolumecapabilities" id="validatevolumecapabilities"><h2>ValidateVolumeCapabilities</h2></a>
+<blockquote>
+<p><strong>rpc</strong> ValidateVolumeCapabilities(<a href="print.html#validatevolumecapabilitiesrequest">ValidateVolumeCapabilitiesRequest</a>)
+<a href="print.html#validatevolumecapabilitiesresponse">ValidateVolumeCapabilitiesResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#listvolumes" id="listvolumes"><h2>ListVolumes</h2></a>
+<blockquote>
+<p><strong>rpc</strong> ListVolumes(<a href="print.html#listvolumesrequest">ListVolumesRequest</a>)
+<a href="print.html#listvolumesresponse">ListVolumesResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#getcapacity" id="getcapacity"><h2>GetCapacity</h2></a>
+<blockquote>
+<p><strong>rpc</strong> GetCapacity(<a href="print.html#getcapacityrequest">GetCapacityRequest</a>)
+<a href="print.html#getcapacityresponse">GetCapacityResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#controllergetcapabilities" id="controllergetcapabilities"><h2>ControllerGetCapabilities</h2></a>
+<blockquote>
+<p><strong>rpc</strong> ControllerGetCapabilities(<a href="print.html#controllergetcapabilitiesrequest">ControllerGetCapabilitiesRequest</a>)
+<a href="print.html#controllergetcapabilitiesresponse">ControllerGetCapabilitiesResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#createsnapshot" id="createsnapshot"><h2>CreateSnapshot</h2></a>
+<blockquote>
+<p><strong>rpc</strong> CreateSnapshot(<a href="print.html#createsnapshotrequest">CreateSnapshotRequest</a>)
+<a href="print.html#createsnapshotresponse">CreateSnapshotResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#deletesnapshot" id="deletesnapshot"><h2>DeleteSnapshot</h2></a>
+<blockquote>
+<p><strong>rpc</strong> DeleteSnapshot(<a href="print.html#deletesnapshotrequest">DeleteSnapshotRequest</a>)
+<a href="print.html#deletesnapshotresponse">DeleteSnapshotResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#listsnapshots" id="listsnapshots"><h2>ListSnapshots</h2></a>
+<blockquote>
+<p><strong>rpc</strong> ListSnapshots(<a href="print.html#listsnapshotsrequest">ListSnapshotsRequest</a>)
+<a href="print.html#listsnapshotsresponse">ListSnapshotsResponse</a></p>
+</blockquote>
+ <!-- end methods -->
+# Identity {#csiv0identity}
+<a class="header" href="print.html#getplugininfo" id="getplugininfo"><h2>GetPluginInfo</h2></a>
+<blockquote>
+<p><strong>rpc</strong> GetPluginInfo(<a href="print.html#getplugininforequest">GetPluginInfoRequest</a>)
+<a href="print.html#getplugininforesponse">GetPluginInfoResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#getplugincapabilities" id="getplugincapabilities"><h2>GetPluginCapabilities</h2></a>
+<blockquote>
+<p><strong>rpc</strong> GetPluginCapabilities(<a href="print.html#getplugincapabilitiesrequest">GetPluginCapabilitiesRequest</a>)
+<a href="print.html#getplugincapabilitiesresponse">GetPluginCapabilitiesResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#probe" id="probe"><h2>Probe</h2></a>
+<blockquote>
+<p><strong>rpc</strong> Probe(<a href="print.html#proberequest">ProbeRequest</a>)
+<a href="print.html#proberesponse">ProbeResponse</a></p>
+</blockquote>
+ <!-- end methods -->
+# Node {#csiv0node}
+<a class="header" href="print.html#nodestagevolume" id="nodestagevolume"><h2>NodeStageVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodeStageVolume(<a href="print.html#nodestagevolumerequest">NodeStageVolumeRequest</a>)
+<a href="print.html#nodestagevolumeresponse">NodeStageVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#nodeunstagevolume" id="nodeunstagevolume"><h2>NodeUnstageVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodeUnstageVolume(<a href="print.html#nodeunstagevolumerequest">NodeUnstageVolumeRequest</a>)
+<a href="print.html#nodeunstagevolumeresponse">NodeUnstageVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#nodepublishvolume" id="nodepublishvolume"><h2>NodePublishVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodePublishVolume(<a href="print.html#nodepublishvolumerequest">NodePublishVolumeRequest</a>)
+<a href="print.html#nodepublishvolumeresponse">NodePublishVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#nodeunpublishvolume" id="nodeunpublishvolume"><h2>NodeUnpublishVolume</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodeUnpublishVolume(<a href="print.html#nodeunpublishvolumerequest">NodeUnpublishVolumeRequest</a>)
+<a href="print.html#nodeunpublishvolumeresponse">NodeUnpublishVolumeResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#nodegetid" id="nodegetid"><h2>NodeGetId</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodeGetId(<a href="print.html#nodegetidrequest">NodeGetIdRequest</a>)
+<a href="print.html#nodegetidresponse">NodeGetIdResponse</a></p>
+</blockquote>
+<p>NodeGetId is being deprecated in favor of NodeGetInfo and will be
+removed in CSI 1.0. Existing drivers, however, may depend on this
+RPC call and hence this RPC call MUST be implemented by the CSI
+plugin prior to v1.0.</p>
+<a class="header" href="print.html#nodegetcapabilities" id="nodegetcapabilities"><h2>NodeGetCapabilities</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodeGetCapabilities(<a href="print.html#nodegetcapabilitiesrequest">NodeGetCapabilitiesRequest</a>)
+<a href="print.html#nodegetcapabilitiesresponse">NodeGetCapabilitiesResponse</a></p>
+</blockquote>
+<a class="header" href="print.html#nodegetinfo" id="nodegetinfo"><h2>NodeGetInfo</h2></a>
+<blockquote>
+<p><strong>rpc</strong> NodeGetInfo(<a href="print.html#nodegetinforequest">NodeGetInfoRequest</a>)
+<a href="print.html#nodegetinforesponse">NodeGetInfoResponse</a></p>
+</blockquote>
+<p>Prior to CSI 1.0 - CSI plugins MUST implement both NodeGetId and
+NodeGetInfo RPC calls.</p>
+ <!-- end methods -->
+ <!-- end services -->
+<a class="header" href="print.html#messages" id="messages"><h1>Messages</h1></a>
+<a class="header" href="print.html#capacityrange-capacityrange" id="capacityrange-capacityrange"><h2>CapacityRange {#capacityrange}</h2></a>
+<p>The capacity of the storage space in bytes. To specify an exact size,
+<code>required_bytes</code> and <code>limit_bytes</code> SHALL be set to the same value. At
+least one of the these fields MUST be specified.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> required_bytes </td><td> <a href="print.html#int64"> int64</a> </td><td> Volume MUST be at least this big. This field is OPTIONAL. A value of 0 is equal to an unspecified field value. The value of this field MUST NOT be negative. </td></tr>
+<tr><td> limit_bytes </td><td> <a href="print.html#int64"> int64</a> </td><td> Volume MUST not be bigger than this. This field is OPTIONAL. A value of 0 is equal to an unspecified field value. The value of this field MUST NOT be negative. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllergetcapabilitiesrequest-controllergetcapabilitiesrequest" id="controllergetcapabilitiesrequest-controllergetcapabilitiesrequest"><h2>ControllerGetCapabilitiesRequest {#controllergetcapabilitiesrequest}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#controllergetcapabilitiesresponse-controllergetcapabilitiesresponse" id="controllergetcapabilitiesresponse-controllergetcapabilitiesresponse"><h2>ControllerGetCapabilitiesResponse {#controllergetcapabilitiesresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> capabilities </td><td> <a href="print.html#controllerservicecapability">repeated ControllerServiceCapability</a> </td><td> All the capabilities that the controller service supports. This field is OPTIONAL. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerpublishvolumerequest-controllerpublishvolumerequest" id="controllerpublishvolumerequest-controllerpublishvolumerequest"><h2>ControllerPublishVolumeRequest {#controllerpublishvolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume to be used on a node. This field is REQUIRED. </td></tr>
+<tr><td> node_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the node. This field is REQUIRED. The CO SHALL set this field to match the node ID returned by <code>NodeGetInfo</code>. </td></tr>
+<tr><td> volume_capability </td><td> <a href="print.html#volumecapability"> VolumeCapability</a> </td><td> The capability of the volume the CO expects the volume to have. This is a REQUIRED field. </td></tr>
+<tr><td> readonly </td><td> <a href="print.html#bool"> bool</a> </td><td> Whether to publish the volume in readonly mode. This field is REQUIRED. </td></tr>
+<tr><td> controller_publish_secrets </td><td> <a href="print.html#controllerpublishvolumerequestcontrollerpublishsecretsentry">map ControllerPublishVolumeRequest.ControllerPublishSecretsEntry</a> </td><td> Secrets required by plugin to complete controller publish volume request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td> volume_attributes </td><td> <a href="print.html#controllerpublishvolumerequestvolumeattributesentry">map ControllerPublishVolumeRequest.VolumeAttributesEntry</a> </td><td> Attributes of the volume to be used on a node. This field is OPTIONAL and MUST match the attributes of the Volume identified by <code>volume_id</code>. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerpublishvolumerequestcontrollerpublishsecretsentry-controllerpublishvolumerequestcontrollerpublishsecretsentry" id="controllerpublishvolumerequestcontrollerpublishsecretsentry-controllerpublishvolumerequestcontrollerpublishsecretsentry"><h2>ControllerPublishVolumeRequest.ControllerPublishSecretsEntry {#controllerpublishvolumerequestcontrollerpublishsecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerpublishvolumerequestvolumeattributesentry-controllerpublishvolumerequestvolumeattributesentry" id="controllerpublishvolumerequestvolumeattributesentry-controllerpublishvolumerequestvolumeattributesentry"><h2>ControllerPublishVolumeRequest.VolumeAttributesEntry {#controllerpublishvolumerequestvolumeattributesentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerpublishvolumeresponse-controllerpublishvolumeresponse" id="controllerpublishvolumeresponse-controllerpublishvolumeresponse"><h2>ControllerPublishVolumeResponse {#controllerpublishvolumeresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> publish_info </td><td> <a href="print.html#controllerpublishvolumeresponsepublishinfoentry">map ControllerPublishVolumeResponse.PublishInfoEntry</a> </td><td> The SP specific information that will be passed to the Plugin in the subsequent <code>NodeStageVolume</code> or <code>NodePublishVolume</code> calls for the given volume. This information is opaque to the CO. This field is OPTIONAL. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerpublishvolumeresponsepublishinfoentry-controllerpublishvolumeresponsepublishinfoentry" id="controllerpublishvolumeresponsepublishinfoentry-controllerpublishvolumeresponsepublishinfoentry"><h2>ControllerPublishVolumeResponse.PublishInfoEntry {#controllerpublishvolumeresponsepublishinfoentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerservicecapability-controllerservicecapability" id="controllerservicecapability-controllerservicecapability"><h2>ControllerServiceCapability {#controllerservicecapability}</h2></a>
+<p>Specifies a capability of the controller service.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> <a href="https://developers.google.com/protocol-buffers/docs/proto3#oneof"><strong>oneof</strong></a> type.rpc </td><td> <a href="print.html#controllerservicecapabilityrpc"> ControllerServiceCapability.RPC</a> </td><td> RPC that the controller supports. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerservicecapabilityrpc-controllerservicecapabilityrpc" id="controllerservicecapabilityrpc-controllerservicecapabilityrpc"><h2>ControllerServiceCapability.RPC {#controllerservicecapabilityrpc}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> type </td><td> <a href="print.html#controllerservicecapabilityrpctype"> ControllerServiceCapability.RPC.Type</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerunpublishvolumerequest-controllerunpublishvolumerequest" id="controllerunpublishvolumerequest-controllerunpublishvolumerequest"><h2>ControllerUnpublishVolumeRequest {#controllerunpublishvolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume. This field is REQUIRED. </td></tr>
+<tr><td> node_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the node. This field is OPTIONAL. The CO SHOULD set this field to match the node ID returned by <code>NodeGetInfo</code> or leave it unset. If the value is set, the SP MUST unpublish the volume from the specified node. If the value is unset, the SP MUST unpublish the volume from all nodes it is published to. </td></tr>
+<tr><td> controller_unpublish_secrets </td><td> <a href="print.html#controllerunpublishvolumerequestcontrollerunpublishsecretsentry">map ControllerUnpublishVolumeRequest.ControllerUnpublishSecretsEntry</a> </td><td> Secrets required by plugin to complete controller unpublish volume request. This SHOULD be the same secrets passed to the ControllerPublishVolume call for the specified volume. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerunpublishvolumerequestcontrollerunpublishsecretsentry-controllerunpublishvolumerequestcontrollerunpublishsecretsentry" id="controllerunpublishvolumerequestcontrollerunpublishsecretsentry-controllerunpublishvolumerequestcontrollerunpublishsecretsentry"><h2>ControllerUnpublishVolumeRequest.ControllerUnpublishSecretsEntry {#controllerunpublishvolumerequestcontrollerunpublishsecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#controllerunpublishvolumeresponse-controllerunpublishvolumeresponse" id="controllerunpublishvolumeresponse-controllerunpublishvolumeresponse"><h2>ControllerUnpublishVolumeResponse {#controllerunpublishvolumeresponse}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#createsnapshotrequest-createsnapshotrequest" id="createsnapshotrequest-createsnapshotrequest"><h2>CreateSnapshotRequest {#createsnapshotrequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> source_volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the source volume to be snapshotted. This field is REQUIRED. </td></tr>
+<tr><td> name </td><td> <a href="print.html#string"> string</a> </td><td> The suggested name for the snapshot. This field is REQUIRED for idempotency. </td></tr>
+<tr><td> create_snapshot_secrets </td><td> <a href="print.html#createsnapshotrequestcreatesnapshotsecretsentry">map CreateSnapshotRequest.CreateSnapshotSecretsEntry</a> </td><td> Secrets required by plugin to complete snapshot creation request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td> parameters </td><td> <a href="print.html#createsnapshotrequestparametersentry">map CreateSnapshotRequest.ParametersEntry</a> </td><td> Plugin specific parameters passed in as opaque key-value pairs. This field is OPTIONAL. The Plugin is responsible for parsing and validating these parameters. COs will treat these as opaque. Use cases for opaque parameters: - Specify a policy to automatically clean up the snapshot. - Specify an expiration date for the snapshot. - Specify whether the snapshot is readonly or read/write. - Specify if the snapshot should be replicated to some place. - Specify primary or secondary for replication systems that support snapshotting only on primary. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createsnapshotrequestcreatesnapshotsecretsentry-createsnapshotrequestcreatesnapshotsecretsentry" id="createsnapshotrequestcreatesnapshotsecretsentry-createsnapshotrequestcreatesnapshotsecretsentry"><h2>CreateSnapshotRequest.CreateSnapshotSecretsEntry {#createsnapshotrequestcreatesnapshotsecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createsnapshotrequestparametersentry-createsnapshotrequestparametersentry" id="createsnapshotrequestparametersentry-createsnapshotrequestparametersentry"><h2>CreateSnapshotRequest.ParametersEntry {#createsnapshotrequestparametersentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createsnapshotresponse-createsnapshotresponse" id="createsnapshotresponse-createsnapshotresponse"><h2>CreateSnapshotResponse {#createsnapshotresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> snapshot </td><td> <a href="print.html#snapshot"> Snapshot</a> </td><td> Contains all attributes of the newly created snapshot that are relevant to the CO along with information required by the Plugin to uniquely identify the snapshot. This field is REQUIRED. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createvolumerequest-createvolumerequest" id="createvolumerequest-createvolumerequest"><h2>CreateVolumeRequest {#createvolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> name </td><td> <a href="print.html#string"> string</a> </td><td> The suggested name for the storage space. This field is REQUIRED. It serves two purposes: 1) Idempotency - This name is generated by the CO to achieve idempotency. If <code>CreateVolume</code> fails, the volume may or may not be provisioned. In this case, the CO may call <code>CreateVolume</code> again, with the same name, to ensure the volume exists. The Plugin should ensure that multiple <code>CreateVolume</code> calls for the same name do not result in more than one piece of storage provisioned corresponding to that name. If a Plugin is unable to enforce idempotency, the CO's error recovery logic could result in multiple (unused) volumes being provisioned. 2) Suggested name - Some storage systems allow callers to specify an identifier by which to refer to the newly provisioned storage. If a storage system supports this, it can optionally use this name as the identifier for the new volume. </td></tr>
+<tr><td> capacity_range </td><td> <a href="print.html#capacityrange"> CapacityRange</a> </td><td> none </td></tr>
+<tr><td> volume_capabilities </td><td> <a href="print.html#volumecapability">repeated VolumeCapability</a> </td><td> The capabilities that the provisioned volume MUST have: the Plugin MUST provision a volume that could satisfy ALL of the capabilities specified in this list. The Plugin MUST assume that the CO MAY use the provisioned volume later with ANY of the capabilities specified in this list. This also enables the CO to do early validation: if ANY of the specified volume capabilities are not supported by the Plugin, the call SHALL fail. This field is REQUIRED. </td></tr>
+<tr><td> parameters </td><td> <a href="print.html#createvolumerequestparametersentry">map CreateVolumeRequest.ParametersEntry</a> </td><td> Plugin specific parameters passed in as opaque key-value pairs. This field is OPTIONAL. The Plugin is responsible for parsing and validating these parameters. COs will treat these as opaque. </td></tr>
+<tr><td> controller_create_secrets </td><td> <a href="print.html#createvolumerequestcontrollercreatesecretsentry">map CreateVolumeRequest.ControllerCreateSecretsEntry</a> </td><td> Secrets required by plugin to complete volume creation request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td> volume_content_source </td><td> <a href="print.html#volumecontentsource"> VolumeContentSource</a> </td><td> If specified, the new volume will be pre-populated with data from this source. This field is OPTIONAL. </td></tr>
+<tr><td> accessibility_requirements </td><td> <a href="print.html#topologyrequirement"> TopologyRequirement</a> </td><td> Specifies where (regions, zones, racks, etc.) the provisioned volume MUST be accessible from. An SP SHALL advertise the requirements for topological accessibility information in documentation. COs SHALL only specify topological accessibility information supported by the SP. This field is OPTIONAL. This field SHALL NOT be specified unless the SP has the ACCESSIBILITY_CONSTRAINTS plugin capability. If this field is not specified and the SP has the ACCESSIBILITY_CONSTRAINTS plugin capability, the SP MAY choose where the provisioned volume is accessible from. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createvolumerequestcontrollercreatesecretsentry-createvolumerequestcontrollercreatesecretsentry" id="createvolumerequestcontrollercreatesecretsentry-createvolumerequestcontrollercreatesecretsentry"><h2>CreateVolumeRequest.ControllerCreateSecretsEntry {#createvolumerequestcontrollercreatesecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createvolumerequestparametersentry-createvolumerequestparametersentry" id="createvolumerequestparametersentry-createvolumerequestparametersentry"><h2>CreateVolumeRequest.ParametersEntry {#createvolumerequestparametersentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#createvolumeresponse-createvolumeresponse" id="createvolumeresponse-createvolumeresponse"><h2>CreateVolumeResponse {#createvolumeresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume </td><td> <a href="print.html#volume"> Volume</a> </td><td> Contains all attributes of the newly created volume that are relevant to the CO along with information required by the Plugin to uniquely identify the volume. This field is REQUIRED. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#deletesnapshotrequest-deletesnapshotrequest" id="deletesnapshotrequest-deletesnapshotrequest"><h2>DeleteSnapshotRequest {#deletesnapshotrequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> snapshot_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the snapshot to be deleted. This field is REQUIRED. </td></tr>
+<tr><td> delete_snapshot_secrets </td><td> <a href="print.html#deletesnapshotrequestdeletesnapshotsecretsentry">map DeleteSnapshotRequest.DeleteSnapshotSecretsEntry</a> </td><td> Secrets required by plugin to complete snapshot deletion request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#deletesnapshotrequestdeletesnapshotsecretsentry-deletesnapshotrequestdeletesnapshotsecretsentry" id="deletesnapshotrequestdeletesnapshotsecretsentry-deletesnapshotrequestdeletesnapshotsecretsentry"><h2>DeleteSnapshotRequest.DeleteSnapshotSecretsEntry {#deletesnapshotrequestdeletesnapshotsecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#deletesnapshotresponse-deletesnapshotresponse" id="deletesnapshotresponse-deletesnapshotresponse"><h2>DeleteSnapshotResponse {#deletesnapshotresponse}</h2></a>
+ <!-- end HasFields -->
+<a class="header" href="print.html#deletevolumerequest-deletevolumerequest" id="deletevolumerequest-deletevolumerequest"><h2>DeleteVolumeRequest {#deletevolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume to be deprovisioned. This field is REQUIRED. </td></tr>
+<tr><td> controller_delete_secrets </td><td> <a href="print.html#deletevolumerequestcontrollerdeletesecretsentry">map DeleteVolumeRequest.ControllerDeleteSecretsEntry</a> </td><td> Secrets required by plugin to complete volume deletion request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#deletevolumerequestcontrollerdeletesecretsentry-deletevolumerequestcontrollerdeletesecretsentry" id="deletevolumerequestcontrollerdeletesecretsentry-deletevolumerequestcontrollerdeletesecretsentry"><h2>DeleteVolumeRequest.ControllerDeleteSecretsEntry {#deletevolumerequestcontrollerdeletesecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#deletevolumeresponse-deletevolumeresponse" id="deletevolumeresponse-deletevolumeresponse"><h2>DeleteVolumeResponse {#deletevolumeresponse}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#getcapacityrequest-getcapacityrequest" id="getcapacityrequest-getcapacityrequest"><h2>GetCapacityRequest {#getcapacityrequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_capabilities </td><td> <a href="print.html#volumecapability">repeated VolumeCapability</a> </td><td> If specified, the Plugin SHALL report the capacity of the storage that can be used to provision volumes that satisfy ALL of the specified <code>volume_capabilities</code>. These are the same <code>volume_capabilities</code> the CO will use in <code>CreateVolumeRequest</code>. This field is OPTIONAL. </td></tr>
+<tr><td> parameters </td><td> <a href="print.html#getcapacityrequestparametersentry">map GetCapacityRequest.ParametersEntry</a> </td><td> If specified, the Plugin SHALL report the capacity of the storage that can be used to provision volumes with the given Plugin specific <code>parameters</code>. These are the same <code>parameters</code> the CO will use in <code>CreateVolumeRequest</code>. This field is OPTIONAL. </td></tr>
+<tr><td> accessible_topology </td><td> <a href="print.html#topology"> Topology</a> </td><td> If specified, the Plugin SHALL report the capacity of the storage that can be used to provision volumes that in the specified <code>accessible_topology</code>. This is the same as the <code>accessible_topology</code> the CO returns in a <code>CreateVolumeResponse</code>. This field is OPTIONAL. This field SHALL NOT be set unless the plugin advertises the ACCESSIBILITY_CONSTRAINTS capability. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#getcapacityrequestparametersentry-getcapacityrequestparametersentry" id="getcapacityrequestparametersentry-getcapacityrequestparametersentry"><h2>GetCapacityRequest.ParametersEntry {#getcapacityrequestparametersentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#getcapacityresponse-getcapacityresponse" id="getcapacityresponse-getcapacityresponse"><h2>GetCapacityResponse {#getcapacityresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> available_capacity </td><td> <a href="print.html#int64"> int64</a> </td><td> The available capacity, in bytes, of the storage that can be used to provision volumes. If <code>volume_capabilities</code> or <code>parameters</code> is specified in the request, the Plugin SHALL take those into consideration when calculating the available capacity of the storage. This field is REQUIRED. The value of this field MUST NOT be negative. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#getplugincapabilitiesrequest-getplugincapabilitiesrequest" id="getplugincapabilitiesrequest-getplugincapabilitiesrequest"><h2>GetPluginCapabilitiesRequest {#getplugincapabilitiesrequest}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#getplugincapabilitiesresponse-getplugincapabilitiesresponse" id="getplugincapabilitiesresponse-getplugincapabilitiesresponse"><h2>GetPluginCapabilitiesResponse {#getplugincapabilitiesresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> capabilities </td><td> <a href="print.html#plugincapability">repeated PluginCapability</a> </td><td> All the capabilities that the controller service supports. This field is OPTIONAL. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#getplugininforequest-getplugininforequest" id="getplugininforequest-getplugininforequest"><h2>GetPluginInfoRequest {#getplugininforequest}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#getplugininforesponse-getplugininforesponse" id="getplugininforesponse-getplugininforesponse"><h2>GetPluginInfoResponse {#getplugininforesponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> name </td><td> <a href="print.html#string"> string</a> </td><td> The name MUST follow reverse domain name notation format (https://en.wikipedia.org/wiki/Reverse_domain_name_notation). It SHOULD include the plugin's host company name and the plugin name, to minimize the possibility of collisions. It MUST be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. This field is REQUIRED. </td></tr>
+<tr><td> vendor_version </td><td> <a href="print.html#string"> string</a> </td><td> This field is REQUIRED. Value of this field is opaque to the CO. </td></tr>
+<tr><td> manifest </td><td> <a href="print.html#getplugininforesponsemanifestentry">map GetPluginInfoResponse.ManifestEntry</a> </td><td> This field is OPTIONAL. Values are opaque to the CO. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#getplugininforesponsemanifestentry-getplugininforesponsemanifestentry" id="getplugininforesponsemanifestentry-getplugininforesponsemanifestentry"><h2>GetPluginInfoResponse.ManifestEntry {#getplugininforesponsemanifestentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#listsnapshotsrequest-listsnapshotsrequest" id="listsnapshotsrequest-listsnapshotsrequest"><h2>ListSnapshotsRequest {#listsnapshotsrequest}</h2></a>
+<p>List all snapshots on the storage system regardless of how they were
+created.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> max_entries </td><td> <a href="print.html#int32"> int32</a> </td><td> If specified (non-zero value), the Plugin MUST NOT return more entries than this number in the response. If the actual number of entries is more than this number, the Plugin MUST set <code>next_token</code> in the response which can be used to get the next page of entries in the subsequent <code>ListSnapshots</code> call. This field is OPTIONAL. If not specified (zero value), it means there is no restriction on the number of entries that can be returned. The value of this field MUST NOT be negative. </td></tr>
+<tr><td> starting_token </td><td> <a href="print.html#string"> string</a> </td><td> A token to specify where to start paginating. Set this field to <code>next_token</code> returned by a previous <code>ListSnapshots</code> call to get the next page of entries. This field is OPTIONAL. An empty string is equal to an unspecified field value. </td></tr>
+<tr><td> source_volume_id </td><td> <a href="print.html#string"> string</a> </td><td> Identity information for the source volume. This field is OPTIONAL. It can be used to list snapshots by volume. </td></tr>
+<tr><td> snapshot_id </td><td> <a href="print.html#string"> string</a> </td><td> Identity information for a specific snapshot. This field is OPTIONAL. It can be used to list only a specific snapshot. ListSnapshots will return with current snapshot information and will not block if the snapshot is being uploaded. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#listsnapshotsresponse-listsnapshotsresponse" id="listsnapshotsresponse-listsnapshotsresponse"><h2>ListSnapshotsResponse {#listsnapshotsresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> entries </td><td> <a href="print.html#listsnapshotsresponseentry">map ListSnapshotsResponse.Entry</a> </td><td> none </td></tr>
+<tr><td> next_token </td><td> <a href="print.html#string"> string</a> </td><td> This token allows you to get the next page of entries for <code>ListSnapshots</code> request. If the number of entries is larger than <code>max_entries</code>, use the <code>next_token</code> as a value for the <code>starting_token</code> field in the next <code>ListSnapshots</code> request. This field is OPTIONAL. An empty string is equal to an unspecified field value. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#listsnapshotsresponseentry-listsnapshotsresponseentry" id="listsnapshotsresponseentry-listsnapshotsresponseentry"><h2>ListSnapshotsResponse.Entry {#listsnapshotsresponseentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> snapshot </td><td> <a href="print.html#snapshot"> Snapshot</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#listvolumesrequest-listvolumesrequest" id="listvolumesrequest-listvolumesrequest"><h2>ListVolumesRequest {#listvolumesrequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> max_entries </td><td> <a href="print.html#int32"> int32</a> </td><td> If specified (non-zero value), the Plugin MUST NOT return more entries than this number in the response. If the actual number of entries is more than this number, the Plugin MUST set <code>next_token</code> in the response which can be used to get the next page of entries in the subsequent <code>ListVolumes</code> call. This field is OPTIONAL. If not specified (zero value), it means there is no restriction on the number of entries that can be returned. The value of this field MUST NOT be negative. </td></tr>
+<tr><td> starting_token </td><td> <a href="print.html#string"> string</a> </td><td> A token to specify where to start paginating. Set this field to <code>next_token</code> returned by a previous <code>ListVolumes</code> call to get the next page of entries. This field is OPTIONAL. An empty string is equal to an unspecified field value. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#listvolumesresponse-listvolumesresponse" id="listvolumesresponse-listvolumesresponse"><h2>ListVolumesResponse {#listvolumesresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> entries </td><td> <a href="print.html#listvolumesresponseentry">map ListVolumesResponse.Entry</a> </td><td> none </td></tr>
+<tr><td> next_token </td><td> <a href="print.html#string"> string</a> </td><td> This token allows you to get the next page of entries for <code>ListVolumes</code> request. If the number of entries is larger than <code>max_entries</code>, use the <code>next_token</code> as a value for the <code>starting_token</code> field in the next <code>ListVolumes</code> request. This field is OPTIONAL. An empty string is equal to an unspecified field value. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#listvolumesresponseentry-listvolumesresponseentry" id="listvolumesresponseentry-listvolumesresponseentry"><h2>ListVolumesResponse.Entry {#listvolumesresponseentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume </td><td> <a href="print.html#volume"> Volume</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodegetcapabilitiesrequest-nodegetcapabilitiesrequest" id="nodegetcapabilitiesrequest-nodegetcapabilitiesrequest"><h2>NodeGetCapabilitiesRequest {#nodegetcapabilitiesrequest}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodegetcapabilitiesresponse-nodegetcapabilitiesresponse" id="nodegetcapabilitiesresponse-nodegetcapabilitiesresponse"><h2>NodeGetCapabilitiesResponse {#nodegetcapabilitiesresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> capabilities </td><td> <a href="print.html#nodeservicecapability">repeated NodeServiceCapability</a> </td><td> All the capabilities that the node service supports. This field is OPTIONAL. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodegetidrequest-nodegetidrequest" id="nodegetidrequest-nodegetidrequest"><h2>NodeGetIdRequest {#nodegetidrequest}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodegetidresponse-nodegetidresponse" id="nodegetidresponse-nodegetidresponse"><h2>NodeGetIdResponse {#nodegetidresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> node_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the node as understood by the SP which SHALL be used by CO in subsequent <code>ControllerPublishVolume</code>. This is a REQUIRED field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodegetinforequest-nodegetinforequest" id="nodegetinforequest-nodegetinforequest"><h2>NodeGetInfoRequest {#nodegetinforequest}</h2></a>
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodegetinforesponse-nodegetinforesponse" id="nodegetinforesponse-nodegetinforesponse"><h2>NodeGetInfoResponse {#nodegetinforesponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> node_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the node as understood by the SP which SHALL be used by CO in subsequent calls to <code>ControllerPublishVolume</code>. This is a REQUIRED field. </td></tr>
+<tr><td> max_volumes_per_node </td><td> <a href="print.html#int64"> int64</a> </td><td> Maximum number of volumes that controller can publish to the node. If value is not set or zero CO SHALL decide how many volumes of this type can be published by the controller to the node. The plugin MUST NOT set negative values here. This field is OPTIONAL. </td></tr>
+<tr><td> accessible_topology </td><td> <a href="print.html#topology"> Topology</a> </td><td> Specifies where (regions, zones, racks, etc.) the node is accessible from. A plugin that returns this field MUST also set the ACCESSIBILITY_CONSTRAINTS plugin capability. COs MAY use this information along with the topology information returned in CreateVolumeResponse to ensure that a given volume is accessible from a given node when scheduling workloads. This field is OPTIONAL. If it is not specified, the CO MAY assume the node is not subject to any topological constraint, and MAY schedule workloads that reference any volume V, such that there are no topological constraints declared for V.</td></tr>
+</tbody></table>
+<p>Example 1: accessible_topology = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;R2&quot;} Indicates the node exists within the &quot;region&quot; &quot;R1&quot; and the &quot;zone&quot; &quot;Z2&quot;. |</p>
+ <!-- end Fields -->
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodepublishvolumerequest-nodepublishvolumerequest" id="nodepublishvolumerequest-nodepublishvolumerequest"><h2>NodePublishVolumeRequest {#nodepublishvolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume to publish. This field is REQUIRED. </td></tr>
+<tr><td> publish_info </td><td> <a href="print.html#nodepublishvolumerequestpublishinfoentry">map NodePublishVolumeRequest.PublishInfoEntry</a> </td><td> The CO SHALL set this field to the value returned by <code>ControllerPublishVolume</code> if the corresponding Controller Plugin has <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability, and SHALL be left unset if the corresponding Controller Plugin does not have this capability. This is an OPTIONAL field. </td></tr>
+<tr><td> staging_target_path </td><td> <a href="print.html#string"> string</a> </td><td> The path to which the device was mounted by <code>NodeStageVolume</code>. It MUST be an absolute path in the root filesystem of the process serving this request. It MUST be set if the Node Plugin implements the <code>STAGE_UNSTAGE_VOLUME</code> node capability. This is an OPTIONAL field. </td></tr>
+<tr><td> target_path </td><td> <a href="print.html#string"> string</a> </td><td> The path to which the volume will be published. It MUST be an absolute path in the root filesystem of the process serving this request. The CO SHALL ensure uniqueness of target_path per volume. The CO SHALL ensure that the path exists, and that the process serving the request has <code>read</code> and <code>write</code> permissions to the path. This is a REQUIRED field. </td></tr>
+<tr><td> volume_capability </td><td> <a href="print.html#volumecapability"> VolumeCapability</a> </td><td> The capability of the volume the CO expects the volume to have. This is a REQUIRED field. </td></tr>
+<tr><td> readonly </td><td> <a href="print.html#bool"> bool</a> </td><td> Whether to publish the volume in readonly mode. This field is REQUIRED. </td></tr>
+<tr><td> node_publish_secrets </td><td> <a href="print.html#nodepublishvolumerequestnodepublishsecretsentry">map NodePublishVolumeRequest.NodePublishSecretsEntry</a> </td><td> Secrets required by plugin to complete node publish volume request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td> volume_attributes </td><td> <a href="print.html#nodepublishvolumerequestvolumeattributesentry">map NodePublishVolumeRequest.VolumeAttributesEntry</a> </td><td> Attributes of the volume to publish. This field is OPTIONAL and MUST match the attributes of the Volume identified by <code>volume_id</code>. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodepublishvolumerequestnodepublishsecretsentry-nodepublishvolumerequestnodepublishsecretsentry" id="nodepublishvolumerequestnodepublishsecretsentry-nodepublishvolumerequestnodepublishsecretsentry"><h2>NodePublishVolumeRequest.NodePublishSecretsEntry {#nodepublishvolumerequestnodepublishsecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodepublishvolumerequestpublishinfoentry-nodepublishvolumerequestpublishinfoentry" id="nodepublishvolumerequestpublishinfoentry-nodepublishvolumerequestpublishinfoentry"><h2>NodePublishVolumeRequest.PublishInfoEntry {#nodepublishvolumerequestpublishinfoentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodepublishvolumerequestvolumeattributesentry-nodepublishvolumerequestvolumeattributesentry" id="nodepublishvolumerequestvolumeattributesentry-nodepublishvolumerequestvolumeattributesentry"><h2>NodePublishVolumeRequest.VolumeAttributesEntry {#nodepublishvolumerequestvolumeattributesentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodepublishvolumeresponse-nodepublishvolumeresponse" id="nodepublishvolumeresponse-nodepublishvolumeresponse"><h2>NodePublishVolumeResponse {#nodepublishvolumeresponse}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodeservicecapability-nodeservicecapability" id="nodeservicecapability-nodeservicecapability"><h2>NodeServiceCapability {#nodeservicecapability}</h2></a>
+<p>Specifies a capability of the node service.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> <a href="https://developers.google.com/protocol-buffers/docs/proto3#oneof"><strong>oneof</strong></a> type.rpc </td><td> <a href="print.html#nodeservicecapabilityrpc"> NodeServiceCapability.RPC</a> </td><td> RPC that the controller supports. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodeservicecapabilityrpc-nodeservicecapabilityrpc" id="nodeservicecapabilityrpc-nodeservicecapabilityrpc"><h2>NodeServiceCapability.RPC {#nodeservicecapabilityrpc}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> type </td><td> <a href="print.html#nodeservicecapabilityrpctype"> NodeServiceCapability.RPC.Type</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodestagevolumerequest-nodestagevolumerequest" id="nodestagevolumerequest-nodestagevolumerequest"><h2>NodeStageVolumeRequest {#nodestagevolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume to publish. This field is REQUIRED. </td></tr>
+<tr><td> publish_info </td><td> <a href="print.html#nodestagevolumerequestpublishinfoentry">map NodeStageVolumeRequest.PublishInfoEntry</a> </td><td> The CO SHALL set this field to the value returned by <code>ControllerPublishVolume</code> if the corresponding Controller Plugin has <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability, and SHALL be left unset if the corresponding Controller Plugin does not have this capability. This is an OPTIONAL field. </td></tr>
+<tr><td> staging_target_path </td><td> <a href="print.html#string"> string</a> </td><td> The path to which the volume will be published. It MUST be an absolute path in the root filesystem of the process serving this request. The CO SHALL ensure that there is only one staging_target_path per volume. This is a REQUIRED field. </td></tr>
+<tr><td> volume_capability </td><td> <a href="print.html#volumecapability"> VolumeCapability</a> </td><td> The capability of the volume the CO expects the volume to have. This is a REQUIRED field. </td></tr>
+<tr><td> node_stage_secrets </td><td> <a href="print.html#nodestagevolumerequestnodestagesecretsentry">map NodeStageVolumeRequest.NodeStageSecretsEntry</a> </td><td> Secrets required by plugin to complete node stage volume request. This field is OPTIONAL. Refer to the <code>Secrets Requirements</code> section on how to use this field. </td></tr>
+<tr><td> volume_attributes </td><td> <a href="print.html#nodestagevolumerequestvolumeattributesentry">map NodeStageVolumeRequest.VolumeAttributesEntry</a> </td><td> Attributes of the volume to publish. This field is OPTIONAL and MUST match the attributes of the <code>Volume</code> identified by <code>volume_id</code>. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodestagevolumerequestnodestagesecretsentry-nodestagevolumerequestnodestagesecretsentry" id="nodestagevolumerequestnodestagesecretsentry-nodestagevolumerequestnodestagesecretsentry"><h2>NodeStageVolumeRequest.NodeStageSecretsEntry {#nodestagevolumerequestnodestagesecretsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodestagevolumerequestpublishinfoentry-nodestagevolumerequestpublishinfoentry" id="nodestagevolumerequestpublishinfoentry-nodestagevolumerequestpublishinfoentry"><h2>NodeStageVolumeRequest.PublishInfoEntry {#nodestagevolumerequestpublishinfoentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodestagevolumerequestvolumeattributesentry-nodestagevolumerequestvolumeattributesentry" id="nodestagevolumerequestvolumeattributesentry-nodestagevolumerequestvolumeattributesentry"><h2>NodeStageVolumeRequest.VolumeAttributesEntry {#nodestagevolumerequestvolumeattributesentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodestagevolumeresponse-nodestagevolumeresponse" id="nodestagevolumeresponse-nodestagevolumeresponse"><h2>NodeStageVolumeResponse {#nodestagevolumeresponse}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodeunpublishvolumerequest-nodeunpublishvolumerequest" id="nodeunpublishvolumerequest-nodeunpublishvolumerequest"><h2>NodeUnpublishVolumeRequest {#nodeunpublishvolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume. This field is REQUIRED. </td></tr>
+<tr><td> target_path </td><td> <a href="print.html#string"> string</a> </td><td> The path at which the volume was published. It MUST be an absolute path in the root filesystem of the process serving this request. This is a REQUIRED field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodeunpublishvolumeresponse-nodeunpublishvolumeresponse" id="nodeunpublishvolumeresponse-nodeunpublishvolumeresponse"><h2>NodeUnpublishVolumeResponse {#nodeunpublishvolumeresponse}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#nodeunstagevolumerequest-nodeunstagevolumerequest" id="nodeunstagevolumerequest-nodeunstagevolumerequest"><h2>NodeUnstageVolumeRequest {#nodeunstagevolumerequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume. This field is REQUIRED. </td></tr>
+<tr><td> staging_target_path </td><td> <a href="print.html#string"> string</a> </td><td> The path at which the volume was published. It MUST be an absolute path in the root filesystem of the process serving this request. This is a REQUIRED field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#nodeunstagevolumeresponse-nodeunstagevolumeresponse" id="nodeunstagevolumeresponse-nodeunstagevolumeresponse"><h2>NodeUnstageVolumeResponse {#nodeunstagevolumeresponse}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#plugincapability-plugincapability" id="plugincapability-plugincapability"><h2>PluginCapability {#plugincapability}</h2></a>
+<p>Specifies a capability of the plugin.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> <a href="https://developers.google.com/protocol-buffers/docs/proto3#oneof"><strong>oneof</strong></a> type.service </td><td> <a href="print.html#plugincapabilityservice"> PluginCapability.Service</a> </td><td> Service that the plugin supports. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#plugincapabilityservice-plugincapabilityservice" id="plugincapabilityservice-plugincapabilityservice"><h2>PluginCapability.Service {#plugincapabilityservice}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> type </td><td> <a href="print.html#plugincapabilityservicetype"> PluginCapability.Service.Type</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#proberequest-proberequest" id="proberequest-proberequest"><h2>ProbeRequest {#proberequest}</h2></a>
+<p>Intentionally empty.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#proberesponse-proberesponse" id="proberesponse-proberesponse"><h2>ProbeResponse {#proberesponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> ready </td><td> <a href="print.html#googleprotobufboolvalue"> google.protobuf.BoolValue</a> </td><td> Readiness allows a plugin to report its initialization status back to the CO. Initialization for some plugins MAY be time consuming and it is important for a CO to distinguish between the following cases:</td></tr>
+</tbody></table>
+<ol>
+<li>The plugin is in an unhealthy state and MAY need restarting. In this case a gRPC error code SHALL be returned. 2) The plugin is still initializing, but is otherwise perfectly healthy. In this case a successful response SHALL be returned with a readiness value of <code>false</code>. Calls to the plugin's Controller and/or Node services MAY fail due to an incomplete initialization state. 3) The plugin has finished initializing and is ready to service calls to its Controller and/or Node services. A successful response is returned with a readiness value of <code>true</code>.</li>
+</ol>
+<p>This field is OPTIONAL. If not present, the caller SHALL assume that the plugin is in a ready state and is accepting calls to its Controller and/or Node services (according to the plugin's reported capabilities). |</p>
+ <!-- end Fields -->
+ <!-- end HasFields -->
+<a class="header" href="print.html#snapshot-snapshot" id="snapshot-snapshot"><h2>Snapshot {#snapshot}</h2></a>
+<p>The information about a provisioned snapshot.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> size_bytes </td><td> <a href="print.html#int64"> int64</a> </td><td> This is the complete size of the snapshot in bytes. The purpose of this field is to give CO guidance on how much space is needed to create a volume from this snapshot. The size of the volume MUST NOT be less than the size of the source snapshot. This field is OPTIONAL. If this field is not set, it indicates that this size is unknown. The value of this field MUST NOT be negative and a size of zero means it is unspecified. </td></tr>
+<tr><td> id </td><td> <a href="print.html#string"> string</a> </td><td> Uniquely identifies a snapshot and is generated by the plugin. It will not change over time. This field is REQUIRED. The identity information will be used by the CO in subsequent calls to refer to the provisioned snapshot. </td></tr>
+<tr><td> source_volume_id </td><td> <a href="print.html#string"> string</a> </td><td> Identity information for the source volume. Note that creating a snapshot from a snapshot is not supported here so the source has to be a volume. This field is REQUIRED. </td></tr>
+<tr><td> created_at </td><td> <a href="print.html#int64"> int64</a> </td><td> Timestamp when the point-in-time snapshot is taken on the storage system. The format of this field should be a Unix nanoseconds time encoded as an int64. On Unix, the command <code>date +%s%N</code> returns the current time in nanoseconds since 1970-01-01 00:00:00 UTC. This field is REQUIRED. </td></tr>
+<tr><td> status </td><td> <a href="print.html#snapshotstatus"> SnapshotStatus</a> </td><td> The status of a snapshot. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#snapshotstatus-snapshotstatus" id="snapshotstatus-snapshotstatus"><h2>SnapshotStatus {#snapshotstatus}</h2></a>
+<p>The status of a snapshot.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> type </td><td> <a href="print.html#snapshotstatustype"> SnapshotStatus.Type</a> </td><td> This field is REQUIRED. </td></tr>
+<tr><td> details </td><td> <a href="print.html#string"> string</a> </td><td> Additional information to describe why a snapshot ended up in the <code>ERROR_UPLOADING</code> status. This field is OPTIONAL. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#topology-topology" id="topology-topology"><h2>Topology {#topology}</h2></a>
+<p>Topology is a map of topological domains to topological segments.
+A topological domain is a sub-division of a cluster, like &quot;region&quot;,
+&quot;zone&quot;, &quot;rack&quot;, etc.
+A topological segment is a specific instance of a topological domain,
+like &quot;zone3&quot;, &quot;rack3&quot;, etc.
+For example {&quot;com.company/zone&quot;: &quot;Z1&quot;, &quot;com.company/rack&quot;: &quot;R3&quot;}
+Valid keys have two segments: an optional prefix and name, separated
+by a slash (/), for example: &quot;com.company.example/zone&quot;.
+The key name segment is required. The prefix is optional.
+Both the key name and the prefix MUST each be 63 characters or less,
+begin and end with an alphanumeric character ([a-z0-9A-Z]) and
+contain only dashes (-), underscores (<em>), dots (.), or alphanumerics
+in between, for example &quot;zone&quot;.
+The key prefix MUST follow reverse domain name notation format
+(https://en.wikipedia.org/wiki/Reverse_domain_name_notation).
+The key prefix SHOULD include the plugin's host company name and/or
+the plugin name, to minimize the possibility of collisions with keys
+from other plugins.
+If a key prefix is specified, it MUST be identical across all
+topology keys returned by the SP (across all RPCs).
+Keys MUST be case-insensitive. Meaning the keys &quot;Zone&quot; and &quot;zone&quot;
+MUST not both exist.
+Each value (topological segment) MUST contain 1 or more strings.
+Each string MUST be 63 characters or less and begin and end with an
+alphanumeric character with '-', '</em>', '.', or alphanumerics in
+between.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> segments </td><td> <a href="print.html#topologysegmentsentry">map Topology.SegmentsEntry</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#topologysegmentsentry-topologysegmentsentry" id="topologysegmentsentry-topologysegmentsentry"><h2>Topology.SegmentsEntry {#topologysegmentsentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#topologyrequirement-topologyrequirement" id="topologyrequirement-topologyrequirement"><h2>TopologyRequirement {#topologyrequirement}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> requisite </td><td> <a href="print.html#topology">repeated Topology</a> </td><td> Specifies the list of topologies the provisioned volume MUST be accessible from. This field is OPTIONAL. If TopologyRequirement is specified either requisite or preferred or both MUST be specified.</td></tr>
+</tbody></table>
+<p>If requisite is specified, the provisioned volume MUST be accessible from at least one of the requisite topologies.</p>
+<p>Given x = number of topologies provisioned volume is accessible from n = number of requisite topologies The CO MUST ensure n &gt;= 1. The SP MUST ensure x &gt;= 1 If x==n, than the SP MUST make the provisioned volume available to all topologies from the list of requisite topologies. If it is unable to do so, the SP MUST fail the CreateVolume call. For example, if a volume should be accessible from a single zone, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;} then the provisioned volume MUST be accessible from the &quot;region&quot; &quot;R1&quot; and the &quot;zone&quot; &quot;Z2&quot;. Similarly, if a volume should be accessible from two zones, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;} then the provisioned volume MUST be accessible from the &quot;region&quot; &quot;R1&quot; and both &quot;zone&quot; &quot;Z2&quot; and &quot;zone&quot; &quot;Z3&quot;.</p>
+<p>If x&lt;n, than the SP SHALL choose x unique topologies from the list of requisite topologies. If it is unable to do so, the SP MUST fail the CreateVolume call. For example, if a volume should be accessible from a single zone, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;} then the SP may choose to make the provisioned volume available in either the &quot;zone&quot; &quot;Z2&quot; or the &quot;zone&quot; &quot;Z3&quot; in the &quot;region&quot; &quot;R1&quot;. Similarly, if a volume should be accessible from two zones, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z4&quot;} then the provisioned volume MUST be accessible from any combination of two unique topologies: e.g. &quot;R1/Z2&quot; and &quot;R1/Z3&quot;, or &quot;R1/Z2&quot; and &quot;R1/Z4&quot;, or &quot;R1/Z3&quot; and &quot;R1/Z4&quot;.</p>
+<p>If x&gt;n, than the SP MUST make the provisioned volume available from all topologies from the list of requisite topologies and MAY choose the remaining x-n unique topologies from the list of all possible topologies. If it is unable to do so, the SP MUST fail the CreateVolume call. For example, if a volume should be accessible from two zones, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;} then the provisioned volume MUST be accessible from the &quot;region&quot; &quot;R1&quot; and the &quot;zone&quot; &quot;Z2&quot; and the SP may select the second zone independently, e.g. &quot;R1/Z4&quot;. |
+| preferred | <a href="print.html#topology">repeated Topology</a> | Specifies the list of topologies the CO would prefer the volume to be provisioned in.</p>
+<p>This field is OPTIONAL. If TopologyRequirement is specified either requisite or preferred or both MUST be specified.</p>
+<p>An SP MUST attempt to make the provisioned volume available using the preferred topologies in order from first to last.</p>
+<p>If requisite is specified, all topologies in preferred list MUST also be present in the list of requisite topologies.</p>
+<p>If the SP is unable to to make the provisioned volume available from any of the preferred topologies, the SP MAY choose a topology from the list of requisite topologies. If the list of requisite topologies is not specified, then the SP MAY choose from the list of all possible topologies. If the list of requisite topologies is specified and the SP is unable to to make the provisioned volume available from any of the requisite topologies it MUST fail the CreateVolume call.</p>
+<p>Example 1: Given a volume should be accessible from a single zone, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;} preferred = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;} then the the SP SHOULD first attempt to make the provisioned volume available from &quot;zone&quot; &quot;Z3&quot; in the &quot;region&quot; &quot;R1&quot; and fall back to &quot;zone&quot; &quot;Z2&quot; in the &quot;region&quot; &quot;R1&quot; if that is not possible.</p>
+<p>Example 2: Given a volume should be accessible from a single zone, and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z4&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z5&quot;} preferred = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z4&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;} then the the SP SHOULD first attempt to make the provisioned volume accessible from &quot;zone&quot; &quot;Z4&quot; in the &quot;region&quot; &quot;R1&quot; and fall back to &quot;zone&quot; &quot;Z2&quot; in the &quot;region&quot; &quot;R1&quot; if that is not possible. If that is not possible, the SP may choose between either the &quot;zone&quot; &quot;Z3&quot; or &quot;Z5&quot; in the &quot;region&quot; &quot;R1&quot;.</p>
+<p>Example 3: Given a volume should be accessible from TWO zones (because an opaque parameter in CreateVolumeRequest, for example, specifies the volume is accessible from two zones, aka synchronously replicated), and requisite = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z4&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z5&quot;} preferred = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z5&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;} then the the SP SHOULD first attempt to make the provisioned volume accessible from the combination of the two &quot;zones&quot; &quot;Z5&quot; and &quot;Z3&quot; in the &quot;region&quot; &quot;R1&quot;. If that's not possible, it should fall back to a combination of &quot;Z5&quot; and other possibilities from the list of requisite. If that's not possible, it should fall back to a combination of &quot;Z3&quot; and other possibilities from the list of requisite. If that's not possible, it should fall back to a combination of other possibilities from the list of requisite. |</p>
+ <!-- end Fields -->
+ <!-- end HasFields -->
+<a class="header" href="print.html#validatevolumecapabilitiesrequest-validatevolumecapabilitiesrequest" id="validatevolumecapabilitiesrequest-validatevolumecapabilitiesrequest"><h2>ValidateVolumeCapabilitiesRequest {#validatevolumecapabilitiesrequest}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> volume_id </td><td> <a href="print.html#string"> string</a> </td><td> The ID of the volume to check. This field is REQUIRED. </td></tr>
+<tr><td> volume_capabilities </td><td> <a href="print.html#volumecapability">repeated VolumeCapability</a> </td><td> The capabilities that the CO wants to check for the volume. This call SHALL return &quot;supported&quot; only if all the volume capabilities specified below are supported. This field is REQUIRED. </td></tr>
+<tr><td> volume_attributes </td><td> <a href="print.html#validatevolumecapabilitiesrequestvolumeattributesentry">map ValidateVolumeCapabilitiesRequest.VolumeAttributesEntry</a> </td><td> Attributes of the volume to check. This field is OPTIONAL and MUST match the attributes of the Volume identified by <code>volume_id</code>. </td></tr>
+<tr><td> accessible_topology </td><td> <a href="print.html#topology">repeated Topology</a> </td><td> Specifies where (regions, zones, racks, etc.) the caller believes the volume is accessible from. A caller MAY specify multiple topologies to indicate they believe the volume to be accessible from multiple locations. This field is OPTIONAL. This field SHALL NOT be set unless the plugin advertises the ACCESSIBILITY_CONSTRAINTS capability. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#validatevolumecapabilitiesrequestvolumeattributesentry-validatevolumecapabilitiesrequestvolumeattributesentry" id="validatevolumecapabilitiesrequestvolumeattributesentry-validatevolumecapabilitiesrequestvolumeattributesentry"><h2>ValidateVolumeCapabilitiesRequest.VolumeAttributesEntry {#validatevolumecapabilitiesrequestvolumeattributesentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#validatevolumecapabilitiesresponse-validatevolumecapabilitiesresponse" id="validatevolumecapabilitiesresponse-validatevolumecapabilitiesresponse"><h2>ValidateVolumeCapabilitiesResponse {#validatevolumecapabilitiesresponse}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> supported </td><td> <a href="print.html#bool"> bool</a> </td><td> True if the Plugin supports the specified capabilities for the given volume. This field is REQUIRED. </td></tr>
+<tr><td> message </td><td> <a href="print.html#string"> string</a> </td><td> Message to the CO if <code>supported</code> above is false. This field is OPTIONAL. An empty string is equal to an unspecified field value. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#volume-volume" id="volume-volume"><h2>Volume {#volume}</h2></a>
+<p>The information about a provisioned volume.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> capacity_bytes </td><td> <a href="print.html#int64"> int64</a> </td><td> The capacity of the volume in bytes. This field is OPTIONAL. If not set (value of 0), it indicates that the capacity of the volume is unknown (e.g., NFS share). The value of this field MUST NOT be negative. </td></tr>
+<tr><td> id </td><td> <a href="print.html#string"> string</a> </td><td> Contains identity information for the created volume. This field is REQUIRED. The identity information will be used by the CO in subsequent calls to refer to the provisioned volume. </td></tr>
+<tr><td> attributes </td><td> <a href="print.html#volumeattributesentry">map Volume.AttributesEntry</a> </td><td> Attributes reflect static properties of a volume and MUST be passed to volume validation and publishing calls. Attributes SHALL be opaque to a CO. Attributes SHALL NOT be mutable and SHALL be safe for the CO to cache. Attributes SHOULD NOT contain sensitive information. Attributes MAY NOT uniquely identify a volume. A volume uniquely identified by <code>id</code> SHALL always report the same attributes. This field is OPTIONAL and when present MUST be passed to volume validation and publishing calls. </td></tr>
+<tr><td> content_source </td><td> <a href="print.html#volumecontentsource"> VolumeContentSource</a> </td><td> If specified, indicates that the volume is not empty and is pre-populated with data from the specified source. This field is OPTIONAL. </td></tr>
+<tr><td> accessible_topology </td><td> <a href="print.html#topology">repeated Topology</a> </td><td> Specifies where (regions, zones, racks, etc.) the provisioned volume is accessible from. A plugin that returns this field MUST also set the ACCESSIBILITY_CONSTRAINTS plugin capability. An SP MAY specify multiple topologies to indicate the volume is accessible from multiple locations. COs MAY use this information along with the topology information returned by NodeGetInfo to ensure that a given volume is accessible from a given node when scheduling workloads. This field is OPTIONAL. If it is not specified, the CO MAY assume the volume is equally accessible from all nodes in the cluster and may schedule workloads referencing the volume on any available node.</td></tr>
+</tbody></table>
+<p>Example 1: accessible_topology = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;} Indicates a volume accessible only from the &quot;region&quot; &quot;R1&quot; and the &quot;zone&quot; &quot;Z2&quot;.</p>
+<p>Example 2: accessible_topology = {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z2&quot;}, {&quot;region&quot;: &quot;R1&quot;, &quot;zone&quot;: &quot;Z3&quot;} Indicates a volume accessible from both &quot;zone&quot; &quot;Z2&quot; and &quot;zone&quot; &quot;Z3&quot; in the &quot;region&quot; &quot;R1&quot;. |</p>
+ <!-- end Fields -->
+ <!-- end HasFields -->
+<a class="header" href="print.html#volumeattributesentry-volumeattributesentry" id="volumeattributesentry-volumeattributesentry"><h2>Volume.AttributesEntry {#volumeattributesentry}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> key </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td> value </td><td> <a href="print.html#string"> string</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#volumecapability-volumecapability" id="volumecapability-volumecapability"><h2>VolumeCapability {#volumecapability}</h2></a>
+<p>Specify a capability of a volume.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> <a href="https://developers.google.com/protocol-buffers/docs/proto3#oneof"><strong>oneof</strong></a> access_type.block </td><td> <a href="print.html#volumecapabilityblockvolume"> VolumeCapability.BlockVolume</a> </td><td> none </td></tr>
+<tr><td> <a href="https://developers.google.com/protocol-buffers/docs/proto3#oneof"><strong>oneof</strong></a> access_type.mount </td><td> <a href="print.html#volumecapabilitymountvolume"> VolumeCapability.MountVolume</a> </td><td> none </td></tr>
+<tr><td> access_mode </td><td> <a href="print.html#volumecapabilityaccessmode"> VolumeCapability.AccessMode</a> </td><td> This is a REQUIRED field. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#volumecapabilityaccessmode-volumecapabilityaccessmode" id="volumecapabilityaccessmode-volumecapabilityaccessmode"><h2>VolumeCapability.AccessMode {#volumecapabilityaccessmode}</h2></a>
+<p>Specify how a volume can be accessed.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> mode </td><td> <a href="print.html#volumecapabilityaccessmodemode"> VolumeCapability.AccessMode.Mode</a> </td><td> This field is REQUIRED. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#volumecapabilityblockvolume-volumecapabilityblockvolume" id="volumecapabilityblockvolume-volumecapabilityblockvolume"><h2>VolumeCapability.BlockVolume {#volumecapabilityblockvolume}</h2></a>
+<p>Indicate that the volume will be accessed via the block device API.</p>
+<p>Intentionally empty, for now.</p>
+ <!-- end HasFields -->
+<a class="header" href="print.html#volumecapabilitymountvolume-volumecapabilitymountvolume" id="volumecapabilitymountvolume-volumecapabilitymountvolume"><h2>VolumeCapability.MountVolume {#volumecapabilitymountvolume}</h2></a>
+<p>Indicate that the volume will be accessed via the filesystem API.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> fs_type </td><td> <a href="print.html#string"> string</a> </td><td> The filesystem type. This field is OPTIONAL. An empty string is equal to an unspecified field value. </td></tr>
+<tr><td> mount_flags </td><td> <a href="print.html#string">repeated string</a> </td><td> The mount options that can be used for the volume. This field is OPTIONAL. <code>mount_flags</code> MAY contain sensitive information. Therefore, the CO and the Plugin MUST NOT leak this information to untrusted entities. The total size of this repeated field SHALL NOT exceed 4 KiB. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#volumecontentsource-volumecontentsource" id="volumecontentsource-volumecontentsource"><h2>VolumeContentSource {#volumecontentsource}</h2></a>
+<p>Specifies what source the volume will be created from. One of the
+type fields MUST be specified.</p>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> <a href="https://developers.google.com/protocol-buffers/docs/proto3#oneof"><strong>oneof</strong></a> type.snapshot </td><td> <a href="print.html#volumecontentsourcesnapshotsource"> VolumeContentSource.SnapshotSource</a> </td><td> none </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#volumecontentsourcesnapshotsource-volumecontentsourcesnapshotsource" id="volumecontentsourcesnapshotsource-volumecontentsourcesnapshotsource"><h2>VolumeContentSource.SnapshotSource {#volumecontentsourcesnapshotsource}</h2></a>
+<table><thead><tr><th> Field </th><th> Type </th><th> Description </th></tr></thead><tbody>
+<tr><td> id </td><td> <a href="print.html#string"> string</a> </td><td> Contains identity information for the existing source snapshot. This field is REQUIRED. Plugin is REQUIRED to support creating volume from snapshot if it supports the capability CREATE_DELETE_SNAPSHOT. </td></tr>
+<tr><td><!-- end Fields --></td></tr>
+<tr><td><!-- end HasFields --></td></tr>
+<tr><td><!-- end messages --></td></tr>
+</tbody></table>
+<a class="header" href="print.html#enums" id="enums"><h1>Enums</h1></a>
+<a class="header" href="print.html#snapshotstatustype-snapshotstatustype" id="snapshotstatustype-snapshotstatustype"><h2>SnapshotStatus.Type {#snapshotstatustype}</h2></a>
+<table><thead><tr><th> Name </th><th> Number </th><th> Description </th></tr></thead><tbody>
+<tr><td> UNKNOWN </td><td> 0 </td><td> none </td></tr>
+<tr><td> READY </td><td> 1 </td><td> A snapshot is ready for use. </td></tr>
+<tr><td> UPLOADING </td><td> 2 </td><td> A snapshot is cut and is now being uploaded. Some cloud providers and storage systems uploads the snapshot to the cloud after the snapshot is cut. During this phase, <code>thaw</code> can be done so the application can be running again if <code>freeze</code> was done before taking the snapshot. </td></tr>
+<tr><td> ERROR_UPLOADING </td><td> 3 </td><td> An error occurred during the snapshot uploading process. This error status is specific for uploading because <code>CreateSnaphot</code> is a blocking call before the snapshot is cut and therefore it SHOULD NOT come back with an error status when an error occurs. Instead a gRPC error code SHALL be returned by <code>CreateSnapshot</code> when an error occurs before a snapshot is cut. </td></tr>
+</tbody></table>
+ <!-- end Enums -->
+ <!-- end Files -->
+<a class="header" href="print.html#scalar-value-types" id="scalar-value-types"><h1>Scalar Value Types</h1></a>
+<table><thead><tr><th> .proto Type </th><th> Notes </th><th> C++ Type </th><th> Java Type </th><th> Python Type </th></tr></thead><tbody>
+<tr><td> <div><h4 id="double" /></div><a name="double" /> double </td><td>  </td><td> double </td><td> double </td><td> float </td></tr>
+<tr><td> <div><h4 id="float" /></div><a name="float" /> float </td><td>  </td><td> float </td><td> float </td><td> float </td></tr>
+<tr><td> <div><h4 id="int32" /></div><a name="int32" /> int32 </td><td> Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint32 instead. </td><td> int32 </td><td> int </td><td> int </td></tr>
+<tr><td> <div><h4 id="int64" /></div><a name="int64" /> int64 </td><td> Uses variable-length encoding. Inefficient for encoding negative numbers – if your field is likely to have negative values, use sint64 instead. </td><td> int64 </td><td> long </td><td> int/long </td></tr>
+<tr><td> <div><h4 id="uint32" /></div><a name="uint32" /> uint32 </td><td> Uses variable-length encoding. </td><td> uint32 </td><td> int </td><td> int/long </td></tr>
+<tr><td> <div><h4 id="uint64" /></div><a name="uint64" /> uint64 </td><td> Uses variable-length encoding. </td><td> uint64 </td><td> long </td><td> int/long </td></tr>
+<tr><td> <div><h4 id="sint32" /></div><a name="sint32" /> sint32 </td><td> Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int32s. </td><td> int32 </td><td> int </td><td> int </td></tr>
+<tr><td> <div><h4 id="sint64" /></div><a name="sint64" /> sint64 </td><td> Uses variable-length encoding. Signed int value. These more efficiently encode negative numbers than regular int64s. </td><td> int64 </td><td> long </td><td> int/long </td></tr>
+<tr><td> <div><h4 id="fixed32" /></div><a name="fixed32" /> fixed32 </td><td> Always four bytes. More efficient than uint32 if values are often greater than 2^28. </td><td> uint32 </td><td> int </td><td> int </td></tr>
+<tr><td> <div><h4 id="fixed64" /></div><a name="fixed64" /> fixed64 </td><td> Always eight bytes. More efficient than uint64 if values are often greater than 2^56. </td><td> uint64 </td><td> long </td><td> int/long </td></tr>
+<tr><td> <div><h4 id="sfixed32" /></div><a name="sfixed32" /> sfixed32 </td><td> Always four bytes. </td><td> int32 </td><td> int </td><td> int </td></tr>
+<tr><td> <div><h4 id="sfixed64" /></div><a name="sfixed64" /> sfixed64 </td><td> Always eight bytes. </td><td> int64 </td><td> long </td><td> int/long </td></tr>
+<tr><td> <div><h4 id="bool" /></div><a name="bool" /> bool </td><td>  </td><td> bool </td><td> boolean </td><td> boolean </td></tr>
+<tr><td> <div><h4 id="string" /></div><a name="string" /> string </td><td> A string must always contain UTF-8 encoded or 7-bit ASCII text. </td><td> string </td><td> String </td><td> str/unicode </td></tr>
+<tr><td> <div><h4 id="bytes" /></div><a name="bytes" /> bytes </td><td> May contain any arbitrary sequence of bytes. </td><td> string </td><td> ByteString </td><td> str </td></tr>
+</tbody></table>
 <a class="header" href="print.html#archive" id="archive"><h1>Archive</h1></a>
 <p>In this section, you will find information about CSI support in older Kubernetes versions.</p>
 <a class="header" href="print.html#csi-with-kubernetes-19" id="csi-with-kubernetes-19"><h1>CSI with Kubernetes 1.9</h1></a>
@@ -942,6 +1782,8 @@ spec:
         volumeHandle: &quot;1&quot;
         readOnly: false
 </code></pre>
+<a class="header" href="print.html#csi-with-kubernetes-110" id="csi-with-kubernetes-110"><h1>CSI with Kubernetes 1.10</h1></a>
+<p>TBD</p>
 
                     </main>
 

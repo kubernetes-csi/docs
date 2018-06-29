@@ -8,7 +8,7 @@ Name | Status | More Information
 -----|--------|-------
 [Flexvolume](https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter) | Sample |
 [HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | v0.2.0 | Only use for a single node tests. See the [Example](Example.html) page for Kubernetes-specific instructions.
-[Mock Driver](https://github.com/kubernetes-csi/drivers/mock) | v0.2.0 | A mock CSI plugin usable as a stand-alone binary or in code.
+[In-memory Sample Mock Driver](https://github.com/kubernetes-csi/csi-test/tree/master/mock/service) | v0.3.0 | The sample mock driver used for [csi-sanity](https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity)
 [NFS](https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs) | Sample | 
 [VFS Driver](https://github.com/thecodeteam/csi-vfs) | Released | A CSI plugin that provides a virtual file system.
 
@@ -19,7 +19,7 @@ Name | Status | More Information
 [DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.0.1 (alpha) | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
 [GCE Persistent Disk](https://github.com/GoogleCloudPlatform/compute-persistent-disk-csi-driver)|Alpha|A Container Storage Interface (CSI) Storage Plugin for Google Compute Engine Persistent Disk
 [OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
-[Portworx](https://portworx.com/) | Alpha | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
+[Portworx](https://portworx.com/) | 0.2.0 | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
 [RBD](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
 [CephFS](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO

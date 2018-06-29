@@ -16,3 +16,4 @@
 - [References](References.md)
 - [Archive](Archive.md)
   - [Kubernetes 1.9](Kubernetes-1.9.md)
+  - [Kubernetes 1.10](Kubernetes-1.10.md)
