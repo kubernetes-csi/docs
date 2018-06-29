@@ -8,7 +8,7 @@ section shows how to deploy and use that driver in Kubernetes.
 ## Deployment
 
 The following .yaml file will deploy a `csi-pod` with the HostPath CSI driver and the
-[sidecar containers](CSI-Kubernetes.md#sidecar-containers) which integrate the driver into Kubernetes.
+[sidecar containers](CSI-Kubernetes.html#sidecar-containers) which integrate the driver into Kubernetes.
 Use it with a cluster that is [set up for CSI](Setup.html), either by copying it into a local file or
 by referencing the latest version directly:
 ```
