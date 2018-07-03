@@ -24,6 +24,7 @@ Name | Status | More Information
 [CephFS](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
 [vSphere](https://github.com/thecodeteam/csi-vsphere)|v0.1.0|A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere
+[NetApp](https://github.com/NetApp/trident) | v0.2.0 (alpha) | A Container Storage Interface (CSI) Storage Plug-in for NetApp's [Trident](https://netapp-trident.readthedocs.io/) container storage orchestrator
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
