@@ -152,17 +152,15 @@
 <p>Moreover, as stated in the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a>, the Docker daemon of the cluster nodes must allow shared mounts. <a href="https://docs.portworx.com/knowledgebase/shared-mount-propogation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
 <p>This document has been updated to the latest version of Kubernetes v1.11.</p>
 <a class="header" href="Setup.html#alpha-features" id="alpha-features"><h2>Alpha Features</h2></a>
-<ul>
-<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI Raw block volume support</a>: To enable support for raw block volumes
-you mest set the following feature gate on Kubernetes v1.11:</li>
-</ul>
+<a class="header" href="Setup.html#csi-raw-block-volume-support" id="csi-raw-block-volume-support"><h4>CSI Raw block volume support</h4></a>
+<p><a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI Raw block volume support</a>: To enable support for raw block volumes
+you mest set the following feature gate on Kubernetes v1.11:</p>
 <pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true
 </code></pre>
 <p>Also, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">Raw Block Volume Support</a></p>
-<ul>
-<li><a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a>: To enable support for Kubelet plugin
-watcher for CSI plugins:</li>
-</ul>
+<a class="header" href="Setup.html#kubelet-plugin-watcher" id="kubelet-plugin-watcher"><h4>Kubelet Plugin Watcher</h4></a>
+<p><a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a>: To enable support for Kubelet plugin
+watcher for CSI plugins:</p>
 <pre><code>--feature-gates=KubeletPluginsWatcher=true
 </code></pre>
 <p>You will also need to use the following flag in your <code>driver-registrar</code> side-car

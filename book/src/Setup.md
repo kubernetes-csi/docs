@@ -8,7 +8,9 @@ This document has been updated to the latest version of Kubernetes v1.11.
 
 ## Alpha Features
 
-* [CSI Raw block volume support][rawvol]: To enable support for raw block volumes
+#### CSI Raw block volume support
+
+[CSI Raw block volume support][rawvol]: To enable support for raw block volumes
 you mest set the following feature gate on Kubernetes v1.11:
 
 ```
@@ -17,7 +19,9 @@ you mest set the following feature gate on Kubernetes v1.11:
 
 Also, see [Raw Block Volume Support][rawsupport]
 
-* [Kubelet Plugin Watcher][plugin-watcher]: To enable support for Kubelet plugin
+#### Kubelet Plugin Watcher
+
+[Kubelet Plugin Watcher][plugin-watcher]: To enable support for Kubelet plugin
 watcher for CSI plugins:
 
 ```
