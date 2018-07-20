@@ -6,7 +6,22 @@ Moreover, as stated in the [mount propagation docs][mount-propagation-docs], the
 
 This document has been updated to the latest version of Kubernetes v1.11.
 
+## Alpha Features
+
+* [CSI Raw block volume support][rawvol]: To enable support for raw block volumes
+you mest set the following feature gate on Kubernetes v1.11:
+
+```
+--feature-gates=BlockVolume=true,CSIBlockVolume=true
+```
+
+Also, see [Raw Block Volume Support][rawsupport]
+
+## Archives
+
 Please visit the [Archives](Archive.html) for setup instructions on previous versions of Kubernetes.
 
 [mount-propagation-docs]: https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation
 [docker-shared-mount]: https://docs.portworx.com/knowledgebase/shared-mount-propogation.html
+[rawvol]: https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support
+[rawsupport]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support

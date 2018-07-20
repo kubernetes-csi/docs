@@ -168,6 +168,15 @@
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
 <p>Moreover, as stated in the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a>, the Docker daemon of the cluster nodes must allow shared mounts. <a href="https://docs.portworx.com/knowledgebase/shared-mount-propogation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
 <p>This document has been updated to the latest version of Kubernetes v1.11.</p>
+<a class="header" href="print.html#alpha-features" id="alpha-features"><h2>Alpha Features</h2></a>
+<ul>
+<li><a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI Raw block volume support</a>: To enable support for raw block volumes
+you mest set the following feature gate on Kubernetes v1.11:</li>
+</ul>
+<pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true
+</code></pre>
+<p>Also, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">Raw Block Volume Support</a></p>
+<a class="header" href="print.html#archives" id="archives"><h2>Archives</h2></a>
 <p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
 <a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
 <p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver. A functional example based on the HostPath driver is presented in the <a href="Example.html">Example</a> section.</p>
