@@ -176,6 +176,22 @@ you mest set the following feature gate on Kubernetes v1.11:</li>
 <pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true
 </code></pre>
 <p>Also, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">Raw Block Volume Support</a></p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a>: To enable support for Kubelet plugin
+watcher for CSI plugins:</li>
+</ul>
+<pre><code>--feature-gates=KubeletPluginsWatcher=true
+</code></pre>
+<p>You will also need to use the following flag in your <code>driver-registrar</code> side-car
+container with the value set to the location of kubekel plugin watcher socket:</p>
+<pre><code>--kubelet-registration-path: Enables Kubelet Plugin Registration service, and returns
+  the specified path as &quot;endpoint&quot; in &quot;PluginInfo&quot; response. If this option is set, the
+  driver-registrar expose a unix domain socket to handle Kubelet Plugin Registration,
+  this socket MUST be surfaced on the host in the kubelet plugin registration director
+  (in addition to the CSI driver socket). If plugin registration is enabled on kubelet
+  (kubelet flag KubeletPluginsWatcher is set), then this option should be set and the
+  value should be the path of the CSI driver socket on the host machine.
+</code></pre>
 <a class="header" href="print.html#archives" id="archives"><h2>Archives</h2></a>
 <p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
 <a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
