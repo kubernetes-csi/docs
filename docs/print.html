@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible">
+<html lang="en" class="sidebar-visible no-js">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -9,44 +9,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
+        <!-- Custom theme stylesheets -->
         
 
         
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <noscript>
-            <style type="text/css">
-                .javascript-only {
-                    display: none;
-                }
-            </style>
-        </noscript>
-
     </head>
     <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -69,7 +56,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
             if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
-            document.querySelector('html').className = theme;
+            document.querySelector('html').className = theme + ' js';
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -94,7 +81,7 @@
                 
                 <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
-                        <div class="left-buttons javascript-only">
+                        <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
@@ -126,13 +113,15 @@
                 </div>
 
                 
-                <div id="searchbar-outer" class="searchbar-outer">
-                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                </div>
-                <div id="searchresults-outer" class="searchresults-outer">
-                    <div class="searchresults-header" id="searchresults-header"></div>
-                    <ul id="searchresults">
-                    </ul>
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
                 </div>
                 
 
@@ -147,35 +136,35 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="print.html#introduction" id="introduction"><h1>Introduction</h1></a>
-<a class="header" href="print.html#kubernetes-csi-documentation" id="kubernetes-csi-documentation"><h2>Kubernetes CSI Documentation</h2></a>
+                        <a class="header" href="#introduction" id="introduction"><h1>Introduction</h1></a>
+<a class="header" href="#kubernetes-csi-documentation" id="kubernetes-csi-documentation"><h2>Kubernetes CSI Documentation</h2></a>
 <p>Welcome to the CSI for Kubernetes documentation repository. Here you will find information on how to use, develop, and deploy CSI plugins, or drivers, with Kubernetes.</p>
-<a class="header" href="print.html#project-status" id="project-status"><h2>Project status</h2></a>
+<a class="header" href="#project-status" id="project-status"><h2>Project status</h2></a>
 <table><thead><tr><th> Kubernetes </th><th> CSI spec </th><th> Status </th></tr></thead><tbody>
 <tr><td> v1.9       </td><td> v0.1     </td><td> Alpha  </td></tr>
 <tr><td> v1.10      </td><td> v0.2     </td><td> Beta   </td></tr>
 <tr><td> v1.11      </td><td> v0.3     </td><td> Beta   </td></tr>
 </tbody></table>
-<a class="header" href="print.html#sidecar-container-status" id="sidecar-container-status"><h2>Sidecar container status</h2></a>
+<a class="header" href="#sidecar-container-status" id="sidecar-container-status"><h2>Sidecar container status</h2></a>
 <table><thead><tr><th> Container Name </th><th> CSI spec </th><th> Latest Release Tag </th></tr></thead><tbody>
 <tr><td> csi-provisioner </td><td> v0.3 </td><td> v0.3.0 </td></tr>
 <tr><td> csi-attacher </td><td> v0.3 </td><td> v0.3.0 </td></tr>
 <tr><td> driver-registrar </td><td> v0.3 </td><td> v0.3.0 </td></tr>
 </tbody></table>
-<a class="header" href="print.html#installation" id="installation"><h2>Installation</h2></a>
+<a class="header" href="#installation" id="installation"><h2>Installation</h2></a>
 <p>Please see the <a href="Setup.html">Setup</a> page for instructions on how to setup Kubernetes support with CSI.</p>
-<a class="header" href="print.html#setup" id="setup"><h1>Setup</h1></a>
+<a class="header" href="#setup" id="setup"><h1>Setup</h1></a>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
 <p>Moreover, as stated in the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a>, the Docker daemon of the cluster nodes must allow shared mounts. <a href="https://docs.portworx.com/knowledgebase/shared-mount-propogation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
 <p>This document has been updated to the latest version of Kubernetes v1.11.</p>
-<a class="header" href="print.html#alpha-features" id="alpha-features"><h2>Alpha Features</h2></a>
-<a class="header" href="print.html#csi-raw-block-volume-support" id="csi-raw-block-volume-support"><h4>CSI Raw block volume support</h4></a>
+<a class="header" href="#alpha-features" id="alpha-features"><h2>Alpha Features</h2></a>
+<a class="header" href="#csi-raw-block-volume-support" id="csi-raw-block-volume-support"><h4>CSI Raw block volume support</h4></a>
 <p><a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI Raw block volume support</a>: To enable support for raw block volumes
 you mest set the following feature gate on Kubernetes v1.11:</p>
 <pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true
 </code></pre>
 <p>Also, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">Raw Block Volume Support</a></p>
-<a class="header" href="print.html#kubelet-plugin-watcher" id="kubelet-plugin-watcher"><h4>Kubelet Plugin Watcher</h4></a>
+<a class="header" href="#kubelet-plugin-watcher" id="kubelet-plugin-watcher"><h4>Kubelet Plugin Watcher</h4></a>
 <p><a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a>: To enable support for Kubelet plugin
 watcher for CSI plugins:</p>
 <pre><code>--feature-gates=KubeletPluginsWatcher=true
@@ -190,16 +179,16 @@ container with the value set to the location of kubekel plugin watcher socket:</
   (kubelet flag KubeletPluginsWatcher is set), then this option should be set and the
   value should be the path of the CSI driver socket on the host machine.
 </code></pre>
-<a class="header" href="print.html#archives" id="archives"><h2>Archives</h2></a>
+<a class="header" href="#archives" id="archives"><h2>Archives</h2></a>
 <p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
-<a class="header" href="print.html#deployment" id="deployment"><h1>Deployment</h1></a>
+<a class="header" href="#deployment" id="deployment"><h1>Deployment</h1></a>
 <p>To benefit from the new CSI support, you will need to deploy a CSI driver. Please visit the <a href="Drivers.html">Drivers</a> page to determine how to deploy your specific driver. A functional example based on the HostPath driver is presented in the <a href="Example.html">Example</a> section.</p>
-<a class="header" href="print.html#drivers" id="drivers"><h1>Drivers</h1></a>
+<a class="header" href="#drivers" id="drivers"><h1>Drivers</h1></a>
 <p>The following are a set of CSI driver which can be used with Kubernetes:</p>
 <blockquote>
 <p>NOTE: If you would like your driver to be added to this table, please create an issue in this repo with the information you would like to add here.</p>
 </blockquote>
-<a class="header" href="print.html#sample-drivers" id="sample-drivers"><h3>Sample Drivers</h3></a>
+<a class="header" href="#sample-drivers" id="sample-drivers"><h3>Sample Drivers</h3></a>
 <table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter">Flexvolume</a> </td><td> Sample </td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a> </td><td> v0.2.0 </td><td> Only use for a single node tests. See the <a href="Example.html">Example</a> page for Kubernetes-specific instructions.</td></tr>
@@ -207,7 +196,7 @@ container with the value set to the location of kubekel plugin watcher socket:</
 <tr><td><a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs">NFS</a> </td><td> Sample </td></tr>
 <tr><td><a href="https://github.com/thecodeteam/csi-vfs">VFS Driver</a> </td><td> Released </td><td> A CSI plugin that provides a virtual file system.</td></tr>
 </tbody></table>
-<a class="header" href="print.html#production-drivers" id="production-drivers"><h3>Production Drivers</h3></a>
+<a class="header" href="#production-drivers" id="production-drivers"><h3>Production Drivers</h3></a>
 <table><thead><tr><th>Name </th><th> Status </th><th> More Information</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder">Cinder</a></td><td>v0.2.0</td><td>A Container Storage Interface (CSI) Storage Plug-in for Cinder</td></tr>
 <tr><td><a href="https://github.com/digitalocean/csi-digitalocean">DigitalOcean Block Storage</a> </td><td> v0.0.1 (alpha) </td><td> A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage</td></tr>
@@ -220,11 +209,11 @@ container with the value set to the location of kubekel plugin watcher socket:</
 <tr><td><a href="https://github.com/thecodeteam/csi-vsphere">vSphere</a></td><td>v0.1.0</td><td>A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere</td></tr>
 <tr><td><a href="https://github.com/NetApp/trident">NetApp</a> </td><td> v0.2.0 (alpha) </td><td> A Container Storage Interface (CSI) Storage Plug-in for NetApp's <a href="https://netapp-trident.readthedocs.io/">Trident</a> container storage orchestrator</td></tr>
 </tbody></table>
-<a class="header" href="print.html#testing" id="testing"><h2>Testing</h2></a>
+<a class="header" href="#testing" id="testing"><h2>Testing</h2></a>
 <p>There are multiple ways to test your driver. Please see <a href="Testing-Drivers.html">Testing Drivers</a> for more information.</p>
-<a class="header" href="print.html#usage" id="usage"><h1>Usage</h1></a>
+<a class="header" href="#usage" id="usage"><h1>Usage</h1></a>
 <p>There are two main models of how to use storage in Kubernetes with CSI drivers. These models include either the usage of pre-provisioned volumes or dynamic provisioned volumes. Please check the documentation of your specific driver for more information.</p>
-<a class="header" href="print.html#pre-provisioned-volumes" id="pre-provisioned-volumes"><h3>Pre-provisioned volumes</h3></a>
+<a class="header" href="#pre-provisioned-volumes" id="pre-provisioned-volumes"><h3>Pre-provisioned volumes</h3></a>
 <p>Pre-provisioned drivers work just as they did before, where the administrator would create a <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes"><em>PersistentVolume</em></a> specification which would describe the volume to be used. The PersistentVolume specification would need to be setup according to your driver, the difference here is that there is a new section called <em>csi</em> which needs to be setup accordingly. Please see <a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi">Kubernetes Documentation on CSI Volumes</a>.</p>
 <p>Here is an example of a <em>PersistentVolume</em> specification of a pre-provisioned volume managed by a CSI driver:</p>
 <pre><code class="language-yaml">apiVersion: v1
@@ -242,7 +231,7 @@ spec:
     volumeHandle: existingVolumeName
     readOnly: false
 </code></pre>
-<a class="header" href="print.html#dynamic-provisioning" id="dynamic-provisioning"><h3>Dynamic Provisioning</h3></a>
+<a class="header" href="#dynamic-provisioning" id="dynamic-provisioning"><h3>Dynamic Provisioning</h3></a>
 <p>To setup the system for dynamic provisioning, the administrator needs to setup a <a href="https://kubernetes.io/docs/concepts/storage/storage-classes"><em>StorageClass</em></a> pointing to the CSI driver’s external-provisioner and specifying any parameters required by the driver. Here is an example of a StorageClass:</p>
 <pre><code class="language-yaml">kind: StorageClass
 apiVersion: storage.k8s.io/v1
@@ -270,7 +259,7 @@ spec:
       storage: 5Gi
   storageClassName: fast-storage
 </code></pre>
-<a class="header" href="print.html#csi-provisioner-parameters" id="csi-provisioner-parameters"><h4>CSI Provisioner Parameters</h4></a>
+<a class="header" href="#csi-provisioner-parameters" id="csi-provisioner-parameters"><h4>CSI Provisioner Parameters</h4></a>
 <p>The CSI dynamic provisioner makes <code>CreateVolumeRequest</code> and <code>DeleteVolumeRequest</code> calls to CSI drivers.
 The <code>controllerCreateSecrets</code> and <code>controllerDeleteSecrets</code> fields in those requests can be populated
 with data from a Kubernetes <code>Secret</code> object by setting <code>csiProvisionerSecretName</code> and <code>csiProvisionerSecretNamespace</code>
@@ -358,12 +347,12 @@ parameters:
 </ul>
 </li>
 </ul>
-<a class="header" href="print.html#example" id="example"><h1>Example</h1></a>
+<a class="header" href="#example" id="example"><h1>Example</h1></a>
 <p>The
 <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">HostPath</a>
 can be used to provision local storage in a single node test. This
 section shows how to deploy and use that driver in Kubernetes.</p>
-<a class="header" href="print.html#deployment-1" id="deployment-1"><h2>Deployment</h2></a>
+<a class="header" href="#deployment-1" id="deployment-1"><h2>Deployment</h2></a>
 <p>The following .yaml file will deploy a <code>csi-pod</code> with the HostPath CSI driver and the
 <a href="CSI-Kubernetes.html#sidecar-containers">sidecar containers</a> which integrate the driver into Kubernetes.
 Use it with a cluster that is <a href="Setup.html">set up for CSI</a>, either by copying it into a local file or
@@ -554,7 +543,7 @@ spec:
       type: DirectoryOrCreate
     name: mountpoint-dir
 </code></pre>
-<a class="header" href="print.html#usage-1" id="usage-1"><h2>Usage</h2></a>
+<a class="header" href="#usage-1" id="usage-1"><h2>Usage</h2></a>
 <p>Dynamic provisioning was enabled by the .yaml file above via the
 <code>csi-hostpath-sc</code> storage class. We can use this to create and claim a
 new volume:</p>
@@ -663,7 +652,7 @@ spec:
       persistentVolumeClaim:
         claimName: csi-pvc # defined in csi-pvs.yaml
 </code></pre>
-<a class="header" href="print.html#confirming-the-setup" id="confirming-the-setup"><h2>Confirming the setup</h2></a>
+<a class="header" href="#confirming-the-setup" id="confirming-the-setup"><h2>Confirming the setup</h2></a>
 <p>Writing inside the app container should be visible in <code>/tmp</code> of the <code>hostpath-driver</code> container:</p>
 <pre><code>$ kubectl exec -ti my-csi-app /bin/sh
 / # touch /data/hello-world
@@ -698,30 +687,30 @@ Status:
 Events:      &lt;none&gt;
 </code></pre>
 <p>If you encounter any problems, please check the <a href="Troubleshooting.html">Troubleshooting page</a>.</p>
-<a class="header" href="print.html#development" id="development"><h1>Development</h1></a>
+<a class="header" href="#development" id="development"><h1>Development</h1></a>
 <p>This section describes to developers how to create and deploy a CSI driver for Kubernetes.</p>
-<a class="header" href="print.html#developing-a-csi-driver" id="developing-a-csi-driver"><h1>Developing a CSI driver</h1></a>
+<a class="header" href="#developing-a-csi-driver" id="developing-a-csi-driver"><h1>Developing a CSI driver</h1></a>
 <p>To write a CSI Driver, a developer must create an application which implements the three <em>Identity</em>, <em>Controller</em>, and <em>Node</em> services as described in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#rpc-interface">CSI specification</a>.</p>
 <p>The <a href="Drivers.html">Drivers</a> page contains a set of drivers which may be used as an example of how to write a CSI driver.</p>
 <p>If this is your first driver, you can start with the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/mock/service">in-memory sample Mock Driver</a> used for <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></p>
-<a class="header" href="print.html#other-resources" id="other-resources"><h1>Other Resources</h1></a>
+<a class="header" href="#other-resources" id="other-resources"><h1>Other Resources</h1></a>
 <p>Here are some other resources useful for writing CSI drivers:</p>
 <ul>
 <li><a href="https://arslan.io/2018/06/21/how-to-write-a-container-storage-interface-csi-plugin/">How to write a Container Storage Interface (CSI) plugin - by Fatih Arslan</a></li>
 </ul>
-<a class="header" href="print.html#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
+<a class="header" href="#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
-<a class="header" href="print.html#overview" id="overview"><h2>Overview</h2></a>
+<a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>There are three components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. These components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
-<a class="header" href="print.html#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
+<a class="header" href="#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
 <p>Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the <em>external attacher</em>, <em>external provisioner</em>, and the <em>driver registrar</em>.</p>
-<a class="header" href="print.html#external-attacher" id="external-attacher"><h3>External Attacher</h3></a>
+<a class="header" href="#external-attacher" id="external-attacher"><h3>External Attacher</h3></a>
 <p><a href="https://github.com/kubernetes-csi/external-attacher">external-attacher</a> is a sidecar container that watches Kubernetes <em>VolumeAttachment</em> objects and triggers CSI <em>ControllerPublish</em> and <em>ControllerUnpublish</em> operations against a driver endpoint. As of this writing, the external attacher does not support leader election and therefore there can be only one running per CSI driver.  For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#attaching-and-detaching"><em>Attaching and Detaching</em></a>.</p>
 <p>Note, even though this is called the <em>external attacher</em>, its function is to call the CSI API calls <em>ControllerPublish</em> and <em>ControllerUnpublish</em>. These calls most likely will occur in a node which is <em>not</em> the one that will mount the volume. For this reason, many CSI drivers do not support these calls, instead doing the attach/detach and mount/unmount both in the CSI <em>NodePublish</em> and <em>NodeUnpublish</em> calls done by the kubelet at the node which is supposed to mount.</p>
-<a class="header" href="print.html#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
+<a class="header" href="#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
 <p><a href="https://github.com/kubernetes-csi/external-provisioner">external-provisioner</a> is a Sidecar container that watches Kubernetes <em>PersistentVolumeClaim</em> objects and triggers CSI <em>CreateVolume</em> and <em>DeleteVolume</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#provisioning-and-deleting"><em>Provisioning and Deleting</em></a>.</p>
-<a class="header" href="print.html#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
+<a class="header" href="#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
 <p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
 <pre><code class="language-yaml">        - name: csi-driver-registrar
           imagePullPolicy: Always
@@ -740,10 +729,10 @@ Events:      &lt;none&gt;
             - name: socket-dir
               mountPath: /csi
 </code></pre>
-<a class="header" href="print.html#kubelet" id="kubelet"><h3>Kubelet</h3></a>
+<a class="header" href="#kubelet" id="kubelet"><h3>Kubelet</h3></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1NXaVNDh3mSDhog7Q3Y9eELyEF24F8Z-Kk0ujR3pyOes/edit?usp=sharing"><img src="images/kubelet.png" alt="kubelet" /></a></p>
 <p>The Kubernetes kubelet runs on every node and is responsible for making the CSI calls <em>NodePublish</em> and <em>NodeUnpublish</em>. These calls mount and unmount the storage volume from the storage system, making it available to the Pod to consume. As shown in the <em>external-attacher</em>, most CSI drivers choose to implement both their attach/detach and mount/unmount calls in the <em>NodePublish</em> and <em>NodeUnpublish</em> calls. They do this because the kubelet makes the request on the node which is to consume the volume.</p>
-<a class="header" href="print.html#mount-point" id="mount-point"><h3>Mount point</h3></a>
+<a class="header" href="#mount-point" id="mount-point"><h3>Mount point</h3></a>
 <p>The mount point used by the CSI driver must be set to <em>Bidirectional</em>. See the example below:</p>
 <pre><code class="language-yaml">          volumeMounts:
             - name: socket-dir
@@ -761,7 +750,7 @@ Events:      &lt;none&gt;
             path: /var/lib/kubelet/pods
             type: Directory
 </code></pre>
-<a class="header" href="print.html#rbac-rules" id="rbac-rules"><h3>RBAC Rules</h3></a>
+<a class="header" href="#rbac-rules" id="rbac-rules"><h3>RBAC Rules</h3></a>
 <p>Side car containers need the appropriate permissions to be able to access and manipulate Kubernetes objects. Here are the RBAC rules needed:</p>
 <pre><code class="language-yaml">kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -784,25 +773,25 @@ rules:
     resources: [&quot;volumeattachments&quot;]
     verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
 </code></pre>
-<a class="header" href="print.html#deploying" id="deploying"><h2>Deploying</h2></a>
+<a class="header" href="#deploying" id="deploying"><h2>Deploying</h2></a>
 <p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>.</p>
-<a class="header" href="print.html#examples" id="examples"><h3>Examples</h3></a>
+<a class="header" href="#examples" id="examples"><h3>Examples</h3></a>
 <ul>
 <li>Simple deployment example using a single pod for all components: see the <a href="Example.html">hostpath example</a>.</li>
 <li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: check the <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs/deploy/kubernetes">NFS driver deployment files</a>.</li>
 </ul>
-<a class="header" href="print.html#more-information" id="more-information"><h2>More information</h2></a>
+<a class="header" href="#more-information" id="more-information"><h2>More information</h2></a>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
-<a class="header" href="print.html#testing-1" id="testing-1"><h1>Testing</h1></a>
+<a class="header" href="#testing-1" id="testing-1"><h1>Testing</h1></a>
 <p>This document describes to developers how they can test their CSI clients or drivers.</p>
-<a class="header" href="print.html#testing-csi-clients" id="testing-csi-clients"><h1>Testing CSI Clients</h1></a>
+<a class="header" href="#testing-csi-clients" id="testing-csi-clients"><h1>Testing CSI Clients</h1></a>
 <p>If you are writing a CSI client, like a CO or a side car container, then you can use some of the following methods to test your application.</p>
 <ul>
 <li><em>csi-test unit test mock driver</em>: The csi-test repo provides an automatically generated Golang mock code to be used for unit tests.</li>
 <li><em>mock-driver</em>: This driver can be used as an external service to test your gRPC calls.</li>
 <li><em>hostPath driver</em>: This driver can be used on a single node to tests for mounting and unmounting of storage.</li>
 </ul>
-<a class="header" href="print.html#csi-test-unit-test-mock-driver" id="csi-test-unit-test-mock-driver"><h1>CSI-Test Unit Test Mock Driver</h1></a>
+<a class="header" href="#csi-test-unit-test-mock-driver" id="csi-test-unit-test-mock-driver"><h1>CSI-Test Unit Test Mock Driver</h1></a>
 <p>The <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a> unit test mock driver enables Golang clients to test all aspects of their code. This is done by using the mock driver generated using <a href="https://github.com/golang/mock">GoMock</a>, which let's the caller verify parameters and test for returned values. Here is a small example:</p>
 <pre><code class="language-go">    // Setup mock
     m := gomock.NewController(&amp;mock_utils.SafeGoroutineTester{})
@@ -853,17 +842,17 @@ rules:
         t.Errorf(&quot;Unknown name: %s\n&quot;, name)
     }
 </code></pre>
-<a class="header" href="print.html#more-information-1" id="more-information-1"><h2>More Information</h2></a>
+<a class="header" href="#more-information-1" id="more-information-1"><h2>More Information</h2></a>
 <p>For more examples and information see:</p>
 <ul>
 <li><a href="https://github.com/kubernetes-csi/external-attacher/blob/master/pkg/connection/connection_test.go">external-attacher side car container</a></li>
 <li><a href="https://github.com/golang/mock">Golang GoMock</a></li>
 </ul>
-<a class="header" href="print.html#hostpath-driver" id="hostpath-driver"><h1>HostPath Driver</h1></a>
+<a class="header" href="#hostpath-driver" id="hostpath-driver"><h1>HostPath Driver</h1></a>
 <p>The <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath">hostPath</a> driver is probably the simplest CSI driver to use for testing on a single node. This is the driver that is for CSI e2e tests in Kubernetes. See the <a href="Example.html">Example</a> page for deployment and usage instructions.</p>
-<a class="header" href="print.html#testing-csi-drivers" id="testing-csi-drivers"><h1>Testing CSI Drivers</h1></a>
+<a class="header" href="#testing-csi-drivers" id="testing-csi-drivers"><h1>Testing CSI Drivers</h1></a>
 <p>There are multiple ways to test your driver, some still in development. This page will describe each of the multiple methods to test your driver.</p>
-<a class="header" href="print.html#unit-testing" id="unit-testing"><h2>Unit Testing</h2></a>
+<a class="header" href="#unit-testing" id="unit-testing"><h2>Unit Testing</h2></a>
 <p>There are multiple ways to test your driver. One way is to exercise every call by writing your own client for your unit tests as done in the <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">Portworx driver</a>.</p>
 <p>Another way to test your driver is to use the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity"><code>sanity</code></a> package from <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a>. This simple package contains a single call which will test your driver according to the CSI specification. Here is an example of how it can be used:</p>
 <pre><code class="language-go">func TestMyDriver(t *testing.T) {
@@ -874,22 +863,22 @@ rules:
     sanity.Test(t, driverEndpointAddress)
 }
 </code></pre>
-<a class="header" href="print.html#functional-testing" id="functional-testing"><h2>Functional Testing</h2></a>
+<a class="header" href="#functional-testing" id="functional-testing"><h2>Functional Testing</h2></a>
 <p>For functional testing you can again provide your own model, or some of the following tools:</p>
-<a class="header" href="print.html#csi-sanity" id="csi-sanity"><h3>csi-sanity</h3></a>
+<a class="header" href="#csi-sanity" id="csi-sanity"><h3>csi-sanity</h3></a>
 <p><a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a> is a program from <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a> which tests your driver based on the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity"><code>sanity</code></a> package.</p>
 <p>Here is a sample way to use it:</p>
 <pre><code>$ csi-sanity --ginkgo.v --csi.endpoint=&lt;your csi driver endpoint&gt;
 </code></pre>
 <p>For more information please see <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></p>
-<a class="header" href="print.html#troubleshooting" id="troubleshooting"><h1>Troubleshooting</h1></a>
-<a class="header" href="print.html#node-plugin-pod-does-not-start-with-runcontainererror-status" id="node-plugin-pod-does-not-start-with-runcontainererror-status"><h3>Node plugin pod does not start with <em>RunContainerError</em> status</h3></a>
+<a class="header" href="#troubleshooting" id="troubleshooting"><h1>Troubleshooting</h1></a>
+<a class="header" href="#node-plugin-pod-does-not-start-with-runcontainererror-status" id="node-plugin-pod-does-not-start-with-runcontainererror-status"><h3>Node plugin pod does not start with <em>RunContainerError</em> status</h3></a>
 <p><code>kubectl describe pod your-nodeplugin-pod</code> shows:</p>
 <pre><code>failed to start container &quot;your-driver&quot;: Error response from daemon:
 linux mounts: Path /var/lib/kubelet/pods is mounted on / but it is not a shared mount
 </code></pre>
-<p>Your Docker host is not configured to allow shared mounts. Take a look at <a href="https://docs.portworx.com/knowledgebase/shared-mount-propogation.html">this page</a> for instructions to enable them.</p>
-<a class="header" href="print.html#external-attacher-cant-find-volumeattachments" id="external-attacher-cant-find-volumeattachments"><h3>External attacher can't find <em>VolumeAttachments</em></h3></a>
+<p>Your Docker host is not configured to allow shared mounts. Take a look at <a href="https://docs.portworx.com/knowledgebase/shared-mount-propagation.html">this page</a> for instructions to enable them.</p>
+<a class="header" href="#external-attacher-cant-find-volumeattachments" id="external-attacher-cant-find-volumeattachments"><h3>External attacher can't find <em>VolumeAttachments</em></h3></a>
 <p>If you have a Kubernetes 1.9 cluster, not being able to list <em>VolumeAttachment</em>
 and the following error are due to the lack of the
 <code>storage.k8s.io/v1alpha1=true</code> runtime configuration:</p>
@@ -901,7 +890,7 @@ E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/extern
 ...
 </code></pre>
 <p>Please see the <a href="Kubernetes-1.9.html">Kubernetes 1.9</a> page.</p>
-<a class="header" href="print.html#problems-with-the-external-components" id="problems-with-the-external-components"><h3>Problems with the external components</h3></a>
+<a class="header" href="#problems-with-the-external-components" id="problems-with-the-external-components"><h3>Problems with the external components</h3></a>
 <p>The external components images are under active development. It can
 happen that they become incompatible with each other. If the
 issues above above have been ruled out, <a href="https://github.com/kubernetes/community/tree/master/sig-storage">contact the sig-storage
@@ -909,14 +898,14 @@ team</a> and/or
 <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#local-clusters">run the e2e test</a>:</p>
 <pre><code>go run hack/e2e.go -- --provider=local --test --test_args=&quot;--ginkgo.focus=Feature:CSI&quot;
 </code></pre>
-<a class="header" href="print.html#references" id="references"><h1>References</h1></a>
+<a class="header" href="#references" id="references"><h1>References</h1></a>
 <ul>
 <li><a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI Specification</a></li>
 <li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md">CSI Volume Plugins in Kubernetes Design Doc</a></li>
 </ul>
-<a class="header" href="print.html#archive" id="archive"><h1>Archive</h1></a>
+<a class="header" href="#archive" id="archive"><h1>Archive</h1></a>
 <p>In this section, you will find information about CSI support in older Kubernetes versions.</p>
-<a class="header" href="print.html#csi-with-kubernetes-19" id="csi-with-kubernetes-19"><h1>CSI with Kubernetes 1.9</h1></a>
+<a class="header" href="#csi-with-kubernetes-19" id="csi-with-kubernetes-19"><h1>CSI with Kubernetes 1.9</h1></a>
 <p>Since CSI support is alpha in Kubernetes 1.9, the following flags must be set explictly:</p>
 <ul>
 <li>API Server binary:</li>
@@ -936,7 +925,7 @@ team</a> and/or
 <pre><code>--allow-privileged=true
 --feature-gates=CSIPersistentVolume=true,MountPropagation=true
 </code></pre>
-<a class="header" href="print.html#developers" id="developers"><h2>Developers</h2></a>
+<a class="header" href="#developers" id="developers"><h2>Developers</h2></a>
 <p>If you are a developer and are using the script <code>cluster/kube-up.sh</code> from the Kubernetes repo, then you can set values using the following environment variables:</p>
 <pre><code>export KUBE_RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
 export KUBE_FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
@@ -945,7 +934,7 @@ export KUBE_FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&q
 <pre><code>export RUNTIME_CONFIG=&quot;storage.k8s.io/v1alpha1=true&quot;
 export FEATURE_GATES=&quot;MountPropagation=true,CSIPersistentVolume=true&quot;
 </code></pre>
-<a class="header" href="print.html#confirming-the-setup-1" id="confirming-the-setup-1"><h2>Confirming the setup</h2></a>
+<a class="header" href="#confirming-the-setup-1" id="confirming-the-setup-1"><h2>Confirming the setup</h2></a>
 <p>Once the system is up, to confirm if the runtime config has taken effect, the following command should return that there are no resources and not return an error:</p>
 <pre><code class="language-bash">$ kubectl get volumeattachments
 </code></pre>
@@ -964,7 +953,7 @@ spec:
         volumeHandle: &quot;1&quot;
         readOnly: false
 </code></pre>
-<a class="header" href="print.html#csi-with-kubernetes-110" id="csi-with-kubernetes-110"><h1>CSI with Kubernetes 1.10</h1></a>
+<a class="header" href="#csi-with-kubernetes-110" id="csi-with-kubernetes-110"><h1>CSI with Kubernetes 1.10</h1></a>
 <p>TBD</p>
 
                     </main>
@@ -988,45 +977,33 @@ spec:
 
         </div>
 
-
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
-        </script>
-
         
 
         
 
         
 
-        
-        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
-        
         
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
         
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                window.print();
-            })
+
+        
+        
+        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
         </script>
         
-
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
         
 
     </body>

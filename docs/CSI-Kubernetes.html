@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible">
+<html lang="en" class="sidebar-visible no-js">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -9,44 +9,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
-        <base href="">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
-        <link rel="stylesheet" href="book.css">
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
 
-        <link rel="shortcut icon" href="favicon.png">
-
-        <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
+        <!-- Highlight.js Stylesheets -->
         <link rel="stylesheet" href="highlight.css">
         <link rel="stylesheet" href="tomorrow-night.css">
         <link rel="stylesheet" href="ayu-highlight.css">
 
-        <!-- Custom theme -->
+        <!-- Custom theme stylesheets -->
         
 
         
-
-        <!-- Fetch Clipboard.js from CDN but have a local fallback -->
-        <script src="https://cdn.jsdelivr.net/clipboard.js/1.6.1/clipboard.min.js"></script>
-        <script>
-            if (typeof Clipboard == 'undefined') {
-                document.write(unescape("%3Cscript src='clipboard.min.js'%3E%3C/script%3E"));
-            }
-        </script>
-
-        <noscript>
-            <style type="text/css">
-                .javascript-only {
-                    display: none;
-                }
-            </style>
-        </noscript>
-
     </head>
     <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
             try {
@@ -69,7 +56,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
             if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
-            document.querySelector('html').className = theme;
+            document.querySelector('html').className = theme + ' js';
         </script>
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -94,7 +81,7 @@
                 
                 <div id="menu-bar" class="menu-bar">
                     <div id="menu-bar-sticky-container">
-                        <div class="left-buttons javascript-only">
+                        <div class="left-buttons">
                             <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                                 <i class="fa fa-bars"></i>
                             </button>
@@ -126,13 +113,15 @@
                 </div>
 
                 
-                <div id="searchbar-outer" class="searchbar-outer">
-                    <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
-                </div>
-                <div id="searchresults-outer" class="searchresults-outer">
-                    <div class="searchresults-header" id="searchresults-header"></div>
-                    <ul id="searchresults">
-                    </ul>
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
                 </div>
                 
 
@@ -147,19 +136,19 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="CSI-Kubernetes.html#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
+                        <a class="header" href="#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
-<a class="header" href="CSI-Kubernetes.html#overview" id="overview"><h2>Overview</h2></a>
+<a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>There are three components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. These components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
-<a class="header" href="CSI-Kubernetes.html#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
+<a class="header" href="#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
 <p>Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the <em>external attacher</em>, <em>external provisioner</em>, and the <em>driver registrar</em>.</p>
-<a class="header" href="CSI-Kubernetes.html#external-attacher" id="external-attacher"><h3>External Attacher</h3></a>
+<a class="header" href="#external-attacher" id="external-attacher"><h3>External Attacher</h3></a>
 <p><a href="https://github.com/kubernetes-csi/external-attacher">external-attacher</a> is a sidecar container that watches Kubernetes <em>VolumeAttachment</em> objects and triggers CSI <em>ControllerPublish</em> and <em>ControllerUnpublish</em> operations against a driver endpoint. As of this writing, the external attacher does not support leader election and therefore there can be only one running per CSI driver.  For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#attaching-and-detaching"><em>Attaching and Detaching</em></a>.</p>
 <p>Note, even though this is called the <em>external attacher</em>, its function is to call the CSI API calls <em>ControllerPublish</em> and <em>ControllerUnpublish</em>. These calls most likely will occur in a node which is <em>not</em> the one that will mount the volume. For this reason, many CSI drivers do not support these calls, instead doing the attach/detach and mount/unmount both in the CSI <em>NodePublish</em> and <em>NodeUnpublish</em> calls done by the kubelet at the node which is supposed to mount.</p>
-<a class="header" href="CSI-Kubernetes.html#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
+<a class="header" href="#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
 <p><a href="https://github.com/kubernetes-csi/external-provisioner">external-provisioner</a> is a Sidecar container that watches Kubernetes <em>PersistentVolumeClaim</em> objects and triggers CSI <em>CreateVolume</em> and <em>DeleteVolume</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#provisioning-and-deleting"><em>Provisioning and Deleting</em></a>.</p>
-<a class="header" href="CSI-Kubernetes.html#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
+<a class="header" href="#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
 <p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
 <pre><code class="language-yaml">        - name: csi-driver-registrar
           imagePullPolicy: Always
@@ -178,10 +167,10 @@
             - name: socket-dir
               mountPath: /csi
 </code></pre>
-<a class="header" href="CSI-Kubernetes.html#kubelet" id="kubelet"><h3>Kubelet</h3></a>
+<a class="header" href="#kubelet" id="kubelet"><h3>Kubelet</h3></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1NXaVNDh3mSDhog7Q3Y9eELyEF24F8Z-Kk0ujR3pyOes/edit?usp=sharing"><img src="images/kubelet.png" alt="kubelet" /></a></p>
 <p>The Kubernetes kubelet runs on every node and is responsible for making the CSI calls <em>NodePublish</em> and <em>NodeUnpublish</em>. These calls mount and unmount the storage volume from the storage system, making it available to the Pod to consume. As shown in the <em>external-attacher</em>, most CSI drivers choose to implement both their attach/detach and mount/unmount calls in the <em>NodePublish</em> and <em>NodeUnpublish</em> calls. They do this because the kubelet makes the request on the node which is to consume the volume.</p>
-<a class="header" href="CSI-Kubernetes.html#mount-point" id="mount-point"><h3>Mount point</h3></a>
+<a class="header" href="#mount-point" id="mount-point"><h3>Mount point</h3></a>
 <p>The mount point used by the CSI driver must be set to <em>Bidirectional</em>. See the example below:</p>
 <pre><code class="language-yaml">          volumeMounts:
             - name: socket-dir
@@ -199,7 +188,7 @@
             path: /var/lib/kubelet/pods
             type: Directory
 </code></pre>
-<a class="header" href="CSI-Kubernetes.html#rbac-rules" id="rbac-rules"><h3>RBAC Rules</h3></a>
+<a class="header" href="#rbac-rules" id="rbac-rules"><h3>RBAC Rules</h3></a>
 <p>Side car containers need the appropriate permissions to be able to access and manipulate Kubernetes objects. Here are the RBAC rules needed:</p>
 <pre><code class="language-yaml">kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
@@ -222,14 +211,14 @@ rules:
     resources: [&quot;volumeattachments&quot;]
     verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
 </code></pre>
-<a class="header" href="CSI-Kubernetes.html#deploying" id="deploying"><h2>Deploying</h2></a>
+<a class="header" href="#deploying" id="deploying"><h2>Deploying</h2></a>
 <p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>.</p>
-<a class="header" href="CSI-Kubernetes.html#examples" id="examples"><h3>Examples</h3></a>
+<a class="header" href="#examples" id="examples"><h3>Examples</h3></a>
 <ul>
 <li>Simple deployment example using a single pod for all components: see the <a href="Example.html">hostpath example</a>.</li>
 <li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: check the <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs/deploy/kubernetes">NFS driver deployment files</a>.</li>
 </ul>
-<a class="header" href="CSI-Kubernetes.html#more-information" id="more-information"><h2>More information</h2></a>
+<a class="header" href="#more-information" id="more-information"><h2>More information</h2></a>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
 
                     </main>
@@ -269,39 +258,25 @@ rules:
 
         </div>
 
-
-        <!-- Local fallback for Font Awesome -->
-        <script>
-            if (getComputedStyle(document.querySelector(".fa")).fontFamily !== "FontAwesome") {
-                var link = document.createElement('link');
-                link.rel = 'stylesheet';
-                link.type = 'text/css';
-                link.href = '_FontAwesome/css/font-awesome.css';
-                document.head.insertBefore(link, document.head.firstChild)
-            }
-        </script>
-
         
 
         
 
         
 
-        
-        <script src="searchindex.js" type="text/javascript" charset="utf-8"></script>
-        
         
         <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
         <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
         
 
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
         
 
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
-
-        <!-- Custom JS script -->
         
 
     </body>
