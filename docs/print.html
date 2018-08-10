@@ -166,18 +166,34 @@ you mest set the following feature gate on Kubernetes v1.11:</p>
 <p>Also, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">Raw Block Volume Support</a></p>
 <a class="header" href="#kubelet-plugin-watcher" id="kubelet-plugin-watcher"><h4>Kubelet Plugin Watcher</h4></a>
 <p><a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a>: To enable support for Kubelet plugin
-watcher for CSI plugins:</p>
+watcher for CSI plugins, the following flag must be set in kubelet:</p>
 <pre><code>--feature-gates=KubeletPluginsWatcher=true
 </code></pre>
 <p>You will also need to use the following flag in your <code>driver-registrar</code> side-car
-container with the value set to the location of kubekel plugin watcher socket:</p>
-<pre><code>--kubelet-registration-path: Enables Kubelet Plugin Registration service, and returns
-  the specified path as &quot;endpoint&quot; in &quot;PluginInfo&quot; response. If this option is set, the
-  driver-registrar expose a unix domain socket to handle Kubelet Plugin Registration,
-  this socket MUST be surfaced on the host in the kubelet plugin registration director
-  (in addition to the CSI driver socket). If plugin registration is enabled on kubelet
-  (kubelet flag KubeletPluginsWatcher is set), then this option should be set and the
-  value should be the path of the CSI driver socket on the host machine.
+container with the value set to the location of CSI driver socket on the host:</p>
+<pre><code>--kubelet-registration-path: Enables Kubelet Plugin Registration service and sets the
+  path of the CSI driver socket on the host machine (typically at
+  /var/lib/kubelet/plugins/&lt;driver-name&gt;/csi.sock). If this option is set, the
+  driver-registrar exposes a unix domain socket (at /registration) to handle Kubelet
+  Plugin Registration. This socket MUST be surfaced on the host in the kubelet plugin
+  registration directory (in addition to the CSI driver socket). If plugin registration
+  is enabled on kubelet (kubelet flag KubeletPluginsWatcher is set), then this option
+  should be set.
+</code></pre>
+<p>In addition, in order to expose the registration socket to the host, the
+<code>driver-registrar</code> side-car container must have a HostPath volume, with the
+kubelet plugin directory as the host path (typically at
+<code>/var/lib/kubelet/plugins/</code>), mounted at <code>/registration</code> in the container.</p>
+<pre><code class="language-yaml">volumeMounts:
+- name: registration-dir
+  mountPath: /registration
+
+...
+volumes:
+- name: registration-dir
+  hostPath:
+      path: /var/lib/kubelet/plugins
+      type: Directory
 </code></pre>
 <a class="header" href="#archives" id="archives"><h2>Archives</h2></a>
 <p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
