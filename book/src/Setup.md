@@ -22,23 +22,42 @@ Also, see [Raw Block Volume Support][rawsupport]
 #### Kubelet Plugin Watcher
 
 [Kubelet Plugin Watcher][plugin-watcher]: To enable support for Kubelet plugin
-watcher for CSI plugins:
+watcher for CSI plugins, the following flag must be set in kubelet:
 
 ```
 --feature-gates=KubeletPluginsWatcher=true
 ```
 
 You will also need to use the following flag in your `driver-registrar` side-car
-container with the value set to the location of kubekel plugin watcher socket:
+container with the value set to the location of CSI driver socket on the host:
 
 ```
---kubelet-registration-path: Enables Kubelet Plugin Registration service, and returns
-  the specified path as "endpoint" in "PluginInfo" response. If this option is set, the
-  driver-registrar expose a unix domain socket to handle Kubelet Plugin Registration,
-  this socket MUST be surfaced on the host in the kubelet plugin registration director
-  (in addition to the CSI driver socket). If plugin registration is enabled on kubelet
-  (kubelet flag KubeletPluginsWatcher is set), then this option should be set and the
-  value should be the path of the CSI driver socket on the host machine.
+--kubelet-registration-path: Enables Kubelet Plugin Registration service and sets the
+  path of the CSI driver socket on the host machine (typically at
+  /var/lib/kubelet/plugins/<driver-name>/csi.sock). If this option is set, the
+  driver-registrar exposes a unix domain socket (at /registration) to handle Kubelet
+  Plugin Registration. This socket MUST be surfaced on the host in the kubelet plugin
+  registration directory (in addition to the CSI driver socket). If plugin registration
+  is enabled on kubelet (kubelet flag KubeletPluginsWatcher is set), then this option
+  should be set.
+```
+
+In addition, in order to expose the registration socket to the host, the
+`driver-registrar` side-car container must have a HostPath volume, with the
+kubelet plugin directory as the host path (typically at
+`/var/lib/kubelet/plugins/`), mounted at `/registration` in the container.
+
+```yaml
+volumeMounts:
+- name: registration-dir
+  mountPath: /registration
+
+...
+volumes:
+- name: registration-dir
+  hostPath:
+      path: /var/lib/kubelet/plugins
+      type: Directory
 ```
 
 ## Archives
