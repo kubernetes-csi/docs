@@ -5,5 +5,15 @@ This is the repository for the book published on [kubernetes-csi.github.io/docs]
 
 The `docs/` directory is the output of the book and the root of the published website. It is created by running `mdbook build` from the `book/` directory.
 
-## Adding documentation
-Please feel free to send PRs for the documentation in the `book` directory. If you fork and edit on your system, please generate a new output.
+## Community, discussion, contribution, and support
+
+Learn how to engage with the Kubernetes community on the [community page](http://kubernetes.io/community/).
+
+You can reach the maintainers of this project at:
+
+- [Slack channel](https://kubernetes.slack.com/messages/sig-storage)
+- [Mailing list](https://groups.google.com/forum/#!forum/kubernetes-sig-storage)
+
+### Code of conduct
+
+Participation in the Kubernetes community is governed by the [Kubernetes Code of Conduct](code-of-conduct.md).
