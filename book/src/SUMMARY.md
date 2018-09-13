@@ -1,7 +1,8 @@
 # Kubernetes/CSI Book
 
 - [Introduction](Home.md)
-- [Using a CSI Driver](Setup.md)
+- [Using a CSI Driver](UsingCSIDriver.md)
+    - [Setup](Setup.md)
     - [Deployment](Deployment.md)
     - [Drivers](Drivers.md)
     - [Usage](Usage.md)

@@ -65,7 +65,7 @@ volumes:
 Please visit the [Archives](Archive.html) for setup instructions on previous versions of Kubernetes.
 
 [mount-propagation-docs]: https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation
-[docker-shared-mount]: https://docs.portworx.com/knowledgebase/shared-mount-propogation.html
+[docker-shared-mount]: https://docs.portworx.com/knowledgebase/shared-mount-propagation.html
 [rawvol]: https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support
 [rawsupport]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support
 [plugin-watcher]: https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6
