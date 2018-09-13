@@ -1,3 +1,5 @@
 # The example references the latest .yaml file directly in the source repository,
 # therefore we don't need the copy in the generated documentation.
 docs/example
+
+*.swp
