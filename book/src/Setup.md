@@ -11,7 +11,7 @@ This document has been updated to the latest version of Kubernetes v1.11.
 #### CSI Raw block volume support
 
 [CSI Raw block volume support][rawvol]: To enable support for raw block volumes
-you mest set the following feature gate on Kubernetes v1.11:
+you must set the following feature gate on Kubernetes v1.11:
 
 ```
 --feature-gates=BlockVolume=true,CSIBlockVolume=true
