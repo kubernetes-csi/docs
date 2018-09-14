@@ -20,7 +20,7 @@ clusterrolebinding.rbac.authorization.k8s.io "csi-role-binding" created
 pod "csi-pod" created
 $ kubectl get pods
 NAME      READY     STATUS    RESTARTS   AGE
-csi-pod   4/4       Running   0          24s
+csi-pod   5/5       Running   0          24s
 ```
 
 ```yaml
@@ -56,7 +56,7 @@ $ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master
 pod "my-csi-app" created
 $ kubectl get pods
 NAME         READY     STATUS    RESTARTS   AGE
-csi-pod      4/4       Running   0          3m
+csi-pod      5/5       Running   0          3m
 my-csi-app   1/1       Running   0          8s
 $ kubectl describe pods/my-csi-app
 Name:         my-csi-app
@@ -159,6 +159,126 @@ Status:
   Attached:  true
 Events:      <none>
 ```
+
+## Snapshot support
+
+Enable dynamic provisioning of volume snapshot by creating a volume snapshot
+class as follows:
+```
+$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-snapshotclass.yaml
+volumesnapshotclass.snapshot.storage.k8s.io/csi-hostpath-snapclass created
+$ kubectl get volumesnapshotclass
+NAME                     AGE
+csi-hostpath-snapclass   11s
+$ kubectl describe volumesnapshotclass
+Name:         csi-hostpath-snapclass
+Namespace:
+Labels:       <none>
+Annotations:  <none>
+API Version:  snapshot.storage.k8s.io/v1alpha1
+Kind:         VolumeSnapshotClass
+Metadata:
+  Creation Timestamp:  2018-08-28T17:54:04Z
+  Generation:          1
+  Resource Version:    424
+  Self Link:           /apis/snapshot.storage.k8s.io/v1alpha1/volumesnapshotclasses/csi-hostpath-snapclass
+  UID:                 5a429a21-aaeb-11e8-ae86-000c2967769a
+Snapshotter:           csi-hostpath
+Events:                <none>
+```
+
+```yaml
+{{#include example/csi-snapshotclass.yaml}}
+```
+
+Use the volume snapshot class to dynamically create a volume snapshot:
+```
+$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-snapshot.yaml
+volumesnapshot.snapshot.storage.k8s.io/new-snapshot-demo created
+$ kubectl get volumesnapshot
+NAME                AGE
+new-snapshot-demo   12s
+$ kubectl get volumesnapshotcontent
+NAME                                               AGE
+snapcontent-7bdb093a-aaeb-11e8-ae86-000c2967769a   28s
+$ kubectl describe volumesnapshot
+Name:         new-snapshot-demo
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  snapshot.storage.k8s.io/v1alpha1
+Kind:         VolumeSnapshot
+Metadata:
+  Creation Timestamp:  2018-08-28T17:55:00Z
+  Generation:          1
+  Resource Version:    441
+  Self Link:           /apis/snapshot.storage.k8s.io/v1alpha1/namespaces/default/volumesnapshots/new-snapshot-demo
+  UID:                 7bdb093a-aaeb-11e8-ae86-000c2967769a
+Spec:
+  Snapshot Class Name:    csi-hostpath-snapclass
+  Snapshot Content Name:  snapcontent-7bdb093a-aaeb-11e8-ae86-000c2967769a
+  Source:
+    Kind:  PersistentVolumeClaim
+    Name:  hpvc
+Status:
+  Created At:    2018-08-28T17:55:00Z
+  Ready:         true
+  Restore Size:  1Gi
+Events:          <none>
+$ kubectl describe volumesnapshotcontent
+Name:         snapcontent-7bdb093a-aaeb-11e8-ae86-000c2967769a
+Namespace:
+Labels:       <none>
+Annotations:  <none>
+API Version:  snapshot.storage.k8s.io/v1alpha1
+Kind:         VolumeSnapshotContent
+Metadata:
+  Creation Timestamp:  2018-08-28T17:55:00Z
+  Generation:          1
+  Resource Version:    439
+  Self Link:           /apis/snapshot.storage.k8s.io/v1alpha1/volumesnapshotcontents/snapcontent-7bdb093a-aaeb-11e8-ae86-000c2967769a
+  UID:                 7bde6846-aaeb-11e8-ae86-000c2967769a
+Spec:
+  Csi Volume Snapshot Source:
+    Creation Time:    1535478900692119403
+    Driver:           csi-hostpath
+    Restore Size:     1Gi
+    Snapshot Handle:  7bdd0de3-aaeb-11e8-9aae-0242ac110002
+  Persistent Volume Ref:
+    API Version:        v1
+    Kind:               PersistentVolume
+    Name:               pvc-470e2153-aaeb-11e8-ae86-000c2967769a
+    Resource Version:   413
+    UID:                4715d726-aaeb-11e8-ae86-000c2967769a
+  Snapshot Class Name:  csi-hostpath-snapclass
+  Volume Snapshot Ref:
+    API Version:  snapshot.storage.k8s.io/v1alpha1
+    Kind:         VolumeSnapshot
+    Name:         new-snapshot-demo
+    Namespace:    default
+    UID:          7bdb093a-aaeb-11e8-ae86-000c2967769a
+Events:           <none>
+```
+
+```yaml
+{{#include example/csi-snapshot.yaml}}
+```
+
+## Restore volume from snapshot support
+
+To restore volume from snapshot, the VolumeSnapshotDataSource feature gate
+needs to be enabled. Follow the following example to create a volume from
+a volume snapshot:
+```
+$ kubectl create -f https://raw.githubusercontent.com/kubernetes-csi/docs/master/book/src/example/csi-restore.yaml
+persistentvolumeclaim/hpvc-restore created
+$ kubectl get pvc hpvc-restore
+NAME           STATUS    VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS      AGE
+hpvc-restore   Bound     pvc-ecdd2367-b149-11e8-be49-000c2967769a   1Gi        RWO            csi-hostpath-sc   18s
+```
+
+```yaml
+{{#include example/csi-restore.yaml}}
 
 If you encounter any problems, please check the [Troubleshooting page](Troubleshooting.html).
 
