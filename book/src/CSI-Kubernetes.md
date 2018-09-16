@@ -17,6 +17,9 @@ Note, even though this is called the _external attacher_, its function is to cal
 ### External Provisioner
 [external-provisioner](https://github.com/kubernetes-csi/external-provisioner) is a Sidecar container that watches Kubernetes _PersistentVolumeClaim_ objects and triggers CSI _CreateVolume_ and _DeleteVolume_ operations against a driver endpoint. For more information please read [_Provisioning and Deleting_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#provisioning-and-deleting).
 
+### External Snapshotter
+[external-snapshotter](https://github.com/kubernetes-csi/external-snapshotter) is a Sidecar container that watches Kubernetes _VolumeSnapshot_ objects and triggers CSI _CreateSnapshot_ and _DeleteSnapshot_ operations against a driver endpoint. For more information please read [_Snapshot Design Proposal_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/csi-snapshot.md).
+
 ### Driver Registrar
 [driver-registrar](https://github.com/kubernetes-csi/driver-registrar) is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the _Identity_ service on the CSI driver and also calling the CSI _GetNodeId_ operation. The driver registrar must have the Kubernetes name for the node set through the environment variable `KUBE_NODE_NAME` as follows:
 

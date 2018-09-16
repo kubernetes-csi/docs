@@ -9,6 +9,7 @@
     - [Example](Example.md)
 - [Development](Development.md)
     - [Developing a CSI driver](CSI-Driver.md)
+        - [Implement Snapshot Feature](Implement-Snapshot-Feature.md)
     - [Deploying in Kubernetes](CSI-Kubernetes.md)
     - [Testing](Testing.md)
         - [Clients](Testing-Clients.md)
