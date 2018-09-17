@@ -3,7 +3,14 @@ Welcome to the Kubernets-CSI documentation reposotiory. Here you will find infor
 
 This is the repository for the book published on [kubernetes-csi.github.io/docs](https://kubernetes-csi.github.io/docs/). The sources for the book are in the `book/` and it is setup to use [mdbook](https://github.com/rust-lang-nursery/mdBook).
 
-The `docs/` directory is the output of the book and the root of the published website. It is created by running `mdbook build` from the `book/` directory.
+The `docs/` directory is the output of the book and the root of the published website. 
+
+## Genereate the Book
+`docs/` is created by running `mdbook build` from the `book/` directory. Alternatively, you can use docker to generate `docs/` using following command:
+
+```
+docker run --rm -v $(pwd):/data -u $(id -u):$(id -g) -it chengpan/mdbook:0.2.1 mdbook build ./book
+```
 
 ## Community, discussion, contribution, and support
 
