@@ -1,6 +1,6 @@
 # Implement Snapshot Feature
 
-To implement the snapshot feature, a CSI driver needs to support additional controller capabilities CREATE_DELETE_SNAPSHOT and LIST_SNAPSHOTS, and implement additional controller RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots. For details,  see the CSI spec [here](https://github.com/container-storage-interface/spec/blob/master/spec.md).
+To implement the snapshot feature, a CSI driver needs to support controller capabilities CREATE_DELETE_SNAPSHOT and LIST_SNAPSHOTS, and implement controller RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots. For details,  see the CSI spec [here](https://github.com/container-storage-interface/spec/blob/master/spec.md).
 
 Here are some example CSI plugins that have implemented the snapshot feature:
 * [GCE PD CSI driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
@@ -11,7 +11,7 @@ You can find more sample and production CSI drivers [here](https://kubernetes-cs
 
 ## Snapshot APIs
 
-The volume snapshot APIs are implemented as CRDs [here](https://github.com/kubernetes-csi/external-snapshotter/tree/master/pkg/apis/volumesnapshot/v1alpha1). Once you deploy the CSI driver which includes the external snapshotter in your cluster, the external-snapshotter will pre-install the Snapshot CRDs.
+The volume snapshot APIs are implemented as CRDs [here](https://github.com/kubernetes-csi/external-snapshotter/tree/master/pkg/apis/volumesnapshot/v1alpha1). Once you deploy the CSI sidecar containers which includes the external snapshotter in your cluster, the external-snapshotter will pre-install the Snapshot CRDs.
 
 ## Enable VolumeSnapshotDataSource Feature Gate
 
@@ -62,4 +62,4 @@ kuberctl create -f restore.yaml
 
 If a PVC is not bound, the attempt to create a volume snapshot from that PVC will fail. No retries will be attempted. An event will be logged to indicate that the PVC is not bound.
 
-Note that this could happen if the PVC spec and the VolumeSnapshot spec are in the same yaml file. In this case, when the VolumeSnapshot object is created, the PVC object is created but volume creation is not complete and therefore PVC is not bound yet. You need to wait until the PVC is bound and try again.
+Note that this could happen if the PVC spec and the VolumeSnapshot spec are in the same yaml file. In this case, when the VolumeSnapshot object is created, the PVC object is created but volume creation is not complete and therefore PVC is not bound yet. You need to wait until the PVC is bound and try to create the snapshot again.
