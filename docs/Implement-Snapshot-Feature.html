@@ -137,7 +137,7 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#implement-snapshot-feature" id="implement-snapshot-feature"><h1>Implement Snapshot Feature</h1></a>
-<p>To implement the snapshot feature, a CSI driver needs to support additional controller capabilities CREATE_DELETE_SNAPSHOT and LIST_SNAPSHOTS, and implement additional controller RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots. For details,  see the CSI spec <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">here</a>.</p>
+<p>To implement the snapshot feature, a CSI driver needs to support controller capabilities CREATE_DELETE_SNAPSHOT and LIST_SNAPSHOTS, and implement controller RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots. For details,  see the CSI spec <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">here</a>.</p>
 <p>Here are some example CSI plugins that have implemented the snapshot feature:</p>
 <ul>
 <li><a href="https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver">GCE PD CSI driver</a></li>
@@ -146,7 +146,7 @@
 </ul>
 <p>You can find more sample and production CSI drivers <a href="https://kubernetes-csi.github.io/docs/Drivers.html">here</a>. Please note that drivers may or may not have implemented the snapshot feature.</p>
 <a class="header" href="#snapshot-apis" id="snapshot-apis"><h2>Snapshot APIs</h2></a>
-<p>The volume snapshot APIs are implemented as CRDs <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/pkg/apis/volumesnapshot/v1alpha1">here</a>. Once you deploy the CSI driver which includes the external snapshotter in your cluster, the external-snapshotter will pre-install the Snapshot CRDs.</p>
+<p>The volume snapshot APIs are implemented as CRDs <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/pkg/apis/volumesnapshot/v1alpha1">here</a>. Once you deploy the CSI sidecar containers which includes the external snapshotter in your cluster, the external-snapshotter will pre-install the Snapshot CRDs.</p>
 <a class="header" href="#enable-volumesnapshotdatasource-feature-gate" id="enable-volumesnapshotdatasource-feature-gate"><h2>Enable VolumeSnapshotDataSource Feature Gate</h2></a>
 <p>Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called VolumeSnapshotDataSource in API server binary.</p>
 <pre><code>--feature-gates=VolumeSnapshotDataSource=true
@@ -175,7 +175,7 @@
 </code></pre>
 <a class="header" href="#pvc-not-bound" id="pvc-not-bound"><h3>PVC not Bound</h3></a>
 <p>If a PVC is not bound, the attempt to create a volume snapshot from that PVC will fail. No retries will be attempted. An event will be logged to indicate that the PVC is not bound.</p>
-<p>Note that this could happen if the PVC spec and the VolumeSnapshot spec are in the same yaml file. In this case, when the VolumeSnapshot object is created, the PVC object is created but volume creation is not complete and therefore PVC is not bound yet. You need to wait until the PVC is bound and try again.</p>
+<p>Note that this could happen if the PVC spec and the VolumeSnapshot spec are in the same yaml file. In this case, when the VolumeSnapshot object is created, the PVC object is created but volume creation is not complete and therefore PVC is not bound yet. You need to wait until the PVC is bound and try to create the snapshot again.</p>
 
                     </main>
 
