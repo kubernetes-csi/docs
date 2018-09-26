@@ -5,7 +5,7 @@ This is the repository for the book published on [kubernetes-csi.github.io/docs]
 
 The `docs/` directory is the output of the book and the root of the published website. 
 
-## Genereate the Book
+## Generate the Book
 `docs/` is created by running `mdbook build` from the `book/` directory. Alternatively, you can use docker to generate `docs/` using following command:
 
 ```
