@@ -60,6 +60,16 @@ volumes:
       type: Directory
 ```
 
+#### CSI Volume Snapshot support
+
+[CSI volume snapshot support][snapshot-spec]: To enable support for Kubernetes volume
+snapshotting, you must set the following feature gate on Kubernetes v1.12 (disabled
+by default for alpha):
+
+```
+--feature-gates=VolumeSnapshotDataSource=true
+```
+
 ## Archives
 
 Please visit the [Archives](Archive.html) for setup instructions on previous versions of Kubernetes.
@@ -69,3 +79,4 @@ Please visit the [Archives](Archive.html) for setup instructions on previous ver
 [rawvol]: https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support
 [rawsupport]: https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support
 [plugin-watcher]: https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6
+[snapshot-spec]: https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/csi-snapshot.md

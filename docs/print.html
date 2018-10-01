@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="UsingCSIDriver.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li><a href="Deployment.html"><strong aria-hidden="true">2.2.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.3.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.4.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.5.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="Troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li><a href="References.html"><strong aria-hidden="true">5.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">6.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">6.1.</strong> Kubernetes 1.9</a></li><li><a href="Kubernetes-1.10.html"><strong aria-hidden="true">6.2.</strong> Kubernetes 1.10</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="UsingCSIDriver.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li><a href="Deployment.html"><strong aria-hidden="true">2.2.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.3.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.4.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.5.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><ol class="section"><li><a href="Implement-Snapshot-Feature.html"><strong aria-hidden="true">3.1.1.</strong> Implement Snapshot Feature</a></li></ol></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="Troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li><a href="References.html"><strong aria-hidden="true">5.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">6.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">6.1.</strong> Kubernetes 1.9</a></li><li><a href="Kubernetes-1.10.html"><strong aria-hidden="true">6.2.</strong> Kubernetes 1.10</a></li></ol></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -196,6 +196,12 @@ volumes:
   hostPath:
       path: /var/lib/kubelet/plugins
       type: Directory
+</code></pre>
+<a class="header" href="#csi-volume-snapshot-support" id="csi-volume-snapshot-support"><h4>CSI Volume Snapshot support</h4></a>
+<p><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/csi-snapshot.md">CSI volume snapshot support</a>: To enable support for Kubernetes volume
+snapshotting, you must set the following feature gate on Kubernetes v1.12 (disabled
+by default for alpha):</p>
+<pre><code>--feature-gates=VolumeSnapshotDataSource=true
 </code></pre>
 <a class="header" href="#archives" id="archives"><h2>Archives</h2></a>
 <p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
@@ -720,6 +726,46 @@ Events:      &lt;none&gt;
 <li><a href="https://arslan.io/2018/06/21/how-to-write-a-container-storage-interface-csi-plugin/">How to write a Container Storage Interface (CSI) plugin - by Fatih Arslan</a></li>
 <li><a href="https://medium.com/@maniankara/understanding-the-container-storage-interface-csi-ddbeb966a3b">Understanding Container Storage Interface (CSI) - by Anoop Maniankara</a> (4 min read)</li>
 </ul>
+<a class="header" href="#implement-snapshot-feature" id="implement-snapshot-feature"><h1>Implement Snapshot Feature</h1></a>
+<p>To implement the snapshot feature, a CSI driver needs to support controller capabilities CREATE_DELETE_SNAPSHOT and LIST_SNAPSHOTS, and implement controller RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots. For details,  see the CSI spec <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">here</a>.</p>
+<p>Here are some example CSI plugins that have implemented the snapshot feature:</p>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver">GCE PD CSI driver</a></li>
+<li><a href="https://github.com/opensds/nbp/tree/master/csi/server">OpenSDS CSI driver</a></li>
+<li><a href="https://github.com/ceph/ceph-csi/tree/master/pkg/rbd">Ceph RBD CSI driver</a></li>
+</ul>
+<p>You can find more sample and production CSI drivers <a href="https://kubernetes-csi.github.io/docs/Drivers.html">here</a>. Please note that drivers may or may not have implemented the snapshot feature.</p>
+<a class="header" href="#snapshot-apis" id="snapshot-apis"><h2>Snapshot APIs</h2></a>
+<p>The volume snapshot APIs are implemented as CRDs <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/pkg/apis/volumesnapshot/v1alpha1">here</a>. Once you deploy the CSI sidecar containers which includes the external snapshotter in your cluster, the external-snapshotter will pre-install the Snapshot CRDs.</p>
+<a class="header" href="#enable-volumesnapshotdatasource-feature-gate" id="enable-volumesnapshotdatasource-feature-gate"><h2>Enable VolumeSnapshotDataSource Feature Gate</h2></a>
+<p>Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called VolumeSnapshotDataSource in API server binary.</p>
+<pre><code>--feature-gates=VolumeSnapshotDataSource=true
+</code></pre>
+<a class="header" href="#deploy-external-snapshotter-with-csi-driver" id="deploy-external-snapshotter-with-csi-driver"><h2>Deploy External-Snapshotter with CSI Driver</h2></a>
+<p>The snapshot controller is implemented as a sidecar helper container called <a href="https://github.com/kubernetes-csi/external-snapshotter">External-Snapshotter</a>. <em>External-Snapshotter</em> watches <em>VolumeSnapshot</em> and <em>VolumeSnapshotContent</em> API objects and triggers <em>CreateSnapshot</em> and <em>DeleteSnapshot</em> operations.</p>
+<p>It is recommended that sidecar containers <em>External-Snapshotter</em> and <em>External-Provisioner</em> be deployed together with CSI driver in a StatefulSet. See this <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/setup-csi-snapshotter.yaml">example yaml file</a> which deploys <em>External-Snapshotter</em> and <em>External-Provisioner</em> with the Hostpath CSI driver. Run the following command to start the sidecar containers and the CSI driver:</p>
+<pre><code>kubectl create -f setup-csi-snapshotter.yaml
+</code></pre>
+<a class="header" href="#test-snapshot-feature" id="test-snapshot-feature"><h2>Test Snapshot Feature</h2></a>
+<p>Use the following <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/examples/kubernetes">example yaml files</a> to test the snapshot feature.</p>
+<p>Create a <em>StorageClass</em>:</p>
+<pre><code>kubectl create -f storageclass.yaml
+</code></pre>
+<p>Create a <em>PVC</em>:</p>
+<pre><code>kubectl create -f pvc.yaml
+</code></pre>
+<p>Create a <em>VolumeSnapshotClass</em>:</p>
+<pre><code>kubectl create -f snapshotclass.yaml
+</code></pre>
+<p>Create a <em>VolumeSnapshot</em>:</p>
+<pre><code>kubectl create -f snapshot.yaml
+</code></pre>
+<p>Create a <em>PVC</em> from a <em>VolumeSnapshot</em>:</p>
+<pre><code>kuberctl create -f restore.yaml
+</code></pre>
+<a class="header" href="#pvc-not-bound" id="pvc-not-bound"><h3>PVC not Bound</h3></a>
+<p>If a PVC is not bound, the attempt to create a volume snapshot from that PVC will fail. No retries will be attempted. An event will be logged to indicate that the PVC is not bound.</p>
+<p>Note that this could happen if the PVC spec and the VolumeSnapshot spec are in the same yaml file. In this case, when the VolumeSnapshot object is created, the PVC object is created but volume creation is not complete and therefore PVC is not bound yet. You need to wait until the PVC is bound and try to create the snapshot again.</p>
 <a class="header" href="#deploying-in-kubernetes" id="deploying-in-kubernetes"><h1>Deploying in Kubernetes</h1></a>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
@@ -732,6 +778,8 @@ Events:      &lt;none&gt;
 <p>Note, even though this is called the <em>external attacher</em>, its function is to call the CSI API calls <em>ControllerPublish</em> and <em>ControllerUnpublish</em>. These calls most likely will occur in a node which is <em>not</em> the one that will mount the volume. For this reason, many CSI drivers do not support these calls, instead doing the attach/detach and mount/unmount both in the CSI <em>NodePublish</em> and <em>NodeUnpublish</em> calls done by the kubelet at the node which is supposed to mount.</p>
 <a class="header" href="#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
 <p><a href="https://github.com/kubernetes-csi/external-provisioner">external-provisioner</a> is a Sidecar container that watches Kubernetes <em>PersistentVolumeClaim</em> objects and triggers CSI <em>CreateVolume</em> and <em>DeleteVolume</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#provisioning-and-deleting"><em>Provisioning and Deleting</em></a>.</p>
+<a class="header" href="#external-snapshotter" id="external-snapshotter"><h3>External Snapshotter</h3></a>
+<p><a href="https://github.com/kubernetes-csi/external-snapshotter">external-snapshotter</a> is a Sidecar container that watches Kubernetes <em>VolumeSnapshot</em> objects and triggers CSI <em>CreateSnapshot</em> and <em>DeleteSnapshot</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/csi-snapshot.md"><em>Snapshot Design Proposal</em></a>.</p>
 <a class="header" href="#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
 <p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
 <pre><code class="language-yaml">        - name: csi-driver-registrar
