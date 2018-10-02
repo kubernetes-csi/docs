@@ -137,47 +137,191 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#setup" id="setup"><h1>Setup</h1></a>
+<p>This document has been updated for the latest version of Kubernetes v1.12.  This document outlines the features that are available for CSI.  To get step by step instructions on how to run an example CSI driver, you can read the <a href="./Example.html">Example</a> section.</p>
+<a class="header" href="#enabling-features" id="enabling-features"><h2>Enabling features</h2></a>
+<p>Some of the features discussed here may be at different stages (alpha, beta, or GA).  Ensure that the feature you want to try is enabled for the Kubernetes release you are using.  To avoid version mismatch, you can enable all of the features discussed here with:</p>
+<pre><code>--feature-dates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+</code></pre>
+<a class="header" href="#enable-privileged-pods" id="enable-privileged-pods"><h2>Enable privileged Pods</h2></a>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
-<p>Moreover, as stated in the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a>, the Docker daemon of the cluster nodes must allow shared mounts. <a href="https://docs.portworx.com/knowledgebase/shared-mount-propagation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
-<p>This document has been updated to the latest version of Kubernetes v1.11.</p>
-<a class="header" href="#alpha-features" id="alpha-features"><h2>Alpha Features</h2></a>
-<a class="header" href="#csi-raw-block-volume-support" id="csi-raw-block-volume-support"><h4>CSI Raw block volume support</h4></a>
-<p><a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI Raw block volume support</a>: To enable support for raw block volumes
-you must set the following feature gate on Kubernetes v1.11:</p>
-<pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true
+<p>Ensure your API server are started with the privileged flag:</p>
+<pre><code class="language-shell">$ ./kube-apiserver ...  --allow-privileged=true ...
 </code></pre>
-<p>Also, see <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">Raw Block Volume Support</a></p>
-<a class="header" href="#kubelet-plugin-watcher" id="kubelet-plugin-watcher"><h4>Kubelet Plugin Watcher</h4></a>
-<p><a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a>: To enable support for Kubelet plugin
-watcher for CSI plugins, the following flag must be set in kubelet:</p>
-<pre><code>--feature-gates=KubeletPluginsWatcher=true
+<pre><code class="language-shell">$ ./kubelet ...  --allow-privileged=true ...
 </code></pre>
-<p>You will also need to use the following flag in your <code>driver-registrar</code> side-car
-container with the value set to the location of CSI driver socket on the host:</p>
-<pre><code>--kubelet-registration-path: Enables Kubelet Plugin Registration service and sets the
-  path of the CSI driver socket on the host machine (typically at
-  /var/lib/kubelet/plugins/&lt;driver-name&gt;/csi.sock). If this option is set, the
-  driver-registrar exposes a unix domain socket (at /registration) to handle Kubelet
-  Plugin Registration. This socket MUST be surfaced on the host in the kubelet plugin
-  registration directory (in addition to the CSI driver socket). If plugin registration
-  is enabled on kubelet (kubelet flag KubeletPluginsWatcher is set), then this option
-  should be set.
+<a class="header" href="#enabling-mount-propagation" id="enabling-mount-propagation"><h2>Enabling mount propagation</h2></a>
+<p>Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a> to find out how to enable this feature for your cluster.  <a href="https://docs.portworx.com/knowledgebase/shared-mount-propagation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
+<a class="header" href="#enable-raw-block-volume-support-alpha" id="enable-raw-block-volume-support-alpha"><h2>Enable raw block volume support (alpha)</h2></a>
+<p>Kubernetes now has <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">raw block volume Support</a> as an alpha implementation. If you want to use the
+<a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI raw block volume support</a>, you must enable the feature (for your Kubernetes binaries including server, kubelet, controller manager, etc) with the  <code>feature-gates</code> flag as follow:</p>
+<pre><code>$ kube&lt;binary&gt; --feature-gates=BlockVolume=true,CSIBlockVolume=true ...
 </code></pre>
-<p>In addition, in order to expose the registration socket to the host, the
-<code>driver-registrar</code> side-car container must have a HostPath volume, with the
-kubelet plugin directory as the host path (typically at
-<code>/var/lib/kubelet/plugins/</code>), mounted at <code>/registration</code> in the container.</p>
-<pre><code class="language-yaml">volumeMounts:
-- name: registration-dir
-  mountPath: /registration
-
+<a class="header" href="#csidriver-custom-resource-alpha" id="csidriver-custom-resource-alpha"><h2>CSIDriver custom resource (alpha)</h2></a>
+<p>Starting with version 1.12, the <code>CSIDriver</code> custom resource definition (or CRD) has been introduced as a way to represent the CSI drivers running in a cluster. An admin can update the attributes of this object to modify the configuration of its associated driver at runtime.</p>
+<blockquote>
+<p>You can see the full definition of this CRD <a href="https://github.com/kubernetes/csi-api/blob/master/pkg/crd/crd.go">here</a>.</p>
+</blockquote>
+<p>The alpha release of <code>CSIDriver</code> exposes three main configuration settings:</p>
+<pre><code class="language-yaml">apiVersion: v1
+items:
+- apiVersion: csi.storage.k8s.io/v1alpha1
+  kind: CSIDriver
+  metadata:
+    name: csi-hostpath
+  spec:
+    attachRequired: true
+    podInfoOnMountVersion: &quot;v1&quot;
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>metadata:name</code> - the identifying name of the CSI driver.  That name must be unique in the cluster as it is the name that is used to identify the CSI cluster.</li>
+<li><code>attachRequired</code> - indicates that the CSI volume driver requires a volume attach operation.  This will cause Kubernetes to call make a <code>CSI.ControllerPublishVolume()</code> call and wait for completion before proceeding to mount.</li>
+<li><code>podInfoOnMountVersion</code> - this value indicates that the associated CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount. Leave value empty if you do not want pod info to be transmitted.  Or, provide a value of <code>v1</code> which will cause the Kubelet to send the followings pod information during NodePublishVolume() calls to the driver as <code>VolumeAttributes</code>:</li>
+</ul>
+<pre><code>csi.storage.k8s.io/pod.name: pod.Name
+csi.storage.k8s.io/pod.namespace: pod.Namespace
+csi.storage.k8s.io/pod.uid: string(pod.UID)
+</code></pre>
+<a class="header" href="#enabling-csidriver" id="enabling-csidriver"><h3>Enabling CSIDriver</h3></a>
+<p>If you want to use the <code>CSIDriver</code> CRD and get a preview of how configuration will work at runtime, do the followings:</p>
+<ol>
+<li>Ensure the feature gate is enabled with <code>--feature-gates=CSIDriverRegistry=true</code></li>
+<li>Install the <code>CSIDriver</code> CRD on the Kubernetes cluster with the following command:</li>
+</ol>
+<pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml
+</code></pre>
+<a class="header" href="#listing-registered-csi-drivers" id="listing-registered-csi-drivers"><h3>Listing registered CSI drivers</h3></a>
+<p>Using the<code>CSIDriver</code> CRD, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:</p>
+<pre><code>$&gt; kubectl get csidrivers.csi.storage.k8s.io
+NAME           AGE
+csi-hostpath   2m
+</code></pre>
+<p>Or get a more detail view of your registered driver with:</p>
+<pre><code>$&gt; kubectl describe csidrivers.csi.storage.k8s.io
+Name:         csi-hostpath
+Namespace:
+Labels:       &lt;none&gt;
+Annotations:  &lt;none&gt;
+API Version:  csi.storage.k8s.io/v1alpha1
+Kind:         CSIDriver
+Metadata:
+  Creation Timestamp:  2018-10-04T21:15:30Z
+  Generation:          1
+  Resource Version:    390
+  Self Link:           /apis/csi.storage.k8s.io/v1alpha1/csidrivers/csi-hostpath
+  UID:                 9f854aa6-c81a-11e8-bdce-000c29e88ff1
+Spec:
+  Attach Required:            true
+  Pod Info On Mount Version:
+Events:                       &lt;none&gt;
+</code></pre>
+<a class="header" href="#csinodeinfo-custom-resource-alpha" id="csinodeinfo-custom-resource-alpha"><h2>CSINodeInfo custom resource (alpha)</h2></a>
+<p>Object <code>CSINodeInfo</code> is a resource designed to carry binding information between a CSI driver and a cluster node where its volume storage will land.  In the first release, object  <code>CSINodeInfo</code> is used to establish the link between a node, its driver, and the topology keys used for scheduling volume storage.</p>
+<blockquote>
+<p>You can see the full definition of this CRD <a href="https://github.com/kubernetes/csi-api/blob/master/pkg/crd/crd.go">here</a>.</p>
+</blockquote>
+<p>The following snippet shows a sample <code>CSIDriverInfo</code> which is usually created by Kubernetes:</p>
+<pre><code class="language-yaml">apiVersion: v1
+items:
+- apiVersion: csi.storage.k8s.io/v1alpha1
+  kind: CSINodeInfo
+  metadata:
+    name: 127.0.0.1
+  csiDrivers:
+  - driver: csi-hostpath
+    nodeID: 127.0.0.1
+    topologyKeys: []
+...    
+</code></pre>
+<p>Where:</p>
+<ul>
+<li><code>csiDrivers</code> - list of CSI drivers running on the node and their properties.</li>
+<li><code>driver</code> - the CSI driver that this object refers to.</li>
+<li><code>nodeId</code> - the assigned identifier for the node as determined by the driver.</li>
+<li><code>toplogykeys</code> - A list of topology keys assigned to the node as supported by the driver.</li>
+</ul>
+<a class="header" href="#enabling-csinodeinfo" id="enabling-csinodeinfo"><h3>Enabling CSINodeInfo</h3></a>
+<p>If you want to use the <code>CSINodeInfo</code> CRD and get a preview of how configuration will work at runtime, do the followings:</p>
+<ol>
+<li>Ensure the feature gate is enabled with <code>--feature-gates=CSIDriverRegistry=true</code></li>
+<li>Install the <code>CSINodeInfo</code> CRD on the Kubernetes cluster with the following command:</li>
+</ol>
+<pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml
+</code></pre>
+<a class="header" href="#csi-driver-discovery-beta" id="csi-driver-discovery-beta"><h2>CSI driver discovery (beta)</h2></a>
+<p>The CSI driver discovery uses the <a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a> feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix data socket path. The Kubelet monitors its <code>registration</code> directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.</p>
+<blockquote>
+<p>This replaces the previous driver registration mechanism, where the driver-registrar sidecar, rather than kubelet, handles registration.</p>
+</blockquote>
+<p>Using this discovery feature, instead of the prior registration mechanism, will not have any effect on how drivers behave, however, this will be the way CSI works internally in coming releases.</p>
+<a class="header" href="#registrar-sidecar-configuration" id="registrar-sidecar-configuration"><h3>Registrar sidecar configuration</h3></a>
+<p>The registrar sidecar container provides configuration functionalities to its associated driver. For instance, using the registrar container, an admin can specify how the driver should behave during volume attachment operations.  Some CLI arguments provided to the registrar container will be used to create the CSIDriver and CSIDriverInfo custom resources discussed earlier.</p>
+<p>To configure your driver using the registrar sidecar, you can configure the container as shown in the snippet below:</p>
+<pre><code class="language-yaml">- name: driver-registrar
+    args:
+    - --v=5
+    - --csi-address=/csi/csi.sock
+    - --mode=node-register
+    - --driver-requires-attachment=true
+    - --pod-info-mount-version=&quot;v1&quot;
+    - --kubelet-registration-path=/var/lib/kubelet/plugins/csi-hostpath/csi.sock
+    env:
+    - name: KUBE_NODE_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: spec.nodeName
+    image: quay.io/k8scsi/driver-registrar:v0.2.0
+    imagePullPolicy: Always
+    volumeMounts:
+    - mountPath: /csi
+      name: socket-dir
+    volumeMounts:
+    - name: registration-dir
+      mountPath: /registration
 ...
 volumes:
-- name: registration-dir
-  hostPath:
+  name: socket-dir
+  - hostPath:
+      path: /var/lib/kubelet/plugins/csi-hostpath
+      type: DirectoryOrCreate
+  name: registration-dir
+  - hostPath:
       path: /var/lib/kubelet/plugins
       type: Directory
 </code></pre>
+<p>Where:</p>
+<ul>
+<li>
+<p><code>--csi-address</code> - specifies the Unix domain socket path, on the host, for the CSI driver. It allows the registrar sidecar to communicate with the driver for discovery information.  Mount path <code>/csi</code> is mapped to HostPath entry <code>socket-dir</code> which is mapped to directory <code>/var/lib/kubelet/plugins/csi-hostpath</code></p>
+</li>
+<li>
+<p><code>--mode</code> - this flag specifies how the registar binary will function in either</p>
+</li>
+<li>
+<p><code>--driver-requires-attachment</code> - indicates that this CSI volume driver requires an attach operation (because it implements the CSI <code>ControllerPublishVolume()</code> method), and that Kubernetes should call attach and wait for any attach operation to complete before proceeding to mounting. If value is not specified, default is false meaning attach will not be called.</p>
+</li>
+<li>
+<p><code>--pod-info-mount-version=&quot;v1&quot;</code> - this indicates that the associated CSI volume driver requires additional pod information (like podName, podUID, etc.) during mount. A version of value &quot;v1&quot; will cause the Kubelet send the followings pod information during <code>NodePublishVolume()</code> calls to the driver as VolumeAttributes:</p>
+</li>
+</ul>
+<pre><code>  csi.storage.k8s.io/pod.name: pod.Name
+  csi.storage.k8s.io/pod.namespace: pod.Namespace
+  csi.storage.k8s.io/pod.uid: string(pod.UID)
+</code></pre>
+<ul>
+<li>
+<p><code>--kubelet-registration-path</code> - specifies the fully-qualified path of the Unix domain socket for the CSI driver on the host. This path is constructed using the path from HostPath <code>socket-dir</code> and the additional suffix <code>csi.sock</code>.  The registrar sidecar will provide this path to core CSI components for subsequent volume operations.</p>
+</li>
+<li>
+<p>VolumeMount <code>/csi</code> - is mapped to HostPath <code>/var/lib/kubelet/plugins/csi-hostpath</code>.  It is the root location where the CSI driver's Unix Domain socket file is mounted on the host.</p>
+</li>
+<li>
+<p>VolumeMount <code>/registration</code> is mapped to HostPath <code>/var/lib/kubelet/plugins</code>.  It is the root location where Kubelet watcher scans for new plugin registration.</p>
+</li>
+</ul>
+<a class="header" href="#the-kubelet-root-directory" id="the-kubelet-root-directory"><h3>The Kubelet root directory</h3></a>
+<p>In the configuration above, notice that all paths starts with <code>/var/lib/kubelet/plugin</code> That is because the discovery mechanism relies on the Kubelet's root directory (which is by default) <code>/var/lib/kubelet</code>.  Ensure that this path value matches the value specified in the Kubelet's <code>--root-dir</code> argument.</p>
 <a class="header" href="#csi-volume-snapshot-support" id="csi-volume-snapshot-support"><h4>CSI Volume Snapshot support</h4></a>
 <p><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/csi-snapshot.md">CSI volume snapshot support</a>: To enable support for Kubernetes volume
 snapshotting, you must set the following feature gate on Kubernetes v1.12 (disabled
