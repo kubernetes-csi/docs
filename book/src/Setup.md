@@ -5,7 +5,7 @@ This document has been updated for the latest version of Kubernetes v1.12.  This
 Some of the features discussed here may be at different stages (alpha, beta, or GA).  Ensure that the feature you want to try is enabled for the Kubernetes release you are using.  To avoid version mismatch, you can enable all of the features discussed here with:
 
 ```
---feature-dates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+--feature-gates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
 ```
 
 
