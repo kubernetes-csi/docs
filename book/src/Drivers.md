@@ -29,6 +29,7 @@ Name | Status | More Information
 [Ember CSI](https://ember-csi.io) | v0.2.0 (alpha) | Multi-vendor CSI plugin supporting over 80 storage drivers to provide block and mount storage to Container Orchestration systems.
 [Nutanix](https://portal.nutanix.com/#/page/docs/details?targetId=CSI-Volume-Driver:CSI-Volume-Driver) | beta | A Container Storage Interface (CSI) Storage Driver for Nutanix
 [Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
+[GlusterFS](https://github.com/gluster/gluster-csi-driver) | Beta | A Container Storage Interface (CSI) Plugin for GlusterFS
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
