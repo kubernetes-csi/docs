@@ -177,6 +177,9 @@ rules:
     resources: [&quot;secrets&quot;]
     verbs: [&quot;get&quot;, &quot;list&quot;]
   - apiGroups: [&quot;&quot;]
+    resources: [&quot;nodes&quot;]
+    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;]
+  - apiGroups: [&quot;&quot;]
     resources: [&quot;persistentvolumes&quot;]
     verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;create&quot;, &quot;delete&quot;]
   - apiGroups: [&quot;&quot;]
@@ -197,6 +200,9 @@ rules:
   - apiGroups: [&quot;snapshot.storage.k8s.io&quot;]
     resources: [&quot;volumesnapshotcontents&quot;]
     verbs: [&quot;get&quot;, &quot;list&quot;]
+  - apiGroups: [&quot;csi.storage.k8s.io&quot;]
+    resources: [&quot;csinodeinfos&quot;]
+    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;]
     
 ---
 kind: ClusterRoleBinding
