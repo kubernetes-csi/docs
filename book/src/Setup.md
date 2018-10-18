@@ -2,10 +2,10 @@
 This document has been updated for the latest version of Kubernetes v1.12.  This document outlines the features that are available for CSI.  To get step by step instructions on how to run an example CSI driver, you can read the [Example](./Example.md) section.
 
 ## Enabling features
-Some of the features discussed here may be at different stages (alpha, beta, or GA).  Ensure that the feature you want to try is enabled for the Kubernetes release you are using.  To avoid version mismatch, you can enable all of the features discussed here with:
+Some of the features discussed here may be at different stages (alpha, beta, or GA).  Ensure that the feature you want to try is enabled for the Kubernetes release you are using.  To avoid version mismatch, you can enable all of the features discussed here for both kubelet and kube-apiserver with:
 
 ```
---feature-dates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+--feature-gates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
 ```
 
 
