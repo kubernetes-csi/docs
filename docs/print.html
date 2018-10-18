@@ -166,7 +166,7 @@
 <p>This document has been updated for the latest version of Kubernetes v1.12.  This document outlines the features that are available for CSI.  To get step by step instructions on how to run an example CSI driver, you can read the <a href="./Example.html">Example</a> section.</p>
 <a class="header" href="#enabling-features" id="enabling-features"><h2>Enabling features</h2></a>
 <p>Some of the features discussed here may be at different stages (alpha, beta, or GA).  Ensure that the feature you want to try is enabled for the Kubernetes release you are using.  To avoid version mismatch, you can enable all of the features discussed here with:</p>
-<pre><code>--feature-dates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+<pre><code>--feature-gates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
 </code></pre>
 <a class="header" href="#enable-privileged-pods" id="enable-privileged-pods"><h2>Enable privileged Pods</h2></a>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
@@ -533,7 +533,7 @@ can be used to provision local storage in a single node test. This
 section shows how to deploy and use that driver in Kubernetes.</p>
 <a class="header" href="#deployment-1" id="deployment-1"><h2>Deployment</h2></a>
 <p>This is tested with Kubernetes v1.12. Set the following feature gate flags to true:</p>
-<pre><code>--feature-dates=CSIPersistentVolume=true,MountPropagation=true,VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+<pre><code>--feature-gates=CSIPersistentVolume=true,MountPropagation=true,VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
 </code></pre>
 <p><code>CSIPersistentVolume</code> is enabled by default in v1.10. <code>MountPropagation</code> is enabled by default
 in v1.10. <code>VolumeSnapshotDataSource</code> is a new alpha feature in v1.12. <code>KubeletPluginsWatcher</code>

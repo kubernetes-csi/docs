@@ -140,7 +140,7 @@
 <p>This document has been updated for the latest version of Kubernetes v1.12.  This document outlines the features that are available for CSI.  To get step by step instructions on how to run an example CSI driver, you can read the <a href="./Example.html">Example</a> section.</p>
 <a class="header" href="#enabling-features" id="enabling-features"><h2>Enabling features</h2></a>
 <p>Some of the features discussed here may be at different stages (alpha, beta, or GA).  Ensure that the feature you want to try is enabled for the Kubernetes release you are using.  To avoid version mismatch, you can enable all of the features discussed here with:</p>
-<pre><code>--feature-dates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+<pre><code>--feature-gates=VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
 </code></pre>
 <a class="header" href="#enable-privileged-pods" id="enable-privileged-pods"><h2>Enable privileged Pods</h2></a>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
