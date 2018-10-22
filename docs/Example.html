@@ -389,12 +389,12 @@ csi-hostpath-provisioner-0   1/1     Running   0          6s
 <pre><code class="language-yaml">kind: Service
 apiVersion: v1
 metadata:
-  name: csi-hostpath-provisioner 
+  name: csi-hostpath-provisioner
   labels:
-    app: csi-hostpath-provisioner 
+    app: csi-hostpath-provisioner
 spec:
   selector:
-    app: csi-hostpath-provisioner 
+    app: csi-hostpath-provisioner
   ports:
     - name: dummy
       port: 12345
@@ -418,7 +418,7 @@ spec:
       serviceAccount: csi-provisioner
       containers:
         - name: csi-provisioner
-          image: quay.io/k8scsi/csi-provisioner:v0.4.0
+          image: quay.io/k8scsi/csi-provisioner:v0.4.1
           args:
             - &quot;--provisioner=csi-hostpath&quot;
             - &quot;--csi-address=$(ADDRESS)&quot;
@@ -479,7 +479,7 @@ spec:
       serviceAccount: csi-attacher
       containers:
         - name: csi-attacher
-          image: quay.io/k8scsi/csi-attacher:v0.4.0
+          image: quay.io/k8scsi/csi-attacher:v0.4.1
           args:
             - --v=5
             - --csi-address=$(ADDRESS)
@@ -524,7 +524,7 @@ spec:
       hostNetwork: true
       containers:
         - name: driver-registrar
-          image: quay.io/k8scsi/driver-registrar:v0.4.0
+          image: quay.io/k8scsi/driver-registrar:v0.4.1
           args:
             - --v=5
             - --csi-address=/csi/csi.sock
@@ -542,7 +542,7 @@ spec:
           - mountPath: /registration
             name: registration-dir
         - name: hostpath
-          image: quay.io/k8scsi/hostpathplugin:v0.4.0
+          image: quay.io/k8scsi/hostpathplugin:v0.4.1
           args:
             - &quot;--v=5&quot;
             - &quot;--endpoint=$(CSI_ENDPOINT)&quot;
@@ -596,12 +596,12 @@ csi-hostpathplugin-9rp7c     2/2     Running   0          48s
 <pre><code class="language-yaml">kind: Service
 apiVersion: v1
 metadata:
-  name: csi-hostpath-snapshotter 
+  name: csi-hostpath-snapshotter
   labels:
-    app: csi-hostpath-snapshotter 
+    app: csi-hostpath-snapshotter
 spec:
   selector:
-    app: csi-hostpath-snapshotter 
+    app: csi-hostpath-snapshotter
   ports:
     - name: dummy
       port: 12345
@@ -625,7 +625,7 @@ spec:
       serviceAccount: csi-snapshotter
       containers:
         - name: csi-snapshotter
-          image: quay.io/k8scsi/csi-snapshotter:v0.4.0
+          image: quay.io/k8scsi/csi-snapshotter:v0.4.1
           args:
             - &quot;--csi-address=$(ADDRESS)&quot;
             - &quot;--connection-timeout=15s&quot;
@@ -912,7 +912,7 @@ metadata:
 spec:
   snapshotClassName: csi-hostpath-snapclass
   source:
-    name: csi-pvc 
+    name: csi-pvc
     kind: PersistentVolumeClaim
 
 </code></pre>

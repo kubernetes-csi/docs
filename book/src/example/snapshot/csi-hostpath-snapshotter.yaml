@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: csi-hostpath-snapshotter 
+  name: csi-hostpath-snapshotter
   labels:
-    app: csi-hostpath-snapshotter 
+    app: csi-hostpath-snapshotter
 spec:
   selector:
-    app: csi-hostpath-snapshotter 
+    app: csi-hostpath-snapshotter
   ports:
     - name: dummy
       port: 12345
@@ -30,7 +30,7 @@ spec:
       serviceAccount: csi-snapshotter
       containers:
         - name: csi-snapshotter
-          image: quay.io/k8scsi/csi-snapshotter:v0.4.0
+          image: quay.io/k8scsi/csi-snapshotter:v0.4.1
           args:
             - "--csi-address=$(ADDRESS)"
             - "--connection-timeout=15s"

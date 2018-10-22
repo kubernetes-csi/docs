@@ -14,9 +14,10 @@ Welcome to the CSI for Kubernetes documentation repository. Here you will find i
 
 | Container Name | CSI spec | Latest Release Tag |
 | ---------- | -------- | ------ |
-| csi-provisioner | v0.3 | v0.3.1 |
-| csi-attacher | v0.3 | v0.3.0 |
-| driver-registrar | v0.3 | v0.3.0 |
+| csi-provisioner | v0.3 | v0.4.1 |
+| csi-attacher | v0.3 | v0.4.1 |
+| driver-registrar | v0.3 | v0.4.1 |
+| livenessprobe | v0.3 | v0.4.1 |
 
 ## Installation
 Please see the [Setup](Setup.html) page for instructions on how to setup Kubernetes support with CSI.
