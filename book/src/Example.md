@@ -10,7 +10,7 @@ section shows how to deploy and use that driver in Kubernetes.
 This is tested with Kubernetes v1.12. Set the following feature gate flags to true:
 
 ```
---feature-dates=CSIPersistentVolume=true,MountPropagation=true,VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
+--feature-gates=CSIPersistentVolume=true,MountPropagation=true,VolumeSnapshotDataSource=true,KubeletPluginsWatcher=true,CSINodeInfo=true,CSIDriverRegistry=true
 ```
 
 `CSIPersistentVolume` is enabled by default in v1.10. `MountPropagation` is enabled by default
