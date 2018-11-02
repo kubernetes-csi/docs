@@ -215,7 +215,7 @@ csi.storage.k8s.io/pod.uid: string(pod.UID)
 <li>Ensure the feature gate is enabled with <code>--feature-gates=CSIDriverRegistry=true</code></li>
 <li>Install the <code>CSIDriver</code> CRD on the Kubernetes cluster with the following command:</li>
 </ol>
-<pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml
+<pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml --validate=false
 </code></pre>
 <a class="header" href="#listing-registered-csi-drivers" id="listing-registered-csi-drivers"><h3>Listing registered CSI drivers</h3></a>
 <p>Using the<code>CSIDriver</code> CRD, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:</p>
@@ -264,16 +264,16 @@ items:
 <ul>
 <li><code>csiDrivers</code> - list of CSI drivers running on the node and their properties.</li>
 <li><code>driver</code> - the CSI driver that this object refers to.</li>
-<li><code>nodeId</code> - the assigned identifier for the node as determined by the driver.</li>
-<li><code>toplogykeys</code> - A list of topology keys assigned to the node as supported by the driver.</li>
+<li><code>nodeID</code> - the assigned identifier for the node as determined by the driver.</li>
+<li><code>topologyKeys</code> - A list of topology keys assigned to the node as supported by the driver.</li>
 </ul>
 <a class="header" href="#enabling-csinodeinfo" id="enabling-csinodeinfo"><h3>Enabling CSINodeInfo</h3></a>
 <p>If you want to use the <code>CSINodeInfo</code> CRD and get a preview of how configuration will work at runtime, do the followings:</p>
 <ol>
-<li>Ensure the feature gate is enabled with <code>--feature-gates=CSIDriverRegistry=true</code></li>
+<li>Ensure the feature gate is enabled with <code>--feature-gates=CSINodeInfo=true</code></li>
 <li>Install the <code>CSINodeInfo</code> CRD on the Kubernetes cluster with the following command:</li>
 </ol>
-<pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml
+<pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml --validate=false
 </code></pre>
 <a class="header" href="#csi-driver-discovery-beta" id="csi-driver-discovery-beta"><h2>CSI driver discovery (beta)</h2></a>
 <p>The CSI driver discovery uses the <a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a> feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix data socket path. The Kubelet monitors its <code>registration</code> directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.</p>
@@ -355,6 +355,14 @@ snapshotting, you must set the following feature gate on Kubernetes v1.12 (disab
 by default for alpha):</p>
 <pre><code>--feature-gates=VolumeSnapshotDataSource=true
 </code></pre>
+<a class="header" href="#topology-alpha" id="topology-alpha"><h2>Topology (alpha)</h2></a>
+<p>In order to support topology-aware dynamic provisioning mechanisms available in Kubernetes, the <em>external-provisioner</em> must have the Topology feature enabled:</p>
+<pre><code>--feature-gates=Topology=true
+</code></pre>
+<p>In addition, in the <em>Kubernetes cluster</em> the <code>CSINodeInfo</code> alpha feature must be enabled (refer to the [CSINodeInfo custom resource]{csinodeinfo-custom-resource-alpha} section for more info):</p>
+<pre><code>--feature-gates=CSINodeInfo=true
+</code></pre>
+<p>as well as the <code>KubeletPluginsWatcher</code> beta feature (currently enabled by default).</p>
 <a class="header" href="#archives" id="archives"><h2>Archives</h2></a>
 <p>Please visit the <a href="Archive.html">Archives</a> for setup instructions on previous versions of Kubernetes.</p>
 <a class="header" href="#deployment" id="deployment"><h1>Deployment</h1></a>

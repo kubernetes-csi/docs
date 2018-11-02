@@ -71,7 +71,7 @@ If you want to use the `CSIDriver` CRD and get a preview of how configuration wi
 1) Ensure the feature gate is enabled with `--feature-gates=CSIDriverRegistry=true`
 2) Install the `CSIDriver` CRD on the Kubernetes cluster with the following command:
 ```
-$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml
+$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml --validate=false
 ```
 
 ### Listing registered CSI drivers
@@ -129,16 +129,16 @@ items:
 Where:
 - `csiDrivers` - list of CSI drivers running on the node and their properties.
 - `driver` - the CSI driver that this object refers to.
-- `nodeId` - the assigned identifier for the node as determined by the driver.
-- `toplogykeys` - A list of topology keys assigned to the node as supported by the driver.
+- `nodeID` - the assigned identifier for the node as determined by the driver.
+- `topologyKeys` - A list of topology keys assigned to the node as supported by the driver.
 
 ### Enabling CSINodeInfo
 If you want to use the `CSINodeInfo` CRD and get a preview of how configuration will work at runtime, do the followings:
 
-1) Ensure the feature gate is enabled with `--feature-gates=CSIDriverRegistry=true`
+1) Ensure the feature gate is enabled with `--feature-gates=CSINodeInfo=true`
 2) Install the `CSINodeInfo` CRD on the Kubernetes cluster with the following command:
 ```
-$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml
+$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml --validate=false
 ```
 
 
@@ -223,6 +223,20 @@ by default for alpha):
 ```
 --feature-gates=VolumeSnapshotDataSource=true
 ```
+
+## Topology (alpha)
+In order to support topology-aware dynamic provisioning mechanisms available in Kubernetes, the *external-provisioner* must have the Topology feature enabled:
+
+```
+--feature-gates=Topology=true
+```
+
+In addition, in the *Kubernetes cluster* the `CSINodeInfo` alpha feature must be enabled (refer to the [CSINodeInfo custom resource]{csinodeinfo-custom-resource-alpha} section for more info):
+
+```
+--feature-gates=CSINodeInfo=true
+```
+as well as the `KubeletPluginsWatcher` beta feature (currently enabled by default).
 
 ## Archives
 
