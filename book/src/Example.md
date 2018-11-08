@@ -21,10 +21,10 @@ in v1.12.
 CRDs needs to be created manually for `CSIDriverRegistry` and `CSINodeInfo`.
 
 ```
-$ kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml --validate=false
+$ kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csidriver.yaml --validate=false
 customresourcedefinition.apiextensions.k8s.io/csidrivers.csi.storage.k8s.io created
 
-$ kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml --validate=false
+$ kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csinodeinfo.yaml --validate=false
 customresourcedefinition.apiextensions.k8s.io/csinodeinfos.csi.storage.k8s.io created
 ```
 

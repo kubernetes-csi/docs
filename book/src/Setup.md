@@ -71,7 +71,7 @@ If you want to use the `CSIDriver` CRD and get a preview of how configuration wi
 1) Ensure the feature gate is enabled with `--feature-gates=CSIDriverRegistry=true`
 2) Install the `CSIDriver` CRD on the Kubernetes cluster with the following command:
 ```
-$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csidriver.yaml --validate=false
+$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csidriver.yaml --validate=false
 ```
 
 ### Listing registered CSI drivers
@@ -138,7 +138,7 @@ If you want to use the `CSINodeInfo` CRD and get a preview of how configuration 
 1) Ensure the feature gate is enabled with `--feature-gates=CSINodeInfo=true`
 2) Install the `CSINodeInfo` CRD on the Kubernetes cluster with the following command:
 ```
-$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml --validate=false
+$> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csinodeinfo.yaml --validate=false
 ```
 
 
