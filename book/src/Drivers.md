@@ -19,6 +19,7 @@ Name | Status | More Information
 [DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.0.1 (alpha) | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
 [AWS Elastic Block Storage](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS Elastic Block Storage (EBS)
 [GCE Persistent Disk](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)|Alpha|A Container Storage Interface (CSI) Storage Plugin for Google Compute Engine Persistent Disk
+[MooseFS](https://github.com/moosefs/moosefs-csi)|v0.0.1 (alpha)|A Container Storage Interface (CSI) Storage Plugin for [MooseFS](https://moosefs.com/) clusters.
 [OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
 [Portworx](https://portworx.com/) | 0.3.0 | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
 [RBD](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
