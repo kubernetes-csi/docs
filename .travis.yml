@@ -1,0 +1,7 @@
+language: generic
+
+script: bash ./hack/deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "4d61ca75e316" # from travis encrypt-file deploy_key, see https://gist.github.com/domenic/ec8b0fc8ab45f39403dd#get-encrypted-credentials
+  - COMMIT_AUTHOR_EMAIL: "travis-ci@kubernetes-csi"
