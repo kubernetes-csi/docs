@@ -4,3 +4,6 @@ docs/example
 
 # vim
 *.swp
+
+/mdbook
+/mdbook*.tar.gz
