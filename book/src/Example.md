@@ -78,7 +78,7 @@ Only the `driver-registrar` interacts directly with Kubernetes, so it's those RB
 The CSI snapshotter is an optional sidecar container. You only need to create these
 RBAC rules if you want to test the snapshot feature.
 
-> $ kubectl create -f [https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/51482343dc7f81fef64e3ec32ea3f48fec17b9cf/deploy/kubernetes/rbac.yaml](https://github.com/kubernetes-csi/external-snapshotter/blob/51482343dc7f81fef64e3ec32ea3f48fec17b9cf/deploy/kubernetes/rbac.yaml)
+> $ kubectl create -f [https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/01bd7f356e6718dee87914232d287631655bef1d/deploy/kubernetes/rbac.yaml](https://github.com/kubernetes-csi/external-snapshotter/blob/01bd7f356e6718dee87914232d287631655bef1d/deploy/kubernetes/rbac.yaml)
 > ```
 > serviceaccount/csi-snapshotter created
 > clusterrole.rbac.authorization.k8s.io/external-snapshotter-runner created
