@@ -7,7 +7,7 @@ There are three components plus the kubelet that enable CSI drivers to provide s
 ## Sidecar Containers
 [![sidecar-container](images/sidecar-container.png)](https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing)
 
-Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the _external attacher_, _external provisioner_, and the _driver registrar_.
+Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the _external attacher_, _external provisioner_, _external snapshotter_ and the _driver registrar_.
 
 ### External Attacher
 [external-attacher](https://github.com/kubernetes-csi/external-attacher) is a sidecar container that watches Kubernetes _VolumeAttachment_ objects and triggers CSI _ControllerPublish_ and _ControllerUnpublish_ operations against a driver endpoint. As of this writing, the external attacher does not support leader election and therefore there can be only one running per CSI driver.  For more information please read [_Attaching and Detaching_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#attaching-and-detaching).
