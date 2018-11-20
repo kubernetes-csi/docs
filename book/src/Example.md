@@ -35,11 +35,13 @@ in v1.12.
 CRDs need to be created manually for `CSIDriverRegistry` and `CSINodeInfo`:
 
 
-> $ kubectl create -f [https://raw.githubusercontent.com/kubernetes/csi-api/ab0df28581235f5350f27ce9c27485850a3b2802/pkg/crd/testdata/csidriver.yaml](https://github.com/kubernetes/csi-api/blob/ab0df28581235f5350f27ce9c27485850a3b2802/pkg/crd/testdata/csidriver.yaml) --validate=false
-> `customresourcedefinition.apiextensions.k8s.io/csidrivers.csi.storage.k8s.io created`
+> $ kubectl create -f [https://github.com/kubernetes/csi-api/blob/dea832f47dd0116156b428802bc7079039c2456c/pkg/crd/manifests/csidriver.yaml](https://github.com/kubernetes/csi-api/blob/dea832f47dd0116156b428802bc7079039c2456c/pkg/crd/manifests/csidriver.yaml) --validate=false
+
+> `$ customresourcedefinition.apiextensions.k8s.io/csidrivers.csi.storage.k8s.io created`
 >
-> $ kubectl create -f [https://raw.githubusercontent.com/kubernetes/csi-api/ab0df28581235f5350f27ce9c27485850a3b2802/pkg/crd/testdata/csinodeinfo.yaml](https://github.com/kubernetes/csi-api/blob/ab0df28581235f5350f27ce9c27485850a3b2802/pkg/crd/testdata/csinodeinfo.yaml) --validate=false
-> `customresourcedefinition.apiextensions.k8s.io/csinodeinfos.csi.storage.k8s.io created`
+> $ kubectl create -f [https://github.com/kubernetes/csi-api/blob/5ed1a911472d87e9c191ba463723fbfd705a966e/pkg/crd/manifests/csinodeinfo.yaml](https://github.com/kubernetes/csi-api/blob/5ed1a911472d87e9c191ba463723fbfd705a966e/pkg/crd/manifests/csinodeinfo.yaml) --validate=false
+
+> `$ customresourcedefinition.apiextensions.k8s.io/csinodeinfos.csi.storage.k8s.io created`
 
 ### Create RBAC rules for CSI provisioner
 
@@ -91,7 +93,7 @@ The CSI sidecar apps are going to connect to the CSI driver, therefore
 starting it first helps avoid timeouts and intermittent container
 restarts:
 
-> $ kubectl create -f [https://raw.githubusercontent.com/kubernetes/kubernetes/f40a5d1155aae95105a4e9bb8933d750c666e350/test/e2e/testing-manifests/storage-csi/hostpath/hostpath/csi-hostpathplugin.yaml](https://github.com/kubernetes/kubernetes/blob/f40a5d1155aae95105a4e9bb8933d750c666e350/test/e2e/testing-manifests/storage-csi/hostpath/hostpath/csi-hostpathplugin.yaml)
+> $ kubectl create -f [https://github.com/kubernetes/kubernetes/blob/1a3fbf1f13a28f3102edc43ab2dca95471453cd8/test/e2e/testing-manifests/storage-csi/hostpath/hostpath/csi-hostpathplugin.yaml](https://github.com/kubernetes/kubernetes/blob/1a3fbf1f13a28f3102edc43ab2dca95471453cd8/test/e2e/testing-manifests/storage-csi/hostpath/hostpath/csi-hostpathplugin.yaml)
 > `daemonset.apps/csi-hostpathplugin created`
 >
 > $ kubectl get pod

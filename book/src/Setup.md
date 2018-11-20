@@ -142,7 +142,7 @@ $> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master
 ```
 
 
-## CSI driver discovery (beta)
+## CSI driver discovery (GA)
 
 The CSI driver discovery uses the [Kubelet Plugin Watcher][plugin-watcher] feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix data socket path. The Kubelet monitors its `registration` directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.
 
@@ -171,7 +171,7 @@ To configure your driver using the registrar sidecar, you can configure the cont
         fieldRef:
           apiVersion: v1
           fieldPath: spec.nodeName
-    image: quay.io/k8scsi/driver-registrar:v0.2.0
+    image: quay.io/k8scsi/driver-registrar:v1.0.0
     imagePullPolicy: Always
     volumeMounts:
     - mountPath: /csi
@@ -187,7 +187,7 @@ volumes:
       type: DirectoryOrCreate
   name: registration-dir
   - hostPath:
-      path: /var/lib/kubelet/plugins
+      path: /var/lib/kubelet/plugins_registry
       type: Directory
 ```
 Where:
@@ -209,7 +209,7 @@ Where:
 
 - VolumeMount `/csi` - is mapped to HostPath `/var/lib/kubelet/plugins/csi-hostpath`.  It is the root location where the CSI driver's Unix Domain socket file is mounted on the host.
 
-- VolumeMount `/registration` is mapped to HostPath ` /var/lib/kubelet/plugins`.  It is the root location where Kubelet watcher scans for new plugin registration.
+- VolumeMount `/registration` is mapped to HostPath ` /var/lib/kubelet/plugins_registry`.  It is the root location where Kubelet watcher scans for new plugin registration.
 
 ### The Kubelet root directory
 In the configuration above, notice that all paths starts with `/var/lib/kubelet/plugin` That is because the discovery mechanism relies on the Kubelet's root directory (which is by default) `/var/lib/kubelet`.  Ensure that this path value matches the value specified in the Kubelet's `--root-dir` argument.
