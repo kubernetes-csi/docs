@@ -6,6 +6,7 @@ Here are some example CSI plugins that have implemented the snapshot feature:
 * [GCE PD CSI driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
 * [OpenSDS CSI driver](https://github.com/opensds/nbp/tree/master/csi/server)
 * [Ceph RBD CSI driver](https://github.com/ceph/ceph-csi/tree/master/pkg/rbd)
+* [GlusterFS CSI driver](https://github.com/gluster/gluster-csi-driver)
 
 You can find more sample and production CSI drivers [here](https://kubernetes-csi.github.io/docs/Drivers.html). Please note that drivers may or may not have implemented the snapshot feature.
 
