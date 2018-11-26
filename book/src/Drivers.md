@@ -15,6 +15,7 @@ Name | Status | More Information
 ### Production Drivers
 Name | Status | More Information
 -----|--------|-------
+[DriveScale](https://github.com/DriveScale/k8s-plugins)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for DriveScale software composable infrastructure solution
 [Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
 [DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.0.1 (alpha) | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
 [AWS Elastic Block Storage](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS Elastic Block Storage (EBS)
