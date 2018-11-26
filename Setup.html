@@ -153,7 +153,7 @@
 <p>Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a> to find out how to enable this feature for your cluster.  <a href="https://docs.portworx.com/knowledgebase/shared-mount-propagation.html">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
 <a class="header" href="#enable-raw-block-volume-support-alpha" id="enable-raw-block-volume-support-alpha"><h2>Enable raw block volume support (alpha)</h2></a>
 <p>Kubernetes now has <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">raw block volume Support</a> as an alpha implementation. If you want to use the
-<a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI raw block volume support</a>, you must enable the feature (for your Kubernetes binaries including server, kubelet, controller manager, etc) with the  <code>feature-gates</code> flag as follow:</p>
+<a href="https://kubernetes.io/docs/concepts/storage/volumes/#csi-raw-block-volume-support">CSI raw block volume support</a>, you must enable the feature (for your Kubernetes binaries including apiserver, kubelet, controller manager, etc) with the  <code>feature-gates</code> flag as follow:</p>
 <pre><code>$ kube&lt;binary&gt; --feature-gates=BlockVolume=true,CSIBlockVolume=true ...
 </code></pre>
 <a class="header" href="#csidriver-custom-resource-alpha" id="csidriver-custom-resource-alpha"><h2>CSIDriver custom resource (alpha)</h2></a>
@@ -249,7 +249,7 @@ items:
 <pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/testdata/csinodeinfo.yaml --validate=false
 </code></pre>
 <a class="header" href="#csi-driver-discovery-beta" id="csi-driver-discovery-beta"><h2>CSI driver discovery (beta)</h2></a>
-<p>The CSI driver discovery uses the <a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a> feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix data socket path. The Kubelet monitors its <code>registration</code> directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.</p>
+<p>The CSI driver discovery uses the <a href="https://docs.google.com/document/d/1dtHpGY-gPe9sY7zzMGnm8Ywo09zJfNH-E1KEALFV39s/edit#heading=h.7fe6spexljh6">Kubelet Plugin Watcher</a> feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix domain socket path. The Kubelet monitors its <code>registration</code> directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.</p>
 <blockquote>
 <p>This replaces the previous driver registration mechanism, where the driver-registrar sidecar, rather than kubelet, handles registration.</p>
 </blockquote>
@@ -271,7 +271,7 @@ items:
         fieldRef:
           apiVersion: v1
           fieldPath: spec.nodeName
-    image: quay.io/k8scsi/driver-registrar:v0.2.0
+    image: quay.io/k8scsi/driver-registrar:v0.4.1
     imagePullPolicy: Always
     volumeMounts:
     - mountPath: /csi
