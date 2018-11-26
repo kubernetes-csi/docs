@@ -29,7 +29,7 @@ Another feature that CSI depends on is mount propagation.  It allows the sharing
 ## Enable raw block volume support (alpha)
 
 Kubernetes now has [raw block volume Support][rawsupport] as an alpha implementation. If you want to use the 
-[CSI raw block volume support][rawvol], you must enable the feature (for your Kubernetes binaries including server, kubelet, controller manager, etc) with the  `feature-gates` flag as follow:
+[CSI raw block volume support][rawvol], you must enable the feature (for your Kubernetes binaries including apiserver, kubelet, controller manager, etc) with the  `feature-gates` flag as follow:
 
 ```
 $ kube<binary> --feature-gates=BlockVolume=true,CSIBlockVolume=true ...
@@ -144,7 +144,7 @@ $> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master
 
 ## CSI driver discovery (beta)
 
-The CSI driver discovery uses the [Kubelet Plugin Watcher][plugin-watcher] feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix data socket path. The Kubelet monitors its `registration` directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.
+The CSI driver discovery uses the [Kubelet Plugin Watcher][plugin-watcher] feature which allows Kubelet to discover deployed CSI drivers automatically.  The registrar sidecar container exposes an internal registration server via a Unix domain socket path. The Kubelet monitors its `registration` directory to detect new registration requests. Once detected, the Kubelet contacts the registrar sidecar to query driver information.  The retrieved CSI driver information (including the driver's own socket path) will be used for further interaction with the driver.
 
 > This replaces the previous driver registration mechanism, where the driver-registrar sidecar, rather than kubelet, handles registration.
 
@@ -171,7 +171,7 @@ To configure your driver using the registrar sidecar, you can configure the cont
         fieldRef:
           apiVersion: v1
           fieldPath: spec.nodeName
-    image: quay.io/k8scsi/driver-registrar:v0.2.0
+    image: quay.io/k8scsi/driver-registrar:v0.4.1
     imagePullPolicy: Always
     volumeMounts:
     - mountPath: /csi
