@@ -314,7 +314,7 @@ volumes:
       type: DirectoryOrCreate
   name: registration-dir
   - hostPath:
-      path: /var/lib/kubelet/plugins
+      path: /var/lib/kubelet/plugins_registry
       type: Directory
 </code></pre>
 <p>Where:</p>
@@ -344,7 +344,7 @@ volumes:
 <p>VolumeMount <code>/csi</code> - is mapped to HostPath <code>/var/lib/kubelet/plugins/csi-hostpath</code>.  It is the root location where the CSI driver's Unix Domain socket file is mounted on the host.</p>
 </li>
 <li>
-<p>VolumeMount <code>/registration</code> is mapped to HostPath <code>/var/lib/kubelet/plugins</code>.  It is the root location where Kubelet watcher scans for new plugin registration.</p>
+<p>VolumeMount <code>/registration</code> is mapped to HostPath <code>/var/lib/kubelet/plugins_registry</code>.  It is the root location where Kubelet watcher scans for new plugin registration.</p>
 </li>
 </ul>
 <a class="header" href="#the-kubelet-root-directory" id="the-kubelet-root-directory"><h3>The Kubelet root directory</h3></a>
