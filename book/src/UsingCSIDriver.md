@@ -6,3 +6,4 @@ Before you can start using CSI, you must understand how to properly setup and co
 * [Drivers](Drivers.md) - A growning list of available CSI driverse you can use
 * [Usage](Usage.md) - Findout the usage mode of CSI drivers
 * [Example](Example.md) - Using Hostpath as an example CSI driver
+* [Known Issues](Known-Issues.md) - List of known issues
