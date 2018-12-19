@@ -33,6 +33,7 @@ Name | Status | More Information
 [Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
 [GlusterFS](https://github.com/gluster/gluster-csi-driver) | Beta | A Container Storage Interface (CSI) Plugin for GlusterFS
 [NexentaStor](https://github.com/Nexenta/nexentastor-csi-driver) | Beta | A Container Storage Interface (CSI) Driver for NexentaStor
+[Vault](https://github.com/kubevault/csi-driver) | Alpha | A Container Storage Interface (CSI) Plugin for HashiCorp Vault
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
