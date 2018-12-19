@@ -32,6 +32,7 @@ Name | Status | More Information
 [Nutanix](https://portal.nutanix.com/#/page/docs/details?targetId=CSI-Volume-Driver:CSI-Volume-Driver) | beta | A Container Storage Interface (CSI) Storage Driver for Nutanix
 [Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
 [GlusterFS](https://github.com/gluster/gluster-csi-driver) | Beta | A Container Storage Interface (CSI) Plugin for GlusterFS
+[NexentaStor](https://github.com/Nexenta/nexentastor-csi-driver) | Beta | A Container Storage Interface (CSI) Driver for NexentaStor
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
