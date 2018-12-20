@@ -9,15 +9,17 @@ Welcome to the CSI for Kubernetes documentation repository. Here you will find i
 | v1.9       | v0.1     | Alpha  |
 | v1.10      | v0.2     | Beta   |
 | v1.11      | v0.3     | Beta   |
+| v1.12      | v0.3     | Beta   |
+| v1.13      | v1.0.0   | GA     |
 
 ## Sidecar container status
 
 | Container Name | CSI spec | Latest Release Tag |
 | ---------- | -------- | ------ |
-| csi-provisioner | v0.3 | v0.4.1 |
-| csi-attacher | v0.3 | v0.4.1 |
-| driver-registrar | v0.3 | v0.4.1 |
-| livenessprobe | v0.3 | v0.4.1 |
+| csi-provisioner | v1.0.0 | v1.0.1 |
+| csi-attacher | v1.0.0 | v1.0.1 |
+| driver-registrar | v1.0.0 | v1.0.1 |
+| livenessprobe | v1.0.0 | v1.0.1 |
 
 ## Installation
 Please see the [Setup](Setup.html) page for instructions on how to setup Kubernetes support with CSI.
