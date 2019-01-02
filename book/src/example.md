@@ -1,5 +1,7 @@
 # Example
 
+> ## *This page is out-of-date and under active development.*
+
 The
 [HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath)
 can be used to provision local storage in a single node test. This

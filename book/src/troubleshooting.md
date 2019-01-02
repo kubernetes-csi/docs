@@ -1,5 +1,10 @@
 # Troubleshooting
 
+# Known Issues
+- [[minikube-3378](https://github.com/kubernetes/minikube/issues/3378)]: Volume mount causes minikube VM to become corrupted
+
+# Common Errors
+
 ### Node plugin pod does not start with *RunContainerError* status 
 
 `kubectl describe pod your-nodeplugin-pod` shows:

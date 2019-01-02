@@ -1,4 +1,7 @@
-# Deploying in Kubernetes
+# Deploying CSI Driver on Kubernetes
+
+> ## *This page is out-of-date and under active development.*
+
 This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.
 
 ## Overview
@@ -96,6 +99,25 @@ rules:
 
 ## Deploying
 Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). 
+
+## Enable privileged Pods
+
+To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. `--allow-privileged` flag must be set to `true` for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, `kubeadm`).
+
+Ensure your API server are started with the privileged flag:
+
+```shell
+$ ./kube-apiserver ...  --allow-privileged=true ...
+```
+
+```shell
+$ ./kubelet ...  --allow-privileged=true ...
+```
+
+> Note: Starting from Kubernetes 1.13.0, --allow-privileged is true for kubelet. It'll be deprecated in future kubernetes releases.
+
+## Enabling mount propagation
+Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the [mount propagation docs][mount-propagation-docs] to find out how to enable this feature for your cluster.  [This page][docker-shared-mount] explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.
 
 ### Examples
 
