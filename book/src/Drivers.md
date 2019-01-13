@@ -31,7 +31,7 @@ Name | Status | More Information
 [Ember CSI](https://ember-csi.io) | v0.2.0 (alpha) | Multi-vendor CSI plugin supporting over 80 storage drivers to provide block and mount storage to Container Orchestration systems.
 [Nutanix](https://portal.nutanix.com/#/page/docs/details?targetId=CSI-Volume-Driver:CSI-Volume-Driver) | beta | A Container Storage Interface (CSI) Storage Driver for Nutanix
 [Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
-[GlusterFS](https://github.com/gluster/gluster-csi-driver) | Beta | A Container Storage Interface (CSI) Plugin for GlusterFS
+[GlusterFS](https://github.com/gluster/gluster-csi-driver) | v1.0.0 | A Container Storage Interface (CSI) Plugin for GlusterFS
 [Datera](https://github.com/Datera/kubernetes-driver)|v1.0.0|A Container Storage Interface (CSI) Storage Plugin for Datera Data Services Platform (DSP)
 [NexentaStor](https://github.com/Nexenta/nexentastor-csi-driver) | Beta | A Container Storage Interface (CSI) Driver for NexentaStor
 [Vault](https://github.com/kubevault/csi-driver) | Alpha | A Container Storage Interface (CSI) Plugin for HashiCorp Vault
