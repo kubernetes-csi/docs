@@ -36,6 +36,7 @@ Name | Status | More Information
 [NexentaStor](https://github.com/Nexenta/nexentastor-csi-driver) | Beta | A Container Storage Interface (CSI) Driver for NexentaStor
 [Vault](https://github.com/kubevault/csi-driver) | Alpha | A Container Storage Interface (CSI) Plugin for HashiCorp Vault
 [StorageOS](https://storageos.com/) | v1.0.0 | A Container Storage Interface (CSI) Plugin for StorageOS
+[MapR](https://github.com/mapr/mapr-csi) | v1.0.0 | A Container Storage Interface (CSI) Storage Plugin for MapR Data Platform
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
