@@ -39,6 +39,7 @@ Name | Status | More Information
 [Vault](https://github.com/kubevault/csi-driver) | Alpha | A Container Storage Interface (CSI) Plugin for HashiCorp Vault
 [StorageOS](https://storageos.com/) | v1.0.0 | A Container Storage Interface (CSI) Plugin for StorageOS
 [MapR](https://github.com/mapr/mapr-csi) | v1.0.0 | A Container Storage Interface (CSI) Storage Plugin for MapR Data Platform
+[XSKY](https://www.xsky.com/en/) | Beta | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) 
 
 ## Testing
 There are multiple ways to test your driver. Please see [Testing Drivers](Testing-Drivers.html) for more information.
