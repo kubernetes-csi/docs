@@ -231,7 +231,7 @@ In order to support topology-aware dynamic provisioning mechanisms available in 
 --feature-gates=Topology=true
 ```
 
-In addition, in the *Kubernetes cluster* the `CSINodeInfo` alpha feature must be enabled (refer to the [CSINodeInfo custom resource]{csinodeinfo-custom-resource-alpha} section for more info):
+In addition, in the *Kubernetes cluster* the `CSINodeInfo` alpha feature must be enabled (refer to the [CSINodeInfo custom resource](#csinodeinfo-custom-resource-alpha) section for more info):
 
 ```
 --feature-gates=CSINodeInfo=true
