@@ -181,14 +181,14 @@ To configure your driver using the registrar sidecar, you can configure the cont
       mountPath: /registration
 ...
 volumes:
+- hostPath:
+    path: /var/lib/kubelet/plugins/csi-hostpath
+    type: DirectoryOrCreate
   name: socket-dir
-  - hostPath:
-      path: /var/lib/kubelet/plugins/csi-hostpath
-      type: DirectoryOrCreate
+- hostPath:
+    path: /var/lib/kubelet/plugins_registry
+    type: Directory
   name: registration-dir
-  - hostPath:
-      path: /var/lib/kubelet/plugins_registry
-      type: Directory
 ```
 Where:
 
