@@ -1,4 +1,4 @@
-# CSI `external-attacher`
+# CSI external-attacher
 
 ## Status and Releases
 

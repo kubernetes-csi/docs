@@ -1,4 +1,4 @@
-# CSI `livenessprobe`
+# CSI livenessprobe
 
 ## Status and Releases
 

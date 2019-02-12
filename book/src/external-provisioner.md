@@ -1,4 +1,4 @@
-# CSI `external-provisioner`
+# CSI external-provisioner
 
 ## Status and Releases
 

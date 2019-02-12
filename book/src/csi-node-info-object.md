@@ -1,10 +1,10 @@
-# CSI CRD: `CSINodeInfo` Object
+# CSINodeInfo Object
 
 ## Status
 
 Alpha
 
-## What is the `CSINodeInfo` object?
+## What is the CSINodeInfo object?
 
 CSI drivers generate node specific information. Instead of storing this in the Kubernetes `Node` API Object, a new CSI specific Kubernetes CRD was created, the `CSINodeInfo` CRD.
 
@@ -18,7 +18,7 @@ It serves the following purposes:
   * The CSI `GetNodeInfo` call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to to do topology-aware provisioning (see [PVC Volume Binding Modes](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which `Node` label keys belong to a specific CSI driver, the kubelet stores the keys in the `CSINodeInfo` object for future reference.
 	
 
-## What fields does the `CSINodeInfo` object have?
+## What fields does the CSINodeInfo object have?
 
 Here is an example of a v1alpha1 `CSINodeInfo` object:
 
@@ -46,11 +46,11 @@ Where the fields mean:
 - `nodeID` - the assigned identifier for the node as determined by the driver.
 - `topologyKeys` - A list of topology keys assigned to the node as supported by the driver.
 
-## What creates the `CSINodeInfo` object?
+## What creates the CSINodeInfo object?
 
 CSI drivers do not need to create the `CSINodeInfo` object directly. As long as they use the [node-driver-registrar](node-driver-registrar.md) sidecar container, the kubelet will automatically populate the `CSINodeInfo` object for the CSI driver as part of kubelet plugin registration.
 
-### Enabling `CSINodeInfo`
+### Enabling CSINodeInfo
 
 The `CSINodeInfo` object is available as alpha starting with Kubernetes v1.12. Because it is an alpha feature, it is disabled by default.
 
