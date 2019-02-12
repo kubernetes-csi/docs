@@ -1,0 +1,223 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Pod Info on Mount - Kubernetes CSI Developer Documentation</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">var path_to_root = "";</script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.1.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="external-provisioner.html"><strong aria-hidden="true">2.1.1.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.1.2.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.1.3.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.1.4.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.1.5.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.1.6.</strong> livenessprobe</a></li></ol></li><li><a href="csi-crds.html"><strong aria-hidden="true">2.2.</strong> CSI CRDs</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.2.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-info-object.html"><strong aria-hidden="true">2.2.2.</strong> CSINodeInfo Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.3.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.3.1.</strong> Secrets &amp; Credentials</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.3.2.</strong> Volume Snapshot &amp; Restore</a></li><li><a href="topology.html"><strong aria-hidden="true">2.3.3.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.3.4.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.3.5.</strong> Skip Attach</a></li><li><a href="pod-info.html" class="active"><strong aria-hidden="true">2.3.6.</strong> Pod Info on Mount</a></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.3.7.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1> 
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <a class="header" href="#pod-info-on-mount" id="pod-info-on-mount"><h1>Pod Info on Mount</h1></a>
+<p><strong>Status:</strong> Alpha</p>
+<a class="header" href="#problem" id="problem"><h1>Problem</h1></a>
+<p>CSI avoids encoding Kubernetes specific information in to the specification, since it aims to support multiple orchestration systems (beyond just Kubernetes).</p>
+<p>This can be problematic because some CSI drivers require information about the workload (e.g. which pod is referencing this volume), and CSI does not provide this information natively to drivers.</p>
+<a class="header" href="#pod-info-on-mount-with-csi-driver-object" id="pod-info-on-mount-with-csi-driver-object"><h1>Pod Info on Mount with CSI Driver Object</h1></a>
+<p>The <a href="csi-driver-object.html">CSIDriver Object</a> enables CSI Drivers to specify how Kubernetes should interact with it.</p>
+<p>Specifically the <code>podInfoOnMountVersion</code> field instructs Kubernetes that the CSI driver requires additional pod information (like podName, podUID, etc.) during mount operations.</p>
+<p>For example, the existence of the following object would cause Kubernetes to add pod information at mount time to the <code>NodePublishVolumeRequest.volume_context</code> map.</p>
+<pre><code>apiVersion: csi.storage.k8s.io/v1alpha1
+kind: CSIDriver
+metadata:
+  name: testcsidriver.example.com
+spec:
+  podInfoOnMountVersion: v1
+</code></pre>
+<p>There is only one <code>podInfoOnMountVersion</code> version currently supported: <code>v1</code>.</p>
+<p>The value <code>v1</code> for <code>podInfoOnMountVersion</code> will result in the following key/values being added to <code>publish_context</code>:</p>
+<ul>
+<li><code>csi.storage.k8s.io/pod.name: {pod.Name}</code></li>
+<li><code>csi.storage.k8s.io/pod.namespace: {pod.Namespace}</code></li>
+<li><code>csi.storage.k8s.io/pod.uid: {pod.UID}</code></li>
+</ul>
+<p>The easiest way to use this feature is to deploy the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="skip-attach.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ephemeral-local-volumes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="skip-attach.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="ephemeral-local-volumes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>

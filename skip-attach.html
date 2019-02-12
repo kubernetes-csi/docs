@@ -3,9 +3,9 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Drivers - Kubernetes CSI Documentation</title>
+        <title>Skip Attach - Kubernetes CSI Developer Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="CSI support for Kubernetes">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="UsingCSIDriver.html"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li><a href="Deployment.html"><strong aria-hidden="true">2.2.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.3.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.4.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.5.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><ol class="section"><li><a href="Implement-Snapshot-Feature.html"><strong aria-hidden="true">3.1.1.</strong> Implement Snapshot Feature</a></li></ol></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html" class="active"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="Troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li><a href="References.html"><strong aria-hidden="true">5.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">6.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">6.1.</strong> Kubernetes 1.9</a></li><li><a href="Kubernetes-1.10.html"><strong aria-hidden="true">6.2.</strong> Kubernetes 1.10</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.1.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="external-provisioner.html"><strong aria-hidden="true">2.1.1.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.1.2.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.1.3.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.1.4.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.1.5.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.1.6.</strong> livenessprobe</a></li></ol></li><li><a href="csi-crds.html"><strong aria-hidden="true">2.2.</strong> CSI CRDs</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.2.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-info-object.html"><strong aria-hidden="true">2.2.2.</strong> CSINodeInfo Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.3.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.3.1.</strong> Secrets &amp; Credentials</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.3.2.</strong> Volume Snapshot &amp; Restore</a></li><li><a href="topology.html"><strong aria-hidden="true">2.3.3.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.3.4.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html" class="active"><strong aria-hidden="true">2.3.5.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.3.6.</strong> Pod Info on Mount</a></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.3.7.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -102,7 +102,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Kubernetes CSI Documentation</h1> 
+                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -136,40 +136,37 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#testing-csi-drivers" id="testing-csi-drivers"><h1>Testing CSI Drivers</h1></a>
-<p>There are multiple ways to test your driver, some still in development. This page will describe each of the multiple methods to test your driver.</p>
-<a class="header" href="#unit-testing" id="unit-testing"><h2>Unit Testing</h2></a>
-<p>There are multiple ways to test your driver. One way is to exercise every call by writing your own client for your unit tests as done in the <a href="https://github.com/libopenstorage/openstorage/tree/master/csi">Portworx driver</a>.</p>
-<p>Another way to test your driver is to use the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity"><code>sanity</code></a> package from <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a>. This simple package contains a single call which will test your driver according to the CSI specification. Here is an example of how it can be used:</p>
-<pre><code class="language-go">func TestMyDriver(t *testing.T) {
-    // Setup the full driver and its environment
-    ... setup driver ...
-
-    // Now call the test suite
-    sanity.Test(t, driverEndpointAddress)
-}
+                        <a class="header" href="#skip-kubernetes-attach-and-detach" id="skip-kubernetes-attach-and-detach"><h1>Skip Kubernetes Attach and Detach</h1></a>
+<p><strong>Status:</strong> Alpha</p>
+<a class="header" href="#problem" id="problem"><h1>Problem</h1></a>
+<p>Volume drivers, like NFS, for example, have no concept of an attach (<code>ControllerPublishVolume</code>). However, Kubernetes always executes <code>Attach</code> and <code>Detach</code> operations even if the CSI driver does not implement an attach operation (i.e. even if the CSI Driver does not implement a <code>ControllerPublishVolume</code> call).</p>
+<p>This was problematic because it meant <em>all</em> CSI drivers had to handle Kubernetes attachment. CSI Drivers that did not implement the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability could work around this by deploying an <a href="external-attacher.html">external-attacher</a> and the <code>external-attacher</code> would responds to Kubernetes attach operations and simply do a noop (because the CSI driver did not advertise the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability).</p>
+<p>Although the workaround works, it adds an unnecessary operation (round-trip) in the preparation of a volume for a container, and requires CSI Drivers to deploy an unnecessary sidecar container (<code>external-attacher</code>).</p>
+<a class="header" href="#skip-attach-with-csi-driver-object" id="skip-attach-with-csi-driver-object"><h1>Skip Attach with CSI Driver Object</h1></a>
+<p>The <a href="csi-driver-object.html">CSIDriver Object</a> enables CSI Drivers to specify how Kubernetes should interact with it.</p>
+<p>Specifically the <code>attachRequired</code> field instructs Kubernetes to skip any attach operation altogether.</p>
+<p>For example, the existence of the following object would cause Kubernetes to skip attach operations for all CSI Driver <code>testcsidriver.example.com</code> volumes.</p>
+<pre><code>apiVersion: csi.storage.k8s.io/v1alpha1
+kind: CSIDriver
+metadata:
+  name: testcsidriver.example.com
+spec:
+  attachRequired: false
 </code></pre>
-<a class="header" href="#functional-testing" id="functional-testing"><h2>Functional Testing</h2></a>
-<p>For functional testing you can again provide your own model, or some of the following tools:</p>
-<a class="header" href="#csi-sanity" id="csi-sanity"><h3>csi-sanity</h3></a>
-<p><a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a> is a program from <a href="https://github.com/kubernetes-csi/csi-test">csi-test</a> which tests your driver based on the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity"><code>sanity</code></a> package.</p>
-<p>Here is a sample way to use it:</p>
-<pre><code>$ csi-sanity --ginkgo.v --csi.endpoint=&lt;your csi driver endpoint&gt;
-</code></pre>
-<p>For more information please see <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a></p>
+<p>The easiest way to use this feature is to deploy the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="Testing-Clients.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="raw-block.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="Troubleshooting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="pod-info.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -181,13 +178,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="Testing-Clients.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="raw-block.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="Troubleshooting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="pod-info.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

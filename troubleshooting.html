@@ -3,9 +3,9 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Using a CSI Driver - Kubernetes CSI Documentation</title>
+        <title>Troubleshooting - Kubernetes CSI Developer Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="CSI support for Kubernetes">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
 
@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="Home.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="UsingCSIDriver.html" class="active"><strong aria-hidden="true">2.</strong> Using a CSI Driver</a></li><li><ol class="section"><li><a href="Setup.html"><strong aria-hidden="true">2.1.</strong> Setup</a></li><li><a href="Deployment.html"><strong aria-hidden="true">2.2.</strong> Deployment</a></li><li><a href="Drivers.html"><strong aria-hidden="true">2.3.</strong> Drivers</a></li><li><a href="Usage.html"><strong aria-hidden="true">2.4.</strong> Usage</a></li><li><a href="Example.html"><strong aria-hidden="true">2.5.</strong> Example</a></li></ol></li><li><a href="Development.html"><strong aria-hidden="true">3.</strong> Development</a></li><li><ol class="section"><li><a href="CSI-Driver.html"><strong aria-hidden="true">3.1.</strong> Developing a CSI driver</a></li><li><ol class="section"><li><a href="Implement-Snapshot-Feature.html"><strong aria-hidden="true">3.1.1.</strong> Implement Snapshot Feature</a></li></ol></li><li><a href="CSI-Kubernetes.html"><strong aria-hidden="true">3.2.</strong> Deploying in Kubernetes</a></li><li><a href="Testing.html"><strong aria-hidden="true">3.3.</strong> Testing</a></li><li><ol class="section"><li><a href="Testing-Clients.html"><strong aria-hidden="true">3.3.1.</strong> Clients</a></li><li><a href="Testing-Drivers.html"><strong aria-hidden="true">3.3.2.</strong> Drivers</a></li></ol></li></ol></li><li><a href="Troubleshooting.html"><strong aria-hidden="true">4.</strong> Troubleshooting</a></li><li><a href="References.html"><strong aria-hidden="true">5.</strong> References</a></li><li><a href="Archive.html"><strong aria-hidden="true">6.</strong> Archive</a></li><li><ol class="section"><li><a href="Kubernetes-1.9.html"><strong aria-hidden="true">6.1.</strong> Kubernetes 1.9</a></li><li><a href="Kubernetes-1.10.html"><strong aria-hidden="true">6.2.</strong> Kubernetes 1.10</a></li></ol></li></ol>
+            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.1.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="external-provisioner.html"><strong aria-hidden="true">2.1.1.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.1.2.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.1.3.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.1.4.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.1.5.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.1.6.</strong> livenessprobe</a></li></ol></li><li><a href="csi-crds.html"><strong aria-hidden="true">2.2.</strong> CSI CRDs</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.2.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-info-object.html"><strong aria-hidden="true">2.2.2.</strong> CSINodeInfo Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.3.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.3.1.</strong> Secrets &amp; Credentials</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.3.2.</strong> Volume Snapshot &amp; Restore</a></li><li><a href="topology.html"><strong aria-hidden="true">2.3.3.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.3.4.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.3.5.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.3.6.</strong> Pod Info on Mount</a></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.3.7.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html" class="active"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -102,7 +102,7 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Kubernetes CSI Documentation</h1> 
+                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
@@ -136,31 +136,49 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#using-csi-drivers" id="using-csi-drivers"><h1>Using CSI Drivers</h1></a>
-<p>Before you can start using CSI, you must understand how to properly setup and configure deploy CSI drivers on top of Kubernetes.  This section provides information on</p>
+                        <a class="header" href="#troubleshooting" id="troubleshooting"><h1>Troubleshooting</h1></a>
+<a class="header" href="#known-issues" id="known-issues"><h1>Known Issues</h1></a>
 <ul>
-<li><a href="Setup.html">Setup</a> - Information on how to setup the CSI feature</li>
-<li><a href="Deployment.html">Deployment</a> - Instructions on deploying a driver</li>
-<li><a href="Drivers.html">Drivers</a> - A growning list of available CSI driverse you can use</li>
-<li><a href="Usage.html">Usage</a> - Findout the usage mode of CSI drivers</li>
-<li><a href="Example.html">Example</a> - Using Hostpath as an example CSI driver</li>
-<li><a href="Known-Issues.html">Known Issues</a> - List of known issues</li>
+<li>[<a href="https://github.com/kubernetes/minikube/issues/3378">minikube-3378</a>]: Volume mount causes minikube VM to become corrupted</li>
 </ul>
+<a class="header" href="#common-errors" id="common-errors"><h1>Common Errors</h1></a>
+<a class="header" href="#node-plugin-pod-does-not-start-with-runcontainererror-status" id="node-plugin-pod-does-not-start-with-runcontainererror-status"><h3>Node plugin pod does not start with <em>RunContainerError</em> status</h3></a>
+<p><code>kubectl describe pod your-nodeplugin-pod</code> shows:</p>
+<pre><code>failed to start container &quot;your-driver&quot;: Error response from daemon:
+linux mounts: Path /var/lib/kubelet/pods is mounted on / but it is not a shared mount
+</code></pre>
+<p>Your Docker host is not configured to allow shared mounts. Take a look at <a href="https://docs.portworx.com/knowledgebase/shared-mount-propagation.html">this page</a> for instructions to enable them.</p>
+<a class="header" href="#external-attacher-cant-find-volumeattachments" id="external-attacher-cant-find-volumeattachments"><h3>External attacher can't find <em>VolumeAttachments</em></h3></a>
+<p>If you have a Kubernetes 1.9 cluster, not being able to list <em>VolumeAttachment</em>
+and the following error are due to the lack of the
+<code>storage.k8s.io/v1alpha1=true</code> runtime configuration:</p>
+<pre><code>$ kubectl logs csi-pod external-attacher
+...
+I0306 16:34:50.976069       1 reflector.go:240] Listing and watching *v1alpha1.VolumeAttachment from github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86
+
+E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/external-attacher/vendor/k8s.io/client-go/informers/factory.go:86: Failed to list *v1alpha1.VolumeAttachment: the server could not find the requested resource
+...
+</code></pre>
+<p>Please see the <a href="Kubernetes-1.9.html">Kubernetes 1.9</a> page.</p>
+<a class="header" href="#problems-with-the-external-components" id="problems-with-the-external-components"><h3>Problems with the external components</h3></a>
+<p>The external components images are under active development. It can
+happen that they become incompatible with each other. If the
+issues above above have been ruled out, <a href="https://github.com/kubernetes/community/tree/master/sig-storage">contact the sig-storage
+team</a> and/or
+<a href="https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#local-clusters">run the e2e test</a>:</p>
+<pre><code>go run hack/e2e.go -- --provider=local --test --test_args=&quot;--ginkgo.focus=Feature:CSI&quot;
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="Home.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="drivers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
-                        
-                            <a rel="next" href="Setup.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
-                            </a>
                         
 
                         <div style="clear: both"></div>
@@ -170,15 +188,11 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="Home.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="drivers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
-                
-                    <a href="Setup.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
-                    </a>
                 
             </nav>
 
