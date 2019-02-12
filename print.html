@@ -300,7 +300,7 @@ Also see the <a href="features.html">Features</a> section to understand how a fe
 <li><a href="cluster-driver-registrar.html">cluster-driver-registrar</a></li>
 <li><a href="livenessprobe.html">livenessprobe</a></li>
 </ul>
-<a class="header" href="#csi-external-provisioner" id="csi-external-provisioner"><h1>CSI <code>external-provisioner</code></h1></a>
+<a class="header" href="#csi-external-provisioner" id="csi-external-provisioner"><h1>CSI external-provisioner</h1></a>
 <a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-provisioner</p>
 <p><strong>Status:</strong> GA/Stable</p>
@@ -349,7 +349,7 @@ parameters:
 <p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md.</p>
 <a class="header" href="#deployment" id="deployment"><h2>Deployment</h2></a>
 <p>The CSI <code>external-provisioner</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
-<a class="header" href="#csi-external-attacher" id="csi-external-attacher"><h1>CSI <code>external-attacher</code></h1></a>
+<a class="header" href="#csi-external-attacher" id="csi-external-attacher"><h1>CSI external-attacher</h1></a>
 <a class="header" href="#status-and-releases-1" id="status-and-releases-1"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-attacher</p>
 <p><strong>Status:</strong> GA/Stable</p>
@@ -364,7 +364,7 @@ parameters:
 <p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-attacher/blob/master/README.md.</p>
 <a class="header" href="#deployment-1" id="deployment-1"><h2>Deployment</h2></a>
 <p>The CSI <code>external-attacher</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
-<a class="header" href="#csi-external-snapshotter" id="csi-external-snapshotter"><h1>CSI <code>external-snapshotter</code></h1></a>
+<a class="header" href="#csi-external-snapshotter" id="csi-external-snapshotter"><h1>CSI external-snapshotter</h1></a>
 <a class="header" href="#status-and-releases-2" id="status-and-releases-2"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-snapshotter</p>
 <p><strong>Status:</strong> Alpha</p>
@@ -383,7 +383,7 @@ parameters:
 <a class="header" href="#deployment-2" id="deployment-2"><h2>Deployment</h2></a>
 <p>The CSI <code>external-snapshotter</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
 <p>For an example deployment, see <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/setup-csi-snapshotter.yaml">this example</a> which deploys <code>external-snapshotter</code> and <code>external-provisioner</code> with the Hostpath CSI driver.</p>
-<a class="header" href="#csi-node-driver-registrar" id="csi-node-driver-registrar"><h1>CSI <code>node-driver-registrar</code></h1></a>
+<a class="header" href="#csi-node-driver-registrar" id="csi-node-driver-registrar"><h1>CSI node-driver-registrar</h1></a>
 <a class="header" href="#status-and-releases-3" id="status-and-releases-3"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/node-driver-registrar</p>
 <p><strong>Status:</strong> GA/Stable</p>
@@ -398,7 +398,7 @@ parameters:
 <p>For detailed information (binary parameters, etc.), see the README of the relevant branch.</p>
 <a class="header" href="#deployment-3" id="deployment-3"><h2>Deployment</h2></a>
 <p>The CSI <code>node-driver-registrar</code> is deployed per node. See <a href="deploying.html">deployment section</a> for more details.</p>
-<a class="header" href="#csi-cluster-driver-registrar" id="csi-cluster-driver-registrar"><h1>CSI <code>cluster-driver-registrar</code></h1></a>
+<a class="header" href="#csi-cluster-driver-registrar" id="csi-cluster-driver-registrar"><h1>CSI cluster-driver-registrar</h1></a>
 <a class="header" href="#status-and-releases-4" id="status-and-releases-4"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/cluster-driver-registrar</p>
 <p><strong>Status:</strong> Alpha</p>
@@ -426,7 +426,7 @@ parameters:
 <p>For detailed information (binary parameters, etc.), see the README of the relevant branch.</p>
 <a class="header" href="#deployment-4" id="deployment-4"><h2>Deployment</h2></a>
 <p>The CSI <code>cluster-driver-registrar</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
-<a class="header" href="#csi-livenessprobe" id="csi-livenessprobe"><h1>CSI <code>livenessprobe</code></h1></a>
+<a class="header" href="#csi-livenessprobe" id="csi-livenessprobe"><h1>CSI livenessprobe</h1></a>
 <a class="header" href="#status-and-releases-5" id="status-and-releases-5"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/livenessprobe</p>
 <p><strong>Status:</strong> GA/Stable</p>
@@ -453,10 +453,10 @@ parameters:
 <p>The CRDs are automatically deployed on Kubernetes via a Kubernetes Storage CRD addon https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/storage-crds. Ensure your Kubernetes Cluster deployment mechanisms (kops, etc.) enable the addon and/or installs the CRDs.</p>
 <p>To verify the CRDs are installed, issue the following commands: <code>kubectl get crd</code>. Verify the result includes the CRDs. If deployment does not automatically install the CRD, CRDs may be manually installed via <code>kubectl create -f {file}.yaml</code> using the files <a href="https://github.com/kubernetes/csi-api/tree/master/pkg/crd/manifests">here</a>.</p>
 <p>The schema definition for the custom resources (CRs) can be found here: https://github.com/kubernetes/csi-api/blob/master/pkg/apis/csi/v1alpha1/types.go</p>
-<a class="header" href="#csi-crd-csidriver-object" id="csi-crd-csidriver-object"><h1>CSI CRD: <code>CSIDriver</code> Object</h1></a>
+<a class="header" href="#csidriver-object" id="csidriver-object"><h1>CSIDriver Object</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
 <p>Alpha</p>
-<a class="header" href="#what-is-the-csidriver-object" id="what-is-the-csidriver-object"><h2>What is the <code>CSIDriver</code> object?</h2></a>
+<a class="header" href="#what-is-the-csidriver-object" id="what-is-the-csidriver-object"><h2>What is the CSIDriver object?</h2></a>
 <p>The <code>CSIDriver</code> Kubernetes API object serves two purposes:</p>
 <ol>
 <li>Simplify driver discovery</li>
@@ -515,9 +515,9 @@ spec:
 </ul>
 </li>
 </ul>
-<a class="header" href="#what-creates-the-csidriver-object" id="what-creates-the-csidriver-object"><h2>What creates the <code>CSIDriver</code> object?</h2></a>
+<a class="header" href="#what-creates-the-csidriver-object" id="what-creates-the-csidriver-object"><h2>What creates the CSIDriver object?</h2></a>
 <p>CSI drivers do not need to create the <code>CSIDriver</code> object directly. Instead they may use the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container (customizing it as needed with startup parameters) -- when deployed with a CSI driver it automatically creates a <code>CSIDriver</code> CR representing the driver.</p>
-<a class="header" href="#enabling-csidriver" id="enabling-csidriver"><h3>Enabling <code>CSIDriver</code></h3></a>
+<a class="header" href="#enabling-csidriver" id="enabling-csidriver"><h3>Enabling CSIDriver</h3></a>
 <p>The <code>CSIDriver</code> object is available as alpha starting with Kubernetes v1.12. Because it is an alpha feature, it is disabled by default.
 It is planned to be moved to beta in Kubernetes v1.14 and enabled by default.</p>
 <p>To enable the use of <code>CSIDriver</code> on Kubernetes, do the following:</p>
@@ -552,10 +552,10 @@ Spec:
   Pod Info On Mount Version:
 Events:                       &lt;none&gt;
 </code></pre>
-<a class="header" href="#csi-crd-csinodeinfo-object" id="csi-crd-csinodeinfo-object"><h1>CSI CRD: <code>CSINodeInfo</code> Object</h1></a>
+<a class="header" href="#csinodeinfo-object" id="csinodeinfo-object"><h1>CSINodeInfo Object</h1></a>
 <a class="header" href="#status-1" id="status-1"><h2>Status</h2></a>
 <p>Alpha</p>
-<a class="header" href="#what-is-the-csinodeinfo-object" id="what-is-the-csinodeinfo-object"><h2>What is the <code>CSINodeInfo</code> object?</h2></a>
+<a class="header" href="#what-is-the-csinodeinfo-object" id="what-is-the-csinodeinfo-object"><h2>What is the CSINodeInfo object?</h2></a>
 <p>CSI drivers generate node specific information. Instead of storing this in the Kubernetes <code>Node</code> API Object, a new CSI specific Kubernetes CRD was created, the <code>CSINodeInfo</code> CRD.</p>
 <p>It serves the following purposes:</p>
 <ol>
@@ -576,7 +576,7 @@ Events:                       &lt;none&gt;
 <ul>
 <li>The CSI <code>GetNodeInfo</code> call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to to do topology-aware provisioning (see <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode">PVC Volume Binding Modes</a> for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which <code>Node</code> label keys belong to a specific CSI driver, the kubelet stores the keys in the <code>CSINodeInfo</code> object for future reference.</li>
 </ul>
-<a class="header" href="#what-fields-does-the-csinodeinfo-object-have" id="what-fields-does-the-csinodeinfo-object-have"><h2>What fields does the <code>CSINodeInfo</code> object have?</h2></a>
+<a class="header" href="#what-fields-does-the-csinodeinfo-object-have" id="what-fields-does-the-csinodeinfo-object-have"><h2>What fields does the CSINodeInfo object have?</h2></a>
 <p>Here is an example of a v1alpha1 <code>CSINodeInfo</code> object:</p>
 <pre><code class="language-YAML">apiVersion: csi.storage.k8s.io/v1alpha1
 kind: CSINodeInfo
@@ -600,9 +600,9 @@ status:
 <li><code>nodeID</code> - the assigned identifier for the node as determined by the driver.</li>
 <li><code>topologyKeys</code> - A list of topology keys assigned to the node as supported by the driver.</li>
 </ul>
-<a class="header" href="#what-creates-the-csinodeinfo-object" id="what-creates-the-csinodeinfo-object"><h2>What creates the <code>CSINodeInfo</code> object?</h2></a>
+<a class="header" href="#what-creates-the-csinodeinfo-object" id="what-creates-the-csinodeinfo-object"><h2>What creates the CSINodeInfo object?</h2></a>
 <p>CSI drivers do not need to create the <code>CSINodeInfo</code> object directly. As long as they use the <a href="node-driver-registrar.html">node-driver-registrar</a> sidecar container, the kubelet will automatically populate the <code>CSINodeInfo</code> object for the CSI driver as part of kubelet plugin registration.</p>
-<a class="header" href="#enabling-csinodeinfo" id="enabling-csinodeinfo"><h3>Enabling <code>CSINodeInfo</code></h3></a>
+<a class="header" href="#enabling-csinodeinfo" id="enabling-csinodeinfo"><h3>Enabling CSINodeInfo</h3></a>
 <p>The <code>CSINodeInfo</code> object is available as alpha starting with Kubernetes v1.12. Because it is an alpha feature, it is disabled by default.</p>
 <p>To enable use of <code>CSINodeInfo</code> on Kubernetes, do the following:</p>
 <ol>
@@ -936,7 +936,7 @@ spec:
 <li><code>csi.storage.k8s.io/pod.uid: {pod.UID}</code></li>
 </ul>
 <p>The easiest way to use this feature is to deploy the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
-<a class="header" href="#csi-topology-feature-1" id="csi-topology-feature-1"><h1>CSI Topology Feature</h1></a>
+<a class="header" href="#ephemeral-local-volumes" id="ephemeral-local-volumes"><h1>Ephemeral Local Volumes</h1></a>
 <blockquote>
 <a class="header" href="#this-page-is-still-under-active-development-2" id="this-page-is-still-under-active-development-2"><h2><em>This page is still under active development.</em></h2></a>
 </blockquote>

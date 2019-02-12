@@ -136,10 +136,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#csi-crd-csidriver-object" id="csi-crd-csidriver-object"><h1>CSI CRD: <code>CSIDriver</code> Object</h1></a>
+                        <a class="header" href="#csidriver-object" id="csidriver-object"><h1>CSIDriver Object</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
 <p>Alpha</p>
-<a class="header" href="#what-is-the-csidriver-object" id="what-is-the-csidriver-object"><h2>What is the <code>CSIDriver</code> object?</h2></a>
+<a class="header" href="#what-is-the-csidriver-object" id="what-is-the-csidriver-object"><h2>What is the CSIDriver object?</h2></a>
 <p>The <code>CSIDriver</code> Kubernetes API object serves two purposes:</p>
 <ol>
 <li>Simplify driver discovery</li>
@@ -198,9 +198,9 @@ spec:
 </ul>
 </li>
 </ul>
-<a class="header" href="#what-creates-the-csidriver-object" id="what-creates-the-csidriver-object"><h2>What creates the <code>CSIDriver</code> object?</h2></a>
+<a class="header" href="#what-creates-the-csidriver-object" id="what-creates-the-csidriver-object"><h2>What creates the CSIDriver object?</h2></a>
 <p>CSI drivers do not need to create the <code>CSIDriver</code> object directly. Instead they may use the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container (customizing it as needed with startup parameters) -- when deployed with a CSI driver it automatically creates a <code>CSIDriver</code> CR representing the driver.</p>
-<a class="header" href="#enabling-csidriver" id="enabling-csidriver"><h3>Enabling <code>CSIDriver</code></h3></a>
+<a class="header" href="#enabling-csidriver" id="enabling-csidriver"><h3>Enabling CSIDriver</h3></a>
 <p>The <code>CSIDriver</code> object is available as alpha starting with Kubernetes v1.12. Because it is an alpha feature, it is disabled by default.
 It is planned to be moved to beta in Kubernetes v1.14 and enabled by default.</p>
 <p>To enable the use of <code>CSIDriver</code> on Kubernetes, do the following:</p>
