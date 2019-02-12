@@ -1,0 +1,26 @@
+# CSI `livenessprobe`
+
+## Status and Releases
+
+**Git Repository:** https://github.com/kubernetes-csi/livenessprobe
+
+**Status:** GA/Stable
+
+Latests stable release | Branch | Compatible with CSI Version | Container Image | Min k8s Version | Max k8s version
+--|--|--|--|--|--
+[livenessprobe v1.0.2](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.0.2) | [release-1.0](https://github.com/kubernetes-csi/livenessprobe/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | quay.io/k8scsi/livenessprobe:v1.0.2 | v1.13 | -
+Unsupported. | No 0.x branch. | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/livenessprobe:v0.4.1 | v1.10 | -
+
+## Description
+
+The CSI `livenessprobe` is a sidecar container that monitors the health of the CSI driver and reports it to Kubernetes via the [Liveness Probe mechanism](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/). This enables Kubernetes to automatically detect issues with the driver and restart the pod to try and fix the issue.
+
+## Usage
+
+All CSI drivers should use the liveness probe to improve the availability of the driver while deployed on Kubernetes.
+
+For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md.
+
+## Deployment
+
+The CSI `livenessprobe` is deployed as part of controller and node deployments. See [deployment section](deploying.md) for more details.

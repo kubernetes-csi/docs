@@ -1,7 +1,7 @@
 [book]
-title = "Kubernetes CSI Documentation"
-description = "CSI support for Kubernetes"
-authors = ["Luis Pabón", "Contributions from the Kubernetes and CSI Community"]
+title = "Kubernetes CSI Developer Documentation"
+description = "This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes."
+authors = ["The Kubernetes Authors"]
 
 [build]
 build-dir = "../docs"

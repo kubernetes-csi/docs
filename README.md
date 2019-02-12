@@ -1,16 +1,12 @@
 # Kubernetes-CSI Documentation
-Welcome to the Kubernets-CSI documentation reposotiory. Here you will find information on how to use, develop, and deploy CSI plugins, or drivers, with Kubernetes.
 
-This is the repository for the book published on [kubernetes-csi.github.io/docs](https://kubernetes-csi.github.io/docs/). The sources for the book are in the `book/` and it is setup to use [mdbook](https://github.com/rust-lang-nursery/mdBook).
+This repository contains documentation capturing how to develop and deploy a [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md) (CSI) driver on Kubernetes.
 
-The `docs/` directory is the output of the book and the root of the published website. 
+To access the documentation go to: [kubernetes-csi.github.io/docs](https://kubernetes-csi.github.io/docs/)
 
-## Generate the Book
-`docs/` is created by running `mdbook build` from the `book/` directory. Alternatively, you can use docker to generate `docs/` using following command:
+To make changes to the documentation, modify the files in [book/src](https://github.com/kubernetes-csi/docs/tree/master/book/src) and submit a new PR.
 
-```
-docker run --rm -v $(pwd):/data -u $(id -u):$(id -g) -it chengpan/mdbook:0.2.1 mdbook build ./book
-```
+Once the PR is reviewed and merged, the CI will automatically generate (using [mdbook](https://github.com/rust-lang-nursery/mdBook)) the HTML to serve and check it in to [src/_book](https://github.com/kubernetes-csi/docs/tree/master/book/src/_book).
 
 ## Community, discussion, contribution, and support
 
