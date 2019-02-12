@@ -1,10 +1,10 @@
-# CSI CRD: `CSIDriver` Object
+# CSIDriver Object
 
 ## Status
 
 Alpha
 
-## What is the `CSIDriver` object?
+## What is the CSIDriver object?
 
 The `CSIDriver` Kubernetes API object serves two purposes:
 
@@ -47,11 +47,11 @@ There are three important fields:
 	  * `csi.storage.k8s.io/pod.uid": string(pod.UID)`
   * For more information see [Pod Info on Mount](pod-info.md).
 
-## What creates the `CSIDriver` object?
+## What creates the CSIDriver object?
 
 CSI drivers do not need to create the `CSIDriver` object directly. Instead they may use the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container (customizing it as needed with startup parameters) -- when deployed with a CSI driver it automatically creates a `CSIDriver` CR representing the driver.
 
-### Enabling `CSIDriver`
+### Enabling CSIDriver
 
 The `CSIDriver` object is available as alpha starting with Kubernetes v1.12. Because it is an alpha feature, it is disabled by default.
 It is planned to be moved to beta in Kubernetes v1.14 and enabled by default.

@@ -1,4 +1,4 @@
-# CSI `cluster-driver-registrar`
+# CSI cluster-driver-registrar
 
 ## Status and Releases
 

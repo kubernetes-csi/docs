@@ -1,4 +1,4 @@
-# CSI `node-driver-registrar`
+# CSI node-driver-registrar
 
 ## Status and Releases
 

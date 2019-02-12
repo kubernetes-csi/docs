@@ -1,4 +1,4 @@
-# CSI `external-snapshotter`
+# CSI external-snapshotter
 
 ## Status and Releases
 
