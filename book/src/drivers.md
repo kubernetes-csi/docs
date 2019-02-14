@@ -15,7 +15,7 @@ Name | Status | More Information
 [AWS FSx for Lustre](https://github.com/aws/aws-fsx-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS FSx for Lustre (EBS)
 [Azure disk](https://github.com/andyzhangx/azuredisk-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure disk
 [Azure file](https://github.com/andyzhangx/azurefile-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure file
-[CephFS](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
+[CephFS](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
 [Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
 [Datera](https://github.com/Datera/kubernetes-driver)|v1.0.0|A Container Storage Interface (CSI) Storage Plugin for Datera Data Services Platform (DSP)
 [DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.4.0 | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
@@ -33,7 +33,7 @@ Name | Status | More Information
 [OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
 [Portworx](https://portworx.com/) | 0.3.0 | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
 [Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
-[RBD](https://github.com/ceph/ceph-csi)|v0.2.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
+[RBD](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
 [StorageOS](https://storageos.com/) | v1.0.0 | A Container Storage Interface (CSI) Plugin for StorageOS
 [XSKY](https://www.xsky.com/en/) | Beta | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) 
