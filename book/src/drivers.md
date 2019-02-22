@@ -24,6 +24,7 @@ Name | Status | More Information
 [GCE Persistent Disk](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)|Beta|A Container Storage Interface (CSI) Storage Plugin for Google Compute Engine Persistent Disk (GCE PD)
 [Google Cloud Filestore](https://github.com/kubernetes-sigs/gcp-filestore-csi-driver)|Alpha|A Container Storage Interface (CSI) Storage Plugin for Google Cloud Filestore
 [GlusterFS](https://github.com/gluster/gluster-csi-driver) | v1.0.0 | A Container Storage Interface (CSI) Plugin for GlusterFS
+[Hitachi Vantara](https://knowledge.hitachivantara.com/Documents/Adapters_and_Drivers/Storage_Adapters_and_Drivers/Containers) | v2.0 | A Container Storage Interface (CSI) Plugin for VSP series Storage
 [Linode Block Storage](https://github.com/linode/linode-blockstorage-csi-driver) | v0.0.3 | A Container Storage Interface (CSI) Driver for Linode Block Storage 
 [MapR](https://github.com/mapr/mapr-csi) | v1.0.0 | A Container Storage Interface (CSI) Storage Plugin for MapR Data Platform
 [MooseFS](https://github.com/moosefs/moosefs-csi)|v0.0.1 (alpha)|A Container Storage Interface (CSI) Storage Plugin for [MooseFS](https://moosefs.com/) clusters.
