@@ -34,6 +34,8 @@ Name | Status | More Information
 [Nutanix](https://portal.nutanix.com/#/page/docs/details?targetId=CSI-Volume-Driver:CSI-Volume-Driver) | beta | A Container Storage Interface (CSI) Storage Driver for Nutanix
 [OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
 [Portworx](https://portworx.com/) | 0.3.0 | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
+[QingCloud CSI](https://github.com/yunify/qingcloud-csi) | v0.2.1 | A Container Storage Interface (CSI) Plugin for QingCloud Block Storage
+[QingStor CSI](https://github.com/yunify/qingstor-csi) | v0.3.0 | A Container Storage Interface (CSI) Plugin for NeonSAN storage system
 [Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
 [RBD](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
