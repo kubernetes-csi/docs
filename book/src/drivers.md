@@ -50,5 +50,5 @@ Name | Status | More Information
 [HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | v0.2.0 | Only use for a single node tests. See the [Example](Example.html) page for Kubernetes-specific instructions.
 [In-memory Sample Mock Driver](https://github.com/kubernetes-csi/csi-test/tree/master/mock/service) | v0.3.0 | The sample mock driver used for [csi-sanity](https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity)
 [NFS](https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs) | Sample |
-[Synology NAS](https://github.com/jparklab/synology-csi) | v1.0.0 | A Container Storage Interface Driver for Synology NAS.
+[Synology NAS](https://github.com/jparklab/synology-csi) | v1.0.0 | An unofficial (and unsupported) Container Storage Interface Driver for Synology NAS.
 [VFS Driver](https://github.com/thecodeteam/csi-vfs) | Released | A CSI plugin that provides a virtual file system.
