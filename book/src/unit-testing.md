@@ -9,4 +9,4 @@ This package can be used in two modes:
 * Via a Golang test framework (`sanity` package is imported as a dependency)
 * Via a command line against your driver binary.
 
-Read the documentation at https://github.com/kubernetes-csi/csi-test/blob/master/pkg/sanity/README.md for more details.
+Read the [documentation of the `sanity` package](https://github.com/kubernetes-csi/csi-test/blob/master/pkg/sanity/README.md) for more details.
