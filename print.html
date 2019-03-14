@@ -1518,7 +1518,7 @@ pvc-77324684-c717-11e8-8911-000c2967769a   1Gi        RWO            Delete     
 <li>Via a Golang test framework (<code>sanity</code> package is imported as a dependency)</li>
 <li>Via a command line against your driver binary.</li>
 </ul>
-<p>Read the documentation at https://github.com/kubernetes-csi/csi-test/blob/master/pkg/sanity/README.md for more details.</p>
+<p>Read the <a href="https://github.com/kubernetes-csi/csi-test/blob/master/pkg/sanity/README.md">documentation of the <code>sanity</code> package</a> for more details.</p>
 <a class="header" href="#functional-testing" id="functional-testing"><h1>Functional Testing</h1></a>
 <p>Some functional testing of your CSI driver can be done via the CLI mode of the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity">CSI <code>sanity</code></a> package.</p>
 <p>Drivers should also be functionally &quot;end-to-end&quot; tested while deployed in a Kubernetes cluster. Currently how to do this and what tests to run is left up to driver authors. In the future, a project (currently in development) aims to enable use of a pre-built <code>kubernetes/e2e/e2e.test</code> binary containing a standard set of Kubernetes CSI end-to-end tests to be imported and run by third party CSI drivers. This documentation will be updated with more information once that is ready to use.</p>
