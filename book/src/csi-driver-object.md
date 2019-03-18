@@ -49,7 +49,7 @@ There are three important fields:
 
 ## What creates the CSIDriver object?
 
-CSI drivers do not need to create the `CSIDriver` object directly. Instead they may use the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container (customizing it as needed with startup parameters) -- when deployed with a CSI driver it automatically creates a `CSIDriver` CR representing the driver.
+CSI drivers do not need to create the `CSIDriver` object directly. Instead they may use the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container (customizing it as needed with startup parameters) -- when deployed with a CSI driver it automatically creates a `CSIDriver` CRD representing the driver.
 
 ### Enabling CSIDriver
 
