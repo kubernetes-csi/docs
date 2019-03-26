@@ -16,7 +16,7 @@ Name | Status | More Information
 [Azure disk](https://github.com/andyzhangx/azuredisk-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure disk
 [Azure file](https://github.com/andyzhangx/azurefile-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure file
 [CephFS](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
-[Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
+[Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
 [Datera](https://github.com/Datera/kubernetes-driver)|v1.0.0|A Container Storage Interface (CSI) Storage Plugin for Datera Data Services Platform (DSP)
 [DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.4.0 | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
 [DriveScale](https://github.com/DriveScale/k8s-plugins)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for DriveScale software composable infrastructure solution
