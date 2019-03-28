@@ -10,13 +10,13 @@ Name | Status | More Information
 [Alicloud Elastic Block Storage](https://github.com/AliyunContainerService/csi-plugin) | v1.0.0 |A Container Storage Interface (CSI) Storage Plug-in for Alicloud Elastic Block Storage
 [Alicloud Elastic File System](https://github.com/AliyunContainerService/csi-plugin)| v1.0.0 |A Container Storage Interface (CSI) Storage Plug-in for Alicloud Elastic File System
 [Alicloud OSS](https://github.com/AliyunContainerService/csi-plugin)| v1.0.0 |A Container Storage Interface (CSI) Storage Plug-in for Alicloud OSS
-[AWS Elastic Block Storage](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) | v0.2.0 | A Container Storage Interface (CSI) Driver for AWS Elastic Block Storage (EBS)
+[AWS Elastic Block Storage](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) | v0.3.0 | A Container Storage Interface (CSI) Driver for AWS Elastic Block Storage (EBS)
 [AWS Elastic File System](https://github.com/aws/aws-efs-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS Elastic File System (EFS)
 [AWS FSx for Lustre](https://github.com/aws/aws-fsx-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS FSx for Lustre (EBS)
 [Azure disk](https://github.com/andyzhangx/azuredisk-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure disk
 [Azure file](https://github.com/andyzhangx/azurefile-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure file
 [CephFS](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
-[Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v0.2.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
+[Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
 [cloudscale.ch](https://github.com/cloudscale-ch/csi-cloudscale)| v1.0.0 | A Container Storage Interface (CSI) Storage Plug-in for the [cloudscale.ch](https://www.cloudscale.ch/) IaaS platform
 [Datera](https://github.com/Datera/kubernetes-driver)|v1.0.0|A Container Storage Interface (CSI) Storage Plugin for Datera Data Services Platform (DSP)
 [DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.4.0 | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
@@ -41,7 +41,7 @@ Name | Status | More Information
 [RBD](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
 [StorageOS](https://storageos.com/) | v1.0.0 | A Container Storage Interface (CSI) Plugin for StorageOS
-[XSKY](https://www.xsky.com/en/) | Beta | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) 
+[XSKY](https://xsky-storage.github.io/xsky-csi-driver/) | V1.1.2 | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) 
 [Vault](https://github.com/kubevault/csi-driver) | Alpha | A Container Storage Interface (CSI) Plugin for HashiCorp Vault
 [vSphere](https://github.com/thecodeteam/csi-vsphere)|v0.1.0|A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere
 [YanRongYun](http://www.yanrongyun.com/) | v1.0.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage 
