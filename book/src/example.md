@@ -7,63 +7,7 @@ Deployment has been tested with Kubernetes v1.13
 
 The example deployment uses the original RBAC rule files that are maintained together with sidecar apps and deploys into the default namespace. A real production should copy the RBAC files and customize them as explained in the comments of those files.
 
-### Deploy livenessprobe with CSI plugin
-
-The CSI community provides a livenessprobe side-container that can be integrated with the CSI driver services (Node and Controller) to provide the liveness of the CSI service containers.
-
-The livenessprobe side-container will expose the an http endpoint that will be used in a kubernetes liveness probe.
-
-Below is an example configuration which needs to be added to CSI driver services (Node and Controller) yamls:
-
-Note: This example is derived from [using-livenessprobe](https://github.com/kubernetes-csi/livenessprobe#using-livenessprobe) from [kubernetes-csi/livenessprobe](https://github.com/kubernetes-csi/livenessprobe)
-
-```yaml
-- name: hostpath-driver
-    image: quay.io/k8scsi/hostpathplugin:vx.x.x
-    imagePullPolicy: Always
-    securityContext:
-      privileged: true
-#
-# Defining port which will be used to GET plugin health status
-# 9808 is default, but can be changed.
-#
-    ports:
-    - containerPort: 9808
-      name: healthz
-      protocol: TCP
-    livenessProbe:
-      failureThreshold: 5
-      httpGet:
-        path: /healthz
-        port: healthz
-      initialDelaySeconds: 10
-      timeoutSeconds: 3
-      periodSeconds: 2
-      failureThreshold: 1
-...
-#
-# Spec for liveness probe sidecar container
-# 
- - name: liveness-probe
-    imagePullPolicy: Always
-    volumeMounts:
-    - mountPath: /csi
-      name: socket-dir
-    image: quay.io/k8scsi/livenessprobe:v0.4.1
-    args:
-    - --csi-address=/csi/csi.sock
-    - --connection-timeout=3s
-    - --health-port=9898
-#
-```
-
-Where:
-
-- `--csi-address` - specifies the Unix domain socket path, as seen in the container, for the CSI driver. It allows the livenessprobe sidecar to communicate with the driver for driver liveness information.  Mount path `/csi` is mapped to HostPath entry `socket-dir` which is mapped to directory `/var/lib/kubelet/plugins/csi-hostpath`
-
-- `--connection-timeout` - specifies the timeout duration of waiting for CSI driver socket in seconds. (default 30s)
-
-- `--health-port` - specifies the TCP ports for listening healthz requests (default "9808")
+The example deployment includes livenessprobe side-container provided by the CSI community, using configuration derived from [using-livenessprobe](https://github.com/kubernetes-csi/livenessprobe#using-livenessprobe).
 
 ## Snapshot support
 
