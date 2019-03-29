@@ -2,11 +2,12 @@
 
 ## Status
 
-Alpha
+* Kubernetes 1.12 - 1.13: Alpha
+* Kubernetes 1.14: Beta
 
 ## What is the CSINodeInfo object?
 
-CSI drivers generate node specific information. Instead of storing this in the Kubernetes `Node` API Object, a new CSI specific Kubernetes CRD was created, the `CSINodeInfo` CRD.
+CSI drivers generate node specific information. Instead of storing this in the Kubernetes `Node` API Object, a new CSI specific Kubernetes `CSINodeInfo` object was created.
 
 It serves the following purposes:
 
@@ -23,7 +24,7 @@ It serves the following purposes:
 Here is an example of a v1alpha1 `CSINodeInfo` object:
 
 ```YAML
-apiVersion: csi.storage.k8s.io/v1alpha1
+apiVersion: storage.k8s.io/v1beta1
 kind: CSINodeInfo
 metadata:
   name: node1
@@ -48,16 +49,23 @@ Where the fields mean:
 
 ## What creates the CSINodeInfo object?
 
-CSI drivers do not need to create the `CSINodeInfo` object directly. As long as they use the [node-driver-registrar](node-driver-registrar.md) sidecar container, the kubelet will automatically populate the `CSINodeInfo` object for the CSI driver as part of kubelet plugin registration.
+CSI drivers do not need to create the `CSINodeInfo` object directly. Instead they should use the [node-driver-registrar](node-driver-registrar.md) sidecar container. This sidecar container will interact with kubelet via the kubelet plugin registration mechanism to automatically populate the `CSINodeInfo` object on behalf of the the CSI driver.
 
-### Enabling CSINodeInfo
+## Changes from Alpha to Beta
+### CRD to Built in Type
+During alpha development, the `CSINodeInfo` object was also defined as a [Custom Resource Definition](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) (CRD). As part of the promotion to beta the object has been moved to the built-in Kubernetes API.
 
-The `CSINodeInfo` object is available as alpha starting with Kubernetes v1.12. Because it is an alpha feature, it is disabled by default.
+In the move from alpha to beta, the API Group for this object changed from `csi.storage.k8s.io/v1alpha1` to `storage.k8s.io/v1beta1`.
 
-To enable use of `CSINodeInfo` on Kubernetes, do the following:
+There is no automatic update of existing CRDs and their CRs during Kubernetes update to the new build-in type.
 
-1) Ensure the feature gate is enabled with `--feature-gates=CSINodeInfo=true`
-2) Either ensure the `CSIDriver` CRD is automatically installed via the [Kubernetes Storage CRD addon](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/storage-crds) OR manually install the `CSINodeInfo` CRD on the Kubernetes cluster with the following command:
+### Enabling CSINodeInfo on Kubernetes
+In Kubernetes v1.12 and v1.13, because the feature was alpha, it was disabled by default. To enable the use of `CSIDriver` on these versions, do the following:
+
+1. Ensure the feature gate is enabled with `--feature-gates=CSINodeInfo=true`
+2. Either ensure the `CSIDriver` CRD is automatically installed via the [Kubernetes Storage CRD addon](https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/storage-crds) OR manually install the `CSINodeInfo` CRD on the Kubernetes cluster with the following command:
+
 ```
 $> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csinodeinfo.yaml
 ```
+Kubernetes v1.14+, uses the same Kubernetes feature flag, but because the feature is beta, it is enabled by default. And since the API type (as of beta) is built in to the Kubernetes API, installation of the CRD is no longer required.

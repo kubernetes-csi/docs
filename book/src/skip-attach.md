@@ -1,6 +1,8 @@
 # Skip Kubernetes Attach and Detach
 
-**Status:** Alpha
+**Status:** Beta
+
+The "Skip Kubernetes Attach and Detach" feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.13.
 
 # Problem
 
@@ -19,7 +21,7 @@ Specifically the `attachRequired` field instructs Kubernetes to skip any attach 
 For example, the existence of the following object would cause Kubernetes to skip attach operations for all CSI Driver `testcsidriver.example.com` volumes.
 
 ```
-apiVersion: csi.storage.k8s.io/v1alpha1
+apiVersion: storage.k8s.io/v1beta1
 kind: CSIDriver
 metadata:
   name: testcsidriver.example.com
@@ -28,3 +30,13 @@ spec:
 ```
 
 The easiest way to use this feature is to deploy the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container. Once the flags to this container are configured correctly, it will automatically create a [CSIDriver Object](csi-driver-object.md) when it starts with the correct fields set.
+
+## Alpha Functionality
+In alpha, this feature was enabled via the [CSIDriver Object](csi-driver-object.md) CRD.
+
+```
+apiVersion: csi.storage.k8s.io/v1alpha1
+kind: CSIDriver
+metadata:
+....
+```

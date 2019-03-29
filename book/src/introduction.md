@@ -51,7 +51,7 @@ It aims to reduce boilerplate code and  simplify the overall process for CSI Dri
 This "Recommended Mechanism" makes use of the following components:
 
 * Kubernetes CSI [Sidecar Containers](sidecar-containers.md)
-* Kubernetes CSI [CRDs](csi-crds.md)
+* Kubernetes CSI [objects](csi-objects.md)
 * CSI [Driver Testing](testing-drivers.md) tools
 
 To implement a CSI driver using this mechanism, a CSI driver developer should:
