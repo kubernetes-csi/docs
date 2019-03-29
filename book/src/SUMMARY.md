@@ -9,7 +9,7 @@
         - [node-driver-registrar](node-driver-registrar.md)
         - [cluster-driver-registrar](cluster-driver-registrar.md)
         - [livenessprobe](livenessprobe.md)
-    - [CSI CRDs](csi-crds.md)
+    - [CSI objects](csi-objects.md)
       - [CSIDriver Object](csi-driver-object.md)
       - [CSINodeInfo Object](csi-node-info-object.md)
     - [Features](features.md)
