@@ -137,26 +137,71 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#raw-block-volume-feature" id="raw-block-volume-feature"><h1>Raw Block Volume Feature</h1></a>
-<blockquote>
-<a class="header" href="#this-page-is-still-under-active-development" id="this-page-is-still-under-active-development"><h2><em>This page is still under active development.</em></h2></a>
-</blockquote>
-<p><strong>Status:</strong> Alpha</p>
+<a class="header" href="#status" id="status"><h2>Status</h2></a>
+<ul>
+<li>Kubernetes 1.11 - 1.13: Alpha</li>
+<li>Kubernetes 1.14: Beta</li>
+</ul>
 <p>This page documents how to implement raw block volume support to a CSI Driver.</p>
 <p>A <em>block volume</em> is a volume that will appear as a block device inside the container.
 A <em>mounted (file) volume</em> is volume that will be mounted using a specified file system and appear as a directory inside the container.</p>
 <p>The <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a> supports both block and mounted (file) volumes.</p>
-<p>While Kubernetes support of mounted (file) volumes is GA/stable, support for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">block volume in Kubernetes</a> was introduced in v1.9, and promoted to beta in Kubernetes 1.13.</p>
-<p>The Kubernetes CSI tooling support for block volumes is still alpha.</p>
-<a class="header" href="#usage" id="usage"><h2>Usage</h2></a>
-<p>Because this feature is still alpha it is disabled by default in Kubernetes. You must enable the feature on Kubernetes:</p>
+<p>While Kubernetes support of mounted (file) volumes is GA/stable, support for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">block volume in Kubernetes</a> is beta, and controlled by
+two feature gates (which default to enabled).</p>
 <pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true...
 </code></pre>
-<a class="header" href="#implementing-raw-block-volume-support" id="implementing-raw-block-volume-support"><h2>Implementing Raw Block Volume Support</h2></a>
+<a class="header" href="#implementing-raw-block-volume-support-in-your-csi-driver" id="implementing-raw-block-volume-support-in-your-csi-driver"><h2>Implementing Raw Block Volume Support in Your CSI Driver</h2></a>
+<p>CSI doesn't provide a capability query for block volumes, so COs will simply pass through requests for
+block volume creation to CSI plugins, and plugins are allowed to fail with the <code>InvalidArgument</code> GRPC
+error code if they don't support block volumes. Kubernetes doesn't make any assumptions about which CSI
+plugins support blocks and which don't, so users have to know if any given storage class is capable of
+creating block volumes.</p>
+<p>The difference between a request for a mounted (file) volume and a block volume is the <code>VolumeCapabilities</code>
+field of the request. Note that this field is an array and the created volume must support ALL of the
+capabilities requested, or else return an error. If the <code>AccessType</code> method of a <code>VolumeCapability</code>
+<code>VolumeCapability_Block</code>, then the capability is requesting a raw block volume. Unlike mount volumes, block
+volumes don't have any specific capabilities that need to be validated, although access modes still
+apply.</p>
+<p>Block volumes are much more likely to support multi-node flavors of <code>VolumeCapability_AccessMode_Mode</code>
+than mount volumes, because there's no file system state stored on the node side that creates any technical
+impediments to multi-attaching block volumes. While there may still be good reasons to prevent
+multi-attaching block volumes, and there may be implementations that are not capable of supporting
+multi-attach, you should think carefully about what makes sense for your driver.</p>
+<p>CSI plugins that support both mount and block volumes must be sure to check the capabilities of all CSI RPC
+requests and ensure that the capability of the request matches the capability of the volume, to avoid trying
+to do file-system-related things to block volumes and block-related things to file system volumes. The
+following RPCs specify capabilities that must be validated:</p>
 <ul>
-<li>TODO: detail how to expose raw block volume support in CSI Driver.</li>
-<li>TODO: explain how raw block differs from mounted (file)</li>
-<li>TODO: answer: can a CSI driver choose to implement only raw block and not mounted (file)?</li>
-<li>TODO: detail the level of raw block volume functionality the CSI Sidecar containers currently provide.</li>
+<li><code>CreateVolume()</code> (multiple capabilities)</li>
+<li><code>ControllerPublishVolume()</code></li>
+<li><code>ValidateVolumeCapabilities()</code> (multiple capabilities)</li>
+<li><code>GetCapacity()</code> (see below)</li>
+<li><code>NodeStageVolume()</code></li>
+<li><code>NodePublishVolume()</code></li>
+</ul>
+<p>Also, CSI plugins that implement the optional <code>GetCapacity()</code> RPC should note that that RPC includes
+capabilities too, and if the capacity for mount volumes is not the same as the capacity for block
+volumes, that needs to be handled in the implementation of that RPC.</p>
+<p>Q: Can CSI plugins support only block volumes and not mount volumes?
+A: Yes! This is just the reverse case of supporting mount volumes only. Plugins may return <code>InvalidArgument</code>
+for any creation request with an <code>AccessType</code> of <code>VolumeCapability_Mount</code>.</p>
+<a class="header" href="#differences-between-block-and-mount-volumes" id="differences-between-block-and-mount-volumes"><h2>Differences Between Block and Mount Volumes</h2></a>
+<p>The main difference between block volumes and mount volumes is the expected result of the <code>NodePublish()</code>.
+For mount volumes, the CO expects the result to be a mounted directory, at <code>TargetPath</code>. For block volumes,
+the CO expects there to be a device file at <code>TargetPath</code>. The device file can by a bind-mounted device from
+the hosts <code>/dev</code> file system, or it can be a device node created at that location using <code>mknod()</code>.</p>
+<p>It's desirable but not required to expose an unfiltered device node. For example, CSI plugins based on
+technologies that implement SCSI protocols should expect that pods consuming the block volumes they create
+may want to send SCSI commands to the device. This is something that should &quot;just work&quot; by default (subject
+to container capabilities) so CSI plugins should avoid anything that would break this kind of use case. The
+only hard requirement is that the device implements block reading/writing however.</p>
+<p>For plugins with the <code>RPC_STAGE_UNSTAGE_VOLUME</code> capability, the CO doesn't care exactly what is placed at
+the <code>StagingTargetPath</code>, but it's worth noting that some CSI RPCs are allowed to pass the plugin either
+a staging path or a publish path, so it's important to think carefully about how <code>NodeStageVolume()</code> is
+implemented, knowing that either path could get used by the CO to refer to the volume later on. This is
+made more challenging because the CSI spec says that <code>StagingTargetPath</code> is always a directory even for
+block volumes.</p>
+<ul>
 <li>TODO: detail how Kubernetes API raw block fields get mapped to CSI methods/fields.</li>
 </ul>
 
