@@ -11,7 +11,7 @@
         - [livenessprobe](livenessprobe.md)
     - [CSI objects](csi-objects.md)
       - [CSIDriver Object](csi-driver-object.md)
-      - [CSINodeInfo Object](csi-node-info-object.md)
+      - [CSINode Object](csi-node-object.md)
     - [Features](features.md)
         - [Secrets & Credentials](secrets-and-credentials.md)
         - [Volume Snapshot & Restore](snapshot-restore-feature.md)
