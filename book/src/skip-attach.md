@@ -2,7 +2,7 @@
 
 **Status:** Beta
 
-The "Skip Kubernetes Attach and Detach" feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.13.
+The "Skip Kubernetes Attach and Detach" feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.14.
 
 # Problem
 
