@@ -138,7 +138,7 @@
                     <main>
                         <a class="header" href="#skip-kubernetes-attach-and-detach" id="skip-kubernetes-attach-and-detach"><h1>Skip Kubernetes Attach and Detach</h1></a>
 <p><strong>Status:</strong> Beta</p>
-<p>The &quot;Skip Kubernetes Attach and Detach&quot; feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.13.</p>
+<p>The &quot;Skip Kubernetes Attach and Detach&quot; feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.14.</p>
 <a class="header" href="#problem" id="problem"><h1>Problem</h1></a>
 <p>Volume drivers, like NFS, for example, have no concept of an attach (<code>ControllerPublishVolume</code>). However, Kubernetes always executes <code>Attach</code> and <code>Detach</code> operations even if the CSI driver does not implement an attach operation (i.e. even if the CSI Driver does not implement a <code>ControllerPublishVolume</code> call).</p>
 <p>This was problematic because it meant <em>all</em> CSI drivers had to handle Kubernetes attachment. CSI Drivers that did not implement the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability could work around this by deploying an <a href="external-attacher.html">external-attacher</a> and the <code>external-attacher</code> would responds to Kubernetes attach operations and simply do a noop (because the CSI driver did not advertise the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability).</p>
