@@ -1,8 +1,8 @@
 # CSI Topology Feature
 
-> ## *This page is still under active development.*
-
-**Status:** Alpha
+## Status
+* Kubernetes 1.12: Alpha
+* Kubernetes 1.14: Beta
 
 Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.
 
@@ -16,10 +16,26 @@ Kubernetes and the Kubernetes CSI [Sidecar Containers](sidecar-containers.md) us
 
 ## Implementing Topology
 
-TODO: Explain the CSI calls and capabilities that must be implemented.
-TODO: Explain what CSI CRDs the feature depends on.
+To support topology in a CSI driver, the following must be implemented:
 
-## Usage
+* The `PluginCapability` must support `VOLUME_ACCESSIBILITY_CONTRAINTS`.
+* The plugin must fill in `accessible_topology` in `NodeGetInfoResponse`.
+  This information will be used to populate the Kubernetes [CSINode object](csi-node-object.md) and add the topology labels to the Node object.
+* During `CreateVolume`, the topology information will get passed in through `CreateVolumeRequest.accessibility_requirements`.
+
+In the StorageClass object, both `volumeBindingMode` values of `Immediate` and
+`WaitForFirstConsumer` are supported.
+
+* If `Immediate` is set, then the
+  external-provisioner will pass in all available topologies in the cluster for
+  the driver.
+* If `WaitForFirstConsumer` is set, then the external-provisioner will wait for
+  the scheduler to pick a node. The topology of that selected node will then be
+  set as the first entry in `CreateVolumeRequest.accessibility_requirements.preferred`.
+  All remaining topologies are still included in the `requisite` and `preferred`
+  fields to support storage systems that span across multiple topologies.
+
+## Beta Usage
 
 In order to support topology-aware dynamic provisioning mechanisms available in Kubernetes, the *external-provisioner* must have the Topology feature enabled:
 
@@ -27,13 +43,25 @@ In order to support topology-aware dynamic provisioning mechanisms available in 
 --feature-gates=Topology=true
 ```
 
-In addition, in the *Kubernetes cluster* the `CSINodeInfo` alpha feature must be enabled (refer to the [CSINodeInfo Object](csi-node-info-object.md) section for more info):
+In addition, in the *Kubernetes cluster* the `CSINodeInfo` feature must be enabled on both Kubernetes master and nodes (refer to the [CSINode Object](csi-node-object.md) section for more info):
 
 ```
 --feature-gates=CSINodeInfo=true
 ```
 
-The `KubeletPluginsWatcher` feature must also be enabled (GA and enabled by default in Kubernetes 1.13).
+In order to fully function properly, all Kubernetes master and nodes must be on at least
+Kubernetes 1.14. If a selected node is on a lower version, topology is ignored and not
+passed to the driver during `CreateVolume`.
+
+## Alpha Usage
+
+The Kubernetes 1.13 alpha feature requires external-provisioner v1.0.1, and the
+1.12 alpha feature requires external-provisioner v0.4.1. Kubernetes master and
+node version skew and upgrades are not supported.
+
+The `Topology` feature gate must be enabled on the external-provisioner. The
+`CSINodeInfo`, `VolumeScheduling`, and `KubeletPluginsWatcher` feature gates
+must be enabled on both Kubernetes master and nodes.
 
 ## Storage Internal Topology
 
