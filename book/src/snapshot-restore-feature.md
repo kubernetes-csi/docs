@@ -78,6 +78,7 @@ Note that this could happen if the `PersistentVolumeClaim` spec and the `VolumeS
 ## Examples
 
 The following CSI drivers implement the snapshot feature and maybe referred to for example implementations:
+* [AWS EBS CSI driver](https://github.com/kubernetes-sigs/aws-ebs-csi-driver)
 * [GCE PD CSI driver](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)
 * [OpenSDS CSI driver](https://github.com/opensds/nbp/tree/master/csi/server)
 * [Ceph RBD CSI driver](https://github.com/ceph/ceph-csi/tree/master/pkg/rbd)
