@@ -137,84 +137,82 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#deploying-csi-driver-on-kubernetes" id="deploying-csi-driver-on-kubernetes"><h1>Deploying CSI Driver on Kubernetes</h1></a>
-<blockquote>
-<a class="header" href="#this-page-is-out-of-date-and-under-active-development" id="this-page-is-out-of-date-and-under-active-development"><h2><em>This page is out-of-date and under active development.</em></h2></a>
-</blockquote>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
-<p>There are three components plus the kubelet that enable CSI drivers to provide storage to Kubernetes. These components are sidecar containers which are responsible for communication with both Kubernetes and the CSI driver, making the appropriate CSI calls for their respectful Kubernetes events.</p>
-<a class="header" href="#sidecar-containers" id="sidecar-containers"><h2>Sidecar Containers</h2></a>
+<p>A CSI driver is typically deployed in Kubernetes as two components:
+a controller component and a per-node component.</p>
+<a class="header" href="#controller-plugin" id="controller-plugin"><h3>Controller Plugin</h3></a>
+<p>The controller component can be deployed as a Deployment or StatefulSet on
+any node in the cluster. It consists of the CSI driver that implements the
+CSI Controller service and one or more
+<a href="sidecar-containers.html">sidecar containers</a>. These controller
+sidecar containers typically interact with Kubernetes objects and make calls
+to the driver's CSI Controller service.</p>
+<p>It generally does not need direct access to the host and can perform all its
+operations through the Kubernetes API and external control plane services.
+Multiple copies of the controller component can be deployed for HA, however
+it is recommended to use leader election to ensure there is only one active
+controller at a time.</p>
+<p>Controller sidecars include the external-provisioner, external-attacher,
+external-snapshotter, and external-resizer. Including a sidecar in the
+deployment may be optional.  See each sidecar's page for more details.</p>
+<a class="header" href="#communication-with-sidecars" id="communication-with-sidecars"><h4>Communication with Sidecars</h4></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
-<p>Sidecar containers manage Kubernetes events and make the appropriate calls to the CSI driver. These are the <em>external attacher</em>, <em>external provisioner</em>, <em>external snapshotter</em> and the <em>driver registrar</em>.</p>
-<a class="header" href="#external-attacher" id="external-attacher"><h3>External Attacher</h3></a>
-<p><a href="https://github.com/kubernetes-csi/external-attacher">external-attacher</a> is a sidecar container that watches Kubernetes <em>VolumeAttachment</em> objects and triggers CSI <em>ControllerPublish</em> and <em>ControllerUnpublish</em> operations against a driver endpoint. As of this writing, the external attacher does not support leader election and therefore there can be only one running per CSI driver.  For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#attaching-and-detaching"><em>Attaching and Detaching</em></a>.</p>
-<p>Note, even though this is called the <em>external attacher</em>, its function is to call the CSI API calls <em>ControllerPublish</em> and <em>ControllerUnpublish</em>. These calls most likely will occur in a node which is <em>not</em> the one that will mount the volume. For this reason, many CSI drivers do not support these calls, instead doing the attach/detach and mount/unmount both in the CSI <em>NodePublish</em> and <em>NodeUnpublish</em> calls done by the kubelet at the node which is supposed to mount.</p>
-<a class="header" href="#external-provisioner" id="external-provisioner"><h3>External Provisioner</h3></a>
-<p><a href="https://github.com/kubernetes-csi/external-provisioner">external-provisioner</a> is a Sidecar container that watches Kubernetes <em>PersistentVolumeClaim</em> objects and triggers CSI <em>CreateVolume</em> and <em>DeleteVolume</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#provisioning-and-deleting"><em>Provisioning and Deleting</em></a>.</p>
-<a class="header" href="#external-snapshotter" id="external-snapshotter"><h3>External Snapshotter</h3></a>
-<p><a href="https://github.com/kubernetes-csi/external-snapshotter">external-snapshotter</a> is a Sidecar container that watches Kubernetes <em>VolumeSnapshot</em> objects and triggers CSI <em>CreateSnapshot</em> and <em>DeleteSnapshot</em> operations against a driver endpoint. For more information please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/csi-snapshot.md"><em>Snapshot Design Proposal</em></a>.</p>
-<a class="header" href="#driver-registrar" id="driver-registrar"><h3>Driver Registrar</h3></a>
-<p><a href="https://github.com/kubernetes-csi/driver-registrar">driver-registrar</a> is a sidecar container that registers the CSI driver with kubelet, and adds the drivers custom NodeId to a label on the Kubernetes Node API Object. It does this by communicating with the <em>Identity</em> service on the CSI driver and also calling the CSI <em>GetNodeId</em> operation. The driver registrar must have the Kubernetes name for the node set through the environment variable <code>KUBE_NODE_NAME</code> as follows:</p>
-<pre><code class="language-yaml">        - name: csi-driver-registrar
-          imagePullPolicy: Always
-          image: quay.io/k8scsi/driver-registrar:v0.2.0
-          args:
-            - &quot;--v=5&quot;
-            - &quot;--csi-address=$(ADDRESS)&quot;
-          env:
-            - name: ADDRESS
-              value: /csi/csi.sock
-            - name: KUBE_NODE_NAME
-              valueFrom:
-                fieldRef:
-                  fieldPath: spec.nodeName
-          volumeMounts:
-            - name: socket-dir
-              mountPath: /csi
-</code></pre>
-<a class="header" href="#kubelet" id="kubelet"><h3>Kubelet</h3></a>
+<p>Sidecar containers manage Kubernetes events and make the appropriate
+calls to the CSI driver. The calls are made by sharing a UNIX domain socket
+through an emptyDir volume between the sidecars and CSI Driver.</p>
+<a class="header" href="#rbac-rules" id="rbac-rules"><h4>RBAC Rules</h4></a>
+<p>Most controller sidecars interact with Kubernetes objects and therefore need
+to set RBAC policies. Each sidecar repository contains example RBAC
+configurations.</p>
+<a class="header" href="#node-plugin" id="node-plugin"><h3>Node Plugin</h3></a>
+<p>The node component should be deployed on every node in the cluster through a
+DaemonSet. It consists of the CSI driver that implements the CSI Node service and the
+<a href="node-driver-registrar">node-driver-registrar</a> sidecar container.</p>
+<a class="header" href="#communication-with-kubelet" id="communication-with-kubelet"><h4>Communication with Kubelet</h4></a>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1NXaVNDh3mSDhog7Q3Y9eELyEF24F8Z-Kk0ujR3pyOes/edit?usp=sharing"><img src="images/kubelet.png" alt="kubelet" /></a></p>
-<p>The Kubernetes kubelet runs on every node and is responsible for making the CSI calls <em>NodePublish</em> and <em>NodeUnpublish</em>. These calls mount and unmount the storage volume from the storage system, making it available to the Pod to consume. As shown in the <em>external-attacher</em>, most CSI drivers choose to implement both their attach/detach and mount/unmount calls in the <em>NodePublish</em> and <em>NodeUnpublish</em> calls. They do this because the kubelet makes the request on the node which is to consume the volume.</p>
-<a class="header" href="#mount-point" id="mount-point"><h3>Mount point</h3></a>
-<p>The mount point used by the CSI driver must be set to <em>Bidirectional</em>. See the example below:</p>
-<pre><code class="language-yaml">          volumeMounts:
-            - name: socket-dir
-              mountPath: /csi
-            - name: mountpoint-dir
-              mountPath: /var/lib/kubelet/pods
-              mountPropagation: &quot;Bidirectional&quot;
-      volumes:
+<p>The Kubernetes kubelet runs on every node and is responsible for making the CSI
+Node service calls. These calls mount and unmount the storage volume from the
+storage system, making it available to the Pod to consume. Kubelet makes calls
+to the CSI driver through a UNIX domain socket shared on the host via a HostPath
+volume. There is also a second UNIX domain socket that the node-driver-registrar
+uses to register the CSI driver to kubelet.</p>
+<a class="header" href="#driver-volume-mounts" id="driver-volume-mounts"><h4>Driver Volume Mounts</h4></a>
+<p>The node plugin needs direct access to the host for making block devices and/or
+filesystem mounts available to the Kubernetes kubelet.</p>
+<p>The mount point used by the CSI driver must be set to <em>Bidirectional</em> to allow Kubelet
+on the host to see mounts created by the CSI driver container. See the example below:</p>
+<pre><code class="language-yaml">      containers:
+      - name: my-csi-driver
+        ...
+        volumeMounts:
         - name: socket-dir
-          hostPath:
-            path: /var/lib/kubelet/plugins/csi-hostpath
-            type: DirectoryOrCreate
+          mountPath: /csi
         - name: mountpoint-dir
-          hostPath:
-            path: /var/lib/kubelet/pods
-            type: Directory
-</code></pre>
-<a class="header" href="#rbac-rules" id="rbac-rules"><h3>RBAC Rules</h3></a>
-<p>Side car containers need the appropriate permissions to be able to access and manipulate Kubernetes objects. Here are the RBAC rules needed:</p>
-<pre><code class="language-yaml">kind: ClusterRole
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: csi-hostpath-role
-rules:
-  - apiGroups: [&quot;&quot;]
-    resources: [&quot;persistentvolumes&quot;]
-    verbs: [&quot;create&quot;, &quot;delete&quot;, &quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
-  - apiGroups: [&quot;&quot;]
-    resources: [&quot;persistentvolumeclaims&quot;]
-    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
-  - apiGroups: [&quot;&quot;]
-    resources: [&quot;nodes&quot;]
-    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
-  - apiGroups: [&quot;storage.k8s.io&quot;]
-    resources: [&quot;storageclasses&quot;]
-    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;]
-  - apiGroups: [&quot;storage.k8s.io&quot;]
-    resources: [&quot;volumeattachments&quot;]
-    verbs: [&quot;get&quot;, &quot;list&quot;, &quot;watch&quot;, &quot;update&quot;]
+          mountPath: /var/lib/kubelet/pods
+          mountPropagation: &quot;Bidirectional&quot;
+      - name: node-driver-registrar
+        ...
+        volumeMounts:
+        - name: registration-dir
+          mountPath: /registration
+      volumes:
+      # This volume is where the socket for kubelet-&gt;driver communication is done
+      - name: socket-dir
+        hostPath:
+          path: /var/lib/kubelet/plugins/&lt;driver-name&gt;
+          type: DirectoryOrCreate
+      # This volume is where the driver mounts volumes
+      - name: mountpoint-dir
+        hostPath:
+          path: /var/lib/kubelet/pods
+          type: Directory
+      # This volume is where the node-driver-registrar registers the plugin
+      # with kubelet
+      - name: registration-dir
+        hostPath:
+          path: /var/lib/kubelet/plugins_registry
+          type: Directory
 </code></pre>
 <a class="header" href="#deploying" id="deploying"><h2>Deploying</h2></a>
 <p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>.</p>
@@ -232,8 +230,8 @@ rules:
 <p>Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the [mount propagation docs][mount-propagation-docs] to find out how to enable this feature for your cluster.  [This page][docker-shared-mount] explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
 <a class="header" href="#examples" id="examples"><h3>Examples</h3></a>
 <ul>
-<li>Simple deployment example using a single pod for all components: see the <a href="Example.html">hostpath example</a>.</li>
-<li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: check the <a href="https://github.com/kubernetes-csi/drivers/tree/master/pkg/nfs/deploy/kubernetes">NFS driver deployment files</a>.</li>
+<li>Simple deployment example using a single pod for all components: see the <a href="example.html">hostpath example</a>.</li>
+<li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: TODO</li>
 </ul>
 <a class="header" href="#more-information" id="more-information"><h2>More information</h2></a>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
