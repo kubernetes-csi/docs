@@ -48,7 +48,12 @@ There are three important fields:
 
 ## What creates the CSIDriver object?
 
-CSI drivers do not need to create the `CSIDriver` object directly. Instead they may use the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container (customizing it as needed with startup parameters). When deployed with a CSI driver, this sidecar will automatically creates a `CSIDriver` object to represent the driver.
+To install, a CSI driver's deployment manifest must contain a `CSIDriver`
+object as shown in the example above.
+
+>NOTE: The cluster-driver-registrar side-car which was used to create CSIDriver
+>objects in Kubernetes 1.13 is being redesigned for Kubernetes 1.15 and
+>therefore not available for Kubernetes 1.14.
 
 ### Listing registered CSI drivers
 Using the `CSIDriver` object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:
