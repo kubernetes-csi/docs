@@ -2,6 +2,7 @@
 
 - [Introduction](introduction.md)
 - [Developing a CSI Driver for Kubernetes](developing.md)
+    - [Kubernetes Changelog](kubernetes-changelog.md)
     - [Sidecar Containers](sidecar-containers.md)
         - [external-provisioner](external-provisioner.md)
         - [external-attacher](external-attacher.md)

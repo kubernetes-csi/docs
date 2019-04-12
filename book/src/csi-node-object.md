@@ -49,7 +49,7 @@ CSI drivers do not need to create the `CSINode` object directly. Instead they sh
 
 ### CRD to Built in Type
 The alpha object was called `CSINodeInfo`, whereas the beta object is called
-CSINode`. The alpha `CSINodeInfo` object was also defined as a [Custom Resource Definition](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) (CRD). As part of the promotion to beta the object has been moved to the built-in Kubernetes API.
+`CSINode`. The alpha `CSINodeInfo` object was also defined as a [Custom Resource Definition](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) (CRD). As part of the promotion to beta the object has been moved to the built-in Kubernetes API.
 
 In the move from alpha to beta, the API Group for this object changed from `csi.storage.k8s.io/v1alpha1` to `storage.k8s.io/v1beta1`.
 
