@@ -5,48 +5,50 @@ The following are a set of CSI driver which can be used with Kubernetes:
 
 ## Production Drivers
 
-Name | Status | More Information
------|--------|-------
-[Alicloud Elastic Block Storage](https://github.com/AliyunContainerService/csi-plugin) | v1.0.0 |A Container Storage Interface (CSI) Storage Plug-in for Alicloud Elastic Block Storage
-[Alicloud Elastic File System](https://github.com/AliyunContainerService/csi-plugin)| v1.0.0 |A Container Storage Interface (CSI) Storage Plug-in for Alicloud Elastic File System
-[Alicloud OSS](https://github.com/AliyunContainerService/csi-plugin)| v1.0.0 |A Container Storage Interface (CSI) Storage Plug-in for Alicloud OSS
-[AWS Elastic Block Storage](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) | v0.3.0 | A Container Storage Interface (CSI) Driver for AWS Elastic Block Storage (EBS)
-[AWS Elastic File System](https://github.com/aws/aws-efs-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS Elastic File System (EFS)
-[AWS FSx for Lustre](https://github.com/aws/aws-fsx-csi-driver) | v0.1.0 | A Container Storage Interface (CSI) Driver for AWS FSx for Lustre (EBS)
-[Azure disk](https://github.com/andyzhangx/azuredisk-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure disk
-[Azure file](https://github.com/andyzhangx/azurefile-csi-driver)| v0.1.0 (alpha) |A Container Storage Interface (CSI) Storage Plug-in for Azure file
-[CephFS](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for CephFS
-[Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for Cinder
-[cloudscale.ch](https://github.com/cloudscale-ch/csi-cloudscale)| v1.0.0 | A Container Storage Interface (CSI) Storage Plug-in for the [cloudscale.ch](https://www.cloudscale.ch/) IaaS platform
-[Datera](https://github.com/Datera/kubernetes-driver)|v1.0.0|A Container Storage Interface (CSI) Storage Plugin for Datera Data Services Platform (DSP)
-[DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | v0.4.0 | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage
-[DriveScale](https://github.com/DriveScale/k8s-plugins)|v1.0.0|A Container Storage Interface (CSI) Storage Plug-in for DriveScale software composable infrastructure solution
-[Ember CSI](https://ember-csi.io) | v0.2.0 (alpha) | Multi-vendor CSI plugin supporting over 80 storage drivers to provide block and mount storage to Container Orchestration systems.
-[GCE Persistent Disk](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver)|Beta|A Container Storage Interface (CSI) Storage Plugin for Google Compute Engine Persistent Disk (GCE PD)
-[Google Cloud Filestore](https://github.com/kubernetes-sigs/gcp-filestore-csi-driver)|Alpha|A Container Storage Interface (CSI) Storage Plugin for Google Cloud Filestore
-[GlusterFS](https://github.com/gluster/gluster-csi-driver) | v1.0.0 | A Container Storage Interface (CSI) Plugin for GlusterFS
-[Hitachi Vantara](https://knowledge.hitachivantara.com/Documents/Adapters_and_Drivers/Storage_Adapters_and_Drivers/Containers) | v2.0 | A Container Storage Interface (CSI) Plugin for VSP series Storage
-[Linode Block Storage](https://github.com/linode/linode-blockstorage-csi-driver) | v0.0.3 | A Container Storage Interface (CSI) Driver for Linode Block Storage 
-[LINSTOR](https://github.com/LINBIT/linstor-csi)|v0.3.0|A Container Storage Interface (CSI) Storage Plugin for [LINSTOR](https://www.linbit.com/en/linstor/)
-[MapR](https://github.com/mapr/mapr-csi) | v1.0.0 | A Container Storage Interface (CSI) Storage Plugin for MapR Data Platform
-[MooseFS](https://github.com/moosefs/moosefs-csi)|v0.0.1 (alpha)|A Container Storage Interface (CSI) Storage Plugin for [MooseFS](https://moosefs.com/) clusters.
-[NetApp](https://github.com/NetApp/trident) | v0.2.0 (alpha) | A Container Storage Interface (CSI) Storage Plug-in for NetApp's [Trident](https://netapp-trident.readthedocs.io/) container storage orchestrator
-[NexentaStor](https://github.com/Nexenta/nexentastor-csi-driver) | Beta | A Container Storage Interface (CSI) Driver for NexentaStor
-[Nutanix](https://portal.nutanix.com/#/page/docs/details?targetId=CSI-Volume-Driver:CSI-Volume-Driver) | beta | A Container Storage Interface (CSI) Storage Driver for Nutanix
-[OpenSDS](https://www.opensds.io/) | Beta | For more information, please visit [releases](https://github.com/opensds/nbp/releases) and https://github.com/opensds/nbp/tree/master/csi
-[Portworx](https://portworx.com/) | 0.3.0 | CSI implementation is available [here](https://github.com/libopenstorage/openstorage/tree/master/csi) which can be used as an example also.
-[QingCloud CSI](https://github.com/yunify/qingcloud-csi) | v0.2.1 | A Container Storage Interface (CSI) Plugin for QingCloud Block Storage
-[QingStor CSI](https://github.com/yunify/qingstor-csi) | v0.3.0 | A Container Storage Interface (CSI) Plugin for NeonSAN storage system
-[Quobyte](https://github.com/quobyte/quobyte-csi) | v0.2.0 | A Container Storage Interface (CSI) Plugin for Quobyte
-[RBD](https://github.com/ceph/ceph-csi)|v1.0.0|A Container Storage Interface (CSI) Storage RBD Plug-in for Ceph
-[ScaleIO](https://github.com/thecodeteam/csi-scaleio)|v0.1.0|A Container Storage Interface (CSI) Storage Plugin for DellEMC ScaleIO
-[StorageOS](https://storageos.com/) | v1.0.0 | A Container Storage Interface (CSI) Plugin for StorageOS
-[XSKY](https://xsky-storage.github.io/xsky-csi-driver/) | V1.1.2 | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) 
-[Vault](https://github.com/kubevault/csi-driver) | Alpha | A Container Storage Interface (CSI) Plugin for HashiCorp Vault
-[vSphere](https://github.com/thecodeteam/csi-vsphere)|v0.1.0|A Container Storage Interface (CSI) Storage Plug-in for VMware vSphere
-[YanRongYun](http://www.yanrongyun.com/) | v1.0.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage 
+Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persistence (Beyond Pod Lifetime) | Supported Access Modes | Dynamic Provisioning | [Raw Block Support](raw-block.md) | [Volume Snapshot Support](snapshot-restore-feature.md)
+-----|-----------------|--------------------------------|-------------|-----------------------------------|------------------------|----------------------|-----------------------------------|------------
+[Alicloud Disk](https://github.com/AliyunContainerService/csi-plugin) | `diskplugin.csi.alibabacloud.com` | v1.0 | A Container Storage Interface (CSI) Driver for Alicloud Disk | Persistent | Read/Write Single Pod | Yes | Yes | Yes
+[Alicloud NAS](https://github.com/AliyunContainerService/csi-plugin) | `nasplugin.csi.alibabacloud.com` | v1.0 | A Container Storage Interface (CSI) Driver for Alicloud Network Attached Storage (NAS) | Persistent | Read/Write Multiple Pods | No | No | No
+[Alicloud OSS](https://github.com/AliyunContainerService/csi-plugin)| `ossplugin.csi.alibabacloud.com` | v1.0 | A Container Storage Interface (CSI) Driver for Alicloud Object Storage Service (OSS) | Persistent | Read/Write Multiple Pods | No | No | No
+[AWS Elastic Block Storage](https://github.com/kubernetes-sigs/aws-ebs-csi-driver) | `ebs.csi.aws.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for AWS Elastic Block Storage (EBS) | Persistent | Read/Write Single Pod | Yes | Yes | Yes
+[AWS Elastic File System](https://github.com/aws/aws-efs-csi-driver) | `efs.csi.aws.com` | v0.3 | A Container Storage Interface (CSI) Driver for AWS Elastic File System (EFS) | Persistent | Read/Write Multiple Pods | No | No | No
+[AWS FSx for Lustre](https://github.com/aws/aws-fsx-csi-driver) | `fsx.csi.aws.com` | v0.3 | A Container Storage Interface (CSI) Driver for AWS FSx for Lustre (EBS) | Persistent | Read/Write Multiple Pods | No | No | No
+[Azure disk](https://github.com/andyzhangx/azuredisk-csi-driver) | `disk.csi.azure.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for Azure disk | Persistent | Read/Write Single Pod | Yes | No | No
+[Azure file](https://github.com/andyzhangx/azurefile-csi-driver) | `file.csi.azure.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for Azure file | Persistent | Read/Write Multiple Pods | Yes | No | No
+[CephFS](https://github.com/ceph/ceph-csi) | `cephfs.csi.ceph.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for CephFS | Persistent | Read/Write Multiple Pods | Yes | No | No
+[Ceph RBD](https://github.com/ceph/ceph-csi) | `rbd.csi.ceph.com` | v0.3, v1.0 | A Container Storage Interface (CSI)  Driver for Ceph RBD | Persistent | Read/Write Single Pod | Yes | Yes | Yes
+[Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder) | `cinder.csi.openstack.org` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for OpenStack Cinder | Persistent | Depends on the storage backend used | Yes, if storage backend supports it | No | Yes, if storage backend supports it
+[cloudscale.ch](https://github.com/cloudscale-ch/csi-cloudscale) | `csi.cloudscale.ch` | v1.0 | A Container Storage Interface (CSI) Driver for the [cloudscale.ch](https://www.cloudscale.ch/) IaaS platform | Persistent | Read/Write Single Pod | Yes | No | Yes
+[Datera](https://github.com/Datera/datera-csi) | `dsp.csi.daterainc.io` | v1.0 | A Container Storage Interface (CSI) Driver for Datera Data Services Platform (DSP) | Persistent | Read/Write Single Pod | Yes | No | Yes
+[DigitalOcean Block Storage](https://github.com/digitalocean/csi-digitalocean) | `dobs.csi.digitalocean.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for DigitalOcean Block Storage | Persistent | Read/Write Single Pod | Yes | No | Yes
+[DriveScale](https://github.com/DriveScale/k8s-plugins) | `csi.drivescale.com` | v1.0 |A Container Storage Interface (CSI) Driver for DriveScale software composable infrastructure solution | Persistent | Read/Write Single Pod | Yes | No | No
+[Ember CSI](https://ember-csi.io) | `[x].ember-csi.io` | v1.0 | Multi-vendor CSI plugin supporting over 80 Drivers to provide block and mount storage to Container Orchestration systems. | Persistent | Read/Write Single Pod | Yes, if storage backend supports it | Yes | Yes, if storage backend supports it
+[GCE Persistent Disk](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver) | `pd.csi.storage.gke.io` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for Google Compute Engine Persistent Disk (GCE PD) | Persistent | Read/Write Single Pod | Yes | No | Yes
+[Google Cloud Filestore](https://github.com/kubernetes-sigs/gcp-filestore-csi-driver) | `com.google.csi.filestore` | v0.3 | A Container Storage Interface (CSI) Driver for Google Cloud Filestore | Persistent | Read/Write Multiple Pods | Yes | No | No
+[GlusterFS](https://github.com/gluster/gluster-csi-driver) | `org.gluster.glusterfs` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for GlusterFS | Persistent | Read/Write Multiple Pods | Yes | No | Yes
+[Gluster VirtBlock](https://github.com/gluster/gluster-csi-driver) | `org.gluster.glustervirtblock` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for Gluster Virtual Block volumes | Persistent | Read/Write Single Pod | Yes | No | No
+[Hitachi Vantara](https://knowledge.hitachivantara.com/Documents/Adapters_and_Drivers/Storage_Adapters_and_Drivers/Containers) | `com.hitachi.hspc.csi` | v1.0 | A Container Storage Interface (CSI) Driver for VSP series Storage | Persistent | ? | ? | ? | ?
+[Linode Block Storage](https://github.com/linode/linode-blockstorage-csi-driver) | `linodebs.csi.linode.com` | v1.0 | A Container Storage Interface (CSI) Driver for Linode Block Storage | Persistent | Read/Write Single Pod | Yes | No | No
+[LINSTOR](https://github.com/LINBIT/linstor-csi) | `io.drbd.linstor-csi` | v1.1 | A Container Storage Interface (CSI) Driver for [LINSTOR](https://www.linbit.com/en/linstor/) volumes | Persistent | Read/Write Single Pod | Yes | No | Yes
+[MapR](https://github.com/mapr/mapr-csi) | `com.mapr.csi-kdf` | v1.0 | A Container Storage Interface (CSI) Driver for MapR Data Platform | Persistent | Read/Write Multiple Pods | Yes | No | Yes
+[MooseFS](https://github.com/moosefs/moosefs-csi) | `com.tuxera.csi.moosefs` | v1.0 | A Container Storage Interface (CSI) Driver for [MooseFS](https://moosefs.com/) clusters. | Persistent | Read/Write Multiple Pods | Yes | No | No
+[NetApp](https://github.com/NetApp/trident) | `io.netapp.trident.csi` | v1.0 | A Container Storage Interface (CSI) Driver for NetApp's [Trident](https://netapp-trident.readthedocs.io/) container storage orchestrator | Persistent | Depends on the storage product | Yes | No | No
+[NexentaStor](https://github.com/Nexenta/nexentastor-csi-driver) | `nexentastor-csi-driver.nexenta.com` | v1.0 | A Container Storage Interface (CSI) Driver for NexentaStor | Persistent | Read/Write Multiple Pods | Yes | No | Yes
+[Nutanix](https://portal.nutanix.com/#/page/docs/details?targetId=CSI-Volume-Driver:CSI-Volume-Driver) | `"com.nutanix.csi"` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for Nutanix | Persistent | "Read/Write Single Pod" with Nutanix Volumes and "Read/Write Multiple Pods" with Nutanix Files | Yes | No | No
+[OpenSDS](https://github.com/opensds/nbp/tree/master/csi) | `csi-opensdsplugin` | v1.0 | A Container Storage Interface (CSI) Driver for  [OpenSDS]((https://www.opensds.io/)) | Persistent | Read/Write Single Pod | Yes | Yes | Yes
+[Portworx](https://github.com/libopenstorage/openstorage/tree/master/csi) | `com.openstorage.pxd` | v0.3 | A Container Storage Interface (CSI) Driver for [Portworx](https://docs.portworx.com/portworx-install-with-kubernetes/storage-operations/csi/) | Persistent | ? | ? | ? | ?
+[QingCloud CSI](https://github.com/yunify/qingcloud-csi)| `csi.qingcloud.com` | v1.0 | A Container Storage Interface (CSI) Driver for QingCloud Block Storage | Persistent | Read/Write Single Pod | Yes | No | No
+[QingStor CSI](https://github.com/yunify/qingstor-csi) | `csi-neonsan` | v0.3 | A Container Storage Interface (CSI) Driver for NeonSAN storage system | Persistent | Read/Write Single Pod | Yes | No | Yes
+[Quobyte](https://github.com/quobyte/quobyte-csi) | `quobyte-csi` | v0.2 | A Container Storage Interface (CSI) Driver for Quobyte | Persistent | Read/Write Multiple Pods | Yes | No | No
+[ScaleIO](https://github.com/thecodeteam/csi-scaleio) | `com.thecodeteam.scaleio` | v0.2 | A Container Storage Interface (CSI) Driver for DellEMC ScaleIO | Persistent | Read/Write Single Pod | Yes | No | No
+[StorageOS](https://github.com/storageos/charts/blob/master/stable/storageos/README-CSI.md) | ? | v1.0 | A Container Storage Interface (CSI) Driver for [StorageOS](https://storageos.com/) | Persistent | Read/Write Multiple Pods | Yes | No | No
+[XSKY](https://xsky-storage.github.io/xsky-csi-driver/) | `csi-xsky-iscsiplugin` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) | Persistent | Read/Write Single Pod | Yes | No | No
+[Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | N/A | N/A
+[vSphere](https://github.com/thecodeteam/csi-vsphere) | `com.thecodeteam.vsphere` | v0.1 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Depends on underlying datastore | Yes | No | No
+[YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | No | No
 
 ## Sample Drivers
+
 Name | Status | More Information
 -----|--------|-------
 [Flexvolume](https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter) | Sample |
