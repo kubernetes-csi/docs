@@ -183,14 +183,7 @@
 <p>If a <code>PersistentVolumeClaim</code> is not bound, the attempt to create a volume snapshot from that <code>PersistentVolumeClaim</code> will fail. No retries will be attempted. An event will be logged to indicate that the <code>PersistentVolumeClaim</code> is not bound.</p>
 <p>Note that this could happen if the <code>PersistentVolumeClaim</code> spec and the <code>VolumeSnapshot</code> spec are in the same YAML file. In this case, when the <code>VolumeSnapshot</code> object is created, the <code>PersistentVolumeClaim</code> object is created but volume creation is not complete and therefore the <code>PersistentVolumeClaim</code> is not yet bound. You must wait until the <code>PersistentVolumeClaim</code> is bound and then create the snapshot.</p>
 <a class="header" href="#examples" id="examples"><h2>Examples</h2></a>
-<p>The following CSI drivers implement the snapshot feature and maybe referred to for example implementations:</p>
-<ul>
-<li><a href="https://github.com/kubernetes-sigs/aws-ebs-csi-driver">AWS EBS CSI driver</a></li>
-<li><a href="https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver">GCE PD CSI driver</a></li>
-<li><a href="https://github.com/opensds/nbp/tree/master/csi/server">OpenSDS CSI driver</a></li>
-<li><a href="https://github.com/ceph/ceph-csi/tree/master/pkg/rbd">Ceph RBD CSI driver</a></li>
-<li><a href="https://github.com/gluster/gluster-csi-driver">GlusterFS CSI driver</a></li>
-</ul>
+<p>See the <a href="drivers.html">Drivers</a> for a list of CSI drivers that implement the snapshot feature.</p>
 
                     </main>
 
