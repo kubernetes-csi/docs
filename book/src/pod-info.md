@@ -1,10 +1,11 @@
 # Pod Info on Mount
 
-**Status:** Beta
+# Status
 
-The "Pod Info on Mount" feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.14.
+* Kubernetes 1.12: Alpha
+* Kubernetes 1.14: Beta
 
-# Problem
+# Overview
 
 CSI avoids encoding Kubernetes specific information in to the specification, since it aims to support multiple orchestration systems (beyond just Kubernetes).
 
