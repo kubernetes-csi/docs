@@ -44,7 +44,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [StorageOS](https://github.com/storageos/charts/blob/master/stable/storageos/README-CSI.md) | ? | v1.0 | A Container Storage Interface (CSI) Driver for [StorageOS](https://storageos.com/) | Persistent | Read/Write Multiple Pods | Yes | No | No
 [XSKY](https://xsky-storage.github.io/xsky-csi-driver/) | `csi-xsky-iscsiplugin` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) | Persistent | Read/Write Single Pod | Yes | No | No
 [Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | N/A | N/A
-[vSphere](https://github.com/thecodeteam/csi-vsphere) | `com.thecodeteam.vsphere` | v0.1 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Depends on underlying datastore | Yes | No | No
+[vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Yes | No
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | No | No
 
 ## Sample Drivers
