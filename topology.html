@@ -142,6 +142,7 @@
 <li>Kubernetes 1.12: Alpha</li>
 <li>Kubernetes 1.14: Beta</li>
 </ul>
+<a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.</p>
 <p>To enable orchestration systems, like Kubernetes, to work well with storage systems which expose volumes that are not equally accessible by all nodes, the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a> enables:</p>
 <ol>
@@ -149,8 +150,8 @@
 <li>Ability for Kubernetes (users or components) to influence where a volume is provisioned (e.g. provision new volume in either &quot;zone 1&quot; or &quot;zone 2&quot;).</li>
 <li>Ability for a CSI Driver to opaquely specify where a particular volume exists (e.g. &quot;volume X&quot; is accessible by all nodes in &quot;zone 1&quot; and &quot;zone 2&quot;).</li>
 </ol>
-<p>Kubernetes and the Kubernetes CSI <a href="sidecar-containers.html">Sidecar Containers</a> use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume),</p>
-<a class="header" href="#implementing-topology" id="implementing-topology"><h2>Implementing Topology</h2></a>
+<p>Kubernetes and the <a href="external-provisioner.html">external-provisioner</a> use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume),</p>
+<a class="header" href="#implementing-topology-in-your-csi-driver" id="implementing-topology-in-your-csi-driver"><h2>Implementing Topology in your CSI Driver</h2></a>
 <p>To support topology in a CSI driver, the following must be implemented:</p>
 <ul>
 <li>The <code>PluginCapability</code> must support <code>VOLUME_ACCESSIBILITY_CONTRAINTS</code>.</li>
@@ -170,23 +171,28 @@ set as the first entry in <code>CreateVolumeRequest.accessibility_requirements.p
 All remaining topologies are still included in the <code>requisite</code> and <code>preferred</code>
 fields to support storage systems that span across multiple topologies.</li>
 </ul>
-<a class="header" href="#beta-usage" id="beta-usage"><h2>Beta Usage</h2></a>
-<p>In order to support topology-aware dynamic provisioning mechanisms available in Kubernetes, the <em>external-provisioner</em> must have the Topology feature enabled:</p>
+<a class="header" href="#sidecar-deployment" id="sidecar-deployment"><h2>Sidecar Deployment</h2></a>
+<p>The topology feature requires the
+<a href="external-provisioner.html">external-provisioner</a> sidecar with the
+Topology feature gate enabled:</p>
 <pre><code>--feature-gates=Topology=true
 </code></pre>
-<p>In addition, in the <em>Kubernetes cluster</em> the <code>CSINodeInfo</code> feature must be enabled on both Kubernetes master and nodes (refer to the <a href="csi-node-object.html">CSINode Object</a> section for more info):</p>
+<a class="header" href="#kubernetes-cluster-setup" id="kubernetes-cluster-setup"><h2>Kubernetes Cluster Setup</h2></a>
+<a class="header" href="#beta" id="beta"><h3>Beta</h3></a>
+<p>In the <em>Kubernetes cluster</em> the <code>CSINodeInfo</code> feature must be enabled on both Kubernetes master and nodes (refer to the <a href="csi-node-object.html">CSINode Object</a> section for more info):</p>
 <pre><code>--feature-gates=CSINodeInfo=true
 </code></pre>
 <p>In order to fully function properly, all Kubernetes master and nodes must be on at least
 Kubernetes 1.14. If a selected node is on a lower version, topology is ignored and not
 passed to the driver during <code>CreateVolume</code>.</p>
-<a class="header" href="#alpha-usage" id="alpha-usage"><h2>Alpha Usage</h2></a>
-<p>The Kubernetes 1.13 alpha feature requires external-provisioner v1.0.1, and the
-1.12 alpha feature requires external-provisioner v0.4.1. Kubernetes master and
-node version skew and upgrades are not supported.</p>
-<p>The <code>Topology</code> feature gate must be enabled on the external-provisioner. The
-<code>CSINodeInfo</code>, <code>VolumeScheduling</code>, and <code>KubeletPluginsWatcher</code> feature gates
+<a class="header" href="#alpha" id="alpha"><h3>Alpha</h3></a>
+<p>The alpha feature in the external-provisioner is not compatible across
+Kubernetes versions. In addition, Kubernetes master and node version skew and
+upgrades are not supported.</p>
+<p>The <code>CSINodeInfo</code>, <code>VolumeScheduling</code>, and <code>KubeletPluginsWatcher</code> feature gates
 must be enabled on both Kubernetes master and nodes.</p>
+<p>The <a href="csi-node-object.html">CSINodeInfo</a> CRDs also have to be manually installed in the
+cluster.</p>
 <a class="header" href="#storage-internal-topology" id="storage-internal-topology"><h2>Storage Internal Topology</h2></a>
 <p>Note that a storage system may also have an &quot;internal topology&quot; different from (independent of) the topology of the cluster where workloads are scheduled. Meaning volumes exposed by the storage system are equally accessible by all nodes in the Kubernetes cluster, but the storage system has some internal topology that may influence, for example, the performance of a volume from a given node.</p>
 <p>CSI does not currently expose a first class mechanism to influence such storage system internal topology on provisioning. Therefore, Kubernetes can not programmatically influence such topology. However, a CSI Driver may expose the ability to specify internal storage topology during volume provisioning using an opaque parameter in the <code>CreateVolume</code> CSI call (CSI enables CSI Drivers to expose an arbitrary set of configuration options during dynamic provisioning by allowing opaque parameters to be passed from cluster admins to the storage plugins) -- this would enable cluster admins to be able to control the storage system internal topology during provisioning.</p>

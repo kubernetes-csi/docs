@@ -137,21 +137,25 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#snapshot--restore-feature" id="snapshot--restore-feature"><h1>Snapshot &amp; Restore Feature</h1></a>
-<p><strong>Status:</strong> Alpha</p>
+<a class="header" href="#status" id="status"><h2>Status</h2></a>
+<ul>
+<li>Kubernetes 1.12: Alpha</li>
+</ul>
+<a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>Many storage systems provide the ability to create a &quot;snapshot&quot; of a persistent volume. A snapshot represents a point-in-time copy of a volume. A snapshot can be used either to provision a new volume (pre-populated with the snapshot data) or to restore the existing volume to a previous state (represented by the snapshot).</p>
 <p>Kubernetes CSI currently enables CSI Drivers to expose the following functionality via the Kubernetes API:</p>
 <ol>
 <li>Creation and deletion of volume snapshots via <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshots/">Kubernetes native API</a>.</li>
 <li>Creation of new volumes pre-populated with the data from a snapshot via Kubernetes <a href="https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/">dynamic volume provisioning</a>.</li>
 </ol>
-<a class="header" href="#implementing-snapshot--restore-functionality" id="implementing-snapshot--restore-functionality"><h2>Implementing Snapshot &amp; Restore Functionality</h2></a>
+<a class="header" href="#implementing-snapshot--restore-functionality-in-your-csi-driver" id="implementing-snapshot--restore-functionality-in-your-csi-driver"><h2>Implementing Snapshot &amp; Restore Functionality in Your CSI Driver</h2></a>
 <p>To implement the snapshot feature, a CSI driver MUST:</p>
 <ul>
 <li>Implement the <code>CREATE_DELETE_SNAPSHOT</code> and, optionally, the <code>LIST_SNAPSHOTS</code> controller capabilities</li>
 <li>Implement <code>CreateSnapshot</code>, <code>DeleteSnapshot</code>, and, optionally, the <code>ListSnapshots</code>, controller RPCs.</li>
 </ul>
 <p>For details,  see the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a>.</p>
-<a class="header" href="#deploying-snapshot--restore-functionality" id="deploying-snapshot--restore-functionality"><h2>Deploying Snapshot &amp; Restore Functionality</h2></a>
+<a class="header" href="#sidecar-deployment" id="sidecar-deployment"><h2>Sidecar Deployment</h2></a>
 <p>The Kubernetes CSI development team maintains the <a href="external-snapshotter.html">external-snapshotter</a> Kubernetes CSI <a href="sidecar-containers.html">Sidecar Containers</a>. This sidecar container implements the logic for watching the Kubernetes API for snapshot objects and issuing the appropriate CSI snapshot calls against a CSI endpoint. For more details, see <a href="external-snapshotter.html">external-snapshotter documentation</a>.</p>
 <a class="header" href="#snapshot-apis" id="snapshot-apis"><h2>Snapshot APIs</h2></a>
 <p>Similar to the API for managing <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Kubernetes Persistent Volumes</a>, the Kubernetes Volume Snapshots introduce three new API objects for managing snapshots: <code>VolumeSnapshot</code>, <code>VolumeSnapshotContent</code>, and <code>VolumeSnapshotClass</code>. See <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshots/">Kubernetes Snapshot documentation</a> for more details.</p>
@@ -159,7 +163,8 @@
 <p>The CRDs are <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/master/cmd/csi-snapshotter/create_crd.go#L29">automatically deployed</a> by the CSI <a href="external-snapshotter.html">external-snapshotter</a> sidecar.</p>
 <p>The schema definition for the custom resources (CRs) can be found here: https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go</p>
 <p>In addition to these new CRD objects, a new, alpha <code>DataSource</code> field has been added to the <code>PersistentVolumeClaim</code> object. This new field enables dynamic provisioning of new volumes that are automatically pre-populated with data from an existing snapshot.</p>
-<p>Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called <code>VolumeSnapshotDataSource</code> in the Kubernetes API server binary.</p>
+<a class="header" href="#kubernetes-cluster-setup" id="kubernetes-cluster-setup"><h2>Kubernetes Cluster Setup</h2></a>
+<p>Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called <code>VolumeSnapshotDataSource</code> in the Kubernetes master.</p>
 <pre><code>--feature-gates=VolumeSnapshotDataSource=true
 </code></pre>
 <a class="header" href="#test-snapshot-feature" id="test-snapshot-feature"><h2>Test Snapshot Feature</h2></a>

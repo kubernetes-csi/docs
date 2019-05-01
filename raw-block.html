@@ -139,17 +139,14 @@
                         <a class="header" href="#raw-block-volume-feature" id="raw-block-volume-feature"><h1>Raw Block Volume Feature</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
 <ul>
-<li>Kubernetes 1.11 - 1.13: Alpha</li>
+<li>Kubernetes 1.11: Alpha</li>
 <li>Kubernetes 1.14: Beta</li>
 </ul>
+<a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>This page documents how to implement raw block volume support to a CSI Driver.</p>
 <p>A <em>block volume</em> is a volume that will appear as a block device inside the container.
 A <em>mounted (file) volume</em> is volume that will be mounted using a specified file system and appear as a directory inside the container.</p>
 <p>The <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a> supports both block and mounted (file) volumes.</p>
-<p>While Kubernetes support of mounted (file) volumes is GA/stable, support for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support">block volume in Kubernetes</a> is beta, and controlled by
-two feature gates (which default to enabled).</p>
-<pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true...
-</code></pre>
 <a class="header" href="#implementing-raw-block-volume-support-in-your-csi-driver" id="implementing-raw-block-volume-support-in-your-csi-driver"><h2>Implementing Raw Block Volume Support in Your CSI Driver</h2></a>
 <p>CSI doesn't provide a capability query for block volumes, so COs will simply pass through requests for
 block volume creation to CSI plugins, and plugins are allowed to fail with the <code>InvalidArgument</code> GRPC
@@ -201,6 +198,15 @@ a staging path or a publish path, so it's important to think carefully about how
 implemented, knowing that either path could get used by the CO to refer to the volume later on. This is
 made more challenging because the CSI spec says that <code>StagingTargetPath</code> is always a directory even for
 block volumes.</p>
+<a class="header" href="#sidecar-deployment" id="sidecar-deployment"><h2>Sidecar Deployment</h2></a>
+<p>The raw block feature requires the
+<a href="external-provisioner.html">external-provisioner</a> and
+<a href="external-attacher.html">external-attacher</a> sidecars to be deployed.</p>
+<a class="header" href="#kubernetes-cluster-setup" id="kubernetes-cluster-setup"><h2>Kubernetes Cluster Setup</h2></a>
+<p>The <code>BlockVolume</code> and <code>CSIBlockVolume</code> feature gates need to be enabled on
+all Kubernetes masters and nodes.</p>
+<pre><code>--feature-gates=BlockVolume=true,CSIBlockVolume=true...
+</code></pre>
 <ul>
 <li>TODO: detail how Kubernetes API raw block fields get mapped to CSI methods/fields.</li>
 </ul>

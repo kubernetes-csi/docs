@@ -137,9 +137,12 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#pod-info-on-mount" id="pod-info-on-mount"><h1>Pod Info on Mount</h1></a>
-<p><strong>Status:</strong> Beta</p>
-<p>The &quot;Pod Info on Mount&quot; feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.14.</p>
-<a class="header" href="#problem" id="problem"><h1>Problem</h1></a>
+<a class="header" href="#status" id="status"><h1>Status</h1></a>
+<ul>
+<li>Kubernetes 1.12: Alpha</li>
+<li>Kubernetes 1.14: Beta</li>
+</ul>
+<a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
 <p>CSI avoids encoding Kubernetes specific information in to the specification, since it aims to support multiple orchestration systems (beyond just Kubernetes).</p>
 <p>This can be problematic because some CSI drivers require information about the workload (e.g. which pod is referencing this volume), and CSI does not provide this information natively to drivers.</p>
 <a class="header" href="#pod-info-on-mount-with-csi-driver-object" id="pod-info-on-mount-with-csi-driver-object"><h1>Pod Info on Mount with CSI Driver Object</h1></a>
