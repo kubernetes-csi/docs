@@ -1,6 +1,10 @@
 # Snapshot & Restore Feature
 
-**Status:** Alpha
+## Status
+
+* Kubernetes 1.12: Alpha
+
+## Overview
 
 Many storage systems provide the ability to create a "snapshot" of a persistent volume. A snapshot represents a point-in-time copy of a volume. A snapshot can be used either to provision a new volume (pre-populated with the snapshot data) or to restore the existing volume to a previous state (represented by the snapshot).
 
@@ -9,7 +13,7 @@ Kubernetes CSI currently enables CSI Drivers to expose the following functionali
 1. Creation and deletion of volume snapshots via [Kubernetes native API](https://kubernetes.io/docs/concepts/storage/volume-snapshots/). 
 2. Creation of new volumes pre-populated with the data from a snapshot via Kubernetes [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-## Implementing Snapshot & Restore Functionality
+## Implementing Snapshot & Restore Functionality in Your CSI Driver
 
 To implement the snapshot feature, a CSI driver MUST:
 
@@ -18,7 +22,7 @@ To implement the snapshot feature, a CSI driver MUST:
 
 For details,  see the [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md).
 
-## Deploying Snapshot & Restore Functionality
+## Sidecar Deployment
 
 The Kubernetes CSI development team maintains the [external-snapshotter](external-snapshotter.md) Kubernetes CSI [Sidecar Containers](sidecar-containers.md). This sidecar container implements the logic for watching the Kubernetes API for snapshot objects and issuing the appropriate CSI snapshot calls against a CSI endpoint. For more details, see [external-snapshotter documentation](external-snapshotter.md).
 
@@ -34,7 +38,8 @@ The schema definition for the custom resources (CRs) can be found here: https://
 
 In addition to these new CRD objects, a new, alpha `DataSource` field has been added to the `PersistentVolumeClaim` object. This new field enables dynamic provisioning of new volumes that are automatically pre-populated with data from an existing snapshot.
 
-Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called `VolumeSnapshotDataSource` in the Kubernetes API server binary.
+## Kubernetes Cluster Setup
+Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called `VolumeSnapshotDataSource` in the Kubernetes master.
 
 ```
 --feature-gates=VolumeSnapshotDataSource=true

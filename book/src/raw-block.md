@@ -2,8 +2,10 @@
 
 ## Status
 
-* Kubernetes 1.11 - 1.13: Alpha
+* Kubernetes 1.11: Alpha
 * Kubernetes 1.14: Beta
+
+## Overview
 
 This page documents how to implement raw block volume support to a CSI Driver.
 
@@ -11,13 +13,6 @@ A *block volume* is a volume that will appear as a block device inside the conta
 A *mounted (file) volume* is volume that will be mounted using a specified file system and appear as a directory inside the container.
 
 The [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md) supports both block and mounted (file) volumes.
-
-While Kubernetes support of mounted (file) volumes is GA/stable, support for [block volume in Kubernetes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#raw-block-volume-support) is beta, and controlled by
-two feature gates (which default to enabled).
-
-```
---feature-gates=BlockVolume=true,CSIBlockVolume=true...
-```
 
 ## Implementing Raw Block Volume Support in Your CSI Driver
 
@@ -79,7 +74,19 @@ implemented, knowing that either path could get used by the CO to refer to the v
 made more challenging because the CSI spec says that `StagingTargetPath` is always a directory even for
 block volumes.
 
+## Sidecar Deployment
 
+The raw block feature requires the
+[external-provisioner](external-provisioner.md) and
+[external-attacher](external-attacher.md) sidecars to be deployed.
 
+## Kubernetes Cluster Setup
+
+The `BlockVolume` and `CSIBlockVolume` feature gates need to be enabled on
+all Kubernetes masters and nodes.
+
+```
+--feature-gates=BlockVolume=true,CSIBlockVolume=true...
+```
 
 * TODO: detail how Kubernetes API raw block fields get mapped to CSI methods/fields.

@@ -1,10 +1,11 @@
 # Skip Kubernetes Attach and Detach
 
-**Status:** Beta
+## Status
 
-The "Skip Kubernetes Attach and Detach" feature was introduced as alpha in Kubernetes v1.12. It was promoted to beta in Kubernetes 1.14.
+* Kubernetes 1.12: Alpha
+* Kubernetes 1.14: Beta
 
-# Problem
+# Overview
 
 Volume drivers, like NFS, for example, have no concept of an attach (`ControllerPublishVolume`). However, Kubernetes always executes `Attach` and `Detach` operations even if the CSI driver does not implement an attach operation (i.e. even if the CSI Driver does not implement a `ControllerPublishVolume` call).
 
