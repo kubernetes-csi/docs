@@ -2,8 +2,11 @@
 
 ## Status
 
-* Kubernetes 1.11: Alpha
-* Kubernetes 1.14: Beta
+Status | Min K8s Version | Max K8s Version | external-provisioner Version | external-attacher Version
+--|--|--|--
+Alpha | 1.11 | 1.13 | 0.4 | 0.4
+Alpha | 1.13 | 1.13 | 1.0 | 1.0
+Beta | 1.14 | - | 1.1+ | 1.1+
 
 ## Overview
 
