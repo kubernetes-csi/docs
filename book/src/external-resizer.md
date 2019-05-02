@@ -10,6 +10,9 @@ Latest release | Branch | Min CSI Version | Max CSI Version | Container Image | 
 --|--|--|--|--|--|--|--
 [external-resizer v0.1.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.1.0)  | [master](https://github.com/kubernetes-csi/external-resizer/tree/master) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0) | - | quay.io/k8scsi/csi-resizer:v0.1.0 | v1.14 | - | v1.14
 
+Definitions of the min/max/recommended Kubernetes versions can be found on the
+[sidecar page](sidecar-containers.md#versioning)
+
 ## Description
 
 The CSI `external-resizer` is a sidecar container that watches the Kubernetes API server for `PersistentVolumeClaim` object edits and

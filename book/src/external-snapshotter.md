@@ -12,6 +12,9 @@ Latest stable release | Branch | Min CSI Version | Max CSI Version | Container I
 [external-snapshotter v1.0.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.0.1) | [release-1.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v1.0.1 | v1.13 | - | v1.13
 [external-snapshotter v0.4.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v0.4.1) | [release-0.4](https://github.com/kubernetes-csi/external-snapshotter/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/csi-snapshotter:v0.4.1 | v1.10 | -| v.10
 
+Definitions of the min/max/recommended Kubernetes versions can be found on the
+[sidecar page](sidecar-containers.md#versioning)
+
 ## Description
 
 The CSI `external-snapshotter` is a sidecar container that watches the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRD objects.

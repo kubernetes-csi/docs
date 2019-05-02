@@ -3,9 +3,9 @@
 ## Status
 
 Status | Min K8s Version | Max K8s Version | cluster-driver-registrar Version
---|--|--
-Alpha | 1.12 | 1.12 | 0.4 
-Alpha | 1.13 | 1.13 | 1.0 
+--|--|--|--
+Alpha | 1.12 | 1.12 | 0.4
+Alpha | 1.13 | 1.13 | 1.0
 Beta | 1.14 | - | n/a
 
 # Overview

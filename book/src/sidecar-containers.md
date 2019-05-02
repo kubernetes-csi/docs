@@ -32,13 +32,19 @@ The Kubernetes development team maintains the following Kubernetes CSI Sidecar C
 
 Every sidecar has a minimum, maximum and recommended Kubernetes version.
 
+### Minimum Version
+
 Minimum version specifies the lowest Kubernetes version where the sidecar will
 function with the most basic functionality, and no additional features added later.
 Generally, this aligns with the Kubernetes version where that CSI spec version was added.
 
+### Maximum Version
+
 Similarly, the max Kubernetes version generally aligns with when support for
 that CSI spec version was removed or if a particular Kubernetes API or feature
 was deprecated and removed.
+
+### Recommended Version
 
 It is important to note that any new features added to the sidecars may have
 dependencies on Kubernetes versions greater than the minimum Kubernetes version.
