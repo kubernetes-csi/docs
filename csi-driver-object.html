@@ -197,7 +197,13 @@ spec:
 </li>
 </ul>
 <a class="header" href="#what-creates-the-csidriver-object" id="what-creates-the-csidriver-object"><h2>What creates the CSIDriver object?</h2></a>
-<p>CSI drivers do not need to create the <code>CSIDriver</code> object directly. Instead they may use the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container (customizing it as needed with startup parameters). When deployed with a CSI driver, this sidecar will automatically creates a <code>CSIDriver</code> object to represent the driver.</p>
+<p>To install, a CSI driver's deployment manifest must contain a <code>CSIDriver</code>
+object as shown in the example above.</p>
+<blockquote>
+<p>NOTE: The cluster-driver-registrar side-car which was used to create CSIDriver
+objects in Kubernetes 1.13 is being redesigned for Kubernetes 1.15 and
+therefore not available for Kubernetes 1.14.</p>
+</blockquote>
 <a class="header" href="#listing-registered-csi-drivers" id="listing-registered-csi-drivers"><h3>Listing registered CSI drivers</h3></a>
 <p>Using the <code>CSIDriver</code> object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:</p>
 <pre><code>$&gt; kubectl get csidrivers.storage.k8s.io
