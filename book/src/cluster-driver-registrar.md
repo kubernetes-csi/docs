@@ -1,5 +1,15 @@
 # CSI cluster-driver-registrar
 
+## UNDER CONSTRUCTION
+
+As of Kubernetes 1.14, this side car container is being refactored. The purpose of
+this side car container was to automatically register a _CSIDriver_ object containing
+information about the driver with Kubernetes. We are currently refactoring this
+side car container to be more efficient. In the meantime, developers will now
+have to add a CSIDriver object in their installation manifest.
+
+Please see [CSIDriver](csi-driver-object.md) for more information.
+
 ## Status and Releases
 
 **Git Repository:** https://github.com/kubernetes-csi/cluster-driver-registrar
