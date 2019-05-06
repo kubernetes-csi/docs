@@ -138,10 +138,11 @@
                     <main>
                         <a class="header" href="#pod-info-on-mount" id="pod-info-on-mount"><h1>Pod Info on Mount</h1></a>
 <a class="header" href="#status" id="status"><h1>Status</h1></a>
-<ul>
-<li>Kubernetes 1.12: Alpha</li>
-<li>Kubernetes 1.14: Beta</li>
-</ul>
+<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> cluster-driver-registrar Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.12 </td><td> 1.12 </td><td> 0.4</td></tr>
+<tr><td>Alpha </td><td> 1.13 </td><td> 1.13 </td><td> 1.0</td></tr>
+<tr><td>Beta </td><td> 1.14 </td><td> - </td><td> n/a</td></tr>
+</tbody></table>
 <a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
 <p>CSI avoids encoding Kubernetes specific information in to the specification, since it aims to support multiple orchestration systems (beyond just Kubernetes).</p>
 <p>This can be problematic because some CSI drivers require information about the workload (e.g. which pod is referencing this volume), and CSI does not provide this information natively to drivers.</p>
@@ -162,7 +163,8 @@ spec:
 <li><code>csi.storage.k8s.io/pod.namespace: {pod.Namespace}</code></li>
 <li><code>csi.storage.k8s.io/pod.uid: {pod.UID}</code></li>
 </ul>
-<p>The easiest way to use this feature is to deploy the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
+<p>The CSIDriver object should be manually included in the driver manifests.</p>
+<p>Previously, the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container could be used to create the object. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
 <a class="header" href="#alpha-functionality" id="alpha-functionality"><h2>Alpha Functionality</h2></a>
 <p>In alpha, this feature was enabled by setting the <code>podInfoOnMountVersion</code> field in the <code>CSIDriver</code> Object CRD to to <code>v1</code>.</p>
 <pre><code>apiVersion: csi.storage.k8s.io/v1alpha1

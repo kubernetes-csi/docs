@@ -140,9 +140,11 @@
 <a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-resizer/</p>
 <p><strong>Status:</strong> Alpha</p>
-<table><thead><tr><th>Latest release </th><th> Branch </th><th> Compatible with CSI Version </th><th> Container Image </th><th> Min k8s Version </th><th> Max k8s version</th></tr></thead><tbody>
-<tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v0.1.0">external-resizer v0.1.0</a>  </td><td> <a href="https://github.com/kubernetes-csi/external-resizer/tree/master">master</a> </td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.1.0">v1.1.0</a> </td><td> docker pull quay.io/k8scsi/csi-resizer:v0.1.0 </td><td> v1.14 </td><td> -</td></tr>
+<table><thead><tr><th>Latest release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min K8s Version </th><th> Max K8s Version </th><th> Recommended K8s Version</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v0.1.0">external-resizer v0.1.0</a>  </td><td> <a href="https://github.com/kubernetes-csi/external-resizer/tree/master">master</a> </td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.1.0">v1.1.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-resizer:v0.1.0 </td><td> v1.14 </td><td> - </td><td> v1.14</td></tr>
 </tbody></table>
+<p>Definitions of the min/max/recommended Kubernetes versions can be found on the
+<a href="sidecar-containers.html#versioning">sidecar page</a></p>
 <a class="header" href="#description" id="description"><h2>Description</h2></a>
 <p>The CSI <code>external-resizer</code> is a sidecar container that watches the Kubernetes API server for <code>PersistentVolumeClaim</code> object edits and
 triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint if user requested more storage on <code>PersistentVolumeClaim</code> object.</p>

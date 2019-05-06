@@ -138,10 +138,11 @@
                     <main>
                         <a class="header" href="#csi-topology-feature" id="csi-topology-feature"><h1>CSI Topology Feature</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
-<ul>
-<li>Kubernetes 1.12: Alpha</li>
-<li>Kubernetes 1.14: Beta</li>
-</ul>
+<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> external-provisioner Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.12 </td><td> 1.12 </td><td> 0.4</td></tr>
+<tr><td>Alpha </td><td> 1.13 </td><td> 1.13 </td><td> 1.0</td></tr>
+<tr><td>Beta </td><td> 1.14 </td><td> - </td><td> 1.1+</td></tr>
+</tbody></table>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.</p>
 <p>To enable orchestration systems, like Kubernetes, to work well with storage systems which expose volumes that are not equally accessible by all nodes, the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a> enables:</p>

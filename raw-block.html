@@ -138,10 +138,11 @@
                     <main>
                         <a class="header" href="#raw-block-volume-feature" id="raw-block-volume-feature"><h1>Raw Block Volume Feature</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
-<ul>
-<li>Kubernetes 1.11: Alpha</li>
-<li>Kubernetes 1.14: Beta</li>
-</ul>
+<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> external-provisioner Version </th><th> external-attacher Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.11 </td><td> 1.13 </td><td> 0.4 </td><td> 0.4</td></tr>
+<tr><td>Alpha </td><td> 1.13 </td><td> 1.13 </td><td> 1.0 </td><td> 1.0</td></tr>
+<tr><td>Beta </td><td> 1.14 </td><td> - </td><td> 1.1+ </td><td> 1.1+</td></tr>
+</tbody></table>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>This page documents how to implement raw block volume support to a CSI Driver.</p>
 <p>A <em>block volume</em> is a volume that will appear as a block device inside the container.

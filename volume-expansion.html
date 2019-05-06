@@ -138,9 +138,9 @@
                     <main>
                         <a class="header" href="#volume-expansion" id="volume-expansion"><h1>Volume Expansion</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
-<ul>
-<li>Kubernetes 1.14: Alpha</li>
-</ul>
+<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> external-resizer Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.14 </td><td> - </td><td> 0.1</td></tr>
+</tbody></table>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>A storage provider that allows volume expansion after creation, may choose to implement volume expansion either via a
 control-plane CSI RPC call or via node CSI RPC call or both as a two step process.</p>

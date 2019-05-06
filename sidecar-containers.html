@@ -165,6 +165,31 @@
 <li><a href="cluster-driver-registrar.html">cluster-driver-registrar</a></li>
 <li><a href="livenessprobe.html">livenessprobe</a></li>
 </ul>
+<a class="header" href="#versioning" id="versioning"><h2>Versioning</h2></a>
+<p>Every sidecar has a minimum, maximum and recommended Kubernetes version.</p>
+<a class="header" href="#minimum-version" id="minimum-version"><h3>Minimum Version</h3></a>
+<p>Minimum version specifies the lowest Kubernetes version where the sidecar will
+function with the most basic functionality, and no additional features added later.
+Generally, this aligns with the Kubernetes version where that CSI spec version was added.</p>
+<a class="header" href="#maximum-version" id="maximum-version"><h3>Maximum Version</h3></a>
+<p>Similarly, the max Kubernetes version generally aligns with when support for
+that CSI spec version was removed or if a particular Kubernetes API or feature
+was deprecated and removed.</p>
+<a class="header" href="#recommended-version" id="recommended-version"><h3>Recommended Version</h3></a>
+<p>It is important to note that any new features added to the sidecars may have
+dependencies on Kubernetes versions greater than the minimum Kubernetes version.
+The recommended Kubernetes version specifies the lowest Kubernetes version
+needed where all features of a sidecar will function correctly. Trying to use a
+new sidecar feature on a Kubernetes cluster below the recommended Kubernetes
+version may fail to function correctly. For that reason, it is encouraged to
+stay as close to the recommended Kubernetes version as possible.</p>
+<p>For more details on which features are supported with which Kubernetes versions
+and their corresponding sidecars, please see each feature's individual page.</p>
+<a class="header" href="#alpha-features" id="alpha-features"><h3>Alpha Features</h3></a>
+<p>It is also important to note that alpha features are subject to break or be
+removed across Kubernetes and sidecar releases. There is no guarantee alpha
+features will continue to function if upgrading the Kubernetes cluster or
+upgrading a sidecar.</p>
 
                     </main>
 

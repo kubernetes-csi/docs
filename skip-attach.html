@@ -138,10 +138,11 @@
                     <main>
                         <a class="header" href="#skip-kubernetes-attach-and-detach" id="skip-kubernetes-attach-and-detach"><h1>Skip Kubernetes Attach and Detach</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
-<ul>
-<li>Kubernetes 1.12: Alpha</li>
-<li>Kubernetes 1.14: Beta</li>
-</ul>
+<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> cluster-driver-registrar Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.12 </td><td> 1.12 </td><td> 0.4</td></tr>
+<tr><td>Alpha </td><td> 1.13 </td><td> 1.13 </td><td> 1.0</td></tr>
+<tr><td>Beta </td><td> 1.14 </td><td> - </td><td> n/a</td></tr>
+</tbody></table>
 <a class="header" href="#overview" id="overview"><h1>Overview</h1></a>
 <p>Volume drivers, like NFS, for example, have no concept of an attach (<code>ControllerPublishVolume</code>). However, Kubernetes always executes <code>Attach</code> and <code>Detach</code> operations even if the CSI driver does not implement an attach operation (i.e. even if the CSI Driver does not implement a <code>ControllerPublishVolume</code> call).</p>
 <p>This was problematic because it meant <em>all</em> CSI drivers had to handle Kubernetes attachment. CSI Drivers that did not implement the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability could work around this by deploying an <a href="external-attacher.html">external-attacher</a> and the <code>external-attacher</code> would responds to Kubernetes attach operations and simply do a noop (because the CSI driver did not advertise the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability).</p>
@@ -157,7 +158,8 @@ metadata:
 spec:
   attachRequired: false
 </code></pre>
-<p>The easiest way to use this feature is to deploy the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
+<p>CSIDriver object should be manually included in the driver deployment manifests.</p>
+<p>Previously, the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container could be deployed to automatically create the object. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
 <a class="header" href="#alpha-functionality" id="alpha-functionality"><h2>Alpha Functionality</h2></a>
 <p>In alpha, this feature was enabled via the <a href="csi-driver-object.html">CSIDriver Object</a> CRD.</p>
 <pre><code>apiVersion: csi.storage.k8s.io/v1alpha1

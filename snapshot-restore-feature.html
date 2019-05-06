@@ -138,9 +138,10 @@
                     <main>
                         <a class="header" href="#snapshot--restore-feature" id="snapshot--restore-feature"><h1>Snapshot &amp; Restore Feature</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
-<ul>
-<li>Kubernetes 1.12: Alpha</li>
-</ul>
+<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> external-snapshotter Version </th><th> external-provisioner Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.12 </td><td> 1.12 </td><td> 0.4 </td><td> 0.4</td></tr>
+<tr><td>Alpha </td><td> 1.13 </td><td> - </td><td> 1.0+ </td><td> 1.0+</td></tr>
+</tbody></table>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>Many storage systems provide the ability to create a &quot;snapshot&quot; of a persistent volume. A snapshot represents a point-in-time copy of a volume. A snapshot can be used either to provision a new volume (pre-populated with the snapshot data) or to restore the existing volume to a previous state (represented by the snapshot).</p>
 <p>Kubernetes CSI currently enables CSI Drivers to expose the following functionality via the Kubernetes API:</p>
