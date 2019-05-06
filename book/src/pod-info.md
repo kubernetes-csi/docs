@@ -2,8 +2,11 @@
 
 # Status
 
-* Kubernetes 1.12: Alpha
-* Kubernetes 1.14: Beta
+Status | Min K8s Version | Max K8s Version | cluster-driver-registrar Version
+--|--|--|--
+Alpha | 1.12 | 1.12 | 0.4
+Alpha | 1.13 | 1.13 | 1.0
+Beta | 1.14 | - | n/a
 
 # Overview
 
@@ -35,7 +38,9 @@ If the `podInfoOnMount` field is set to `true`, during mount, Kubelet will add t
 * `csi.storage.k8s.io/pod.namespace: {pod.Namespace}`
 * `csi.storage.k8s.io/pod.uid: {pod.UID}`
 
-The easiest way to use this feature is to deploy the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container. Once the flags to this container are configured correctly, it will automatically create a [CSIDriver Object](csi-driver-object.md) when it starts with the correct fields set.
+The CSIDriver object should be manually included in the driver manifests.
+
+Previously, the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container could be used to create the object. Once the flags to this container are configured correctly, it will automatically create a [CSIDriver Object](csi-driver-object.md) when it starts with the correct fields set.
 
 ## Alpha Functionality
 In alpha, this feature was enabled by setting the `podInfoOnMountVersion` field in the `CSIDriver` Object CRD to to `v1`.

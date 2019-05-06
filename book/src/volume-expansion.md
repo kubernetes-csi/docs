@@ -2,7 +2,9 @@
 
 ## Status
 
-* Kubernetes 1.14: Alpha
+Status | Min K8s Version | Max K8s Version | external-resizer Version
+--|--|--|--
+Alpha | 1.14 | - | 0.1
 
 ## Overview
 

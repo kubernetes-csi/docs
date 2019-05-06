@@ -2,7 +2,10 @@
 
 ## Status
 
-* Kubernetes 1.12: Alpha
+Status | Min K8s Version | Max K8s Version | external-snapshotter Version | external-provisioner Version
+--|--|--|--|--
+Alpha | 1.12 | 1.12 | 0.4 | 0.4
+Alpha | 1.13 | - | 1.0+ | 1.0+
 
 ## Overview
 
