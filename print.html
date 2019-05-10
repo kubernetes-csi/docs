@@ -1399,9 +1399,73 @@ The <a href="https://github.com/kubernetes-csi/csi-driver-host-path#deployment">
 </ul>
 <p>Read the <a href="https://github.com/kubernetes-csi/csi-test/blob/master/pkg/sanity/README.md">documentation of the <code>sanity</code> package</a> for more details.</p>
 <a class="header" href="#functional-testing" id="functional-testing"><h1>Functional Testing</h1></a>
-<p>Some functional testing of your CSI driver can be done via the CLI mode of the <a href="https://github.com/kubernetes-csi/csi-test/tree/master/pkg/sanity">CSI <code>sanity</code></a> package.</p>
-<p>Drivers should also be functionally &quot;end-to-end&quot; tested while deployed in a Kubernetes cluster. Currently how to do this and what tests to run is left up to driver authors. In the future, a project (currently in development) aims to enable use of a pre-built <code>kubernetes/e2e/e2e.test</code> binary containing a standard set of Kubernetes CSI end-to-end tests to be imported and run by third party CSI drivers. This documentation will be updated with more information once that is ready to use.</p>
+<p>Drivers should be functionally &quot;end-to-end&quot; tested while deployed in a Kubernetes cluster. Previously, how to do this and what tests to run was left up to driver authors. Now, a standard set of Kubernetes CSI end-to-end tests can be imported and run by third party CSI drivers. This documentation specifies how to do so.</p>
 <p>The CSI community is also looking in to establishing an official &quot;CSI Conformance Suite&quot; to recognize &quot;officially certified CSI drivers&quot;.  This documentation will be updated with more information once that process has been defined.</p>
+<a class="header" href="#kubernetes-end-to-end-testing-for-csi-storage-plugins" id="kubernetes-end-to-end-testing-for-csi-storage-plugins"><h1>Kubernetes End to End Testing for CSI Storage Plugins</h1></a>
+<p>Currently, <a href="https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity">csi-sanity</a> exists to help test compliance with the CSI spec, but e2e testing of plugins is needed as well to provide plugin authors and users validation that their plugin is integrated well with specific versions of Kubernetes.</p>
+<a class="header" href="#setting-up-end-to-end-tests-for-your-csi-plugin" id="setting-up-end-to-end-tests-for-your-csi-plugin"><h2>Setting up End to End tests for your CSI Plugin</h2></a>
+<a class="header" href="#prerequisites" id="prerequisites"><h3>Prerequisites:</h3></a>
+<ul>
+<li>A Kubernetes v1.13+ Cluster</li>
+<li><a href="https://kubernetes.io/docs/tasks/tools/install-kubectl/#install-kubectl">Kubectl</a></li>
+</ul>
+<p>There are two ways to run end-to-end tests for your CSI Plugin</p>
+<ol>
+<li>use <a href="https://github.com/kubernetes/kubernetes/tree/master/test/e2e/storage/external">Kubernetes E2E Tests</a>, by providing a DriverDefinition YAML file via a parameter.</li>
+</ol>
+<ul>
+<li>
+<p><strong>Note</strong>: In some cases you would not be able to use this method, in running e2e tests by just providing a YAML file defining your CSI plugin. For example the <a href="https://github.com/kubernetes-csi/csi-driver-nfs">NFS CSI plugin</a> currently does not support dynamic provisoning, so we would want to skip those and run only pre-provisioned tests. For such cases, you would need to write your own testdriver, which is discussed below.</p>
+</li>
+</ul>
+<ol start="2">
+<li>import the in-tree storage tests and run them using <code>go test</code>.</li>
+</ol>
+<p>This doc will cover how to run the E2E tests using the second method.</p>
+<a class="header" href="#importing-the-e2e-test-suite-as-a-library" id="importing-the-e2e-test-suite-as-a-library"><h2>Importing the E2E test suite as a library</h2></a>
+<p>In-tree storage e2e tests could be used to test CSI storage plugins. Your repo should be setup similar to how the <a href="https://github.com/kubernetes-csi/csi-driver-nfs">NFS CSI plugin</a> is setup, where the testfiles are in a <code>test</code> directory and the main test file is in the <code>cmd</code> directory.</p>
+<p>To be able to import Kubernetes in-tree storage tests, the CSI plugin would need to use <strong>Kubernetes v1.14+</strong> (add to plugin's GoPkg.toml, since pluggable E2E tests become available in v1.14). CSI plugin authors would also be required to implement a <a href="https://github.com/kubernetes/kubernetes/blob/6644db9914379a4a7b3d3487b41b2010f226e4dc/test/e2e/storage/testsuites/testdriver.go#L31">testdriver</a> for their CSI plugin. The testdriver provides required functionality that would help setup testcases for a particular plugin.</p>
+<p>For any testdriver these functions would be required (Since it implements the <a href="https://github.com/kubernetes/kubernetes/blob/6644db9914379a4a7b3d3487b41b2010f226e4dc/test/e2e/storage/testsuites/testdriver.go#L31">TestDriver Interface</a>):</p>
+<ul>
+<li><code>GetDriverInfo() *testsuites.DriverInfo</code></li>
+<li><code>SkipUnsupportedTest(pattern testpatterns.TestPattern)</code></li>
+<li><code>PrepareTest(f *framework.Framework) (*testsuites.PerTestConfig, func())</code></li>
+</ul>
+<p>The <code>PrepareTest</code> method is where you would write code to setup your CSI plugin, and it would be called before each test case. It is recommended that you don't deploy your plugin in this method, and rather deploy it manually before running your tests.</p>
+<p><code>GetDriverInfo</code> will return a <code>DriverInfo</code> object that has all of the plugin's capabilities and required information. This object helps tests find the deployed plugin, and also decides which tests should run (depending on the plugin's capabilities).</p>
+<p>Here are examples of the NFS and Hostpath DriverInfo objects:</p>
+<pre><code>testsuites.DriverInfo{
+            Name:        &quot;csi-nfsplugin&quot;,
+            MaxFileSize: testpatterns.FileSizeLarge,
+            SupportedFsType: sets.NewString(
+                &quot;&quot;, // Default fsType
+            ),
+            Capabilities: map[testsuites.Capability]bool{
+                testsuites.CapPersistence: true,
+                testsuites.CapExec:        true,
+            },
+}
+</code></pre>
+<pre><code>testsuites.DriverInfo{
+            Name:        &quot;csi-hostpath&quot;,
+            FeatureTag:  &quot;&quot;,
+            MaxFileSize: testpatterns.FileSizeMedium,
+            SupportedFsType: sets.NewString(
+                &quot;&quot;, // Default fsType
+            ),
+            Capabilities: map[testsuites.Capability]bool{
+                testsuites.CapPersistence: true,
+            },
+}
+</code></pre>
+<p>You would define something similar for your CSI plugin.</p>
+<p><code>SkipUnsupportedTest</code> simply skips any tests that you define there.</p>
+<p>Depending on your plugin's specs, you would implement other interaces defined <a href="https://github.com/kubernetes/kubernetes/blob/6644db9914379a4a7b3d3487b41b2010f226e4dc/test/e2e/storage/testsuites/testdriver.go#L61">here</a>. For example the <a href="https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/test/nfs-testdriver.go#L66">NFS testdriver</a> also implements PreprovisionedVolumeTestDriver and PreprovisionedPVTestDriver interfaces, to enable pre-provisoned tests.</p>
+<p>After implementing the testdriver for your CSI plugin, you would create a <code>csi-volumes.go</code> file, where the implemented testdriver is used to run in-tree storage testsuites, <a href="https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/test/csi-volumes.go#L37">similar to how the NFS CSI plugin does so</a>. This is where you would define which testsuites you would want to run for your plugin. All available in-tree testsuites can be found <a href="https://github.com/kubernetes/kubernetes/tree/master/test/e2e/storage/testsuites">here</a>.</p>
+<p>Finally, importing the <code>test</code> package into your <a href="https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/cmd/tests/nfs-e2e.go#L18">main test file</a> will <a href="https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/test/csi-volumes.go#L37">initialize the testsuites to run the E2E tests</a>.</p>
+<p>The NFS plugin creates a binary to run E2E tests, but you could use <code>go test</code> instead to run E2E tests using a command like this:</p>
+<pre><code>go test -v &lt;main test file&gt; -ginkgo.v -ginkgo.progress --kubeconfig=&lt;kubeconfig file&gt; -timeout=0
+</code></pre>
 <a class="header" href="#drivers" id="drivers"><h1>Drivers</h1></a>
 <p>The following are a set of CSI driver which can be used with Kubernetes:</p>
 <blockquote>
