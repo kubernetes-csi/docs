@@ -48,10 +48,19 @@ The value of both parameters may be a literal or a template containing the follo
 
     * `${pv.name}`
       * Automatically replaced with the name of the `PersistentVolume` object being provisioned at provision.
+    * `${pvc.namespace}`
+      * Automatically replaced with the namespace of the `PersistentVolumeClaim` object being provisione
+
+The value of `csi.storage.k8s.io/provisioner-secret-name` also supports the following template variables which are automatically replaced by the `external-provisioner` at provision time:
+
+  * `${pvc.name}`
+    * Automatically replaced with the name of the `PersistentVolumeClaim` object being provisioned.
 
 If specified, the CSI `external-provisioner` will attempt to fetch the secret before provisioning and deletion.
 
-If no such secret exists in the Kubernetes API, or the provisioner is unable to fetch it, the provision or delete operation fails.
+If the entire namespace was deleted, including the secret needed for deletion, then no secret will be passed to the delete call. 
+
+If no such secret exists in the Kubernetes API, or the provisioner is unable to fetch it, the provision operation will fail. The delete operation will continue if the secret is not found. If this happens when the driver requires a secret for deletion, then the volume and PV may need to be manually cleaned up. 
 
 If the secret is retrieved successfully, the provisioner passes it to the CSI driver in the `CreateVolumeRequest.secrets` or `DeleteVolumeRequest.secrets` field.
 
@@ -71,7 +80,7 @@ The value of both parameters may be a literal or a template containing the follo
   * `${pvc.namespace}`
     * Automatically replaced with the namespace of the `PersistentVolumeClaim` object being provisioned.
 
-The value of `csi.storage.k8s.io/controller-publish-secret-namespace` also supports the following template variables which are automatically replaced by the `external-provisioner` at provision time:
+The value of `csi.storage.k8s.io/controller-publish-secret-name` also supports the following template variables which are automatically replaced by the `external-provisioner` at provision time:
 
   * `${pvc.name}`
     * Automatically replaced with the name of the `PersistentVolumeClaim` object being provisioned.
@@ -133,7 +142,7 @@ The value of both parameters may be a literal or a template containing the follo
   * `${pvc.namespace}`
     * Automatically replaced with the namespace of the `PersistentVolumeClaim` object being provisioned.
 
-The value of `csi.storage.k8s.io/node-publish-secret-namespace` also supports the following template variables which are automatically replaced by the `external-provisioner` at provision time:
+The value of `csi.storage.k8s.io/node-publish-secret-name` also supports the following template variables which are automatically replaced by the `external-provisioner` at provision time:
 
   * `${pvc.name}`
     * Automatically replaced with the name of the `PersistentVolumeClaim` object being provisioned.
@@ -148,7 +157,30 @@ If no such secret exists in the Kubernetes API, or the kubelet is unable to fetc
 
 If the secret is retrieved successfully, the kubelet passes it to the CSI driver in the `NodePublishVolumeRequest.secrets` field.
 
-For example, consider this `StorageClass`:
+## Example Storage Classes 
+
+The following storage classes supply secrets to a sample CSI driver named `csi-driver.team.example.com`.
+
+### Multiple operations support secret keys
+A drivers may support secret keys for multiple operations. In this case, you can provide secrets references for each operation:
+
+```yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: fast-storage-all
+provisioner: csi-driver.team.example.com
+parameters:
+  type: pd-ssd
+  csi.storage.k8s.io/provisioner-secret-name: ${pvc.name}
+  csi.storage.k8s.io/provisioner-secret-namespace: ${pvc.namespace}-fast-storage
+  csi.storage.k8s.io/node-publish-secret-name: ${pvc.name}-${pvc.annotations['team.example.com/key']}
+  csi.storage.k8s.io/node-publish-secret-namespace: ${pvc.namespace}-fast-storage
+  
+``` 
+
+### Only NodePublish supports secret keys 
+Some drivers may only support secret keys for a certain operation:
 
 ```yaml
 kind: StorageClass
@@ -158,8 +190,8 @@ metadata:
 provisioner: csi-driver.team.example.com
 parameters:
   type: pd-ssd
-  csiNodePublishSecretName: ${pvc.annotations['team.example.com/key']}
-  csiNodePublishSecretNamespace: ${pvc.namespace}
+  csi.storage.k8s.io/node-publish-secret-name: ${pvc.annotations['team.example.com/key']}
+  csi.storage.k8s.io/node-publish-secret-namespace: ${pvc.namespace}
 ```
 
 This StorageClass instructs the CSI provisioner to do the following:
