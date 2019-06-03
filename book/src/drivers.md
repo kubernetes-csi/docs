@@ -42,6 +42,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [QingCloud CSI](https://github.com/yunify/qingcloud-csi)| `csi.qingcloud.com` | v1.0 | A Container Storage Interface (CSI) Driver for QingCloud Block Storage | Persistent | Read/Write Single Pod | Yes | No | No | ?
 [QingStor CSI](https://github.com/yunify/qingstor-csi) | `csi-neonsan` | v0.3 | A Container Storage Interface (CSI) Driver for NeonSAN storage system | Persistent | Read/Write Single Pod | Yes | No | Yes | ?
 [Quobyte](https://github.com/quobyte/quobyte-csi) | `quobyte-csi` | v0.2 | A Container Storage Interface (CSI) Driver for Quobyte | Persistent | Read/Write Multiple Pods | Yes | No | No | ?
+[ROBIN](https://get.robin.io/) | `robin` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for [ROBIN](https://docs.robin.io) | Persistent | Read/Write Multiple Pods | Yes | No | Yes | No
 [SmartX](http://www.smartx.com/?locale=en) | `csi-smtx-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SmartX ZBS Storage  | Persistent | Read/Write Multiple Pods | Yes | No | Yes | Yes
 [SandStone](https://github.com/sandstone-storage/sandstone-csi-driver) | `csi-sandstone-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SandStone USP | Persistent | Read/Write Single Pod | Yes | No | No | ?
 [ScaleIO](https://github.com/thecodeteam/csi-scaleio) | `com.thecodeteam.scaleio` | v0.2 | A Container Storage Interface (CSI) Driver for DellEMC ScaleIO | Persistent | Read/Write Single Pod | Yes | No | No | ?
