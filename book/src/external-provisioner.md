@@ -23,7 +23,18 @@ Once a new volume is successfully provisioned, the sidecar container creates a K
 
 The deletion of a `PersistentVolumeClaim` object bound to a `PersistentVolume` corresponding to this driver with a `delete` reclaim policy causes the sidecar container to trigger a `DeleteVolume` operation against the specified CSI endpoint to delete the volume. Once the volume is successfully deleted, the sidecar container also deletes the `PersistentVolume` object representing the volume.
 
-The CSI `external-provisioner` also supports the `Snapshot` DataSource. If a `Snapshot` CRD is specified as a data source on a PVC object, the sidecar container fetches the information about the snapshot by fetching the `SnapshotContent` object and populates the data source field in the resulting `CreateVolume` call to indicate to the storage system that the new volume should be populated using the specified snapshot.
+### DataSources 
+
+The external-provisioner provides the ability to request a volume be pre-populated from a data source during provisioning.
+For more information on how data sources are handled see [DataSources](volume-datasources.md).
+
+#### Snapshot
+
+The CSI `external-provisioner` supports the `Snapshot` DataSource. If a `Snapshot` CRD is specified as a data source on a PVC object, the sidecar container fetches the information about the snapshot by fetching the `SnapshotContent` object and populates the data source field in the resulting `CreateVolume` call to indicate to the storage system that the new volume should be populated using the specified snapshot.
+
+#### PersistentVolumeClaim (clone)
+
+Cloning is also implemented by specifying a `kind:` of type `PersistentVolumeClaim` in the DataSource field of a Provision request.  It's the responsbility of the external-provisioner to verify that the claim specified in the DataSource object exists, is in the same storage class as the volume being provisioned and that the claim is currently `Bound`.
 
 ### StorageClass Parameters
 
