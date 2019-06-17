@@ -791,6 +791,10 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-name: fast-storage-provision-key
   csi.storage.k8s.io/provisioner-secret-namespace: pd-ssd-credentials
 </code></pre>
+<a class="header" href="#secret-rbac-rules" id="secret-rbac-rules"><h3>Secret RBAC Rules</h3></a>
+<p>For reducing RBAC permissions as much as possible, secret rules are disabled in each sidecar repository by default.</p>
+<p>Please add or update RBAC rules if secret is expected to use.</p>
+<p>To set proper secret permission, uncomment related lines defined in <code>rbac.yaml</code> (e.g. <a href="https://github.com/kubernetes-csi/external-provisioner/blob/22bb6401d2484ee3ca18a23d75c3864c774e5f32/deploy/kubernetes/rbac.yaml#L24">external-provisioner/deploy/kubernetes/rbac.yaml</a>)</p>
 <a class="header" href="#createdelete-volume-secret" id="createdelete-volume-secret"><h3>Create/Delete Volume Secret</h3></a>
 <p>The CSI <code>external-provisioner</code> (v1.0.1+) looks for the following keys in <code>StorageClass.parameters</code>:</p>
 <ul>
