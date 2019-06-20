@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Volume expansion - Kubernetes CSI Developer Documentation</title>
+        <title>Cloning - Kubernetes CSI Developer Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.1.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.2.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.3.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.4.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.5.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.6.</strong> livenessprobe</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.7.</strong> external-resizer</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.6.</strong> Ephemeral Local Volumes</a></li><li><a href="volume-expansion.html" class="active"><strong aria-hidden="true">2.4.7.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.8.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.8.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.8.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.1.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.2.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.3.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.4.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.5.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.6.</strong> livenessprobe</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.7.</strong> external-resizer</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.6.</strong> Ephemeral Local Volumes</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.7.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.8.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html" class="active"><strong aria-hidden="true">2.4.8.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.8.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -136,58 +136,43 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#volume-expansion" id="volume-expansion"><h1>Volume Expansion</h1></a>
-<a class="header" href="#status" id="status"><h2>Status</h2></a>
-<table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version </th><th> external-resizer Version</th></tr></thead><tbody>
-<tr><td>Alpha </td><td> 1.14 </td><td> - </td><td> 0.1</td></tr>
+                        <a class="header" href="#volume-cloning" id="volume-cloning"><h1>Volume Cloning</h1></a>
+<a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
+<table><thead><tr><th>Status </th><th> Min k8s Version </th><th> Max k8s version </th><th> external-provisioner Version</th></tr></thead><tbody>
+<tr><td>Alpha </td><td> 1.15 </td><td> - </td><td> 1.3</td></tr>
 </tbody></table>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
-<p>A storage provider that allows volume expansion after creation, may choose to implement volume expansion either via a
-control-plane CSI RPC call or via node CSI RPC call or both as a two step process.</p>
-<a class="header" href="#implementing-volume-expansion-functionality" id="implementing-volume-expansion-functionality"><h2>Implementing Volume expansion functionality</h2></a>
-<p>To implement volume expansion the CSI driver MUST:</p>
+<p>A Clone is defined as a duplicate of an existing Kubernetes Volume.  For more information on cloning in Kubernetes see the concepts doc for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-cloning">Volume Cloning</a>.  A storage provider that allows volume cloning as a create feature, may choose to implement volume cloning via a control-plan CSI RPC call.</p>
+<p>For details regarding the kuberentes API for volume cloning, please see <a href="https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/">kubernetes concepts</a>.</p>
+<a class="header" href="#implementing-volume-cloning-functionality" id="implementing-volume-cloning-functionality"><h2>Implementing Volume cloning functionality</h2></a>
+<p>To implement volume cloning the CSI driver MUST:</p>
 <ol>
-<li>Implement <code>VolumeExpansion</code> plugin capability.</li>
-<li>Implement <code>EXPAND_VOLUME</code> controller capability or implement <code>EXPAND_VOLUME</code> node capability or both.</li>
+<li>Implement checks for <code>csi.CreateVolumeRequest.VolumeContentSource</code> in the plugin's <code>CreateVolume</code> function implementation.</li>
+<li>Implement <code>CLONE_VOLUME</code> controller capability.</li>
 </ol>
-<p><code>ControllerExpandVolume</code> RPC call can be made when volume is <code>ONLINE</code> or <code>OFFLINE</code> depending on <code>VolumeExpansion</code> plugin
-capability. Where <code>ONLINE</code> and <code>OFFLINE</code> means:</p>
-<ol>
-<li><em>ONLINE</em> : Volume is currently published or available on a node.</li>
-<li><em>OFFLINE</em> : Volume is currently not published or available on a node.</li>
-</ol>
-<p><code>NodeExpandVolume</code> RPC call on the other hand - <em>always</em> requires volume to be published or staged on a node (and hence <code>ONLINE</code>).
-For block storage file systems - <code>NodeExpandVolume</code> is typically used for expanding the file system on the node, but it can be also
-used to perform other volume expansion related housekeeping operations on the node.</p>
-<p>For details,  see the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a>.</p>
-<a class="header" href="#deploying-volume-expansion-functionality" id="deploying-volume-expansion-functionality"><h2>Deploying volume expansion functionality</h2></a>
-<p>The Kubernetes CSI development team maintains <a href="external-resizer.html">external-resizer</a> Kubernetes CSI <a href="sidecar-containers.html">Sidecar Containers</a>.
-This sidecar container implements the logic for watching the Kubernetes API for Persistent Volume claim edits and issuing <code>ControllerExpandVolume</code> RPC call against a CSI endpoint and updating <code>PersistentVolume</code> object to reflect new size.</p>
-<p>This sidecar is needed even if CSI driver does not have <code>EXPAND_VOLUME</code> controller capability, in this case it performs a NO-OP expansion and updates <code>PersistentVolume</code> object. <code>NodeExpandVolume</code> is always called by Kubelet on the node.</p>
-<p>For more details, see <a href="external-resizer.html">external-resizer</a>.</p>
-<a class="header" href="#enabling-volume-expansion-for-csi-volumes-in-kubernetes" id="enabling-volume-expansion-for-csi-volumes-in-kubernetes"><h2>Enabling Volume expansion for CSI volumes in Kubernetes</h2></a>
-<p>To expand a volume if permitted by the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims">storage class</a>, users just need to edit the persistent volume claim object and request more storage. Volume expansion for CSI volumes is an alpha feature and hence
-also must be explicitly enabled via feature gate:</p>
-<pre><code>--feature-gates=ExpandCSIVolumes=true
+<p>It is the responsibility of the storage plugin to either implement an expansion after clone if a provision request size is greater than the source, or allow the external-resizer to handle it.  In the case that the plugin does not support resize capability and it does not have the capability to create a clone that is greater in size than the specified source volume, then the provision request should result in a failure.</p>
+<a class="header" href="#deploying-volume-clone-functionality" id="deploying-volume-clone-functionality"><h2>Deploying volume clone functionality</h2></a>
+<p>The Kubernetes CSI development team maintains the <a href="external-provisioner.html">external-provisioner</a> which is responsible for detecting requests for a PVC DataSource and providing that information to the plugin via the <code>csi.CreateVolumeRequest</code>.  It's up to the plugin to check the <code>csi.CreateVolumeRequest</code> for a <code>VolumeContentSource</code> entry in the CreateVolumeRequest object.</p>
+<p>There are no additional side-cars or add on components required.</p>
+<a class="header" href="#enabling-cloning-for-csi-volumes-in-kubernetes" id="enabling-cloning-for-csi-volumes-in-kubernetes"><h2>Enabling Cloning for CSI volumes in Kubernetes</h2></a>
+<p>Volume cloning for CSI volumes is an alpha feature (Kubernetes 1.15) and hence must be explicitly enabled via feature gate:</p>
+<pre><code>--feature-gates=VolumePVCDataSource=true
 </code></pre>
-<p>To enable online expansion of CSI persistent volumes, we also need to enable online expansion feature gate:</p>
-<pre><code>--feature-gates=ExpandInUsePersistentVolumes=true
-</code></pre>
-<p>It is expected that external-resizer and kubelet will add appropriate events and conditions to persistent volume claim object to indicate
-progress of volume expansion operation.</p>
+<a class="header" href="#example-implementation" id="example-implementation"><h2>Example implementation</h2></a>
+<p>A trivial example implementation can be found in the <a href="https://github.com/kubernetes-csi/csi-driver-host-path">csi-hostpath plugin</a> in its implementation of <code>CreateVolume</code>.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="ephemeral-local-volumes.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="volume-datasources.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="volume-datasources.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="snapshot-restore-feature.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -199,13 +184,13 @@ progress of volume expansion operation.</p>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="ephemeral-local-volumes.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="volume-datasources.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="volume-datasources.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="snapshot-restore-feature.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
