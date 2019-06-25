@@ -8,7 +8,7 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | Min K8s Version | Max K8s Version | Recommended K8s Version
 --|--|--|--|--|--|--|--
-[external-snapshotter v1.1.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.1.0) | [release-1.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v1.1.0 | v1.13 | - | v1.14
+[external-snapshotter v1.2.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.2.0) | [release-1.2](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v1.2.0 | v1.13 | - | v1.14
 [external-snapshotter v1.0.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.0.1) | [release-1.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v1.0.1 | v1.13 | - | v1.13
 [external-snapshotter v0.4.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v0.4.1) | [release-0.4](https://github.com/kubernetes-csi/external-snapshotter/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/csi-snapshotter:v0.4.1 | v1.10 | -| v.10
 

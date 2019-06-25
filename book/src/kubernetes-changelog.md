@@ -3,6 +3,16 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.15
+
+### Features
+* New features:
+    * Volume capacity usage metrics
+* New alpha features:
+    * Volume cloning
+    * Ephemeral local volumes
+    * Resizing secrets
+
 ## Kubernetes 1.14
 
 ### Breaking Changes
