@@ -12,6 +12,12 @@ A Clone is defined as a duplicate of an existing Kubernetes Volume.  For more in
 
 For details regarding the kuberentes API for volume cloning, please see [kubernetes concepts](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/).
 
+## Cloning Restrictions
+
+Clone operations assume the cloning of a volume is being performed by the storage device, often referred to as `smart cloning`.  Implementations that transfer data (ie creating a container, mounting volumes and performing a dd) are considered `Populators` and not cloning implementations.  In addition to the expectation that the actual clone operation is performed by the storage device, cloning is also restricted to a single storage class.  In other words, the destination volume *must* be in the same Storage Class as the volume specified in the `dataSource` parameter.  This may seem unnecessary for devices or plugins that manage multiple storage classes, and while the check could instead be on the `Provisioner` field of a storage class, allowing this would break how storage classes work.
+
+One example of how this creates a problem is due to the way we use a storage class to define a file system type.  If for example a deployment includes a storage class for xfs and another for ext4, cloning from an xfs volume to an ext4 volume may work fine from the storage devices perspective, however a user ends up with an xfs formatted volume in the ext4 storage class.  There are other situations where the storage class defines specific characteristics for a volume that would likely be lost if cloning between them; block-mode, qos settings, credentials etcetera.
+
 ## Implementing Volume cloning functionality
 
 To implement volume cloning the CSI driver MUST:
@@ -38,3 +44,4 @@ Volume cloning for CSI volumes is an alpha feature (Kubernetes 1.15) and hence m
 ## Example implementation
 
 A trivial example implementation can be found in the [csi-hostpath plugin](https://github.com/kubernetes-csi/csi-driver-host-path) in its implementation of `CreateVolume`.
+
