@@ -8,7 +8,7 @@
         - [external-attacher](external-attacher.md)
         - [external-snapshotter](external-snapshotter.md)
         - [node-driver-registrar](node-driver-registrar.md)
-        - [cluster-driver-registrar](cluster-driver-registrar.md)
+        - [cluster-driver-registrar](cluster-driver-registrar.md) (deprecated)
         - [livenessprobe](livenessprobe.md)
         - [external-resizer](external-resizer.md)
     - [CSI objects](csi-objects.md)

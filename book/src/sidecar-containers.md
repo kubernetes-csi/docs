@@ -24,7 +24,7 @@ The Kubernetes development team maintains the following Kubernetes CSI Sidecar C
 * [external-snapshotter](external-snapshotter.md)
 * [external-resizer](external-resizer.md)
 * [node-driver-registrar](node-driver-registrar.md)
-* [cluster-driver-registrar](cluster-driver-registrar.md)
+* [cluster-driver-registrar](cluster-driver-registrar.md) (deprecated)
 * [livenessprobe](livenessprobe.md)
 
 
