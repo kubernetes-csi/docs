@@ -13,7 +13,7 @@ Latest stable release | Branch | Min CSI Version | Max CSI Version | Container I
 [external-attacher v1.0.1](https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.0.1) | [release-1.0](https://github.com/kubernetes-csi/external-attacher/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-attacher:v1.0.1 | v1.13 | - | v1.13
 [external-attacher v0.4.2](https://github.com/kubernetes-csi/external-attacher/releases/tag/v0.4.2) | [release-0.4](https://github.com/kubernetes-csi/external-attacher/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/csi-attacher:v0.4.2 | v1.10 | - | v1.10
 
-Definitions of the min/max/recommended Kubernetes versions can be found on the
+Definitions of the min/max/recommended Kubernetes versions and supported sidecar versions can be found on the
 [sidecar page](sidecar-containers.md#versioning)
 
 ## Description

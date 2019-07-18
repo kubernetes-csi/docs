@@ -57,6 +57,13 @@ stay as close to the recommended Kubernetes version as possible.
 For more details on which features are supported with which Kubernetes versions
 and their corresponding sidecars, please see each feature's individual page.
 
+### Support
+
+Kubernetes community supports CSI sidecar container versions that cover at
+least one
+[supported Kubernetes version](https://kubernetes.io/docs/setup/release/version-skew-policy/#supported-versions)
+between their minimum and maximum versions.
+
 ### Alpha Features
 
 It is also important to note that alpha features are subject to break or be

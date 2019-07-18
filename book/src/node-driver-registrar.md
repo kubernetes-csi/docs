@@ -12,6 +12,9 @@ Latest stable release | Branch | Min CSI Version | Max CSI Version | Container I
 [node-driver-registrar v1.0.2](https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v1.0.2) | [release-1.0](https://github.com/kubernetes-csi/node-driver-registrar/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-node-driver-registrar:v1.0.2 | v1.13 | -
 [driver-registrar v0.4.2](https://github.com/kubernetes-csi/driver-registrar/releases/tag/v0.4.2) | [release-0.4](https://github.com/kubernetes-csi/driver-registrar/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/driver-registrar:v0.4.2 | v1.10 | -
 
+Definitions of the min/max/recommended Kubernetes versions and supported sidecar versions can be found on the
+[sidecar page](sidecar-containers.md#versioning)
+
 ## Description
 
 The CSI `node-driver-registrar` is a sidecar container that fetches driver information (using `NodeGetInfo`) from a CSI endpoint and registers it with the kubelet on that node using the [kubelet plugin registration mechanism](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-registration).
