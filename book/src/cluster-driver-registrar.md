@@ -1,12 +1,15 @@
 # CSI cluster-driver-registrar
 
-## UNDER CONSTRUCTION
+## Deprecated
 
-As of Kubernetes 1.14, this side car container is being refactored. The purpose of
-this side car container was to automatically register a _CSIDriver_ object containing
-information about the driver with Kubernetes. We are currently refactoring this
-side car container to be more efficient. In the meantime, developers will now
-have to add a CSIDriver object in their installation manifest.
+This sidecar container was not updated since Kubernetes 1.13. As of Kubernetes
+1.16, this side car container is officially deprecated.
+
+The purpose of this side car container was to automatically register
+a _CSIDriver_ object containing information about the driver with Kubernetes.
+Without this side car, developers and CSI driver vendors will now have to add
+a CSIDriver object in their installation manifest or any tool that installs
+their CSI driver.
 
 Please see [CSIDriver](csi-driver-object.md) for more information.
 

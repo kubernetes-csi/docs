@@ -52,8 +52,12 @@ To install, a CSI driver's deployment manifest must contain a `CSIDriver`
 object as shown in the example above.
 
 >NOTE: The cluster-driver-registrar side-car which was used to create CSIDriver
->objects in Kubernetes 1.13 is being redesigned for Kubernetes 1.15 and
->therefore not available for Kubernetes 1.14.
+>objects in Kubernetes 1.13 has been deprecated for Kubernetes 1.16. No
+>cluster-driver-registrar has been released for Kubernetes 1.14 and later.
+
+`CSIDriver` instance should exist for whole lifetime of all pods that use
+volumes provided by corresponding CSI driver, so [Skip Attach](skip-attach.md)
+and [Pod Info on Mount](pod-info.md) features work correctly.
 
 ### Listing registered CSI drivers
 Using the `CSIDriver` object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:
