@@ -137,12 +137,14 @@
                 <div id="content" class="content">
                     <main>
                         <a class="header" href="#csi-cluster-driver-registrar" id="csi-cluster-driver-registrar"><h1>CSI cluster-driver-registrar</h1></a>
-<a class="header" href="#under-construction" id="under-construction"><h2>UNDER CONSTRUCTION</h2></a>
-<p>As of Kubernetes 1.14, this side car container is being refactored. The purpose of
-this side car container was to automatically register a <em>CSIDriver</em> object containing
-information about the driver with Kubernetes. We are currently refactoring this
-side car container to be more efficient. In the meantime, developers will now
-have to add a CSIDriver object in their installation manifest.</p>
+<a class="header" href="#deprecated" id="deprecated"><h2>Deprecated</h2></a>
+<p>This sidecar container was not updated since Kubernetes 1.13. As of Kubernetes
+1.16, this side car container is officially deprecated.</p>
+<p>The purpose of this side car container was to automatically register
+a <em>CSIDriver</em> object containing information about the driver with Kubernetes.
+Without this side car, developers and CSI driver vendors will now have to add
+a CSIDriver object in their installation manifest or any tool that installs
+their CSI driver.</p>
 <p>Please see <a href="csi-driver-object.html">CSIDriver</a> for more information.</p>
 <a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/cluster-driver-registrar</p>

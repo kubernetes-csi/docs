@@ -201,9 +201,12 @@ spec:
 object as shown in the example above.</p>
 <blockquote>
 <p>NOTE: The cluster-driver-registrar side-car which was used to create CSIDriver
-objects in Kubernetes 1.13 is being redesigned for Kubernetes 1.15 and
-therefore not available for Kubernetes 1.14.</p>
+objects in Kubernetes 1.13 has been deprecated for Kubernetes 1.16. No
+cluster-driver-registrar has been released for Kubernetes 1.14 and later.</p>
 </blockquote>
+<p><code>CSIDriver</code> instance should exist for whole lifetime of all pods that use
+volumes provided by corresponding CSI driver, so <a href="skip-attach.html">Skip Attach</a>
+and <a href="pod-info.html">Pod Info on Mount</a> features work correctly.</p>
 <a class="header" href="#listing-registered-csi-drivers" id="listing-registered-csi-drivers"><h3>Listing registered CSI drivers</h3></a>
 <p>Using the <code>CSIDriver</code> object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:</p>
 <pre><code>$&gt; kubectl get csidrivers.storage.k8s.io

@@ -394,7 +394,7 @@ map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operat
 <li><a href="external-snapshotter.html">external-snapshotter</a></li>
 <li><a href="external-resizer.html">external-resizer</a></li>
 <li><a href="node-driver-registrar.html">node-driver-registrar</a></li>
-<li><a href="cluster-driver-registrar.html">cluster-driver-registrar</a></li>
+<li><a href="cluster-driver-registrar.html">cluster-driver-registrar</a> (deprecated)</li>
 <li><a href="livenessprobe.html">livenessprobe</a></li>
 </ul>
 <a class="header" href="#versioning" id="versioning"><h2>Versioning</h2></a>
@@ -539,12 +539,14 @@ parameters:
 <a class="header" href="#deployment-3" id="deployment-3"><h2>Deployment</h2></a>
 <p>The CSI <code>node-driver-registrar</code> is deployed per node. See <a href="deploying.html">deployment section</a> for more details.</p>
 <a class="header" href="#csi-cluster-driver-registrar" id="csi-cluster-driver-registrar"><h1>CSI cluster-driver-registrar</h1></a>
-<a class="header" href="#under-construction" id="under-construction"><h2>UNDER CONSTRUCTION</h2></a>
-<p>As of Kubernetes 1.14, this side car container is being refactored. The purpose of
-this side car container was to automatically register a <em>CSIDriver</em> object containing
-information about the driver with Kubernetes. We are currently refactoring this
-side car container to be more efficient. In the meantime, developers will now
-have to add a CSIDriver object in their installation manifest.</p>
+<a class="header" href="#deprecated" id="deprecated"><h2>Deprecated</h2></a>
+<p>This sidecar container was not updated since Kubernetes 1.13. As of Kubernetes
+1.16, this side car container is officially deprecated.</p>
+<p>The purpose of this side car container was to automatically register
+a <em>CSIDriver</em> object containing information about the driver with Kubernetes.
+Without this side car, developers and CSI driver vendors will now have to add
+a CSIDriver object in their installation manifest or any tool that installs
+their CSI driver.</p>
 <p>Please see <a href="csi-driver-object.html">CSIDriver</a> for more information.</p>
 <a class="header" href="#status-and-releases-4" id="status-and-releases-4"><h2>Status and Releases</h2></a>
 <p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/cluster-driver-registrar</p>
@@ -680,9 +682,12 @@ spec:
 object as shown in the example above.</p>
 <blockquote>
 <p>NOTE: The cluster-driver-registrar side-car which was used to create CSIDriver
-objects in Kubernetes 1.13 is being redesigned for Kubernetes 1.15 and
-therefore not available for Kubernetes 1.14.</p>
+objects in Kubernetes 1.13 has been deprecated for Kubernetes 1.16. No
+cluster-driver-registrar has been released for Kubernetes 1.14 and later.</p>
 </blockquote>
+<p><code>CSIDriver</code> instance should exist for whole lifetime of all pods that use
+volumes provided by corresponding CSI driver, so <a href="skip-attach.html">Skip Attach</a>
+and <a href="pod-info.html">Pod Info on Mount</a> features work correctly.</p>
 <a class="header" href="#listing-registered-csi-drivers" id="listing-registered-csi-drivers"><h3>Listing registered CSI drivers</h3></a>
 <p>Using the <code>CSIDriver</code> object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:</p>
 <pre><code>$&gt; kubectl get csidrivers.storage.k8s.io
