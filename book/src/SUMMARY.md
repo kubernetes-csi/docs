@@ -4,6 +4,7 @@
 - [Developing a CSI Driver for Kubernetes](developing.md)
     - [Kubernetes Changelog](kubernetes-changelog.md)
     - [Sidecar Containers](sidecar-containers.md)
+        - [Kubernetes Compatibility](kubernetes-compatibility.md)
         - [external-provisioner](external-provisioner.md)
         - [external-attacher](external-attacher.md)
         - [external-snapshotter](external-snapshotter.md)
