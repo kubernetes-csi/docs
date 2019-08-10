@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Driver Testing - Kubernetes CSI Developer Documentation</title>
+        <title>Kubernetes Compatibility - Kubernetes CSI Developer Documentation</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html"><strong aria-hidden="true">2.2.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.2.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.3.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.4.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.5.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.6.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.7.</strong> livenessprobe</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.8.</strong> external-resizer</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.8.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html" class="active"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html" class="active"><strong aria-hidden="true">2.2.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.2.</strong> external-provisioner</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.3.</strong> external-attacher</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.4.</strong> external-snapshotter</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.5.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.6.</strong> cluster-driver-registrar</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.7.</strong> livenessprobe</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.8.</strong> external-resizer</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.8.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -136,25 +136,45 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#testing" id="testing"><h1>Testing</h1></a>
-<p>This section describes how CSI developers can test their CSI drivers.</p>
-<ul>
-<li><a href="unit-testing.html">Unit Testing</a></li>
-<li><a href="functional-testing.html">Functional Testing</a></li>
-</ul>
+                        <a class="header" href="#kubernetes-and-csi-sidecar-compatibility" id="kubernetes-and-csi-sidecar-compatibility"><h1>Kubernetes and CSI Sidecar Compatibility</h1></a>
+<p>Every version of a sidecar has a minimum, maximum and recommended Kubernetes version
+that it is compatible with.</p>
+<a class="header" href="#minimum-version" id="minimum-version"><h3>Minimum Version</h3></a>
+<p>Minimum version specifies the lowest Kubernetes version where the sidecar will
+function with the most basic functionality, and no additional features added later.
+Generally, this aligns with the Kubernetes version where that CSI spec version was added.</p>
+<a class="header" href="#maximum-version" id="maximum-version"><h3>Maximum Version</h3></a>
+<p>Similarly, the max Kubernetes version generally aligns with when support for
+that CSI spec version was removed or if a particular Kubernetes API or feature
+was deprecated and removed.</p>
+<a class="header" href="#recommended-version" id="recommended-version"><h3>Recommended Version</h3></a>
+<p>It is important to note that any new features added to the sidecars may have
+dependencies on Kubernetes versions greater than the minimum Kubernetes version.
+The recommended Kubernetes version specifies the lowest Kubernetes version
+needed where all features of a sidecar will function correctly. Trying to use a
+new sidecar feature on a Kubernetes cluster below the recommended Kubernetes
+version may fail to function correctly. For that reason, it is encouraged to
+stay as close to the recommended Kubernetes version as possible.</p>
+<p>For more details on which features are supported with which Kubernetes versions
+and their corresponding sidecars, please see each feature's individual page.</p>
+<a class="header" href="#alpha-features" id="alpha-features"><h3>Alpha Features</h3></a>
+<p>It is also important to note that alpha features are subject to break or be
+removed across Kubernetes and sidecar releases. There is no guarantee alpha
+features will continue to function if upgrading the Kubernetes cluster or
+upgrading a sidecar.</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="example.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="sidecar-containers.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="unit-testing.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="external-provisioner.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -166,13 +186,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="example.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="sidecar-containers.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="unit-testing.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="external-provisioner.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
