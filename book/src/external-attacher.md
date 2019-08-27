@@ -2,7 +2,7 @@
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/external-attacher
+**Git Repository:** [https://github.com/kubernetes-csi/external-attacher](https://github.com/kubernetes-csi/external-attacher)
 
 **Status:** GA/Stable
 
