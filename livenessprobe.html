@@ -138,7 +138,7 @@
                     <main>
                         <a class="header" href="#csi-livenessprobe" id="csi-livenessprobe"><h1>CSI livenessprobe</h1></a>
 <a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/livenessprobe</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/livenessprobe">https://github.com/kubernetes-csi/livenessprobe</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Compatible with CSI Version </th><th> Container Image </th><th> Min k8s Version </th><th> Max k8s version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.1.0">livenessprobe v1.1.0</a> </td><td> <a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-1.1">release-1.1</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> quay.io/k8scsi/livenessprobe:v1.1.0 </td><td> v1.13 </td><td> -</td></tr>
@@ -149,7 +149,7 @@
 <p>The CSI <code>livenessprobe</code> is a sidecar container that monitors the health of the CSI driver and reports it to Kubernetes via the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/">Liveness Probe mechanism</a>. This enables Kubernetes to automatically detect issues with the driver and restart the pod to try and fix the issue.</p>
 <a class="header" href="#usage" id="usage"><h2>Usage</h2></a>
 <p>All CSI drivers should use the liveness probe to improve the availability of the driver while deployed on Kubernetes.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md">https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md</a>.</p>
 <a class="header" href="#deployment" id="deployment"><h2>Deployment</h2></a>
 <p>The CSI <code>livenessprobe</code> is deployed as part of controller and node deployments. See <a href="deploying.html">deployment section</a> for more details.</p>
 

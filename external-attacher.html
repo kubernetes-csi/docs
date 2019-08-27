@@ -138,7 +138,7 @@
                     <main>
                         <a class="header" href="#csi-external-attacher" id="csi-external-attacher"><h1>CSI external-attacher</h1></a>
 <a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-attacher</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-attacher">https://github.com/kubernetes-csi/external-attacher</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min K8s Version </th><th> Max K8s Version </th><th> Recommended K8s Version </th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.2.0">external-attacher v1.2.0</a> </td><td> <a href="https://github.com/kubernetes-csi/external-attacher/tree/release-1.2">release-1.2</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-attacher:v1.2.0 </td><td> v1.13 </td><td> - </td><td> v1.15</td></tr>
@@ -152,7 +152,7 @@
 <p>The CSI <code>external-attacher</code> is a sidecar container that watches the Kubernetes API server for <code>VolumeAttachment</code> objects and triggers <code>Controller[Publish|Unpublish]Volume</code> operations against a CSI endpoint.</p>
 <a class="header" href="#usage" id="usage"><h2>Usage</h2></a>
 <p>CSI drivers that require integrating with the Kubernetes volume attach/detach hooks should use this sidecar container, and advertise the CSI <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-attacher/blob/master/README.md.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-attacher/blob/master/README.md">https://github.com/kubernetes-csi/external-attacher/blob/master/README.md</a>.</p>
 <a class="header" href="#deployment" id="deployment"><h2>Deployment</h2></a>
 <p>The CSI <code>external-attacher</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
 

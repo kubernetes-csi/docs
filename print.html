@@ -425,7 +425,7 @@ features will continue to function if upgrading the Kubernetes cluster or
 upgrading a sidecar.</p>
 <a class="header" href="#csi-external-provisioner" id="csi-external-provisioner"><h1>CSI external-provisioner</h1></a>
 <a class="header" href="#status-and-releases" id="status-and-releases"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-provisioner</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-provisioner">https://github.com/kubernetes-csi/external-provisioner</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min K8s Version </th><th> Max K8s Version </th><th> Recommended K8s Version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.3.0">external-provisioner v1.3.0</a> </td><td> <a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-1.3">release-1.3</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-provisioner:v1.3.0 </td><td> v1.13 </td><td> - </td><td> v1.15</td></tr>
@@ -479,12 +479,12 @@ parameters:
 </code></pre>
 <a class="header" href="#usage" id="usage"><h2>Usage</h2></a>
 <p>CSI drivers that support dynamic volume provisioning should use this sidecar container, and advertise the CSI <code>CREATE_DELETE_VOLUME</code> controller capability.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md">https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md</a>.</p>
 <a class="header" href="#deployment" id="deployment"><h2>Deployment</h2></a>
 <p>The CSI <code>external-provisioner</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
 <a class="header" href="#csi-external-attacher" id="csi-external-attacher"><h1>CSI external-attacher</h1></a>
 <a class="header" href="#status-and-releases-1" id="status-and-releases-1"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-attacher</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-attacher">https://github.com/kubernetes-csi/external-attacher</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min K8s Version </th><th> Max K8s Version </th><th> Recommended K8s Version </th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.2.0">external-attacher v1.2.0</a> </td><td> <a href="https://github.com/kubernetes-csi/external-attacher/tree/release-1.2">release-1.2</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-attacher:v1.2.0 </td><td> v1.13 </td><td> - </td><td> v1.15</td></tr>
@@ -498,12 +498,12 @@ parameters:
 <p>The CSI <code>external-attacher</code> is a sidecar container that watches the Kubernetes API server for <code>VolumeAttachment</code> objects and triggers <code>Controller[Publish|Unpublish]Volume</code> operations against a CSI endpoint.</p>
 <a class="header" href="#usage-1" id="usage-1"><h2>Usage</h2></a>
 <p>CSI drivers that require integrating with the Kubernetes volume attach/detach hooks should use this sidecar container, and advertise the CSI <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-attacher/blob/master/README.md.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-attacher/blob/master/README.md">https://github.com/kubernetes-csi/external-attacher/blob/master/README.md</a>.</p>
 <a class="header" href="#deployment-1" id="deployment-1"><h2>Deployment</h2></a>
 <p>The CSI <code>external-attacher</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
 <a class="header" href="#csi-external-snapshotter" id="csi-external-snapshotter"><h1>CSI external-snapshotter</h1></a>
 <a class="header" href="#status-and-releases-2" id="status-and-releases-2"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-snapshotter</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshotter">https://github.com/kubernetes-csi/external-snapshotter</a></p>
 <p><strong>Status:</strong> Alpha</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min K8s Version </th><th> Max K8s Version </th><th> Recommended K8s Version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.2.0">external-snapshotter v1.2.0</a> </td><td> <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.2">release-1.2</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-snapshotter:v1.2.0 </td><td> v1.13 </td><td> - </td><td> v1.14</td></tr>
@@ -519,13 +519,13 @@ parameters:
 <p>For detailed information about volume snapshot and restore functionality, see <a href="snapshot-restore-feature.html">Volume Snapshot &amp; Restore</a>.</p>
 <a class="header" href="#usage-2" id="usage-2"><h2>Usage</h2></a>
 <p>CSI drivers that support provisioning volume snapshots and the ability to provision new volumes using those snapshots should use this sidecar container, and advertise the CSI <code>CREATE_DELETE_SNAPSHOT</code> controller capability.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-snapshotter/blob/master/README.md.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/master/README.md">https://github.com/kubernetes-csi/external-snapshotter/blob/master/README.md</a>.</p>
 <a class="header" href="#deployment-2" id="deployment-2"><h2>Deployment</h2></a>
 <p>The CSI <code>external-snapshotter</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
 <p>For an example deployment, see <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/deploy/kubernetes/setup-csi-snapshotter.yaml">this example</a> which deploys <code>external-snapshotter</code> and <code>external-provisioner</code> with the Hostpath CSI driver.</p>
 <a class="header" href="#csi-node-driver-registrar" id="csi-node-driver-registrar"><h1>CSI node-driver-registrar</h1></a>
 <a class="header" href="#status-and-releases-3" id="status-and-releases-3"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/node-driver-registrar</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/node-driver-registrar">https://github.com/kubernetes-csi/node-driver-registrar</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min k8s Version </th><th> Max k8s version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v1.1.0">node-driver-registrar v1.1.0</a> </td><td> <a href="https://github.com/kubernetes-csi/node-driver-registrar/tree/release-1.1">release-1.1</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-node-driver-registrar:v1.1.0 </td><td> v1.13 </td><td> -</td></tr>
@@ -550,7 +550,7 @@ a CSIDriver object in their installation manifest or any tool that installs
 their CSI driver.</p>
 <p>Please see <a href="csi-driver-object.html">CSIDriver</a> for more information.</p>
 <a class="header" href="#status-and-releases-4" id="status-and-releases-4"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/cluster-driver-registrar</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/cluster-driver-registrar">https://github.com/kubernetes-csi/cluster-driver-registrar</a></p>
 <p><strong>Status:</strong> Alpha</p>
 <table><thead><tr><th>Latests stable release </th><th> Branch </th><th> Compatible with CSI Version </th><th> Container Image </th><th> Min k8s Version </th><th> Max k8s version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/cluster-driver-registrar/releases/tag/v1.0.1">cluster-driver-registrar v1.0.1</a> </td><td> <a href="https://github.com/kubernetes-csi/cluster-driver-registrar/tree/release-1.0">release-1.0</a> </td><td>  <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> quay.io/k8scsi/csi-cluster-driver-registrar:v1.0.1 </td><td> v1.13 </td><td> -</td></tr>
@@ -578,7 +578,7 @@ their CSI driver.</p>
 <p>The CSI <code>cluster-driver-registrar</code> is deployed as a controller. See <a href="deploying.html">deployment section</a> for more details.</p>
 <a class="header" href="#csi-livenessprobe" id="csi-livenessprobe"><h1>CSI livenessprobe</h1></a>
 <a class="header" href="#status-and-releases-5" id="status-and-releases-5"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/livenessprobe</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/livenessprobe">https://github.com/kubernetes-csi/livenessprobe</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
 <table><thead><tr><th>Latest stable release </th><th> Branch </th><th> Compatible with CSI Version </th><th> Container Image </th><th> Min k8s Version </th><th> Max k8s version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.1.0">livenessprobe v1.1.0</a> </td><td> <a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-1.1">release-1.1</a> </td><td> <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a> </td><td> quay.io/k8scsi/livenessprobe:v1.1.0 </td><td> v1.13 </td><td> -</td></tr>
@@ -589,12 +589,12 @@ their CSI driver.</p>
 <p>The CSI <code>livenessprobe</code> is a sidecar container that monitors the health of the CSI driver and reports it to Kubernetes via the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/">Liveness Probe mechanism</a>. This enables Kubernetes to automatically detect issues with the driver and restart the pod to try and fix the issue.</p>
 <a class="header" href="#usage-5" id="usage-5"><h2>Usage</h2></a>
 <p>All CSI drivers should use the liveness probe to improve the availability of the driver while deployed on Kubernetes.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md">https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md</a>.</p>
 <a class="header" href="#deployment-5" id="deployment-5"><h2>Deployment</h2></a>
 <p>The CSI <code>livenessprobe</code> is deployed as part of controller and node deployments. See <a href="deploying.html">deployment section</a> for more details.</p>
 <a class="header" href="#csi-external-resizer" id="csi-external-resizer"><h1>CSI external-resizer</h1></a>
 <a class="header" href="#status-and-releases-6" id="status-and-releases-6"><h2>Status and Releases</h2></a>
-<p><strong>Git Repository:</strong> https://github.com/kubernetes-csi/external-resizer/</p>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-resizer">https://github.com/kubernetes-csi/external-resizer</a></p>
 <p><strong>Status:</strong> Alpha</p>
 <table><thead><tr><th>Latest release </th><th> Branch </th><th> Min CSI Version </th><th> Max CSI Version </th><th> Container Image </th><th> Min K8s Version </th><th> Max K8s Version </th><th> Recommended K8s Version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v0.2.0">external-resizer v0.2.0</a>  </td><td> <a href="https://github.com/kubernetes-csi/external-resizer/tree/master">master</a> </td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.1.0">v1.1.0</a> </td><td> - </td><td> quay.io/k8scsi/csi-resizer:v0.2.0 </td><td> v1.15 </td><td> - </td><td> v1.15</td></tr>
@@ -617,7 +617,7 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <li><a href="csi-node-object.html">CSINode Object</a></li>
 </ul>
 <p>Both are part of <code>storage.k8s.io/v1beta1</code> API group.</p>
-<p>The schema definition for the objects can be found here: https://github.com/kubernetes/kubernetes/blob/master/pkg/apis/storage/types.go</p>
+<p>The schema definition for the objects can be found here: <a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/apis/storage/types.go">https://github.com/kubernetes/kubernetes/blob/master/pkg/apis/storage/types.go</a></p>
 <a class="header" href="#csidriver-object" id="csidriver-object"><h1>CSIDriver Object</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
 <ul>
@@ -1507,7 +1507,7 @@ progress of volume expansion operation.</p>
 <p>Similar to the API for managing <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Kubernetes Persistent Volumes</a>, the Kubernetes Volume Snapshots introduce three new API objects for managing snapshots: <code>VolumeSnapshot</code>, <code>VolumeSnapshotContent</code>, and <code>VolumeSnapshotClass</code>. See <a href="https://kubernetes.io/docs/concepts/storage/volume-snapshots/">Kubernetes Snapshot documentation</a> for more details.</p>
 <p>Unlike the core Kubernetes Persistent Volume objects, these Snapshot objects are defined as <a href="https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition">Custom Resource Definitions</a> (CRDs). This is because the Kubernetes project is moving away from having resource types pre-defined in the API server. This allows the API server to be reused for projects other than Kubernetes, and consumers (like Kubernetes) simply install the resource types they require as CRDs. Because the Snapshot API types are not built in to Kubernetes, they must be installed prior to use.</p>
 <p>The CRDs are <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/master/cmd/csi-snapshotter/create_crd.go#L29">automatically deployed</a> by the CSI <a href="external-snapshotter.html">external-snapshotter</a> sidecar.</p>
-<p>The schema definition for the custom resources (CRs) can be found here: https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go</p>
+<p>The schema definition for the custom resources (CRs) can be found here: <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go">https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go</a></p>
 <p>In addition to these new CRD objects, a new, alpha <code>DataSource</code> field has been added to the <code>PersistentVolumeClaim</code> object. This new field enables dynamic provisioning of new volumes that are automatically pre-populated with data from an existing snapshot.</p>
 <a class="header" href="#kubernetes-cluster-setup-2" id="kubernetes-cluster-setup-2"><h2>Kubernetes Cluster Setup</h2></a>
 <p>Since volume snapshot is an alpha feature in Kubernetes v1.12, you need to enable a new alpha feature gate called <code>VolumeSnapshotDataSource</code> in the Kubernetes master.</p>
