@@ -120,6 +120,8 @@ $ ./kubelet ...  --allow-privileged=true ...
 ## Enabling mount propagation
 Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the [mount propagation docs][mount-propagation-docs] to find out how to enable this feature for your cluster.  [This page][docker-shared-mount] explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.
 
+[docker-shared-mount]: https://docs.portworx.com/knowledgebase/shared-mount-propagation.html
+
 ### Examples
 
 - Simple deployment example using a single pod for all components: see the [hostpath example](example.html).
