@@ -16,7 +16,7 @@ It serves the following purposes:
 2. Driver availability
   * A way for kubelet to communicate to the kube-controller-manager and kubernetes scheduler whether the driver is available (registered) on the node or not.
 3. Volume topology
-  * The CSI `GetNodeInfo` call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to to do topology-aware provisioning (see [PVC Volume Binding Modes](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which `Node` label keys belong to a specific CSI driver, the kubelet stores the keys in the `CSINode` object for future reference.
+  * The CSI `GetNodeInfo` call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to do topology-aware provisioning (see [PVC Volume Binding Modes](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode) for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which `Node` label keys belong to a specific CSI driver, the kubelet stores the keys in the `CSINode` object for future reference.
 
 ## What fields does the CSINode object have?
 
