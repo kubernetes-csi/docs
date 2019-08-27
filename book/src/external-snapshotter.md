@@ -2,7 +2,7 @@
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/external-snapshotter
+**Git Repository:** [https://github.com/kubernetes-csi/external-snapshotter](https://github.com/kubernetes-csi/external-snapshotter)
 
 **Status:** Alpha
 
