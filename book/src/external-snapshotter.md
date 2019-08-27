@@ -29,7 +29,7 @@ For detailed information about volume snapshot and restore functionality, see [V
 
 CSI drivers that support provisioning volume snapshots and the ability to provision new volumes using those snapshots should use this sidecar container, and advertise the CSI `CREATE_DELETE_SNAPSHOT` controller capability.
 
-For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-snapshotter/blob/master/README.md.
+For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/master/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/master/README.md).
 
 ## Deployment
 
