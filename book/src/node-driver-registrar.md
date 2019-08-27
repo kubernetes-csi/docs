@@ -2,7 +2,7 @@
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/node-driver-registrar
+**Git Repository:** [https://github.com/kubernetes-csi/node-driver-registrar](https://github.com/kubernetes-csi/node-driver-registrar)
 
 **Status:** GA/Stable
 
