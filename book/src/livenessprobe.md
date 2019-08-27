@@ -20,7 +20,7 @@ The CSI `livenessprobe` is a sidecar container that monitors the health of the C
 
 All CSI drivers should use the liveness probe to improve the availability of the driver while deployed on Kubernetes.
 
-For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md.
+For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md](https://github.com/kubernetes-csi/livenessprobe/blob/master/README.md).
 
 ## Deployment
 
