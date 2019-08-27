@@ -15,7 +15,7 @@ Please see [CSIDriver](csi-driver-object.md) for more information.
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/cluster-driver-registrar
+**Git Repository:** [https://github.com/kubernetes-csi/cluster-driver-registrar](https://github.com/kubernetes-csi/cluster-driver-registrar)
 
 **Status:** Alpha
 

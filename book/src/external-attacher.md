@@ -2,7 +2,7 @@
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/external-attacher
+**Git Repository:** [https://github.com/kubernetes-csi/external-attacher](https://github.com/kubernetes-csi/external-attacher)
 
 **Status:** GA/Stable
 
@@ -24,7 +24,7 @@ The CSI `external-attacher` is a sidecar container that watches the Kubernetes A
 
 CSI drivers that require integrating with the Kubernetes volume attach/detach hooks should use this sidecar container, and advertise the CSI `PUBLISH_UNPUBLISH_VOLUME` controller capability.
 
-For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-attacher/blob/master/README.md.
+For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-attacher/blob/master/README.md](https://github.com/kubernetes-csi/external-attacher/blob/master/README.md).
 
 ## Deployment
 
