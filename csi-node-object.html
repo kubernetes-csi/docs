@@ -161,7 +161,7 @@
 <li>Volume topology</li>
 </ol>
 <ul>
-<li>The CSI <code>GetNodeInfo</code> call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to to do topology-aware provisioning (see <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode">PVC Volume Binding Modes</a> for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which <code>Node</code> label keys belong to a specific CSI driver, the kubelet stores the keys in the <code>CSINode</code> object for future reference.</li>
+<li>The CSI <code>GetNodeInfo</code> call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to do topology-aware provisioning (see <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode">PVC Volume Binding Modes</a> for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which <code>Node</code> label keys belong to a specific CSI driver, the kubelet stores the keys in the <code>CSINode</code> object for future reference.</li>
 </ul>
 <a class="header" href="#what-fields-does-the-csinode-object-have" id="what-fields-does-the-csinode-object-have"><h2>What fields does the CSINode object have?</h2></a>
 <p>Here is an example of a v1beta1 <code>CSINode</code> object:</p>
