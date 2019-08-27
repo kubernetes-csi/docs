@@ -81,7 +81,7 @@ parameters:
 
 CSI drivers that support dynamic volume provisioning should use this sidecar container, and advertise the CSI `CREATE_DELETE_VOLUME` controller capability.
 
-For detailed information (binary parameters, RBAC rules, etc.), see https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md.
+For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md](https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md).
 
 ## Deployment
 
