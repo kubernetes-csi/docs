@@ -2,7 +2,7 @@
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/external-provisioner
+**Git Repository:** [https://github.com/kubernetes-csi/external-provisioner](https://github.com/kubernetes-csi/external-provisioner)
 
 **Status:** GA/Stable
 
