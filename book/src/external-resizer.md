@@ -2,7 +2,7 @@
 
 ## Status and Releases
 
-**Git Repository:** https://github.com/kubernetes-csi/external-resizer/
+**Git Repository:** [https://github.com/kubernetes-csi/external-resizer](https://github.com/kubernetes-csi/external-resizer)
 
 **Status:** Alpha
 
