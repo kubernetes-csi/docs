@@ -15,7 +15,7 @@ linux mounts: Path /var/lib/kubelet/pods is mounted on / but it is not a shared 
 
 Your Docker host is not configured to allow shared mounts. Take a look at [this page][docker-shared-mount] for instructions to enable them.
 
-[docker-shared-mount]: https://docs.portworx.com/knowledgebase/shared-mount-propagation.html
+[docker-shared-mount]: https://kubernetes.io/docs/concepts/storage/volumes/#configuration
 
 
 ### External attacher can't find _VolumeAttachments_
