@@ -20,3 +20,14 @@ You can reach the maintainers of this project at:
 ### Code of conduct
 
 Participation in the Kubernetes community is governed by the [Kubernetes Code of Conduct](code-of-conduct.md).
+
+## To start editing on localhost
+
+```bash
+$ git clone git@github.com:kubernetes-csi/docs.git
+$ cd docs
+$ make $(pwd)/mdbook
+$ make serve
+```
+
+Access to http:localhost:3000 and you can view a book on localhost!
