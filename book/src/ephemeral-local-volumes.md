@@ -4,7 +4,8 @@
 
 Status | Min K8s Version | Max K8s Version 
 --|--|--
-Alpha | 1.15 | - 
+Alpha | 1.15 | 1.15
+Beta | 1.16 | -
 
 ## Overview
 Traditionally, volumes that are backed by CSI drivers can only be used with a `PersistentVolume` and `PersistentVolumeClaim` object combination. This feature supports ephemeral storage use cases and allows CSI volumes to be specified directly in the pod specification.  At runtime, nested inline volumes follow the ephemeral lifecycle of their associated pods where the driver handles all phases of volume operations as pods are created and destroyed.
@@ -38,12 +39,20 @@ Drivers must be modified (or implemented specifically) to support inline ephemer
 - Identity service
 - Node service
 
+Kubernetes 1.16 only allows using a CSI driver for an inline volume if
+its [`CSIDriverInfo`](csi-driver-object.md) object explicitly declares
+that the driver supports that kind of usage in its
+`volumeLifecycleModes` field. This is a safeguard against accidentally
+[using a driver the wrong way](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes).
+
 ### Feature gates
-To use inline volume, Kubernetes binaries must start with the `CSIInlineVolume` feature gate enabled:
+To use inline volume, Kubernetes 1.15 binaries must start with the `CSIInlineVolume` feature gate enabled:
 ```
 --feature-gates=CSIInlineVolume=true
 ```
 
+Kubernetes >= 1.16 no longer needs this as the feature is enabled by default.
+
 ### Example implementation
-- [CSI Hostpath driver](https://github.com/kubernetes-csi/csi-driver-host-path) - an example driver that can be configured to support either PVC/PV or inline ephemeral volumes at runtime.
+- [CSI Hostpath driver](https://github.com/kubernetes-csi/csi-driver-host-path) - an example driver that supports both modes and determines the mode on a case-by-case basis (for Kubernetes 1.16) or can be deployed with support for just one of the two modes (for Kubernetes 1.15).
 - [Image populator plugin](https://github.com/kubernetes-csi/csi-driver-image-populator) - an example CSI driver plugin that uses a container image as a volume.
