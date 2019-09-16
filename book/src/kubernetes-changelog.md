@@ -3,6 +3,14 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.16
+
+### Features
+* New beta features:
+    * Volume cloning
+    * Volume expansion
+    * Ephemeral local volumes
+
 ## Kubernetes 1.15
 
 ### Features
