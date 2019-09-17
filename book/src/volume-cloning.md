@@ -4,7 +4,8 @@
 
 Status | Min k8s Version | Max k8s version | external-provisioner Version
 --|--|--|--
-Alpha | 1.15 | - | 1.3
+Alpha | 1.15 | 1.15 | 1.3
+Beta | 1.16 | - | 1.3
 
 ## Overview
 
@@ -29,7 +30,7 @@ There are no additional side-cars or add on components required.
 
 ## Enabling Cloning for CSI volumes in Kubernetes
 
-Volume cloning for CSI volumes is an alpha feature (Kubernetes 1.15) and hence must be explicitly enabled via feature gate:
+In Kubernetes 1.15 this feature was alpha status and required enabling the appropriate feature gate:
 
 ```
 --feature-gates=VolumePVCDataSource=true
