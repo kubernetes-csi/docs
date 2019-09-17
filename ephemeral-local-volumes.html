@@ -139,7 +139,8 @@
                         <a class="header" href="#pod-inline-volume-support" id="pod-inline-volume-support"><h1>Pod Inline Volume Support</h1></a>
 <a class="header" href="#status" id="status"><h2>Status</h2></a>
 <table><thead><tr><th>Status </th><th> Min K8s Version </th><th> Max K8s Version</th></tr></thead><tbody>
-<tr><td>Alpha </td><td> 1.15 </td><td> -</td></tr>
+<tr><td>Alpha </td><td> 1.15 </td><td> 1.15</td></tr>
+<tr><td>Beta </td><td> 1.16 </td><td> -</td></tr>
 </tbody></table>
 <a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
 <p>Traditionally, volumes that are backed by CSI drivers can only be used with a <code>PersistentVolume</code> and <code>PersistentVolumeClaim</code> object combination. This feature supports ephemeral storage use cases and allows CSI volumes to be specified directly in the pod specification.  At runtime, nested inline volumes follow the ephemeral lifecycle of their associated pods where the driver handles all phases of volume operations as pods are created and destroyed.</p>
@@ -168,13 +169,19 @@ spec:
 <li>Identity service</li>
 <li>Node service</li>
 </ul>
+<p>Kubernetes 1.16 only allows using a CSI driver for an inline volume if
+its <a href="csi-driver-object.html"><code>CSIDriverInfo</code></a> object explicitly declares
+that the driver supports that kind of usage in its
+<code>volumeLifecycleModes</code> field. This is a safeguard against accidentally
+<a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes">using a driver the wrong way</a>.</p>
 <a class="header" href="#feature-gates" id="feature-gates"><h3>Feature gates</h3></a>
-<p>To use inline volume, Kubernetes binaries must start with the <code>CSIInlineVolume</code> feature gate enabled:</p>
+<p>To use inline volume, Kubernetes 1.15 binaries must start with the <code>CSIInlineVolume</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIInlineVolume=true
 </code></pre>
+<p>Kubernetes &gt;= 1.16 no longer needs this as the feature is enabled by default.</p>
 <a class="header" href="#example-implementation" id="example-implementation"><h3>Example implementation</h3></a>
 <ul>
-<li><a href="https://github.com/kubernetes-csi/csi-driver-host-path">CSI Hostpath driver</a> - an example driver that can be configured to support either PVC/PV or inline ephemeral volumes at runtime.</li>
+<li><a href="https://github.com/kubernetes-csi/csi-driver-host-path">CSI Hostpath driver</a> - an example driver that supports both modes and determines the mode on a case-by-case basis (for Kubernetes 1.16) or can be deployed with support for just one of the two modes (for Kubernetes 1.15).</li>
 <li><a href="https://github.com/kubernetes-csi/csi-driver-image-populator">Image populator plugin</a> - an example CSI driver plugin that uses a container image as a volume.</li>
 </ul>
 

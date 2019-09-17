@@ -165,6 +165,9 @@ metadata:
 spec:
   attachRequired: true
   podInfoOnMount: true
+  volumeLifecycleModes: # added in Kubernetes 1.16
+  - Persistent
+  - Ephemeral
 </code></pre>
 <p>There are three important fields:</p>
 <ul>
@@ -195,6 +198,16 @@ spec:
 <li>For more information see <a href="pod-info.html">Pod Info on Mount</a>.</li>
 </ul>
 </li>
+<li><code>volumeLifecycleModes</code>
+<ul>
+<li>This field was added in Kubernetes 1.16 and cannot be set when using an older Kubernetes release.</li>
+<li>It informs Kubernetes about the volume modes that are supported by the driver.
+This ensures that the driver <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes">is not used incorrectly</a> by users.
+The default is <code>Persistent</code>, which is the normal PVC/PV mechanism. <code>Ephemeral</code> enables
+<a href="ephemeral-local-volumes.html">inline ephemeral volumes</a> in addition (when both
+are listed) or instead of normal volumes (when it is the only entry in the list).</li>
+</ul>
+</li>
 </ul>
 <a class="header" href="#what-creates-the-csidriver-object" id="what-creates-the-csidriver-object"><h2>What creates the CSIDriver object?</h2></a>
 <p>To install, a CSI driver's deployment manifest must contain a <code>CSIDriver</code>
@@ -210,27 +223,30 @@ and <a href="pod-info.html">Pod Info on Mount</a> features work correctly.</p>
 <a class="header" href="#listing-registered-csi-drivers" id="listing-registered-csi-drivers"><h3>Listing registered CSI drivers</h3></a>
 <p>Using the <code>CSIDriver</code> object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:</p>
 <pre><code>$&gt; kubectl get csidrivers.storage.k8s.io
-NAME           AGE
-csi-hostpath   2m
+NAME                  CREATED AT
+hostpath.csi.k8s.io   2019-09-13T09:58:43Z
 </code></pre>
 <p>Or get a more detailed view of your registered driver with:</p>
 <pre><code>$&gt; kubectl describe csidrivers.storage.k8s.io
-Name:         csi-hostpath
-Namespace:
+Name:         hostpath.csi.k8s.io
+Namespace:    
 Labels:       &lt;none&gt;
-Annotations:  &lt;none&gt;
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {&quot;apiVersion&quot;:&quot;storage.k8s.io/v1beta1&quot;,&quot;kind&quot;:&quot;CSIDriver&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;hostpath.csi.k8s.io&quot;},&quot;spec&quot;:{&quot;podInfoOnMou...
 API Version:  storage.k8s.io/v1beta1
 Kind:         CSIDriver
 Metadata:
-  Creation Timestamp:  2018-10-04T21:15:30Z
-  Generation:          1
-  Resource Version:    390
-  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/csi-hostpath
-  UID:                 9f854aa6-c81a-11e8-bdce-000c29e88ff1
+  Creation Timestamp:  2019-09-13T09:58:43Z
+  Resource Version:    341
+  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/hostpath.csi.k8s.io
+  UID:                 1860f2a1-85f8-4357-a933-c45e54f0c8e0
 Spec:
-  Attach Required:            true
-  Pod Info On Mount:          false
-Events:                       &lt;none&gt;
+  Attach Required:    true
+  Pod Info On Mount:  true
+  Volume Lifecycle Modes:
+    Persistent
+    Ephemeral
+Events:  &lt;none&gt;
 </code></pre>
 <a class="header" href="#changes-from-alpha-to-beta" id="changes-from-alpha-to-beta"><h2>Changes from Alpha to Beta</h2></a>
 <a class="header" href="#crd-to-built-in-type" id="crd-to-built-in-type"><h3>CRD to Built in Type</h3></a>
