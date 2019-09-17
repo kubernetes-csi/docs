@@ -26,6 +26,9 @@ metadata:
 spec:
   attachRequired: true
   podInfoOnMount: true
+  volumeLifecycleModes: # added in Kubernetes 1.16
+  - Persistent
+  - Ephemeral
 ```
 
 There are three important fields:
@@ -45,6 +48,13 @@ There are three important fields:
     * `"csi.storage.k8s.io/pod.namespace": pod.Namespace`
     * `"csi.storage.k8s.io/pod.uid": string(pod.UID)`
   * For more information see [Pod Info on Mount](pod-info.md).
+* `volumeLifecycleModes`
+  * This field was added in Kubernetes 1.16 and cannot be set when using an older Kubernetes release.
+  * It informs Kubernetes about the volume modes that are supported by the driver.
+    This ensures that the driver [is not used incorrectly](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes) by users.
+    The default is `Persistent`, which is the normal PVC/PV mechanism. `Ephemeral` enables
+    [inline ephemeral volumes](ephemeral-local-volumes.md) in addition (when both
+    are listed) or instead of normal volumes (when it is the only entry in the list).
 
 ## What creates the CSIDriver object?
 
@@ -64,28 +74,31 @@ Using the `CSIDriver` object, it is now possible to query Kubernetes to get a li
 
 ```
 $> kubectl get csidrivers.storage.k8s.io
-NAME           AGE
-csi-hostpath   2m
+NAME                  CREATED AT
+hostpath.csi.k8s.io   2019-09-13T09:58:43Z
 ```
 Or get a more detailed view of your registered driver with:
 ```
 $> kubectl describe csidrivers.storage.k8s.io
-Name:         csi-hostpath
-Namespace:
+Name:         hostpath.csi.k8s.io
+Namespace:    
 Labels:       <none>
-Annotations:  <none>
+Annotations:  kubectl.kubernetes.io/last-applied-configuration:
+                {"apiVersion":"storage.k8s.io/v1beta1","kind":"CSIDriver","metadata":{"annotations":{},"name":"hostpath.csi.k8s.io"},"spec":{"podInfoOnMou...
 API Version:  storage.k8s.io/v1beta1
 Kind:         CSIDriver
 Metadata:
-  Creation Timestamp:  2018-10-04T21:15:30Z
-  Generation:          1
-  Resource Version:    390
-  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/csi-hostpath
-  UID:                 9f854aa6-c81a-11e8-bdce-000c29e88ff1
+  Creation Timestamp:  2019-09-13T09:58:43Z
+  Resource Version:    341
+  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/hostpath.csi.k8s.io
+  UID:                 1860f2a1-85f8-4357-a933-c45e54f0c8e0
 Spec:
-  Attach Required:            true
-  Pod Info On Mount:          false
-Events:                       <none>
+  Attach Required:    true
+  Pod Info On Mount:  true
+  Volume Lifecycle Modes:
+    Persistent
+    Ephemeral
+Events:  <none>
 ```
 
 ## Changes from Alpha to Beta
