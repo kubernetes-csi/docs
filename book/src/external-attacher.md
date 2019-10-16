@@ -8,6 +8,7 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | Min K8s Version | Max K8s Version | Recommended K8s Version |
 --|--|--|--|--|--|--|--
+[external-attacher v2.0.0](https://github.com/kubernetes-csi/external-attacher/releases/tag/v2.0.0) | [release-2.0](https://github.com/kubernetes-csi/external-attacher/tree/release-2.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-attacher:v2.0.0 | v1.14 | - | v1.15
 [external-attacher v1.2.1](https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.2.1) | [release-1.2](https://github.com/kubernetes-csi/external-attacher/tree/release-1.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-attacher:v1.2.1 | v1.13 | - | v1.15
 [external-attacher v1.1.1](https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.1.1) | [release-1.1](https://github.com/kubernetes-csi/external-attacher/tree/release-1.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-attacher:v1.1.1 | v1.13 | - | v1.14
 [external-attacher v1.0.1](https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.0.1) | [release-1.0](https://github.com/kubernetes-csi/external-attacher/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-attacher:v1.0.1 | v1.13 | - | v1.13
