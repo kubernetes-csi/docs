@@ -9,7 +9,6 @@
 Latest stable release | Branch | Compatible with CSI Version | Container Image | Min k8s Version | Max k8s version
 --|--|--|--|--|--
 [livenessprobe v1.1.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.1.0) | [release-1.1](https://github.com/kubernetes-csi/livenessprobe/tree/release-1.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | quay.io/k8scsi/livenessprobe:v1.1.0 | v1.13 | -
-[livenessprobe v1.0.2](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.0.2) | [release-1.0](https://github.com/kubernetes-csi/livenessprobe/tree/release-1.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | quay.io/k8scsi/livenessprobe:v1.0.2 | v1.13 | -
 Unsupported. | No 0.x branch. | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/livenessprobe:v0.4.1 | v1.10 | -
 
 ## Description
