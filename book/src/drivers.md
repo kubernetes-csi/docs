@@ -57,6 +57,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | 
 [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Raw Block
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
+[Open-E](https://github.com/open-e/JovianDSS-KubernetesCSI) | `com.open-e.joviandss.csi` | v1.0 | A Container Storage Interface (CSI) Driver for Open-E JovianDSS Storage  | Persistent | Read/Write Single Pod | Yes | Snapshot, Cloning 
 
 ## Sample Drivers
 
