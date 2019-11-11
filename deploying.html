@@ -227,7 +227,7 @@ on the host to see mounts created by the CSI driver container. See the example b
 <p>Note: Starting from Kubernetes 1.13.0, --allow-privileged is true for kubelet. It'll be deprecated in future kubernetes releases.</p>
 </blockquote>
 <a class="header" href="#enabling-mount-propagation" id="enabling-mount-propagation"><h2>Enabling mount propagation</h2></a>
-<p>Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the [mount propagation docs][mount-propagation-docs] to find out how to enable this feature for your cluster.  [This page][docker-shared-mount] explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
+<p>Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a> to find out how to enable this feature for your cluster.  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#configuration">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
 <a class="header" href="#examples" id="examples"><h3>Examples</h3></a>
 <ul>
 <li>Simple deployment example using a single pod for all components: see the <a href="example.html">hostpath example</a>.</li>

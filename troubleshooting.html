@@ -147,7 +147,7 @@
 <pre><code>failed to start container &quot;your-driver&quot;: Error response from daemon:
 linux mounts: Path /var/lib/kubelet/pods is mounted on / but it is not a shared mount
 </code></pre>
-<p>Your Docker host is not configured to allow shared mounts. Take a look at <a href="https://docs.portworx.com/knowledgebase/shared-mount-propagation.html">this page</a> for instructions to enable them.</p>
+<p>Your Docker host is not configured to allow shared mounts. Take a look at <a href="https://kubernetes.io/docs/concepts/storage/volumes/#configuration">this page</a> for instructions to enable them.</p>
 <a class="header" href="#external-attacher-cant-find-volumeattachments" id="external-attacher-cant-find-volumeattachments"><h3>External attacher can't find <em>VolumeAttachments</em></h3></a>
 <p>If you have a Kubernetes 1.9 cluster, not being able to list <em>VolumeAttachment</em>
 and the following error are due to the lack of the
