@@ -9,17 +9,25 @@ MDBOOK_BINARY = $(ROOT)/mdbook
 # The architecture can be changed. Only Linux .tar.gz files
 # are currently supported, though. See https://github.com/rust-lang-nursery/mdBook/releases
 # for available architectures.
+ifeq  ($(shell uname),Darwin)
+MDBOOK_ARCH = x86_64-apple-darwin
+else
 MDBOOK_ARCH = x86_64-unknown-linux-gnu
+endif
 
 # The mdbook version.
-MDBOOK_RELEASE = v0.2.1
+MDBOOK_RELEASE = v0.3.1
 
 # Download URL for mdbook and resulting file.
 MDBOOK_FILE = mdbook-$(MDBOOK_RELEASE)-$(MDBOOK_ARCH).tar.gz
 MDBOOK_URL = https://github.com/rust-lang-nursery/mdBook/releases/download/$(MDBOOK_RELEASE)/$(MDBOOK_FILE)
 
 # As an extra sanity check, the hash of the downloaded file must match before it is used.
-MDBOOK_SHA1 = 5da8d46d09df02d6a671dfbbde20ea85811edbaf
+ifeq  ($(shell uname),Darwin)
+MDBOOK_SHA1 = d53aded03d384b158fab9e08dea8c89d3219878a
+else
+MDBOOK_SHA1 = add961cd0101f5a7b74d1a0b772ea80490ec93fb
+endif
 
 all: $(MDBOOK_BINARY)
 	cd book && $(MDBOOK_BINARY) build
