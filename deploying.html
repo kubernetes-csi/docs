@@ -4,6 +4,8 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Deploying a CSI Driver on Kubernetes - Kubernetes CSI Developer Documentation</title>
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +34,10 @@
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">var path_to_root = "";</script>
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -53,8 +58,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -72,7 +77,10 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html"><strong aria-hidden="true">2.2.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.2.</strong> external-attacher</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.3.</strong> external-provisioner</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.4.</strong> external-resizer</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.5.</strong> external-snapshotter</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.6.</strong> livenessprobe</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.7.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.8.</strong> cluster-driver-registrar</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.4.1.1.</strong> StorageClass Secrets</a></li><li><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.4.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.8.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html" class="active"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html"><strong aria-hidden="true">2.2.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.2.</strong> external-attacher</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.3.</strong> external-provisioner</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.4.</strong> external-resizer</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.5.</strong> external-snapshotter</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.6.</strong> livenessprobe</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.7.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.8.</strong> cluster-driver-registrar</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.4.1.1.</strong> StorageClass Secrets</a></li><li><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.4.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.8.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html" class="active"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -89,7 +97,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -102,12 +110,13 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1> 
+                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1>
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -136,12 +145,12 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#deploying-csi-driver-on-kubernetes" id="deploying-csi-driver-on-kubernetes"><h1>Deploying CSI Driver on Kubernetes</h1></a>
+                        <h1><a class="header" href="#deploying-csi-driver-on-kubernetes" id="deploying-csi-driver-on-kubernetes">Deploying CSI Driver on Kubernetes</a></h1>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
-<a class="header" href="#overview" id="overview"><h2>Overview</h2></a>
+<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>A CSI driver is typically deployed in Kubernetes as two components:
 a controller component and a per-node component.</p>
-<a class="header" href="#controller-plugin" id="controller-plugin"><h3>Controller Plugin</h3></a>
+<h3><a class="header" href="#controller-plugin" id="controller-plugin">Controller Plugin</a></h3>
 <p>The controller component can be deployed as a Deployment or StatefulSet on
 any node in the cluster. It consists of the CSI driver that implements the
 CSI Controller service and one or more
@@ -156,20 +165,20 @@ controller at a time.</p>
 <p>Controller sidecars include the external-provisioner, external-attacher,
 external-snapshotter, and external-resizer. Including a sidecar in the
 deployment may be optional.  See each sidecar's page for more details.</p>
-<a class="header" href="#communication-with-sidecars" id="communication-with-sidecars"><h4>Communication with Sidecars</h4></a>
+<h4><a class="header" href="#communication-with-sidecars" id="communication-with-sidecars">Communication with Sidecars</a></h4>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing"><img src="images/sidecar-container.png" alt="sidecar-container" /></a></p>
 <p>Sidecar containers manage Kubernetes events and make the appropriate
 calls to the CSI driver. The calls are made by sharing a UNIX domain socket
 through an emptyDir volume between the sidecars and CSI Driver.</p>
-<a class="header" href="#rbac-rules" id="rbac-rules"><h4>RBAC Rules</h4></a>
+<h4><a class="header" href="#rbac-rules" id="rbac-rules">RBAC Rules</a></h4>
 <p>Most controller sidecars interact with Kubernetes objects and therefore need
 to set RBAC policies. Each sidecar repository contains example RBAC
 configurations.</p>
-<a class="header" href="#node-plugin" id="node-plugin"><h3>Node Plugin</h3></a>
+<h3><a class="header" href="#node-plugin" id="node-plugin">Node Plugin</a></h3>
 <p>The node component should be deployed on every node in the cluster through a
 DaemonSet. It consists of the CSI driver that implements the CSI Node service and the
 <a href="node-driver-registrar">node-driver-registrar</a> sidecar container.</p>
-<a class="header" href="#communication-with-kubelet" id="communication-with-kubelet"><h4>Communication with Kubelet</h4></a>
+<h4><a class="header" href="#communication-with-kubelet" id="communication-with-kubelet">Communication with Kubelet</a></h4>
 <p><a href="https://docs.google.com/a/greatdanedata.com/drawings/d/1NXaVNDh3mSDhog7Q3Y9eELyEF24F8Z-Kk0ujR3pyOes/edit?usp=sharing"><img src="images/kubelet.png" alt="kubelet" /></a></p>
 <p>The Kubernetes kubelet runs on every node and is responsible for making the CSI
 Node service calls. These calls mount and unmount the storage volume from the
@@ -177,7 +186,7 @@ storage system, making it available to the Pod to consume. Kubelet makes calls
 to the CSI driver through a UNIX domain socket shared on the host via a HostPath
 volume. There is also a second UNIX domain socket that the node-driver-registrar
 uses to register the CSI driver to kubelet.</p>
-<a class="header" href="#driver-volume-mounts" id="driver-volume-mounts"><h4>Driver Volume Mounts</h4></a>
+<h4><a class="header" href="#driver-volume-mounts" id="driver-volume-mounts">Driver Volume Mounts</a></h4>
 <p>The node plugin needs direct access to the host for making block devices and/or
 filesystem mounts available to the Kubernetes kubelet.</p>
 <p>The mount point used by the CSI driver must be set to <em>Bidirectional</em> to allow Kubelet
@@ -214,9 +223,9 @@ on the host to see mounts created by the CSI driver container. See the example b
           path: /var/lib/kubelet/plugins_registry
           type: Directory
 </code></pre>
-<a class="header" href="#deploying" id="deploying"><h2>Deploying</h2></a>
-<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>.</p>
-<a class="header" href="#enable-privileged-pods" id="enable-privileged-pods"><h2>Enable privileged Pods</h2></a>
+<h2><a class="header" href="#deploying" id="deploying">Deploying</a></h2>
+<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. </p>
+<h2><a class="header" href="#enable-privileged-pods" id="enable-privileged-pods">Enable privileged Pods</a></h2>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
 <p>Ensure your API server are started with the privileged flag:</p>
 <pre><code class="language-shell">$ ./kube-apiserver ...  --allow-privileged=true ...
@@ -226,14 +235,14 @@ on the host to see mounts created by the CSI driver container. See the example b
 <blockquote>
 <p>Note: Starting from Kubernetes 1.13.0, --allow-privileged is true for kubelet. It'll be deprecated in future kubernetes releases.</p>
 </blockquote>
-<a class="header" href="#enabling-mount-propagation" id="enabling-mount-propagation"><h2>Enabling mount propagation</h2></a>
+<h2><a class="header" href="#enabling-mount-propagation" id="enabling-mount-propagation">Enabling mount propagation</a></h2>
 <p>Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the <a href="https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation">mount propagation docs</a> to find out how to enable this feature for your cluster.  <a href="https://kubernetes.io/docs/concepts/storage/volumes/#configuration">This page</a> explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.</p>
-<a class="header" href="#examples" id="examples"><h3>Examples</h3></a>
+<h3><a class="header" href="#examples" id="examples">Examples</a></h3>
 <ul>
 <li>Simple deployment example using a single pod for all components: see the <a href="example.html">hostpath example</a>.</li>
 <li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: TODO</li>
 </ul>
-<a class="header" href="#more-information" id="more-information"><h2>More information</h2></a>
+<h2><a class="header" href="#more-information" id="more-information">More information</a></h2>
 <p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
 
                     </main>

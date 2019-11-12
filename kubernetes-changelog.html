@@ -4,6 +4,8 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Kubernetes Changelog - Kubernetes CSI Developer Documentation</title>
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +34,10 @@
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">var path_to_root = "";</script>
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -53,8 +58,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -72,7 +77,10 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html" class="active"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html"><strong aria-hidden="true">2.2.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.2.</strong> external-attacher</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.3.</strong> external-provisioner</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.4.</strong> external-resizer</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.5.</strong> external-snapshotter</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.6.</strong> livenessprobe</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.7.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.8.</strong> cluster-driver-registrar</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.4.1.1.</strong> StorageClass Secrets</a></li><li><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.4.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.8.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html" class="active"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.2.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html"><strong aria-hidden="true">2.2.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.2.2.</strong> external-attacher</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.2.3.</strong> external-provisioner</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.2.4.</strong> external-resizer</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.2.5.</strong> external-snapshotter</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.2.6.</strong> livenessprobe</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.2.7.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.2.8.</strong> cluster-driver-registrar</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.3.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.3.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.3.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.4.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.4.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.4.1.1.</strong> StorageClass Secrets</a></li><li><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.4.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li><a href="topology.html"><strong aria-hidden="true">2.4.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.4.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.4.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.4.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.4.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.4.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.4.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.4.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.4.8.</strong> Ephemeral Local Volumes</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -89,7 +97,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -102,12 +110,13 @@
                             
                         </div>
 
-                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1> 
+                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1>
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -136,11 +145,11 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#kubernetes-changelog" id="kubernetes-changelog"><h1>Kubernetes Changelog</h1></a>
+                        <h1><a class="header" href="#kubernetes-changelog" id="kubernetes-changelog">Kubernetes Changelog</a></h1>
 <p>This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the <a href="features.html">Features section</a>.</p>
-<a class="header" href="#kubernetes-116" id="kubernetes-116"><h2>Kubernetes 1.16</h2></a>
-<a class="header" href="#features" id="features"><h3>Features</h3></a>
+<h2><a class="header" href="#kubernetes-116" id="kubernetes-116">Kubernetes 1.16</a></h2>
+<h3><a class="header" href="#features" id="features">Features</a></h3>
 <ul>
 <li>New beta features:
 <ul>
@@ -150,8 +159,8 @@ details on individual features, visit the <a href="features.html">Features secti
 </ul>
 </li>
 </ul>
-<a class="header" href="#kubernetes-115" id="kubernetes-115"><h2>Kubernetes 1.15</h2></a>
-<a class="header" href="#features-1" id="features-1"><h3>Features</h3></a>
+<h2><a class="header" href="#kubernetes-115" id="kubernetes-115">Kubernetes 1.15</a></h2>
+<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
 <ul>
 <li>New features:
 <ul>
@@ -166,12 +175,12 @@ details on individual features, visit the <a href="features.html">Features secti
 </ul>
 </li>
 </ul>
-<a class="header" href="#kubernetes-114" id="kubernetes-114"><h2>Kubernetes 1.14</h2></a>
-<a class="header" href="#breaking-changes" id="breaking-changes"><h3>Breaking Changes</h3></a>
+<h2><a class="header" href="#kubernetes-114" id="kubernetes-114">Kubernetes 1.14</a></h2>
+<h3><a class="header" href="#breaking-changes" id="breaking-changes">Breaking Changes</a></h3>
 <ul>
 <li><code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs are no longer supported.</li>
 </ul>
-<a class="header" href="#features-2" id="features-2"><h3>Features</h3></a>
+<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
 <ul>
 <li>New beta features:
 <ul>
@@ -188,21 +197,21 @@ details on individual features, visit the <a href="features.html">Features secti
 </li>
 <li>New <code>storage.k8s.io/v1beta1</code> <code>CSINode</code> and <code>CSIDriver</code> objects were introduced.</li>
 </ul>
-<a class="header" href="#kubernetes-113" id="kubernetes-113"><h2>Kubernetes 1.13</h2></a>
-<a class="header" href="#deprecations" id="deprecations"><h3>Deprecations</h3></a>
+<h2><a class="header" href="#kubernetes-113" id="kubernetes-113">Kubernetes 1.13</a></h2>
+<h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
 <ul>
 <li>CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.18.</li>
 </ul>
-<a class="header" href="#features-3" id="features-3"><h3>Features</h3></a>
+<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
 <ul>
 <li>GA support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">CSI spec
 1.0</a>.</li>
 </ul>
-<a class="header" href="#kubernetes-112" id="kubernetes-112"><h2>Kubernetes 1.12</h2></a>
-<a class="header" href="#breaking-changes-1" id="breaking-changes-1"><h3>Breaking Changes</h3></a>
+<h2><a class="header" href="#kubernetes-112" id="kubernetes-112">Kubernetes 1.12</a></h2>
+<h3><a class="header" href="#breaking-changes-1" id="breaking-changes-1">Breaking Changes</a></h3>
 <p>Kubelet device plugin registration is enabled by default, which requires CSI
 plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p>
-<a class="header" href="#features-4" id="features-4"><h3>Features</h3></a>
+<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
 <ul>
 <li>New alpha features:
 <ul>
@@ -215,8 +224,8 @@ plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p
 <li>New <code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs were
 introduced and have to be installed before deploying a CSI driver.</li>
 </ul>
-<a class="header" href="#kubernetes-111" id="kubernetes-111"><h2>Kubernetes 1.11</h2></a>
-<a class="header" href="#features-5" id="features-5"><h3>Features</h3></a>
+<h2><a class="header" href="#kubernetes-111" id="kubernetes-111">Kubernetes 1.11</a></h2>
+<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">CSI spec
 0.3</a>.</li>
@@ -226,19 +235,19 @@ introduced and have to be installed before deploying a CSI driver.</li>
 </ul>
 </li>
 </ul>
-<a class="header" href="#kubernetes-110" id="kubernetes-110"><h2>Kubernetes 1.10</h2></a>
-<a class="header" href="#breaking-changes-2" id="breaking-changes-2"><h3>Breaking Changes</h3></a>
+<h2><a class="header" href="#kubernetes-110" id="kubernetes-110">Kubernetes 1.10</a></h2>
+<h3><a class="header" href="#breaking-changes-2" id="breaking-changes-2">Breaking Changes</a></h3>
 <ul>
 <li>CSI spec 0.1 is no longer supported.</li>
 </ul>
-<a class="header" href="#features-6" id="features-6"><h3>Features</h3></a>
+<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.2.0">CSI spec 0.2</a>.
 This added optional <code>NodeStageVolume</code> and <code>NodeUnstageVolume</code> calls which
 map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operations.</li>
 </ul>
-<a class="header" href="#kubernetes-19" id="kubernetes-19"><h2>Kubernetes 1.9</h2></a>
-<a class="header" href="#features-7" id="features-7"><h3>Features</h3></a>
+<h2><a class="header" href="#kubernetes-19" id="kubernetes-19">Kubernetes 1.9</a></h2>
+<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
 <ul>
 <li>Alpha support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.1.0">CSI spec
 0.1</a>.</li>
