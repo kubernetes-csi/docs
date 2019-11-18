@@ -28,6 +28,7 @@
             - [Cloning](volume-cloning.md)
             - [Volume Snapshot & Restore](snapshot-restore-feature.md)
         - [Ephemeral Local Volumes](ephemeral-local-volumes.md)
+        - [Volume Limits](volume-limits.md)
 - [Deploying a CSI Driver on Kubernetes](deploying.md)
     - [Example](example.md)
 - [Driver Testing](testing-drivers.md)
