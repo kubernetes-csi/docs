@@ -45,6 +45,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [OpenSDS](https://github.com/opensds/nbp/tree/master/csi) | `csi-opensdsplugin` | v1.0 | A Container Storage Interface (CSI) Driver for [OpenSDS]((https://www.opensds.io/)) | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot
 [Open-E](https://github.com/open-e/JovianDSS-KubernetesCSI) | `com.open-e.joviandss.csi` | v1.0 | A Container Storage Interface (CSI) Driver for Open-E JovianDSS Storage  | Persistent | Read/Write Single Pod | Yes | Snapshot, Cloning 
 [Portworx](https://github.com/libopenstorage/openstorage/tree/master/csi) | `pxd.openstorage.org` | v0.3, v1.1 | A Container Storage Interface (CSI) Driver for [Portworx](https://docs.portworx.com/portworx-install-with-kubernetes/storage-operations/csi/) | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
+[PowerMax](https://github.com/dell/csi-powermax) | `csi-powermax.dellemc.com` | v1.0 | A Container Storage Interface (CSI) Driver for [DellEMC PowerMax](https://www.dellemc.com/en-us/storage/powermax.htm) | Persistent | Read/Write Single Pod | Yes |
 [Pure Storage CSI](https://github.com/purestorage/helm-charts)| `pure-csi` | v1.0 | A Container Storage Interface (CSI) Driver for Pure Storage's [Pure Service Orchestrator](https://purestorage.com/containers) | Persistent | "Read/Write Single Pod" with FlashArray and "Read/Write Multiple Pods" with FlashBlade| Yes | 
 [QingCloud CSI](https://github.com/yunify/qingcloud-csi)| `disk.csi.qingcloud.com` | v1.1 | A Container Storage Interface (CSI) Driver for QingCloud Block Storage | Persistent | Read/Write Single Pod | Yes | Snapshot, Expansion, Cloning
 [QingStor CSI](https://github.com/yunify/qingstor-csi) | `csi-neonsan` | v0.3 | A Container Storage Interface (CSI) Driver for NeonSAN storage system | Persistent | Read/Write Single Pod | Yes | Snapshot
@@ -58,6 +59,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [XSKY-EUS](https://xsky-storage.github.io/xsky-csi-driver/csi-fs.html) | `csi.fs.xsky.com` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed File Storage (X-EUS) | Persistent | Read/Write Multiple Pods | Yes | 
 [Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | 
 [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Raw Block
+[VxFlexOS](https://github.com/dell/csi-vxflexos) | `csi-vxflexos.dellemc.com` | v1.0 | A Container Storage Interface (CSI) Driver for DellEMC VxFlexOS | Persistent | Read/Write Single Pod | Yes | Snapshot
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 
 ## Sample Drivers
