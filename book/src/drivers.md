@@ -65,8 +65,8 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 
 Name | Status | More Information
 -----|--------|-------
-[Flexvolume](https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter) | Sample |
-[HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | v0.2.0 | Only use for a single node tests. See the [Example](Example.html) page for Kubernetes-specific instructions.
+[Flexvolume](https://github.com/kubernetes-csi/csi-driver-flex) | Sample |
+[HostPath](https://github.com/kubernetes-csi/csi-driver-host-path) | v1.2.0 | Only use for a single node tests. See the [Example](example.html) page for Kubernetes-specific instructions.
 [ImagePopulator](https://github.com/kubernetes-csi/csi-driver-image-populator) | Prototype | Driver that lets you use a container image as an ephemeral volume.
 [In-memory Sample Mock Driver](https://github.com/kubernetes-csi/csi-test/tree/master/mock/service) | v0.3.0 | The sample mock driver used for [csi-sanity](https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity)
 [NFS](https://github.com/kubernetes-csi/csi-driver-nfs) | Sample |
