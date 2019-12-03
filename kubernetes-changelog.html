@@ -148,10 +148,27 @@
                         <h1><a class="header" href="#kubernetes-changelog" id="kubernetes-changelog">Kubernetes Changelog</a></h1>
 <p>This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the <a href="features.html">Features section</a>.</p>
-<h2><a class="header" href="#kubernetes-116" id="kubernetes-116">Kubernetes 1.16</a></h2>
+<h2><a class="header" href="#kubernetes-117" id="kubernetes-117">Kubernetes 1.17</a></h2>
 <h3><a class="header" href="#features" id="features">Features</a></h3>
 <ul>
-<li>New beta features:
+<li>GA
+<ul>
+<li>Volume topology</li>
+<li>Volume limits</li>
+</ul>
+</li>
+<li>Beta
+<ul>
+<li>Volume snapshots and restore</li>
+<li>CSI migration for AWS EBS and GCE PD drivers</li>
+</ul>
+</li>
+<li><code>storage.k8s.io/v1</code> <code>CSINode</code> object introduced.</li>
+</ul>
+<h2><a class="header" href="#kubernetes-116" id="kubernetes-116">Kubernetes 1.16</a></h2>
+<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
+<ul>
+<li>Beta
 <ul>
 <li>Volume cloning</li>
 <li>Volume expansion</li>
@@ -160,14 +177,10 @@ details on individual features, visit the <a href="features.html">Features secti
 </li>
 </ul>
 <h2><a class="header" href="#kubernetes-115" id="kubernetes-115">Kubernetes 1.15</a></h2>
-<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
-<ul>
-<li>New features:
+<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
 <ul>
 <li>Volume capacity usage metrics</li>
-</ul>
-</li>
-<li>New alpha features:
+<li>Alpha
 <ul>
 <li>Volume cloning</li>
 <li>Ephemeral local volumes</li>
@@ -180,9 +193,9 @@ details on individual features, visit the <a href="features.html">Features secti
 <ul>
 <li><code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs are no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
+<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
 <ul>
-<li>New beta features:
+<li>Beta
 <ul>
 <li>Topology</li>
 <li>Raw block</li>
@@ -190,19 +203,19 @@ details on individual features, visit the <a href="features.html">Features secti
 <li>Pod info on mount</li>
 </ul>
 </li>
-<li>New alpha features:
+<li>Alpha
 <ul>
 <li>Volume expansion</li>
 </ul>
 </li>
-<li>New <code>storage.k8s.io/v1beta1</code> <code>CSINode</code> and <code>CSIDriver</code> objects were introduced.</li>
+<li><code>storage.k8s.io/v1beta1</code> <code>CSINode</code> and <code>CSIDriver</code> objects introduced.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-113" id="kubernetes-113">Kubernetes 1.13</a></h2>
 <h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
 <ul>
-<li>CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.18.</li>
+<li>CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.17.</li>
 </ul>
-<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
+<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
 <ul>
 <li>GA support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">CSI spec
 1.0</a>.</li>
@@ -211,9 +224,9 @@ details on individual features, visit the <a href="features.html">Features secti
 <h3><a class="header" href="#breaking-changes-1" id="breaking-changes-1">Breaking Changes</a></h3>
 <p>Kubelet device plugin registration is enabled by default, which requires CSI
 plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p>
-<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
+<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
 <ul>
-<li>New alpha features:
+<li>Alpha
 <ul>
 <li>Snapshots</li>
 <li>Topology</li>
@@ -221,15 +234,15 @@ plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p
 <li>Pod info on mount</li>
 </ul>
 </li>
-<li>New <code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs were
+<li><code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs were
 introduced and have to be installed before deploying a CSI driver.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-111" id="kubernetes-111">Kubernetes 1.11</a></h2>
-<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
+<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">CSI spec
 0.3</a>.</li>
-<li>New alpha features:
+<li>Alpha
 <ul>
 <li>Raw block</li>
 </ul>
@@ -240,14 +253,14 @@ introduced and have to be installed before deploying a CSI driver.</li>
 <ul>
 <li>CSI spec 0.1 is no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
+<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.2.0">CSI spec 0.2</a>.
 This added optional <code>NodeStageVolume</code> and <code>NodeUnstageVolume</code> calls which
 map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operations.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-19" id="kubernetes-19">Kubernetes 1.9</a></h2>
-<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
+<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
 <ul>
 <li>Alpha support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.1.0">CSI spec
 0.1</a>.</li>
