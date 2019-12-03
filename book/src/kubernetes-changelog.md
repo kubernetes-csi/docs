@@ -3,10 +3,21 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.17
+
+### Features
+* GA
+    * Volume topology
+    * Volume limits
+* Beta
+    * Volume snapshots and restore
+    * CSI migration for AWS EBS and GCE PD drivers
+* `storage.k8s.io/v1` `CSINode` object introduced.
+
 ## Kubernetes 1.16
 
 ### Features
-* New beta features:
+* Beta
     * Volume cloning
     * Volume expansion
     * Ephemeral local volumes
@@ -14,9 +25,8 @@ details on individual features, visit the [Features section](features.md).
 ## Kubernetes 1.15
 
 ### Features
-* New features:
-    * Volume capacity usage metrics
-* New alpha features:
+* Volume capacity usage metrics
+* Alpha
     * Volume cloning
     * Ephemeral local volumes
     * Resizing secrets
@@ -27,19 +37,19 @@ details on individual features, visit the [Features section](features.md).
 * `csi.storage.k8s.io/v1alpha1` `CSINodeInfo` and `CSIDriver` CRDs are no longer supported.
 
 ### Features
-* New beta features:
+* Beta
     * Topology
     * Raw block
     * Skip attach
     * Pod info on mount
-* New alpha features:
+* Alpha
     * Volume expansion
-* New `storage.k8s.io/v1beta1` `CSINode` and `CSIDriver` objects were introduced.
+* `storage.k8s.io/v1beta1` `CSINode` and `CSIDriver` objects introduced.
 
 ## Kubernetes 1.13
 
 ### Deprecations
-* CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.18.
+* CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.17.
 
 ### Features
 * GA support added for [CSI spec
@@ -52,12 +62,12 @@ Kubelet device plugin registration is enabled by default, which requires CSI
 plugins to use `driver-registrar:v0.3.0` to register with kubelet.
 
 ### Features
-* New alpha features:
+* Alpha
     * Snapshots
     * Topology
     * Skip attach
     * Pod info on mount
-* New `csi.storage.k8s.io/v1alpha1` `CSINodeInfo` and `CSIDriver` CRDs were
+* `csi.storage.k8s.io/v1alpha1` `CSINodeInfo` and `CSIDriver` CRDs were
   introduced and have to be installed before deploying a CSI driver.
 
 ## Kubernetes 1.11
@@ -65,7 +75,7 @@ plugins to use `driver-registrar:v0.3.0` to register with kubelet.
 ### Features
 * Beta support added for [CSI spec
   0.3](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0).
-* New alpha features:
+* Alpha
     * Raw block
 
 ## Kubernetes 1.10
