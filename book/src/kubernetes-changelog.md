@@ -5,6 +5,13 @@ details on individual features, visit the [Features section](features.md).
 
 ## Kubernetes 1.17
 
+### Breaking Changes
+* CSI 0.3 support has been removed. CSI 0.3 drivers will no longer function.
+
+### Deprecations
+* `storage.k8s.io/v1beta1` `CSINode` object has been deprecated and will be
+  removed in a future release.
+
 ### Features
 * GA
     * Volume topology
