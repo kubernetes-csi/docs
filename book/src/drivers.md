@@ -17,6 +17,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Azure file](https://github.com/kubernetes-sigs/azurefile-csi-driver) | `file.csi.azure.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for Azure file | Persistent | Read/Write Multiple Pods | Yes | 
 [CephFS](https://github.com/ceph/ceph-csi) | `cephfs.csi.ceph.com` | v0.3, v1.0.0, v1.1.0 | A Container Storage Interface (CSI) Driver for CephFS | Persistent | Read/Write Multiple Pods | Yes | 
 [Ceph RBD](https://github.com/ceph/ceph-csi) | `rbd.csi.ceph.com` | v0.3, v1.0.0, v1.1.0 | A Container Storage Interface (CSI)  Driver for Ceph RBD | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot
+[ChubaoFS](https://github.com/chubaofs/chubaofs-csi) | `csi.chubaofs.com` | v1.0.0 | A Container Storage Interface (CSI) Driver for ChubaoFS Storage  | Persistent | Read/Write Multiple Pods | Yes | Raw Block
 [Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder) | `cinder.csi.openstack.org` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for OpenStack Cinder | Persistent | Depends on the storage backend used | Yes, if storage backend supports it | Snapshot
 [cloudscale.ch](https://github.com/cloudscale-ch/csi-cloudscale) | `csi.cloudscale.ch` | v1.0 | A Container Storage Interface (CSI) Driver for the [cloudscale.ch](https://www.cloudscale.ch/) IaaS platform | Persistent | Read/Write Single Pod | Yes |Snapshot
 [Datera](https://github.com/Datera/datera-csi) | `dsp.csi.daterainc.io` | v1.0 | A Container Storage Interface (CSI) Driver for Datera Data Services Platform (DSP) | Persistent | Read/Write Single Pod | Yes |Snapshot
@@ -40,6 +41,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [JuiceFS](https://github.com/juicedata/juicefs-csi-driver) | `csi.juicefs.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for JuiceFS File System | Persistent | Read/Write Multiple Pod | Yes | 
 [Linode Block Storage](https://github.com/linode/linode-blockstorage-csi-driver) | `linodebs.csi.linode.com` | v1.0 | A Container Storage Interface (CSI) Driver for Linode Block Storage | Persistent | Read/Write Single Pod | Yes | 
 [LINSTOR](https://github.com/LINBIT/linstor-csi) | `io.drbd.linstor-csi` | v1.1 | A Container Storage Interface (CSI) Driver for [LINSTOR](https://www.linbit.com/en/linstor/) volumes | Persistent | Read/Write Single Pod | Yes | Snapshot
+[Longhorn](https://github.com/longhorn/longhorn) | `driver.longhorn.io` | v1.1 | A Container Storage Interface (CSI) Driver for [Longhorn](https://longhorn.io/) volumes | Persistent | Read/Write Single Node | Yes | Raw Block
 [MacroSAN](https://github.com/macrosan-csi/macrosan-csi-driver) | `csi-macrosan` | v1.0 | A Container Storage Interface (CSI) Driver for MacroSAN Block Storage | Persistent | Read/Write Single Pod | Yes | 
 [MapR](https://github.com/mapr/mapr-csi) | `com.mapr.csi-kdf` | v1.0 | A Container Storage Interface (CSI) Driver for MapR Data Platform | Persistent | Read/Write Multiple Pods | Yes | Snapshot
 [MooseFS](https://github.com/moosefs/moosefs-csi) | `com.tuxera.csi.moosefs` | v1.0 | A Container Storage Interface (CSI) Driver for [MooseFS](https://moosefs.com/) clusters. | Persistent | Read/Write Multiple Pods | Yes | 
@@ -50,14 +52,14 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [OpenSDS](https://github.com/opensds/nbp/tree/master/csi) | `csi-opensdsplugin` | v1.0 | A Container Storage Interface (CSI) Driver for [OpenSDS]((https://www.opensds.io/)) | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot
 [Open-E](https://github.com/open-e/JovianDSS-KubernetesCSI) | `com.open-e.joviandss.csi` | v1.0 | A Container Storage Interface (CSI) Driver for Open-E JovianDSS Storage  | Persistent | Read/Write Single Pod | Yes | Snapshot, Cloning 
 [Portworx](https://github.com/libopenstorage/openstorage/tree/master/csi) | `pxd.openstorage.org` | v0.3, v1.1 | A Container Storage Interface (CSI) Driver for [Portworx](https://docs.portworx.com/portworx-install-with-kubernetes/storage-operations/csi/) | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
-[Pure Storage CSI](https://github.com/purestorage/helm-charts)| `pure-csi` | v1.0 | A Container Storage Interface (CSI) Driver for Pure Storage's [Pure Service Orchestrator](https://purestorage.com/containers) | Persistent | "Read/Write Single Pod" with FlashArray and "Read/Write Multiple Pods" with FlashBlade| Yes | 
+[Pure Storage CSI](https://github.com/purestorage/helm-charts)| `pure-csi` | v1.0 | A Container Storage Interface (CSI) Driver for Pure Storage's [Pure Service Orchestrator](https://purestorage.com/containers) | Persistent | "Read/Write Single Pod" with FlashArray and "Read/Write Multiple Pods" with FlashBlade| Yes | Snapshot, Cloning
 [QingCloud CSI](https://github.com/yunify/qingcloud-csi)| `disk.csi.qingcloud.com` | v1.1 | A Container Storage Interface (CSI) Driver for QingCloud Block Storage | Persistent | Read/Write Single Pod | Yes | Snapshot, Expansion, Cloning
 [QingStor CSI](https://github.com/yunify/qingstor-csi) | `csi-neonsan` | v0.3 | A Container Storage Interface (CSI) Driver for NeonSAN storage system | Persistent | Read/Write Single Pod | Yes | Snapshot
 [Quobyte](https://github.com/quobyte/quobyte-csi) | `quobyte-csi` | v0.2 | A Container Storage Interface (CSI) Driver for Quobyte | Persistent | Read/Write Multiple Pods | Yes | 
 [ROBIN](https://get.robin.io/) | `robin` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for [ROBIN](https://docs.robin.io) | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Cloning
 [SmartX](http://www.smartx.com/?locale=en) | `csi-smtx-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SmartX ZBS Storage  | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
 [SandStone](https://github.com/sandstone-storage/sandstone-csi-driver) | `csi-sandstone-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SandStone USP | Persistent | Read/Write Single Pod | Yes | 
-[StorageOS](https://github.com/storageos/charts/blob/master/stable/storageos/README-CSI.md) | ? | v1.0 | A Container Storage Interface (CSI) Driver for [StorageOS](https://storageos.com/) | Persistent | Read/Write Multiple Pods | Yes | 
+[StorageOS](https://docs.storageos.com/docs/platforms/kubernetes/install/) | `storageos` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for [StorageOS](https://storageos.com/) | Persistent | Read/Write Multiple Pods | Yes |
 [XSKY-EBS](https://xsky-storage.github.io/xsky-csi-driver/csi-block.html) | `csi.block.xsky.com` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Cloning
 [XSKY-EUS](https://xsky-storage.github.io/xsky-csi-driver/csi-fs.html) | `csi.fs.xsky.com` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed File Storage (X-EUS) | Persistent | Read/Write Multiple Pods | Yes | 
 [Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | 
@@ -68,8 +70,8 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 
 Name | Status | More Information
 -----|--------|-------
-[Flexvolume](https://github.com/kubernetes-csi/drivers/tree/master/pkg/flexadapter) | Sample |
-[HostPath](https://github.com/kubernetes-csi/drivers/tree/master/pkg/hostpath) | v0.2.0 | Only use for a single node tests. See the [Example](Example.html) page for Kubernetes-specific instructions.
+[Flexvolume](https://github.com/kubernetes-csi/csi-driver-flex) | Sample |
+[HostPath](https://github.com/kubernetes-csi/csi-driver-host-path) | v1.2.0 | Only use for a single node tests. See the [Example](example.html) page for Kubernetes-specific instructions.
 [ImagePopulator](https://github.com/kubernetes-csi/csi-driver-image-populator) | Prototype | Driver that lets you use a container image as an ephemeral volume.
 [In-memory Sample Mock Driver](https://github.com/kubernetes-csi/csi-test/tree/master/mock/service) | v0.3.0 | The sample mock driver used for [csi-sanity](https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity)
 [NFS](https://github.com/kubernetes-csi/csi-driver-nfs) | Sample |
