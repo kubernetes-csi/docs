@@ -4,7 +4,8 @@
 
 Status | Min K8s Version | Max K8s Version | external-resizer Version
 --|--|--|--
-Alpha | 1.14 | - | 0.1
+Alpha | 1.14 | 1.15 | 0.2
+Beta | 1.16 | - | 0.3
 
 ## Overview
 
@@ -28,7 +29,7 @@ capability. Where `ONLINE` and `OFFLINE` means:
 For block storage file systems - `NodeExpandVolume` is typically used for expanding the file system on the node, but it can be also
 used to perform other volume expansion related housekeeping operations on the node.
 
-For details,  see the [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md).
+For details, see the [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md).
 
 ## Deploying volume expansion functionality
 
@@ -42,18 +43,18 @@ For more details, see [external-resizer](external-resizer.md).
 
 ## Enabling Volume expansion for CSI volumes in Kubernetes
 
-To expand a volume if permitted by the [storage class](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims), users just need to edit the persistent volume claim object and request more storage. Volume expansion for CSI volumes is an alpha feature and hence
-also must be explicitly enabled via feature gate:
+To expand a volume if permitted by the [storage class](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims), users just need to edit the persistent volume claim object and request more storage.
+
+In Kubernetes 1.14 and 1.15, this feature was in alpha status and required enabling the following feature gate:
 
 ```
 --feature-gates=ExpandCSIVolumes=true
 ```
 
-To enable online expansion of CSI persistent volumes, we also need to enable online expansion feature gate:
+Also in Kubernetes 1.14 and 1.15, online expansion had to be enabled explicitly:
 
 ```
 --feature-gates=ExpandInUsePersistentVolumes=true
 ```
 
-It is expected that external-resizer and kubelet will add appropriate events and conditions to persistent volume claim object to indicate
-progress of volume expansion operation.
+external-resizer and kubelet add appropriate events and conditions to persistent volume claim objects indicating progress of volume expansion operations.
