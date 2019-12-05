@@ -1469,7 +1469,8 @@ spec:
 <h1><a class="header" href="#volume-expansion" id="volume-expansion">Volume Expansion</a></h1>
 <h2><a class="header" href="#status-6" id="status-6">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>external-resizer Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>1.14</td><td>-</td><td>0.1</td></tr>
+<tr><td>Alpha</td><td>1.14</td><td>1.15</td><td>0.2</td></tr>
+<tr><td>Beta</td><td>1.16</td><td>-</td><td>0.3</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview-4" id="overview-4">Overview</a></h2>
 <p>A storage provider that allows volume expansion after creation, may choose to implement volume expansion either via a
@@ -1489,22 +1490,21 @@ capability. Where <code>ONLINE</code> and <code>OFFLINE</code> means:</p>
 <p><code>NodeExpandVolume</code> RPC call on the other hand - <em>always</em> requires volume to be published or staged on a node (and hence <code>ONLINE</code>).
 For block storage file systems - <code>NodeExpandVolume</code> is typically used for expanding the file system on the node, but it can be also
 used to perform other volume expansion related housekeeping operations on the node.</p>
-<p>For details,  see the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a>.</p>
+<p>For details, see the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a>.</p>
 <h2><a class="header" href="#deploying-volume-expansion-functionality" id="deploying-volume-expansion-functionality">Deploying volume expansion functionality</a></h2>
 <p>The Kubernetes CSI development team maintains <a href="external-resizer.html">external-resizer</a> Kubernetes CSI <a href="sidecar-containers.html">Sidecar Containers</a>.
 This sidecar container implements the logic for watching the Kubernetes API for Persistent Volume claim edits and issuing <code>ControllerExpandVolume</code> RPC call against a CSI endpoint and updating <code>PersistentVolume</code> object to reflect new size.</p>
 <p>This sidecar is needed even if CSI driver does not have <code>EXPAND_VOLUME</code> controller capability, in this case it performs a NO-OP expansion and updates <code>PersistentVolume</code> object. <code>NodeExpandVolume</code> is always called by Kubelet on the node.</p>
 <p>For more details, see <a href="external-resizer.html">external-resizer</a>.</p>
 <h2><a class="header" href="#enabling-volume-expansion-for-csi-volumes-in-kubernetes" id="enabling-volume-expansion-for-csi-volumes-in-kubernetes">Enabling Volume expansion for CSI volumes in Kubernetes</a></h2>
-<p>To expand a volume if permitted by the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims">storage class</a>, users just need to edit the persistent volume claim object and request more storage. Volume expansion for CSI volumes is an alpha feature and hence
-also must be explicitly enabled via feature gate:</p>
+<p>To expand a volume if permitted by the <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#expanding-persistent-volumes-claims">storage class</a>, users just need to edit the persistent volume claim object and request more storage.</p>
+<p>In Kubernetes 1.14 and 1.15, this feature was in alpha status and required enabling the following feature gate:</p>
 <pre><code>--feature-gates=ExpandCSIVolumes=true
 </code></pre>
-<p>To enable online expansion of CSI persistent volumes, we also need to enable online expansion feature gate:</p>
+<p>Also in Kubernetes 1.14 and 1.15, online expansion had to be enabled explicitly:</p>
 <pre><code>--feature-gates=ExpandInUsePersistentVolumes=true
 </code></pre>
-<p>It is expected that external-resizer and kubelet will add appropriate events and conditions to persistent volume claim object to indicate
-progress of volume expansion operation.</p>
+<p>external-resizer and kubelet add appropriate events and conditions to persistent volume claim objects indicating progress of volume expansion operations.</p>
 <h2><a class="header" href="#kubernetes-pvc-datasource-csi-volumecontentsource" id="kubernetes-pvc-datasource-csi-volumecontentsource">Kubernetes PVC DataSource (CSI VolumeContentSource)</a></h2>
 <p>When creating a new PersistentVolumeClaim, the Kubernetes API provides a <code>PersistentVolumeClaim.DataSource</code> parameter.  This parameter is used to specify the CSI <code>CreateVolumeRequest.VolumeContentSource</code> option for CSI Provisioners. The <code>VolumeContentSource</code> parameter instructs the CSI plugin to pre-populate the volume being provisioned with data from the specified source. </p>
 <h3><a class="header" href="#external-provisioner-responsibilities" id="external-provisioner-responsibilities">External Provisioner Responsibilities</a></h3>
