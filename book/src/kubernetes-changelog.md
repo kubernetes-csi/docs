@@ -14,6 +14,7 @@ details on individual features, visit the [Features section](features.md).
 
 ### Features
 * GA
+    * Support for [CSI spec 1.2.0](https://github.com/container-storage-interface/spec/releases/tag/v1.2.0).
     * Volume topology
     * Volume limits
 * Beta
@@ -32,7 +33,9 @@ details on individual features, visit the [Features section](features.md).
 ## Kubernetes 1.15
 
 ### Features
-* Volume capacity usage metrics
+* GA
+  * Support for [CSI spec 1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0).
+  * Volume capacity usage metrics
 * Alpha
     * Volume cloning
     * Ephemeral local volumes
