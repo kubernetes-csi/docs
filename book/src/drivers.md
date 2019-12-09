@@ -37,6 +37,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Hitachi Vantara](https://knowledge.hitachivantara.com/Documents/Adapters_and_Drivers/Storage_Adapters_and_Drivers/Containers) | `com.hitachi.hspc.csi` | v1.0 | A Container Storage Interface (CSI) Driver for VSP series Storage | Persistent | ? | ? | 
 [HPE](https://github.com/hpe-storage/csi-driver) | `csi.hpe.com` | v0.3, v1.0, v1.1 | A Container Storage Interface (CSI) driver from HPE | Persistent or Ephemeral | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Cloning
 [IBM Block Storage](https://github.com/ibm/ibm-block-csi-driver) | `block.csi.ibm.com` | v1.0, v1.1 | A Container Storage Interface (CSI) [Driver](https://www.ibm.com/support/knowledgecenter/SSRQ8T) for IBM FlashSystem 9100, IBM Spectrum Virtualize, IBM Storwize, IBM FlashSystem A9000 and A9000R. | Persistent | Read/Write Single Pod | Yes | 
+[IBM Spectrum Scale](https://github.com/IBM/ibm-spectrum-scale-csi-driver) | `spectrumscale.csi.ibm.com` | v1.0, v1.1 | A Container Storage Interface (CSI) [Driver](https://www.ibm.com/support/knowledgecenter/en/STXKQY_5.0.4/com.ibm.spectrum.scale.csi.v5r04.doc/bl1csi_kc_landing.html) for the IBM Spectrum Scale File System | Persistent | Read/Write Multiple Pod | Yes | 
 [Intel PMEM-CSI](https://github.com/intel/pmem-CSI) | `pmem-csi.intel.com` | v1.0 | A Container Storage Interface (CSI) driver for PMEM from Intel | Persistent | Read/Write Single Pod | Yes | Raw Block
 [JuiceFS](https://github.com/juicedata/juicefs-csi-driver) | `csi.juicefs.com` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for JuiceFS File System | Persistent | Read/Write Multiple Pod | Yes | 
 [kaDalu](https://github.com/kadalu/kadalu) | `org.kadalu.gluster` | v0.3 | A CSI Driver (and operator) for GlusterFS | Persistent | Read/Write Multiple Pods | Yes | 
@@ -66,7 +67,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | 
 [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Raw Block
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
-
+[Sangfor-EDS](https://github.com/evan37717/sangfor-eds-csi) | `eds.csi.sangfor.com` | v1.0 | A Container Storage Interface (CSI) Driver for Sangfor Distributed File Storage(EDS) | Persistent | Read/Write Multiple Pods | No |
 ## Sample Drivers
 
 Name | Status | More Information
