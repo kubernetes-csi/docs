@@ -67,7 +67,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Vault](https://github.com/kubevault/csi-driver) | `secrets.csi.kubevault.com` | v1.0 | A Container Storage Interface (CSI) Driver for mounting HashiCorp Vault secrets as volumes. | Ephemeral | N/A | N/A | 
 [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Raw Block
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
-[Sangfor-EDS](https://github.com/evan37717/sangfor-eds-csi) | `eds.csi.sangfor.com` | v1.0 | A Container Storage Interface (CSI) Driver for Sangfor EDS NAS | Persistent | Read/Write Multiple Pods | No |
+[Sangfor-EDS](https://github.com/evan37717/sangfor-eds-csi) | `eds.csi.sangfor.com` | v1.0 | A Container Storage Interface (CSI) Driver for Sangfor Distributed File Storage(EDS) | Persistent | Read/Write Multiple Pods | No |
 ## Sample Drivers
 
 Name | Status | More Information
