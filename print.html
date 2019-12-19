@@ -717,6 +717,7 @@ spec:
 <li><code>&quot;csi.storage.k8s.io/pod.name&quot;: pod.Name</code></li>
 <li><code>&quot;csi.storage.k8s.io/pod.namespace&quot;: pod.Namespace</code></li>
 <li><code>&quot;csi.storage.k8s.io/pod.uid&quot;: string(pod.UID)</code></li>
+<li><code>&quot;csi.storage.k8s.io/serviceAccount.name&quot;: pod.Spec.ServiceAccountName</code></li>
 </ul>
 </li>
 <li>For more information see <a href="pod-info.html">Pod Info on Mount</a>.</li>
@@ -1441,7 +1442,7 @@ metadata:
 <h1><a class="header" href="#pod-info-on-mount-with-csi-driver-object" id="pod-info-on-mount-with-csi-driver-object">Pod Info on Mount with CSI Driver Object</a></h1>
 <p>The <a href="csi-driver-object.html">CSIDriver Object</a> enables CSI Drivers to specify how Kubernetes should interact with it.</p>
 <p>Specifically the <code>podInfoOnMount</code> field instructs Kubernetes that the CSI driver requires additional pod information (like podName, podUID, etc.) during mount operations.</p>
-<p>For example, the existence of the following object would cause Kubernetes to add pod information at mount time to the <code>NodePublishVolumeRequest.publish_context</code> map.</p>
+<p>For example, the existence of the following object would cause Kubernetes to add pod information at mount time to the <code>NodePublishVolumeRequest.volume_context</code> map.</p>
 <pre><code>apiVersion: storage.k8s.io/v1beta1
 kind: CSIDriver
 metadata:
@@ -1449,11 +1450,12 @@ metadata:
 spec:
   podInfoOnMount: true
 </code></pre>
-<p>If the <code>podInfoOnMount</code> field is set to <code>true</code>, during mount, Kubelet will add the following key/values to the <code>publish_context</code> field in the CSI <code>NodePublishVolumeRequest</code>:</p>
+<p>If the <code>podInfoOnMount</code> field is set to <code>true</code>, during mount, Kubelet will add the following key/values to the <code>volume_context</code> field in the CSI <code>NodePublishVolumeRequest</code>:</p>
 <ul>
 <li><code>csi.storage.k8s.io/pod.name: {pod.Name}</code></li>
 <li><code>csi.storage.k8s.io/pod.namespace: {pod.Namespace}</code></li>
 <li><code>csi.storage.k8s.io/pod.uid: {pod.UID}</code></li>
+<li><code>csi.storage.k8s.io/serviceAccount.name: {pod.Spec.ServiceAccountName}</code></li>
 </ul>
 <p>The CSIDriver object should be manually included in the driver manifests.</p>
 <p>Previously, the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container could be used to create the object. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
