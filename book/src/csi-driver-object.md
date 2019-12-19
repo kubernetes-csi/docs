@@ -47,6 +47,7 @@ There are three important fields:
     * `"csi.storage.k8s.io/pod.name": pod.Name`
     * `"csi.storage.k8s.io/pod.namespace": pod.Namespace`
     * `"csi.storage.k8s.io/pod.uid": string(pod.UID)`
+    * `"csi.storage.k8s.io/serviceAccount.name": pod.Spec.ServiceAccountName`
   * For more information see [Pod Info on Mount](pod-info.md).
 * `volumeLifecycleModes`
   * This field was added in Kubernetes 1.16 and cannot be set when using an older Kubernetes release.
