@@ -267,7 +267,7 @@ Events:  &lt;none&gt;
 <p>In Kubernetes v1.12 and v1.13, because the feature was alpha, it was disabled by default. To enable the use of <code>CSIDriver</code> on these versions, do the following:</p>
 <ol>
 <li>Ensure the feature gate is enabled via the following Kubernetes feature flag: <code>--feature-gates=CSIDriverRegistry=true</code></li>
-<li>Either ensure the <code>CSIDriver</code> CRD is automatically installed via the <a href="https://github.com/kubernetes/kubernetes/tree/master/cluster/addons/storage-crds">Kubernetes Storage CRD addon</a> OR manually install the <code>CSIDriver</code> CRD on the Kubernetes cluster with the following command:</li>
+<li>Either ensure the <code>CSIDriver</code> CRD is automatically installed via the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.13/cluster/addons/storage-crds">Kubernetes Storage CRD addon</a> OR manually install the <code>CSIDriver</code> CRD on the Kubernetes cluster with the following command:</li>
 </ol>
 <pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csidriver.yaml
 </code></pre>
