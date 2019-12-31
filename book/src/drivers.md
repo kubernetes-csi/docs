@@ -61,6 +61,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [ROBIN](https://get.robin.io/) | `robin` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for [ROBIN](https://docs.robin.io) | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Cloning
 [SmartX](http://www.smartx.com/?locale=en) | `csi-smtx-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SmartX ZBS Storage  | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
 [SandStone](https://github.com/sandstone-storage/sandstone-csi-driver) | `csi-sandstone-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SandStone USP | Persistent | Read/Write Single Pod | Yes | 
+[Sangfor-EDS](https://github.com/evan37717/sangfor-eds-csi) | `eds.csi.sangfor.com` | v1.0 | A Container Storage Interface (CSI) Driver for Sangfor Distributed File Storage(EDS) | Persistent | Read/Write Multiple Pods | No |
 [StorageOS](https://docs.storageos.com/docs/platforms/kubernetes/install/) | `storageos` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for [StorageOS](https://storageos.com/) | Persistent | Read/Write Multiple Pods | Yes |
 [XSKY-EBS](https://xsky-storage.github.io/xsky-csi-driver/csi-block.html) | `csi.block.xsky.com` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed Block Storage (X-EBS) | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Cloning
 [XSKY-EUS](https://xsky-storage.github.io/xsky-csi-driver/csi-fs.html) | `csi.fs.xsky.com` | v1.0 | A Container Storage Interface (CSI) Driver for XSKY Distributed File Storage (X-EUS) | Persistent | Read/Write Multiple Pods | Yes | 
@@ -68,7 +69,6 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Raw Block
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Zadara-CSI](https://github.com/zadarastorage/zadara-csi) | `csi.zadara.com` | v1.0, v1.1 | A Container Storage Interface (CSI) plugin for Zadara VPSA Storage Array & VPSA All-Flash  | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
-[Sangfor-EDS](https://github.com/evan37717/sangfor-eds-csi) | `eds.csi.sangfor.com` | v1.0 | A Container Storage Interface (CSI) Driver for Sangfor Distributed File Storage(EDS) | Persistent | Read/Write Multiple Pods | No |
 ## Sample Drivers
 
 Name | Status | More Information
