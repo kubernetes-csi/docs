@@ -35,9 +35,9 @@ Similar to the API for managing [Kubernetes Persistent Volumes](https://kubernet
 
 Unlike the core Kubernetes Persistent Volume objects, these Snapshot objects are defined as [Custom Resource Definitions](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) (CRDs). This is because the Kubernetes project is moving away from having resource types pre-defined in the API server. This allows the API server to be reused for projects other than Kubernetes, and consumers (like Kubernetes) simply install the resource types they require as CRDs. Because the Snapshot API types are not built in to Kubernetes, they must be installed prior to use.
 
-The CRDs are [automatically deployed](https://github.com/kubernetes-csi/external-snapshotter/blob/master/cmd/csi-snapshotter/create_crd.go#L29) by the CSI [external-snapshotter](external-snapshotter.md) sidecar.
+The CRDs are [automatically deployed](https://github.com/kubernetes-csi/external-snapshotter/blob/release-1.2/cmd/csi-snapshotter/create_crd.go#L29) by the CSI [external-snapshotter](external-snapshotter.md) sidecar.
 
-The schema definition for the custom resources (CRs) can be found here: [https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go](https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go)
+The schema definition for the custom resources (CRs) can be found here: [https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1beta1/types.go](https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go)
 
 In addition to these new CRD objects, a new, alpha `DataSource` field has been added to the `PersistentVolumeClaim` object. This new field enables dynamic provisioning of new volumes that are automatically pre-populated with data from an existing snapshot.
 
