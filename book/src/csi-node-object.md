@@ -2,8 +2,12 @@
 
 ## Status
 
-* Kubernetes 1.12 - 1.13: Alpha
-* Kubernetes 1.14: Beta
+Status | Min K8s Version | Max K8s Version
+--|--|--
+Alpha | 1.12 | 1.13
+Beta | 1.14 | 1.16
+GA   | 1.17 | -
+
 
 ## What is the CSINode object?
 
@@ -20,10 +24,10 @@ It serves the following purposes:
 
 ## What fields does the CSINode object have?
 
-Here is an example of a v1beta1 `CSINode` object:
+Here is an example of a v1 `CSINode` object:
 
 ```YAML
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 kind: CSINodeInfo
 metadata:
   name: node1
@@ -43,7 +47,7 @@ What the fields mean:
 
 ## What creates the CSINode object?
 
-CSI drivers do not need to create the `CSINode` object directly. Instead they should use the [node-driver-registrar](node-driver-registrar.md) sidecar container. This sidecar container will interact with kubelet via the kubelet plugin registration mechanism to automatically populate the `CSINode` object on behalf of the the CSI driver.
+CSI drivers do not need to create the `CSINode` object directly. Kubelet manages the object when a CSI driver registers through the kubelet plugin registration mechanism. The [node-driver-registrar](node-driver-registrar.md) sidecar container helps with this registration.
 
 ## Changes from Alpha to Beta
 

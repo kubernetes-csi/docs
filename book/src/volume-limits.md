@@ -2,9 +2,11 @@
 
 ## Status
 
-* Kubernetes 1.11 - 1.11: Alpha
-* Kubernetes 1.12 - 1.16: Beta
-* Kubernetes 1.17: GA
+Status | Min K8s Version | Max K8s Version
+--|--|--
+Alpha | 1.11 | 1.11
+Beta | 1.12 | 1.16
+GA   | 1.17 | -
 
 ## Overview
 
