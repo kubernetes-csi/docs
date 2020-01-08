@@ -147,10 +147,11 @@
                     <main>
                         <h1><a class="header" href="#csinode-object" id="csinode-object">CSINode Object</a></h1>
 <h2><a class="header" href="#status" id="status">Status</a></h2>
-<ul>
-<li>Kubernetes 1.12 - 1.13: Alpha</li>
-<li>Kubernetes 1.14: Beta</li>
-</ul>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
+<tr><td>Alpha</td><td>1.12</td><td>1.13</td></tr>
+<tr><td>Beta</td><td>1.14</td><td>1.16</td></tr>
+<tr><td>GA</td><td>1.17</td><td>-</td></tr>
+</tbody></table>
 <h2><a class="header" href="#what-is-the-csinode-object" id="what-is-the-csinode-object">What is the CSINode object?</a></h2>
 <p>CSI drivers generate node specific information. Instead of storing this in the Kubernetes <code>Node</code> API Object, a new CSI specific Kubernetes <code>CSINode</code> object was created.</p>
 <p>It serves the following purposes:</p>
@@ -173,8 +174,8 @@
 <li>The CSI <code>GetNodeInfo</code> call returns a set of keys/values labels identifying the topology of that node. Kubernetes uses this information to do topology-aware provisioning (see <a href="https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode">PVC Volume Binding Modes</a> for more details). It stores the key/values as labels on the Kubernetes node object. In order to recall which <code>Node</code> label keys belong to a specific CSI driver, the kubelet stores the keys in the <code>CSINode</code> object for future reference.</li>
 </ul>
 <h2><a class="header" href="#what-fields-does-the-csinode-object-have" id="what-fields-does-the-csinode-object-have">What fields does the CSINode object have?</a></h2>
-<p>Here is an example of a v1beta1 <code>CSINode</code> object:</p>
-<pre><code class="language-YAML">apiVersion: storage.k8s.io/v1beta1
+<p>Here is an example of a v1 <code>CSINode</code> object:</p>
+<pre><code class="language-YAML">apiVersion: storage.k8s.io/v1
 kind: CSINodeInfo
 metadata:
   name: node1
@@ -192,7 +193,7 @@ spec:
 <li><code>topologyKeys</code> - A list of topology keys assigned to the node as supported by the driver.</li>
 </ul>
 <h2><a class="header" href="#what-creates-the-csinode-object" id="what-creates-the-csinode-object">What creates the CSINode object?</a></h2>
-<p>CSI drivers do not need to create the <code>CSINode</code> object directly. Instead they should use the <a href="node-driver-registrar.html">node-driver-registrar</a> sidecar container. This sidecar container will interact with kubelet via the kubelet plugin registration mechanism to automatically populate the <code>CSINode</code> object on behalf of the the CSI driver.</p>
+<p>CSI drivers do not need to create the <code>CSINode</code> object directly. Kubelet manages the object when a CSI driver registers through the kubelet plugin registration mechanism. The <a href="node-driver-registrar.html">node-driver-registrar</a> sidecar container helps with this registration.</p>
 <h2><a class="header" href="#changes-from-alpha-to-beta" id="changes-from-alpha-to-beta">Changes from Alpha to Beta</a></h2>
 <h3><a class="header" href="#crd-to-built-in-type" id="crd-to-built-in-type">CRD to Built in Type</a></h3>
 <p>The alpha object was called <code>CSINodeInfo</code>, whereas the beta object is called

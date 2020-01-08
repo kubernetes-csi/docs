@@ -147,11 +147,11 @@
                     <main>
                         <h1><a class="header" href="#volume-limits" id="volume-limits">Volume Limits</a></h1>
 <h2><a class="header" href="#status" id="status">Status</a></h2>
-<ul>
-<li>Kubernetes 1.11 - 1.11: Alpha</li>
-<li>Kubernetes 1.12 - 1.16: Beta</li>
-<li>Kubernetes 1.17: GA</li>
-</ul>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
+<tr><td>Alpha</td><td>1.11</td><td>1.11</td></tr>
+<tr><td>Beta</td><td>1.12</td><td>1.16</td></tr>
+<tr><td>GA</td><td>1.17</td><td>-</td></tr>
+</tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>Some storage providers may have a restriction on the number of volumes that can be used in a Node. This is common in cloud providers, but other providers might impose restriction as well.</p>
 <p>Kubernetes will respect this limit as long the CSI driver advertises it. To support volume limits in a CSI driver, the plugin must fill in <code>max_volumes_per_node</code> in <code>NodeGetInfoResponse</code>.</p>

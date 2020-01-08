@@ -150,7 +150,8 @@
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>external-provisioner Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.12</td><td>1.12</td><td>0.4</td></tr>
 <tr><td>Alpha</td><td>1.13</td><td>1.13</td><td>1.0</td></tr>
-<tr><td>Beta</td><td>1.14</td><td>-</td><td>1.1+</td></tr>
+<tr><td>Beta</td><td>1.14</td><td>1.16</td><td>1.1-1.4</td></tr>
+<tr><td>GA</td><td>1.17</td><td>-</td><td>1.5+</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.</p>
