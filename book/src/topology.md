@@ -6,7 +6,8 @@ Status | Min K8s Version | Max K8s Version | external-provisioner Version
 --|--|--|--
 Alpha | 1.12 | 1.12 | 0.4
 Alpha | 1.13 | 1.13 | 1.0
-Beta | 1.14 | - | 1.1+
+Beta | 1.14 | 1.16 | 1.1-1.4
+GA   | 1.17 | - | 1.5+
 
 ## Overview
 Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.
