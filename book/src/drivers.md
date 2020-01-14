@@ -69,7 +69,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [vSphere](https://github.com/kubernetes-sigs/vsphere-csi-driver) | `vsphere.csi.vmware.com` | v1.0 | A Container Storage Interface (CSI) Driver for VMware vSphere | Persistent | Read/Write Single Pod | Yes | Raw Block
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Zadara-CSI](https://github.com/zadarastorage/zadara-csi) | `csi.zadara.com` | v1.0, v1.1 | A Container Storage Interface (CSI) plugin for Zadara VPSA Storage Array & VPSA All-Flash  | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
-[Huawei_Storage_CSI](https://github.com/Huawei/eSDK_K8S_Plugin) | `csi.huawei.com` | v1.0 | A Container Storage Interface (CSI) Driver for [Huawei Storage]() | Persistent | Read/Write Multiple Pod | Yes |
+[Huawei_Storage_CSI](https://github.com/Huawei/eSDK_K8S_Plugin) | `csi.huawei.com` | v1.0 | A Container Storage Interface (CSI) Driver for [Huawei Storage](https://support.huawei.com/enterprise/en/category/enterprise-storage-pid-1482606575525?submodel=21430818, https://support.huawei.com/enterprise/en/category/cloud-storage-pid-1482615290338?submodel=21430817) | Persistent | Read/Write Multiple Pod | Yes |
 
 ## Sample Drivers
 
