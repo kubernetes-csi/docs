@@ -37,7 +37,7 @@ Unlike the core Kubernetes Persistent Volume objects, these Snapshot objects are
 
 The CRDs are [automatically deployed](https://github.com/kubernetes-csi/external-snapshotter/blob/master/cmd/csi-snapshotter/create_crd.go#L29) by the CSI [external-snapshotter](external-snapshotter.md) sidecar.
 
-The schema definition for the custom resources (CRs) can be found here: [https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1beta1/types.go](https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1alpha1/types.go)
+The schema definition for the custom resources (CRs) can be found here: [https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1beta1/types.go](https://github.com/kubernetes-csi/external-snapshotter/blob/master/pkg/apis/volumesnapshot/v1beta1/types.go)
 
 In addition to these new CRD objects, a new, alpha `DataSource` field has been added to the `PersistentVolumeClaim` object. This new field enables dynamic provisioning of new volumes that are automatically pre-populated with data from an existing snapshot.
 
