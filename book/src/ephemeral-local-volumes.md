@@ -2,7 +2,7 @@
 
 ## Status
 
-Status | Min K8s Version | Max K8s Version 
+Status | Min K8s Version | Max K8s Version
 --|--|--
 Alpha | 1.15 | 1.15
 Beta | 1.16 | -
@@ -34,18 +34,74 @@ spec:
 
 ## Implementing inline ephemeral support
 
-Drivers must be modified (or implemented specifically) to support inline ephemeral workflows.  When Kubernetes encounters an inline CSI volume embedded in a pod spec, it treats that volume differently.  Mainly, the driver will only receive `NodePublish`, during the volume's mount phase, and `NodeUnpublish` when the pod is going away and the volume is unmounted.   To support inline, a driver must implement the followings:
+Drivers must be modified (or implemented specifically) to support inline
+ephemeral workflows. When Kubernetes encounters an inline CSI volume embedded
+in a pod spec, it treats that volume differently. Mainly, the driver will only
+receive `NodePublish`, during the volume's mount phase, and `NodeUnpublish` when
+the pod is going away and the volume is unmounted.
+
+Due to these requirements, ephemeral volumes will not be created using the [Controller
+Service](https://github.com/container-storage-interface/spec/blob/master/spec.md#controller-service-rpc),
+but the [Node
+Service](https://github.com/container-storage-interface/spec/blob/master/spec.md#node-service-rpc),
+instead. When the
+[kubelet](https://github.com/kubernetes/kubernetes/blob/70132b0f130acc0bed193d9ba59dd186f0e634cf/pkg/volume/csi/csi_mounter.go#L329)
+calls _NodePublishVolume_, it is the responsibility of the CSI driver to create the
+volume during that call, then publish the volume to the specified location. When
+the `kubelet` calls _NodeUnpublishVolume_, it is the responsibility of the CSI
+driver to delete the volume.
+
+To support inline, a driver must implement the followings:
 
 - Identity service
 - Node service
 
+### CSI Extension Specification
+
+#### [NodePublishVolume](https://github.com/container-storage-interface/spec/blob/master/spec.md#nodepublishvolume)
+
+##### Arguments
+
+* **`volume_id`**: Volume ID will be created by the Kubernetes and passed to the
+  driver by the kubelet.
+* **`volume_context["csi.storage.k8s.io/ephemeral"]`**: This value will be
+  available and it will be equal to `"true"`.
+
+##### Workflow
+
+The driver will receive the appropriate arguments as defined above when an
+ephemeral volume is requested. The driver will create and publish the volume
+to the specified location as noted in the _NodePublishVolume_ request. Volume
+size and any other parameters required will be passed in verbatim from the
+inline manifest parameters to the `NodePublishVolumeRequest.volume_context`.
+
+There is no guarantee that NodePublishVolume will be called again after a
+failure, regardless of what the failure is. To avoid leaking resources, a CSI
+driver must either always free all resources before returning from
+NodePublishVolume on error or implement some kind of garbage collection.
+
+#### [NodeUnpublishVolume](https://github.com/container-storage-interface/spec/blob/master/spec.md#nodeunpublishvolume)
+
+##### Arguments
+
+No changes
+
+##### Workflow
+
+The driver is responsible of deleting the ephemeral volume once it has
+unpublished the volume. It MAY delete the volume before finishing the request,
+or after the request to unpublish is returned.
+
+## CSIDriver
+
 Kubernetes 1.16 only allows using a CSI driver for an inline volume if
-its [`CSIDriverInfo`](csi-driver-object.md) object explicitly declares
+its [`CSIDriver`](csi-driver-object.md) object explicitly declares
 that the driver supports that kind of usage in its
 `volumeLifecycleModes` field. This is a safeguard against accidentally
 [using a driver the wrong way](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes).
 
-### Feature gates
+## Feature gates
+
 To use inline volume, Kubernetes 1.15 binaries must start with the `CSIInlineVolume` feature gate enabled:
 ```
 --feature-gates=CSIInlineVolume=true
@@ -53,6 +109,14 @@ To use inline volume, Kubernetes 1.15 binaries must start with the `CSIInlineVol
 
 Kubernetes >= 1.16 no longer needs this as the feature is enabled by default.
 
-### Example implementation
+## References
+
+- [CSI Host Path
+  driver ephemeral volumes support](https://github.com/kubernetes-csi/csi-driver-host-path/blob/9fdddc2061b9013286e01189b2bf3268276af99b/pkg/hostpath/nodeserver.go#L63-L82)
+- [Issue 82507: Drop VolumeLifecycleModes field from CSIDriver API before
+  GA](https://github.com/kubernetes/kubernetes/issues/82507)
+- [Issue 75222: CSI Inline - Update CSIDriver to indicate driver
+  mode](https://github.com/kubernetes/kubernetes/issues/75222)
+- [CSIDriver support for ephemeral volumes](https://github.com/kubernetes/kubernetes/blob/70132b0f130acc0bed193d9ba59dd186f0e634cf/staging/src/k8s.io/api/storage/v1beta1/generated.proto#L96-L97)
 - [CSI Hostpath driver](https://github.com/kubernetes-csi/csi-driver-host-path) - an example driver that supports both modes and determines the mode on a case-by-case basis (for Kubernetes 1.16) or can be deployed with support for just one of the two modes (for Kubernetes 1.15).
 - [Image populator plugin](https://github.com/kubernetes-csi/csi-driver-image-populator) - an example CSI driver plugin that uses a container image as a volume.
