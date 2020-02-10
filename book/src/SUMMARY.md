@@ -3,6 +3,8 @@
 - [Introduction](introduction.md)
 - [Developing a CSI Driver for Kubernetes](developing.md)
     - [Kubernetes Changelog](kubernetes-changelog.md)
+    - [Kubernetes Cluster Controllers](kubernetes-cluster-controllers.md)
+        - [Snapshot Controller](snapshot-controller.md)
     - [Sidecar Containers](sidecar-containers.md)
         - [Kubernetes Compatibility](kubernetes-compatibility.md)
         - [external-attacher](external-attacher.md)
