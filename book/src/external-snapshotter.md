@@ -39,7 +39,7 @@ For detailed information (binary parameters, RBAC rules, etc.), see [https://git
 
 The CSI `external-snapshotter` is deployed as a sidecar controller. See [deployment section](deploying.md) for more details.
 
-For an example deployment, see [this example](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.0/deploy/kubernetes/setup-csi-snapshotter.yaml) which deploys `external-snapshotter` and `external-provisioner` with the Hostpath CSI driver.
+For an example deployment, see [this example](https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/deploy/kubernetes/csi-snapshotter/setup-csi-snapshotter.yaml) which deploys `external-snapshotter` and `external-provisioner` with the Hostpath CSI driver.
 
 ## Snapshot Alpha
 
