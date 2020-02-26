@@ -624,7 +624,7 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md">https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md</a>.</p>
 <h3><a class="header" href="#deployment-4" id="deployment-4">Deployment</a></h3>
 <p>The CSI <code>external-snapshotter</code> is deployed as a sidecar controller. See <a href="deploying.html">deployment section</a> for more details.</p>
-<p>For an example deployment, see <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.0/deploy/kubernetes/setup-csi-snapshotter.yaml">this example</a> which deploys <code>external-snapshotter</code> and <code>external-provisioner</code> with the Hostpath CSI driver.</p>
+<p>For an example deployment, see <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/deploy/kubernetes/csi-snapshotter/setup-csi-snapshotter.yaml">this example</a> which deploys <code>external-snapshotter</code> and <code>external-provisioner</code> with the Hostpath CSI driver.</p>
 <h2><a class="header" href="#snapshot-alpha" id="snapshot-alpha">Snapshot Alpha</a></h2>
 <h3><a class="header" href="#description-5" id="description-5">Description</a></h3>
 <p>The CSI <code>external-snapshotter</code> is a sidecar container that watches the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRD objects.</p>
