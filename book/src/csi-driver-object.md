@@ -31,7 +31,7 @@ spec:
   - Ephemeral
 ```
 
-There are three important fields:
+There are four important fields:
 
 * `name`
   * This should correspond to the full name of the CSI driver.
