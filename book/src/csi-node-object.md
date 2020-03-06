@@ -28,7 +28,7 @@ Here is an example of a v1 `CSINode` object:
 
 ```YAML
 apiVersion: storage.k8s.io/v1
-kind: CSINodeInfo
+kind: CSINode
 metadata:
   name: node1
 spec:
