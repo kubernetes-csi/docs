@@ -150,7 +150,8 @@
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>cluster-driver-registrar Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.12</td><td>1.12</td><td>0.4</td></tr>
 <tr><td>Alpha</td><td>1.13</td><td>1.13</td><td>1.0</td></tr>
-<tr><td>Beta</td><td>1.14</td><td>-</td><td>n/a</td></tr>
+<tr><td>Beta</td><td>1.14</td><td>1.17</td><td>n/a</td></tr>
+<tr><td>GA</td><td>1.18</td><td>-</td><td>n/a</td></tr>
 </tbody></table>
 <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
 <p>Volume drivers, like NFS, for example, have no concept of an attach (<code>ControllerPublishVolume</code>). However, Kubernetes always executes <code>Attach</code> and <code>Detach</code> operations even if the CSI driver does not implement an attach operation (i.e. even if the CSI Driver does not implement a <code>ControllerPublishVolume</code> call).</p>
@@ -160,7 +161,7 @@
 <p>The <a href="csi-driver-object.html">CSIDriver Object</a> enables CSI Drivers to specify how Kubernetes should interact with it.</p>
 <p>Specifically the <code>attachRequired</code> field instructs Kubernetes to skip any attach operation altogether.</p>
 <p>For example, the existence of the following object would cause Kubernetes to skip attach operations for all CSI Driver <code>testcsidriver.example.com</code> volumes.</p>
-<pre><code>apiVersion: storage.k8s.io/v1beta1
+<pre><code>apiVersion: storage.k8s.io/v1
 kind: CSIDriver
 metadata:
   name: testcsidriver.example.com
