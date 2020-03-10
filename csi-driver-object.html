@@ -150,6 +150,7 @@
 <ul>
 <li>Kubernetes 1.12 - 1.13: Alpha</li>
 <li>Kubernetes 1.14: Beta</li>
+<li>Kubernetes 1.18: GA</li>
 </ul>
 <h2><a class="header" href="#what-is-the-csidriver-object" id="what-is-the-csidriver-object">What is the CSIDriver object?</a></h2>
 <p>The <code>CSIDriver</code> Kubernetes API object serves two purposes:</p>
@@ -166,15 +167,15 @@
 <li>Kubernetes has a default set of behaviors when dealing with CSI Drivers (for example, it calls the <code>Attach</code>/<code>Detach</code> operations by default). This object allows CSI drivers to specify how Kubernetes should interact with it.</li>
 </ul>
 <h2><a class="header" href="#what-fields-does-the-csidriver-object-have" id="what-fields-does-the-csidriver-object-have">What fields does the <code>CSIDriver</code> object have?</a></h2>
-<p>Here is an example of a v1beta1 <code>CSIDriver</code> object:</p>
-<pre><code class="language-YAML">apiVersion: storage.k8s.io/v1beta1
+<p>Here is an example of a v1 <code>CSIDriver</code> object:</p>
+<pre><code class="language-YAML">apiVersion: storage.k8s.io/v1
 kind: CSIDriver
 metadata:
   name: mycsidriver.example.com
 spec:
   attachRequired: true
   podInfoOnMount: true
-  volumeLifecycleModes: # added in Kubernetes 1.16
+  volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
   - Persistent
   - Ephemeral
 </code></pre>
@@ -211,6 +212,7 @@ spec:
 <li><code>volumeLifecycleModes</code>
 <ul>
 <li>This field was added in Kubernetes 1.16 and cannot be set when using an older Kubernetes release.</li>
+<li>This field is beta.</li>
 <li>It informs Kubernetes about the volume modes that are supported by the driver.
 This ensures that the driver <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes">is not used incorrectly</a> by users.
 The default is <code>Persistent</code>, which is the normal PVC/PV mechanism. <code>Ephemeral</code> enables
@@ -242,13 +244,13 @@ Name:         hostpath.csi.k8s.io
 Namespace:    
 Labels:       &lt;none&gt;
 Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                {&quot;apiVersion&quot;:&quot;storage.k8s.io/v1beta1&quot;,&quot;kind&quot;:&quot;CSIDriver&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;hostpath.csi.k8s.io&quot;},&quot;spec&quot;:{&quot;podInfoOnMou...
-API Version:  storage.k8s.io/v1beta1
+                {&quot;apiVersion&quot;:&quot;storage.k8s.io/v1&quot;,&quot;kind&quot;:&quot;CSIDriver&quot;,&quot;metadata&quot;:{&quot;annotations&quot;:{},&quot;name&quot;:&quot;hostpath.csi.k8s.io&quot;},&quot;spec&quot;:{&quot;podInfoOnMou...
+API Version:  storage.k8s.io/v1
 Kind:         CSIDriver
 Metadata:
   Creation Timestamp:  2019-09-13T09:58:43Z
   Resource Version:    341
-  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/hostpath.csi.k8s.io
+  Self Link:           /apis/storage.k8s.io/v1/csidrivers/hostpath.csi.k8s.io
   UID:                 1860f2a1-85f8-4357-a933-c45e54f0c8e0
 Spec:
   Attach Required:    true
