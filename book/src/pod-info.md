@@ -6,7 +6,8 @@ Status | Min K8s Version | Max K8s Version | cluster-driver-registrar Version
 --|--|--|--
 Alpha | 1.12 | 1.12 | 0.4
 Alpha | 1.13 | 1.13 | 1.0
-Beta | 1.14 | - | n/a
+Beta | 1.14 | 1.17 | n/a
+GA | 1.18 | - | n/a
 
 # Overview
 
@@ -23,7 +24,7 @@ Specifically the `podInfoOnMount` field instructs Kubernetes that the CSI driver
 For example, the existence of the following object would cause Kubernetes to add pod information at mount time to the `NodePublishVolumeRequest.volume_context` map.
 
 ```
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 kind: CSIDriver
 metadata:
   name: testcsidriver.example.com
