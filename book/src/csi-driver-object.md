@@ -4,6 +4,7 @@
 
 * Kubernetes 1.12 - 1.13: Alpha
 * Kubernetes 1.14: Beta
+* Kubernetes 1.18: GA
 
 ## What is the CSIDriver object?
 
@@ -16,17 +17,17 @@ The `CSIDriver` Kubernetes API object serves two purposes:
 
 ## What fields does the `CSIDriver` object have?
 
-Here is an example of a v1beta1 `CSIDriver` object:
+Here is an example of a v1 `CSIDriver` object:
 
 ```YAML
-apiVersion: storage.k8s.io/v1beta1
+apiVersion: storage.k8s.io/v1
 kind: CSIDriver
 metadata:
   name: mycsidriver.example.com
 spec:
   attachRequired: true
   podInfoOnMount: true
-  volumeLifecycleModes: # added in Kubernetes 1.16
+  volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
   - Persistent
   - Ephemeral
 ```
@@ -51,6 +52,7 @@ There are four important fields:
   * For more information see [Pod Info on Mount](pod-info.md).
 * `volumeLifecycleModes`
   * This field was added in Kubernetes 1.16 and cannot be set when using an older Kubernetes release.
+  * This field is beta.
   * It informs Kubernetes about the volume modes that are supported by the driver.
     This ensures that the driver [is not used incorrectly](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes) by users.
     The default is `Persistent`, which is the normal PVC/PV mechanism. `Ephemeral` enables
@@ -85,13 +87,13 @@ Name:         hostpath.csi.k8s.io
 Namespace:    
 Labels:       <none>
 Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                {"apiVersion":"storage.k8s.io/v1beta1","kind":"CSIDriver","metadata":{"annotations":{},"name":"hostpath.csi.k8s.io"},"spec":{"podInfoOnMou...
-API Version:  storage.k8s.io/v1beta1
+                {"apiVersion":"storage.k8s.io/v1","kind":"CSIDriver","metadata":{"annotations":{},"name":"hostpath.csi.k8s.io"},"spec":{"podInfoOnMou...
+API Version:  storage.k8s.io/v1
 Kind:         CSIDriver
 Metadata:
   Creation Timestamp:  2019-09-13T09:58:43Z
   Resource Version:    341
-  Self Link:           /apis/storage.k8s.io/v1beta1/csidrivers/hostpath.csi.k8s.io
+  Self Link:           /apis/storage.k8s.io/v1/csidrivers/hostpath.csi.k8s.io
   UID:                 1860f2a1-85f8-4357-a933-c45e54f0c8e0
 Spec:
   Attach Required:    true
