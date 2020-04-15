@@ -6,14 +6,11 @@
 
 **Status:** Beta starting with v0.3.0
 
-Latest release | Branch | Min CSI Version | Max CSI Version | Container Image | Min K8s Version | Max K8s Version | Recommended K8s Version
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
 --|--|--|--|--|--|--|--
-[external-resizer v0.3.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.3.0)  | [master](https://github.com/kubernetes-csi/external-resizer/tree/master) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0) | - | quay.io/k8scsi/csi-resizer:v0.3.0 | v1.15 | - | v1.16
-[external-resizer v0.2.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.2.0)  | [master](https://github.com/kubernetes-csi/external-resizer/tree/master) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0) | - | quay.io/k8scsi/csi-resizer:v0.2.0 | v1.15 | - | v1.15
-[external-resizer v0.1.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.1.0)  | [master](https://github.com/kubernetes-csi/external-resizer/tree/master) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0) | - | quay.io/k8scsi/csi-resizer:v0.1.0 | v1.14 | v1.14 | v1.14
-
-Definitions of the min/max/recommended Kubernetes versions can be found on the
-[sidecar page](sidecar-containers.md#versioning)
+[external-resizer v0.5.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.5.0)  | [release-0.5](https://github.com/kubernetes-csi/external-resizer/tree/release-0.5) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.2.0) | - | quay.io/k8scsi/csi-resizer:v0.5.0 | v1.15 | - | v1.16
+[external-resizer v0.2.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.2.0)  | [release-0.2](https://github.com/kubernetes-csi/external-resizer/tree/release-0.2) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0) | - | quay.io/k8scsi/csi-resizer:v0.2.0 | v1.15 | - | v1.15
+[external-resizer v0.1.0](https://github.com/kubernetes-csi/external-resizer/tree/v0.1.0)  | [release-0.1](https://github.com/kubernetes-csi/external-resizer/tree/release-0.1) |[v1.1.0](https://github.com/container-storage-interface/spec/releases/tag/v1.1.0) | - | quay.io/k8scsi/csi-resizer:v0.1.0 | v1.14 | v1.14 | v1.14
 
 ## Description
 

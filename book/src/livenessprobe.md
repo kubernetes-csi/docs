@@ -6,7 +6,7 @@
 
 **Status:** GA/Stable
 
-Latest stable release | Branch | Compatible with CSI Version | Container Image | Min k8s Version | Max k8s version
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) |
 --|--|--|--|--|--
 [livenessprobe v2.0.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.0.0) | [release-2.0](https://github.com/kubernetes-csi/livenessprobe/tree/release-2.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | quay.io/k8scsi/livenessprobe:v2.0.0 | v1.13 | -
 [livenessprobe v1.1.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.1.0) | [release-1.1](https://github.com/kubernetes-csi/livenessprobe/tree/release-1.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | quay.io/k8scsi/livenessprobe:v1.1.0 | v1.13 | -

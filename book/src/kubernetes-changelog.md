@@ -3,6 +3,27 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.18
+
+### Deprecations
+* `storage.k8s.io/v1beta1` `CSIDriver` object has been deprecated and will be
+  removed in a future release.
+* In a future release, kubelet will no longer create the CSI NodePublishVolume
+  target directory, in accordance with the CSI specification. CSI drivers may
+  need to be updated accordingly to properly create and process the target path.
+
+### Features
+* GA
+    * Raw block volumes
+    * Volume cloning
+    * Skip attach
+    * Pod info on mount
+* Beta
+    * CSI migration for Openstack cinder driver.
+* Alpha
+    * CSI on Windows
+* `storage.k8s.io/v1` `CSIDriver` object introduced.
+
 ## Kubernetes 1.17
 
 ### Breaking Changes
