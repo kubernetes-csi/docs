@@ -149,7 +149,8 @@
 <h2><a class="header" href="#status-and-releases" id="status-and-releases">Status and Releases</a></h2>
 <table><thead><tr><th>Status</th><th>Min k8s Version</th><th>Max k8s version</th><th>external-provisioner Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.15</td><td>1.15</td><td>1.3</td></tr>
-<tr><td>Beta</td><td>1.16</td><td>-</td><td>1.4</td></tr>
+<tr><td>Beta</td><td>1.16</td><td>1.17</td><td>1.4</td></tr>
+<tr><td>GA</td><td>1.18</td><td>-</td><td>1.6</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>A Clone is defined as a duplicate of an existing Kubernetes Volume.  For more information on cloning in Kubernetes see the concepts doc for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-cloning">Volume Cloning</a>.  A storage provider that allows volume cloning as a create feature, may choose to implement volume cloning via a control-plan CSI RPC call.</p>
@@ -165,6 +166,7 @@
 <p>The Kubernetes CSI development team maintains the <a href="external-provisioner.html">external-provisioner</a> which is responsible for detecting requests for a PVC DataSource and providing that information to the plugin via the <code>csi.CreateVolumeRequest</code>.  It's up to the plugin to check the <code>csi.CreateVolumeRequest</code> for a <code>VolumeContentSource</code> entry in the CreateVolumeRequest object.</p>
 <p>There are no additional side-cars or add on components required.</p>
 <h2><a class="header" href="#enabling-cloning-for-csi-volumes-in-kubernetes" id="enabling-cloning-for-csi-volumes-in-kubernetes">Enabling Cloning for CSI volumes in Kubernetes</a></h2>
+<p>Volume cloning was promoted to Beta in version 1.16 and GA in 1.18, and as such is enabled by defult for kubernetes versions &gt;= 1.16</p>
 <p>In Kubernetes 1.15 this feature was alpha status and required enabling the appropriate feature gate:</p>
 <pre><code>--feature-gates=VolumePVCDataSource=true
 </code></pre>
