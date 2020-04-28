@@ -5,7 +5,8 @@
 Status | Min k8s Version | Max k8s version | external-provisioner Version
 --|--|--|--
 Alpha | 1.15 | 1.15 | 1.3
-Beta | 1.16 | - | 1.4
+Beta | 1.16 | 1.17 | 1.4
+GA   | 1.18 | - | 1.6
 
 ## Overview
 
@@ -29,6 +30,7 @@ The Kubernetes CSI development team maintains the [external-provisioner](externa
 There are no additional side-cars or add on components required.
 
 ## Enabling Cloning for CSI volumes in Kubernetes
+Volume cloning was promoted to Beta in version 1.16 and GA in 1.18, and as such is enabled by defult for kubernetes versions >= 1.16
 
 In Kubernetes 1.15 this feature was alpha status and required enabling the appropriate feature gate:
 
