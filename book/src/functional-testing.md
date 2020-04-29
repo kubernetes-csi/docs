@@ -16,7 +16,7 @@ Currently, [csi-sanity](https://github.com/kubernetes-csi/csi-test/tree/master/c
 
 There are two ways to run end-to-end tests for your CSI Plugin
  1) use [Kubernetes E2E Tests](https://github.com/kubernetes/kubernetes/tree/master/test/e2e/storage/external), by providing a DriverDefinition YAML file via a parameter. 
- * **Note**: In some cases you would not be able to use this method, in running e2e tests by just providing a YAML file defining your CSI plugin. For example the [NFS CSI plugin](https://github.com/kubernetes-csi/csi-driver-nfs) currently does not support dynamic provisoning, so we would want to skip those and run only pre-provisioned tests. For such cases, you would need to write your own testdriver, which is discussed below. 
+ * **Note**: In some cases you would not be able to use this method, in running e2e tests by just providing a YAML file defining your CSI plugin. For example the [NFS CSI plugin](https://github.com/kubernetes-csi/csi-driver-nfs) currently does not support dynamic provisioning, so we would want to skip those and run only pre-provisioned tests. For such cases, you would need to write your own testdriver, which is discussed below. 
  
  2) import the in-tree storage tests and run them using `go test`. 
  
@@ -71,7 +71,7 @@ You would define something similar for your CSI plugin.
 
 `SkipUnsupportedTest` simply skips any tests that you define there.
 
-Depending on your plugin's specs, you would implement other interaces defined [here](https://github.com/kubernetes/kubernetes/blob/6644db9914379a4a7b3d3487b41b2010f226e4dc/test/e2e/storage/testsuites/testdriver.go#L61). For example the [NFS testdriver](https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/test/nfs-testdriver.go#L66) also implements PreprovisionedVolumeTestDriver and PreprovisionedPVTestDriver interfaces, to enable pre-provisoned tests. 
+Depending on your plugin's specs, you would implement other interfaces defined [here](https://github.com/kubernetes/kubernetes/blob/6644db9914379a4a7b3d3487b41b2010f226e4dc/test/e2e/storage/testsuites/testdriver.go#L61). For example the [NFS testdriver](https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/test/nfs-testdriver.go#L66) also implements PreprovisionedVolumeTestDriver and PreprovisionedPVTestDriver interfaces, to enable pre-provisioned tests. 
 
 After implementing the testdriver for your CSI plugin, you would create a `csi-volumes.go` file, where the implemented testdriver is used to run in-tree storage testsuites, [similar to how the NFS CSI plugin does so](https://github.com/kubernetes-csi/csi-driver-nfs/blob/193faa0f2aa92a3be0855764a1126ff3cdcd3e77/test/csi-volumes.go#L37). This is where you would define which testsuites you would want to run for your plugin. All available in-tree testsuites can be found [here](https://github.com/kubernetes/kubernetes/tree/master/test/e2e/storage/testsuites).
 
