@@ -1,5 +1,11 @@
 # Developing CSI Driver for Kubernetes
 
+## Remain Informed
+
+All developers of CSI drivers should join https://groups.google.com/forum/#!forum/container-storage-interface-drivers-announce to remain informed about changes to CSI or Kubernetes that may affect existing CSI drivers.
+
+## Overview
+
 The first step to creating a CSI driver is writing an application implementing the [gRPC](https://grpc.io/docs/) services described in the [CSI specification](https://github.com/container-storage-interface/spec/blob/master/spec.md#rpc-interface)
 
 At a minimum, CSI drivers must implement the following CSI services:
