@@ -221,6 +221,9 @@ It aims to reduce boilerplate code and  simplify the overall process for CSI Dri
 <li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md">Design Doc</a></li>
 </ul>
 <h1><a class="header" href="#developing-csi-driver-for-kubernetes" id="developing-csi-driver-for-kubernetes">Developing CSI Driver for Kubernetes</a></h1>
+<h2><a class="header" href="#remain-informed" id="remain-informed">Remain Informed</a></h2>
+<p>All developers of CSI drivers should join https://groups.google.com/forum/#!forum/container-storage-interface-drivers-announce to remain informed about changes to CSI or Kubernetes that may affect existing CSI drivers.</p>
+<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>The first step to creating a CSI driver is writing an application implementing the <a href="https://grpc.io/docs/">gRPC</a> services described in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#rpc-interface">CSI specification</a></p>
 <p>At a minimum, CSI drivers must implement the following CSI services:</p>
 <ul>
@@ -1348,7 +1351,7 @@ parameters:
 <tr><td>Beta</td><td>1.14</td><td>1.16</td><td>1.1-1.4</td></tr>
 <tr><td>GA</td><td>1.17</td><td>-</td><td>1.5+</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<h2><a class="header" href="#overview-1" id="overview-1">Overview</a></h2>
 <p>Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.</p>
 <p>To enable orchestration systems, like Kubernetes, to work well with storage systems which expose volumes that are not equally accessible by all nodes, the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a> enables:</p>
 <ol>
@@ -1409,7 +1412,7 @@ cluster.</p>
 <tr><td>Alpha</td><td>1.13</td><td>1.13</td><td>1.0</td><td>1.0</td></tr>
 <tr><td>Beta</td><td>1.14</td><td>-</td><td>1.1+</td><td>1.1+</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview-1" id="overview-1">Overview</a></h2>
+<h2><a class="header" href="#overview-2" id="overview-2">Overview</a></h2>
 <p>This page documents how to implement raw block volume support to a CSI Driver.</p>
 <p>A <em>block volume</em> is a volume that will appear as a block device inside the container.
 A <em>mounted (file) volume</em> is volume that will be mounted using a specified file system and appear as a directory inside the container.</p>
@@ -1485,7 +1488,7 @@ all Kubernetes masters and nodes.</p>
 <tr><td>Beta</td><td>1.14</td><td>1.17</td><td>n/a</td></tr>
 <tr><td>GA</td><td>1.18</td><td>-</td><td>n/a</td></tr>
 </tbody></table>
-<h1><a class="header" href="#overview-2" id="overview-2">Overview</a></h1>
+<h1><a class="header" href="#overview-3" id="overview-3">Overview</a></h1>
 <p>Volume drivers, like NFS, for example, have no concept of an attach (<code>ControllerPublishVolume</code>). However, Kubernetes always executes <code>Attach</code> and <code>Detach</code> operations even if the CSI driver does not implement an attach operation (i.e. even if the CSI Driver does not implement a <code>ControllerPublishVolume</code> call).</p>
 <p>This was problematic because it meant <em>all</em> CSI drivers had to handle Kubernetes attachment. CSI Drivers that did not implement the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability could work around this by deploying an <a href="external-attacher.html">external-attacher</a> and the <code>external-attacher</code> would responds to Kubernetes attach operations and simply do a noop (because the CSI driver did not advertise the <code>PUBLISH_UNPUBLISH_VOLUME</code> controller capability).</p>
 <p>Although the workaround works, it adds an unnecessary operation (round-trip) in the preparation of a volume for a container, and requires CSI Drivers to deploy an unnecessary sidecar container (<code>external-attacher</code>).</p>
@@ -1517,7 +1520,7 @@ metadata:
 <tr><td>Beta</td><td>1.14</td><td>1.17</td><td>n/a</td></tr>
 <tr><td>GA</td><td>1.18</td><td>-</td><td>n/a</td></tr>
 </tbody></table>
-<h1><a class="header" href="#overview-3" id="overview-3">Overview</a></h1>
+<h1><a class="header" href="#overview-4" id="overview-4">Overview</a></h1>
 <p>CSI avoids encoding Kubernetes specific information in to the specification, since it aims to support multiple orchestration systems (beyond just Kubernetes).</p>
 <p>This can be problematic because some CSI drivers require information about the workload (e.g. which pod is referencing this volume), and CSI does not provide this information natively to drivers.</p>
 <h1><a class="header" href="#pod-info-on-mount-with-csi-driver-object" id="pod-info-on-mount-with-csi-driver-object">Pod Info on Mount with CSI Driver Object</a></h1>
@@ -1555,7 +1558,7 @@ spec:
 <tr><td>Alpha</td><td>1.14</td><td>1.15</td><td>0.2</td></tr>
 <tr><td>Beta</td><td>1.16</td><td>-</td><td>0.3</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview-4" id="overview-4">Overview</a></h2>
+<h2><a class="header" href="#overview-5" id="overview-5">Overview</a></h2>
 <p>A storage provider that allows volume expansion after creation, may choose to implement volume expansion either via a
 control-plane CSI RPC call or via node CSI RPC call or both as a two step process.</p>
 <h2><a class="header" href="#implementing-volume-expansion-functionality" id="implementing-volume-expansion-functionality">Implementing Volume expansion functionality</a></h2>
@@ -1605,7 +1608,7 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 <tr><td>Beta</td><td>1.16</td><td>1.17</td><td>1.4</td></tr>
 <tr><td>GA</td><td>1.18</td><td>-</td><td>1.6</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview-5" id="overview-5">Overview</a></h2>
+<h2><a class="header" href="#overview-6" id="overview-6">Overview</a></h2>
 <p>A Clone is defined as a duplicate of an existing Kubernetes Volume.  For more information on cloning in Kubernetes see the concepts doc for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-cloning">Volume Cloning</a>.  A storage provider that allows volume cloning as a create feature, may choose to implement volume cloning via a control-plan CSI RPC call.</p>
 <p>For details regarding the kuberentes API for volume cloning, please see <a href="https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/">kubernetes concepts</a>.</p>
 <h2><a class="header" href="#implementing-volume-cloning-functionality" id="implementing-volume-cloning-functionality">Implementing Volume cloning functionality</a></h2>
@@ -1632,7 +1635,7 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 <tr><td>Alpha</td><td>1.13</td><td>1.16</td><td></td><td>1.0.1 &lt;= version &lt; 2.0</td><td>1.0.1 &lt;= version &lt; 1.5</td></tr>
 <tr><td>Beta</td><td>1.17</td><td>-</td><td>2.0+</td><td>2.0+</td><td>1.5+</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview-6" id="overview-6">Overview</a></h2>
+<h2><a class="header" href="#overview-7" id="overview-7">Overview</a></h2>
 <p>Many storage systems provide the ability to create a &quot;snapshot&quot; of a persistent volume. A snapshot represents a point-in-time copy of a volume. A snapshot can be used either to provision a new volume (pre-populated with the snapshot data) or to restore the existing volume to a previous state (represented by the snapshot).</p>
 <p>Kubernetes CSI currently enables CSI Drivers to expose the following functionality via the Kubernetes API:</p>
 <ol>
@@ -1730,7 +1733,7 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 <tr><td>Alpha</td><td>1.15</td><td>1.15</td></tr>
 <tr><td>Beta</td><td>1.16</td><td>-</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview-7" id="overview-7">Overview</a></h2>
+<h2><a class="header" href="#overview-8" id="overview-8">Overview</a></h2>
 <p>Traditionally, volumes that are backed by CSI drivers can only be used with a <code>PersistentVolume</code> and <code>PersistentVolumeClaim</code> object combination. This feature supports ephemeral storage use cases and allows CSI volumes to be specified directly in the pod specification.  At runtime, nested inline volumes follow the ephemeral lifecycle of their associated pods where the driver handles all phases of volume operations as pods are created and destroyed.</p>
 <blockquote>
 <p>See the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md">design document</a> for futher information.</p>
@@ -1779,13 +1782,13 @@ that the driver supports that kind of usage in its
 <tr><td>Beta</td><td>1.12</td><td>1.16</td></tr>
 <tr><td>GA</td><td>1.17</td><td>-</td></tr>
 </tbody></table>
-<h2><a class="header" href="#overview-8" id="overview-8">Overview</a></h2>
+<h2><a class="header" href="#overview-9" id="overview-9">Overview</a></h2>
 <p>Some storage providers may have a restriction on the number of volumes that can be used in a Node. This is common in cloud providers, but other providers might impose restriction as well.</p>
 <p>Kubernetes will respect this limit as long the CSI driver advertises it. To support volume limits in a CSI driver, the plugin must fill in <code>max_volumes_per_node</code> in <code>NodeGetInfoResponse</code>.</p>
 <p>It is recommended that CSI drivers allow for customization of volume limits. That way cluster administrators can distribute the limits of the same storage backends (e.g. iSCSI) accross different drivers, according to their individual needs.</p>
 <h1><a class="header" href="#deploying-csi-driver-on-kubernetes" id="deploying-csi-driver-on-kubernetes">Deploying CSI Driver on Kubernetes</a></h1>
 <p>This page describes to CSI driver developers how to deploy their driver onto a Kubernetes cluster.</p>
-<h2><a class="header" href="#overview-9" id="overview-9">Overview</a></h2>
+<h2><a class="header" href="#overview-10" id="overview-10">Overview</a></h2>
 <p>A CSI driver is typically deployed in Kubernetes as two components:
 a controller component and a per-node component.</p>
 <h3><a class="header" href="#controller-plugin" id="controller-plugin">Controller Plugin</a></h3>
