@@ -96,7 +96,6 @@ If a `PersistentVolumeClaim` is not bound, the attempt to create a volume snapsh
 
 Note that this could happen if the `PersistentVolumeClaim` spec and the `VolumeSnapshot` spec are in the same YAML file. In this case, when the `VolumeSnapshot` object is created, the `PersistentVolumeClaim` object is created but volume creation is not complete and therefore the `PersistentVolumeClaim` is not yet bound. You must wait until the `PersistentVolumeClaim` is bound and then create the snapshot.
 
-Note: This behavior is planned to be changed as we are going to fix the timeout issue reported [here](https://github.com/kubernetes-csi/external-snapshotter/issues/134).
 
 ## Snapshot Alpha
 ### Snapshot APIs
