@@ -44,12 +44,7 @@ In the StorageClass object, both `volumeBindingMode` values of `Immediate` and
 ## Sidecar Deployment
 
 The topology feature requires the
-[external-provisioner](external-provisioner.md) sidecar with the
-Topology feature gate enabled:
-
-```
---feature-gates=Topology=true
-```
+[external-provisioner](external-provisioner.md) sidecar.
 
 ## Kubernetes Cluster Setup
 
