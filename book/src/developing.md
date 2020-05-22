@@ -2,7 +2,7 @@
 
 ## Remain Informed
 
-All developers of CSI drivers should join https://groups.google.com/forum/#!forum/container-storage-interface-drivers-announce to remain informed about changes to CSI or Kubernetes that may affect existing CSI drivers.
+All developers of CSI drivers should join <https://groups.google.com/forum/#!forum/container-storage-interface-drivers-announce> to remain informed about changes to CSI or Kubernetes that may affect existing CSI drivers.
 
 ## Overview
 
