@@ -10,10 +10,13 @@
 
 The `CSIDriver` Kubernetes API object serves two purposes:
 
-1. Simplify driver discovery
-  * If a CSI driver creates a `CSIDriver` object, Kubernetes users can easily discover the CSI Drivers installed on their cluster (simply by issuing `kubectl get CSIDriver`)
-2. Customizing Kubernetes behavior
-  * Kubernetes has a default set of behaviors when dealing with CSI Drivers (for example, it calls the `Attach`/`Detach` operations by default). This object allows CSI drivers to specify how Kubernetes should interact with it.
+1.Simplify driver discovery
+
+* If a CSI driver creates a `CSIDriver` object, Kubernetes users can easily discover the CSI Drivers installed on their cluster (simply by issuing `kubectl get CSIDriver`)
+
+2.Customizing Kubernetes behavior
+
+* Kubernetes has a default set of behaviors when dealing with CSI Drivers (for example, it calls the `Attach`/`Detach` operations by default). This object allows CSI drivers to specify how Kubernetes should interact with it.
 
 ## What fields does the `CSIDriver` object have?
 
@@ -73,18 +76,21 @@ volumes provided by corresponding CSI driver, so [Skip Attach](skip-attach.md)
 and [Pod Info on Mount](pod-info.md) features work correctly.
 
 ### Listing registered CSI drivers
+
 Using the `CSIDriver` object, it is now possible to query Kubernetes to get a list of registered drivers running in the cluster as shown below:
 
-```
+```shell
 $> kubectl get csidrivers.storage.k8s.io
 NAME                  CREATED AT
 hostpath.csi.k8s.io   2019-09-13T09:58:43Z
 ```
+
 Or get a more detailed view of your registered driver with:
-```
+
+```shell
 $> kubectl describe csidrivers.storage.k8s.io
 Name:         hostpath.csi.k8s.io
-Namespace:    
+Namespace:  
 Labels:       <none>
 Annotations:  kubectl.kubernetes.io/last-applied-configuration:
                 {"apiVersion":"storage.k8s.io/v1","kind":"CSIDriver","metadata":{"annotations":{},"name":"hostpath.csi.k8s.io"},"spec":{"podInfoOnMou...
@@ -105,7 +111,9 @@ Events:  <none>
 ```
 
 ## Changes from Alpha to Beta
+
 ### CRD to Built in Type
+
 During alpha development, the `CSIDriver` object was also defined as a [Custom Resource Definition](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) (CRD). As part of the promotion to beta the object has been moved to the built-in Kubernetes API.
 
 In the move from alpha to beta, the API Group for this object changed from `csi.storage.k8s.io/v1alpha1` to `storage.k8s.io/v1beta1`.
@@ -113,12 +121,14 @@ In the move from alpha to beta, the API Group for this object changed from `csi.
 There is no automatic update of existing CRDs and their CRs during Kubernetes update to the new build-in type.
 
 ### Enabling CSIDriver on Kubernetes
+
 In Kubernetes v1.12 and v1.13, because the feature was alpha, it was disabled by default. To enable the use of `CSIDriver` on these versions, do the following:
 
 1. Ensure the feature gate is enabled via the following Kubernetes feature flag: `--feature-gates=CSIDriverRegistry=true`
 2. Either ensure the `CSIDriver` CRD is automatically installed via the [Kubernetes Storage CRD addon](https://github.com/kubernetes/kubernetes/tree/release-1.13/cluster/addons/storage-crds) OR manually install the `CSIDriver` CRD on the Kubernetes cluster with the following command:
 
-```
+```shell
 $> kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csidriver.yaml
 ```
+
 Kubernetes v1.14+, uses the same Kubernetes feature flag, but because the feature is beta, it is enabled by default. And since the API type (as of beta) is built in to the Kubernetes API, installation of the CRD is no longer required.
