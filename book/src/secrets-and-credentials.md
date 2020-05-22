@@ -13,6 +13,7 @@ If a CSI Driver requires secrets "per CSI operation" or "per volume" or "per sto
 Cluster admins can populate such secrets by creating Kubernetes `Secret` objects and specifying the keys in the `StorageClass` or `SnapshotClass` objects.
 
 The CSI sidecar containers facilitate the handling of secrets between Kubernetes and the CSI Driver. For more details see:
+
 * [StorageClass Secrets](secrets-and-credentials-storage-class.md)
 * [VolumeSnapshotClass Secrets](secrets-and-credentials-volume-snapshot-class.md)
 
