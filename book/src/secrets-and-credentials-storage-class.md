@@ -21,6 +21,7 @@ CSI `external-provisioner` v1.0.1+ supports the following keys in `StorageClass.
 * `csi.storage.k8s.io/node-publish-secret-namespace`
 
 CSI `external-provisioner` v1.2.0+ adds support for the following keys in `StorageClass.parameters`:
+
 * `csi.storage.k8s.io/controller-expand-secret-name`
 * `csi.storage.k8s.io/controller-expand-secret-namespace`
 
@@ -47,6 +48,7 @@ parameters:
 All volumes provisioned using this `StorageClass` use the same secret.
 
 ### Per Volume Secrets
+
 In this example, the external-provisioner will generate the name of the Kubernetes `Secret` object and namespace for the `NodePublishVolume` CSI call, based on the PVC namespace and annotations, at volume provision time.
 
 ```yaml
@@ -64,6 +66,7 @@ parameters:
 This StorageClass will result in the creation of a `PersistentVolume` API object referencing a "node publish secret" in the same namespace as the `PersistentVolumeClaim` that triggered the provisioning and with a name specified as an annotation on the `PersistentVolumeClaim`. This could be used to give the creator of the `PersistentVolumeClaim` the ability to specify a secret containing a decryption key they have control over.
 
 ### Multiple Operation Secrets
+
 A drivers may support secret keys for multiple operations. In this case, you can provide secrets references for each operation:
 
 ```yaml
@@ -82,6 +85,7 @@ parameters:
 ```
 
 ## Operations
+
 Details for each secret supported by the external-provisioner can be found below.
 
 ### Create/Delete Volume Secret
@@ -151,7 +155,6 @@ The values of these parameters may be "templates". The `external-provisioner` wi
     * Replaced with name of the `PersistentVolume` object being provisioned.
   * `${pvc.namespace}`
     * Replaced with namespace of the `PersistentVolumeClaim` object that triggered provisioning.
-
 
 ### Node Stage Secret
 
