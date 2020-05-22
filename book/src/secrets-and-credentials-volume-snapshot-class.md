@@ -1,6 +1,7 @@
 # VolumeSnapshotClass Secrets
 
 The CSI [external-snapshotter](external-snapshotter.md) sidecar container facilitates the handling of secrets for the following operations:
+
 * `CreateSnapshotRequest`
 * `DeleteSnapshotRequest`
 
@@ -12,6 +13,7 @@ CSI `external-snapshotter` v1.0.1+ supports the following keys in `VolumeSnapsho
 Cluster admins can populate the secret fields for the operations listed above with data from Kubernetes `Secret` objects by specifying these keys in the `VolumeSnapshotClass` object.
 
 ## Operations
+
 Details for each secret supported by the external-snapshotter can be found below.
 
 ### Create/Delete VolumeSnapshot Secret
