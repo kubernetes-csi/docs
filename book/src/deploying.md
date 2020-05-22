@@ -27,6 +27,7 @@ external-snapshotter, and external-resizer. Including a sidecar in the
 deployment may be optional.  See each sidecar's page for more details.
 
 #### Communication with Sidecars
+
 [![sidecar-container](images/sidecar-container.png)](https://docs.google.com/a/greatdanedata.com/drawings/d/1JExJ_98dt0NAsJ7iI0_9loeTn2rbLeEcpOMEvKrF-9w/edit?usp=sharing)
 
 Sidecar containers manage Kubernetes events and make the appropriate
@@ -57,6 +58,7 @@ volume. There is also a second UNIX domain socket that the node-driver-registrar
 uses to register the CSI driver to kubelet.
 
 #### Driver Volume Mounts
+
 The node plugin needs direct access to the host for making block devices and/or
 filesystem mounts available to the Kubernetes kubelet.
 
@@ -97,8 +99,8 @@ on the host to see mounts created by the CSI driver container. See the example b
           type: Directory
 ```
 
-
 ## Deploying
+
 Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). 
 
 ## Enable privileged Pods
@@ -108,16 +110,17 @@ To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. `--
 Ensure your API server are started with the privileged flag:
 
 ```shell
-$ ./kube-apiserver ...  --allow-privileged=true ...
+./kube-apiserver ...  --allow-privileged=true ...
 ```
 
 ```shell
-$ ./kubelet ...  --allow-privileged=true ...
+./kubelet ...  --allow-privileged=true ...
 ```
 
 > Note: Starting from Kubernetes 1.13.0, --allow-privileged is true for kubelet. It'll be deprecated in future kubernetes releases.
 
 ## Enabling mount propagation
+
 Another feature that CSI depends on is mount propagation.  It allows the sharing of volumes mounted by one container with other containers in the same pod, or even to other pods on the same node.  For mount propagation to work, the Docker daemon for the cluster must allow shared mounts. See the [mount propagation docs][mount-propagation-docs] to find out how to enable this feature for your cluster.  [This page][docker-shared-mount] explains how to check if shared mounts are enabled and how to configure Docker for shared mounts.
 
 [mount-propagation-docs]: https://kubernetes.io/docs/concepts/storage/volumes/#mount-propagation
@@ -129,4 +132,5 @@ Another feature that CSI depends on is mount propagation.  It allows the sharing
 - Full deployment example using a _DaemonSet_ for the node plugin and _StatefulSet_ for the controller plugin: TODO
 
 ## More information
+
 For more information, please read [_CSI Volume Plugins in Kubernetes Design Doc_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md).
