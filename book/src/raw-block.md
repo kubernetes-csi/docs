@@ -2,11 +2,11 @@
 
 ## Status
 
-Status | Min K8s Version | Max K8s Version | external-provisioner Version | external-attacher Version
---|--|--|--|--
-Alpha | 1.11 | 1.13 | 0.4 | 0.4
-Alpha | 1.13 | 1.13 | 1.0 | 1.0
-Beta | 1.14 | - | 1.1+ | 1.1+
+| Status | Min K8s Version | Max K8s Version | external-provisioner Version | external-attacher Version |
+| ------ | --------------- | --------------- | ---------------------------- | ------------------------- |
+| Alpha  | 1.11            | 1.13            | 0.4                          | 0.4                       |
+| Alpha  | 1.13            | 1.13            | 1.0                          | 1.0                       |
+| Beta   | 1.14            | -               | 1.1+                         | 1.1+                      |
 
 ## Overview
 
@@ -42,6 +42,7 @@ CSI plugins that support both mount and block volumes must be sure to check the 
 requests and ensure that the capability of the request matches the capability of the volume, to avoid trying
 to do file-system-related things to block volumes and block-related things to file system volumes. The
 following RPCs specify capabilities that must be validated:
+
 * `CreateVolume()` (multiple capabilities)
 * `ControllerPublishVolume()`
 * `ValidateVolumeCapabilities()` (multiple capabilities)
@@ -88,7 +89,7 @@ The raw block feature requires the
 The `BlockVolume` and `CSIBlockVolume` feature gates need to be enabled on
 all Kubernetes masters and nodes.
 
-```
+```shell
 --feature-gates=BlockVolume=true,CSIBlockVolume=true...
 ```
 
