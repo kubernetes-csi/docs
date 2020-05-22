@@ -2,14 +2,15 @@
 
 ## Status
 
-Status | Min K8s Version | Max K8s Version | external-provisioner Version
---|--|--|--
-Alpha | 1.12 | 1.12 | 0.4
-Alpha | 1.13 | 1.13 | 1.0
-Beta | 1.14 | 1.16 | 1.1-1.4
-GA   | 1.17 | - | 1.5+
+| Status | Min K8s Version | Max K8s Version | external-provisioner Version |
+| ------ | --------------- | --------------- | ---------------------------- |
+| Alpha  | 1.12            | 1.12            | 0.4                          |
+| Alpha  | 1.13            | 1.13            | 1.0                          |
+| Beta   | 1.14            | 1.16            | 1.1-1.4                      |
+| GA     | 1.17            | -               | 1.5+                         |
 
 ## Overview
+
 Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.
 
 To enable orchestration systems, like Kubernetes, to work well with storage systems which expose volumes that are not equally accessible by all nodes, the [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md) enables:
@@ -47,7 +48,7 @@ The topology feature requires the
 [external-provisioner](external-provisioner.md) sidecar with the
 Topology feature gate enabled:
 
-```
+```shell
 --feature-gates=Topology=true
 ```
 
@@ -57,7 +58,7 @@ Topology feature gate enabled:
 
 In the *Kubernetes cluster* the `CSINodeInfo` feature must be enabled on both Kubernetes master and nodes (refer to the [CSINode Object](csi-node-object.md) section for more info):
 
-```
+```shell
 --feature-gates=CSINodeInfo=true
 ```
 
