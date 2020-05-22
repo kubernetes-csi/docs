@@ -2,11 +2,11 @@
 
 ## Status
 
-Status | Min K8s Version | Max K8s Version | snapshot-controller Version | CSI external-snapshotter sidecar Version | external-provisioner Version
---|--|--|--|--|--
-Alpha | 1.12 | 1.12 | | 0.4.0 <= version < 1.0 | 0.4.1 <= version < 1.0
-Alpha | 1.13 | 1.16 | | 1.0.1 <= version < 2.0 | 1.0.1 <= version < 1.5
-Beta  | 1.17 | - | 2.0+ | 2.0+ | 1.5+
+| Status | Min K8s Version | Max K8s Version | snapshot-controller Version | CSI external-snapshotter sidecar Version | external-provisioner Version |
+| ------ | --------------- | --------------- | --------------------------- | ---------------------------------------- | ---------------------------- |
+| Alpha  | 1.12            | 1.12            |                             | 0.4.0 <= version < 1.0                   | 0.4.1 <= version < 1.0       |
+| Alpha  | 1.13            | 1.16            |                             | 1.0.1 <= version < 2.0                   | 1.0.1 <= version < 1.5       |
+| Beta   | 1.17            | -               | 2.0+                        | 2.0+                                     | 1.5+                         |
 
 ## Overview
 
@@ -17,7 +17,7 @@ Kubernetes CSI currently enables CSI Drivers to expose the following functionali
 1. Creation and deletion of volume snapshots via [Kubernetes native API](https://kubernetes.io/docs/concepts/storage/volume-snapshots/). 
 2. Creation of new volumes pre-populated with the data from a snapshot via Kubernetes [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-Note: Documentation under https://kubernetes.io/docs is for the latest Kubernetes release. Documentation for earlier releases are stored in different location. For example, this is the documentation location for [v1.16](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/).
+Note: Documentation under <https://kubernetes.io/docs> is for the latest Kubernetes release. Documentation for earlier releases are stored in different location. For example, this is the documentation location for [v1.16](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/).
 
 ## Implementing Snapshot & Restore Functionality in Your CSI Driver
 
@@ -33,6 +33,7 @@ For details,  see the [CSI spec](https://github.com/container-storage-interface/
 The Kubernetes CSI development team maintains the [external-snapshotter](external-snapshotter.md) Kubernetes CSI [Sidecar Containers](sidecar-containers.md). This sidecar container implements the logic for watching the Kubernetes API objects and issuing the appropriate CSI snapshot calls against a CSI endpoint. For more details, see [external-snapshotter documentation](external-snapshotter.md).
 
 ## Snapshot Beta
+
 ### Snapshot APIs
 
 With the promotion of Volume Snapshot to beta, the feature is now enabled by default on standard Kubernetes deployments instead of being opt-in. This involves a revamp of volume snapshot APIs.
@@ -66,27 +67,32 @@ See the Deployment section of [Snapshot Controller](snapshot-controller.md) on h
 To test snapshot Beta version, use the following [example yaml files](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.0/examples/kubernetes).
 
 Create a _StorageClass_:
-```
+
+```shell
 kubectl create -f storageclass.yaml
 ```
 
 Create a _PVC_:
-```
+
+```shell
 kubectl create -f pvc.yaml
 ```
 
 Create a _VolumeSnapshotClass_:
-```
+
+```shell
 kubectl create -f snapshotclass.yaml
 ```
 
 Create a _VolumeSnapshot_:
-```
+
+```shell
 kubectl create -f snapshot.yaml
 ```
 
 Create a _PVC_ from a _VolumeSnapshot_:
-```
+
+```shell
 kuberctl create -f restore.yaml
 ```
 
@@ -98,6 +104,7 @@ Note that this could happen if the `PersistentVolumeClaim` spec and the `VolumeS
 
 
 ## Snapshot Alpha
+
 ### Snapshot APIs
 
 Similar to the API for managing [Kubernetes Persistent Volumes](https://v1-16.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/), the Kubernetes Volume Snapshots introduce three new API objects for managing snapshots: `VolumeSnapshot`, `VolumeSnapshotContent`, and `VolumeSnapshotClass`. See [Kubernetes Snapshot documentation](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/) for more details.
@@ -114,7 +121,7 @@ In addition to these new CRD objects, a new, alpha `DataSource` field has been a
 
 Since volume snapshot is an alpha feature in Kubernetes v1.12 to v1.16, you need to enable a new alpha feature gate called `VolumeSnapshotDataSource` in the Kubernetes master.
 
-```
+```shell
 --feature-gates=VolumeSnapshotDataSource=true
 ```
 
@@ -123,27 +130,32 @@ Since volume snapshot is an alpha feature in Kubernetes v1.12 to v1.16, you need
 To test snapshot Alpha version, use the following [example yaml files](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.2/examples/kubernetes).
 
 Create a _StorageClass_:
-```
+
+```shell
 kubectl create -f storageclass.yaml
 ```
 
 Create a _PVC_:
-```
+
+```shell
 kubectl create -f pvc.yaml
 ```
 
 Create a _VolumeSnapshotClass_:
-```
+
+```shell
 kubectl create -f snapshotclass.yaml
 ```
 
 Create a _VolumeSnapshot_:
-```
+
+```shell
 kubectl create -f snapshot.yaml
 ```
 
 Create a _PVC_ from a _VolumeSnapshot_:
-```
+
+```shell
 kuberctl create -f restore.yaml
 ```
 
