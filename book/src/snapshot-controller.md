@@ -10,9 +10,9 @@
 
 When Volume Snapshot is promoted to Beta in Kubernetes 1.17, the CSI external-snapshotter sidecar controller is split into two controllers: a snapshot-controller and a CSI external-snapshotter sidecar. See the following table for snapshot-controller release information.
 
-Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version)
---|--|--|--|--|--|--|--
-[external-snapshotter v2.1.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.0) | [release-2.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/snapshot-controller:v2.1.0 | v1.17 | - | v1.17
+| Latest stable release                                                                                     | Branch                                                                                 | Min CSI Version                                                                   | Max CSI Version | Container Image                           | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
+| --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------- | ----------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [external-snapshotter v2.1.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.0) | [release-2.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | -               | quay.io/k8scsi/snapshot-controller:v2.1.0 | v1.17                                                          | -                                                              | v1.17                                                                      |
 
 For more information on the beta version of the CSI external-snapshotter sidecar, see [this external-snapshotter page](external-snapshotter.md).
 
@@ -34,7 +34,7 @@ If your cluster does not come pre-installed with the correct components, you may
 
 Install Snapshot Beta CRDs per cluster:
 
-```
+```shell
 kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
 
 kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
@@ -44,7 +44,7 @@ kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-sna
 
 Install Snapshot Controller per cluster:
 
-```
+```shell
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
 
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
