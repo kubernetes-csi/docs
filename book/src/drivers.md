@@ -89,7 +89,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Yandex.Cloud](https://github.com/flant/yandex-csi-driver) | `yandex.csi.flant.com` | v1.2 | A Container Storage Interface (CSI) plugin for Yandex.Cloud Compute Disks  | Persistent | Read/Write Single Pod | Yes |
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Zadara-CSI](https://github.com/zadarastorage/zadara-csi) | `csi.zadara.com` | v1.0, v1.1 | A Container Storage Interface (CSI) plugin for Zadara VPSA Storage Array & VPSA All-Flash  | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
-
+[InfinityCSI](https://github.com/datatom-infinity/infinity-csi) | `csi-infiblock-plugin` | v2.1.0 | A Container Storage Interface (CSI)  Driver for DATATOM Infinity storage | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Topology
 ## Sample Drivers
 
 Name | Status | More Information
