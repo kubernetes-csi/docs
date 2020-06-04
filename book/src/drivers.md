@@ -23,6 +23,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [ChubaoFS](https://github.com/chubaofs/chubaofs-csi) | `csi.chubaofs.com` | v1.0.0 | A Container Storage Interface (CSI) Driver for ChubaoFS Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Cinder](https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder) | `cinder.csi.openstack.org` | v0.3, v1.0, v1.1 | A Container Storage Interface (CSI) Driver for OpenStack Cinder | Persistent and Ephemeral | Depends on the storage backend used | Yes, if storage backend supports it | Raw Block, Snapshot, Expansion
 [cloudscale.ch](https://github.com/cloudscale-ch/csi-cloudscale) | `csi.cloudscale.ch` | v1.0 | A Container Storage Interface (CSI) Driver for the [cloudscale.ch](https://www.cloudscale.ch/) IaaS platform | Persistent | Read/Write Single Pod | Yes |Snapshot
+[Datatom-InfinityCSI](https://github.com/datatom-infinity/infinity-csi) | `csi-infiblock-plugin` | v0.3, v1.0.0, v1.1.0 | A Container Storage Interface (CSI)  Driver for DATATOM Infinity storage | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Topology
 [Datera](https://github.com/Datera/datera-csi) | `dsp.csi.daterainc.io` | v1.0 | A Container Storage Interface (CSI) Driver for Datera Data Services Platform (DSP) | Persistent | Read/Write Single Pod | Yes |Snapshot
 [Dell EMC Isilon](https://github.com/dell/csi-isilon) | `csi-isilon.dellemc.com` | v1.1 | A Container Storage Interface (CSI) Driver for [Dell EMC Isilon](https://www.delltechnologies.com/en-us/storage/isilon/index.htm) | Persistent | Read/Write Multiple Pods | Yes | Snapshot
 [Dell EMC PowerMax](https://github.com/dell/csi-powermax) | `csi-powermax.dellemc.com` | v1.1 | A Container Storage Interface (CSI) Driver for [Dell EMC PowerMax](https://www.delltechnologies.com/en-us/storage/powermax.htm) | Persistent | Read/Write Single Pod | Yes | Snapshot
@@ -89,7 +90,6 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Yandex.Cloud](https://github.com/flant/yandex-csi-driver) | `yandex.csi.flant.com` | v1.2 | A Container Storage Interface (CSI) plugin for Yandex.Cloud Compute Disks  | Persistent | Read/Write Single Pod | Yes |
 [YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Zadara-CSI](https://github.com/zadarastorage/zadara-csi) | `csi.zadara.com` | v1.0, v1.1 | A Container Storage Interface (CSI) plugin for Zadara VPSA Storage Array & VPSA All-Flash  | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
-[InfinityCSI](https://github.com/datatom-infinity/infinity-csi) | `csi-infiblock-plugin` | v2.1.0 | A Container Storage Interface (CSI)  Driver for DATATOM Infinity storage | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Topology
 ## Sample Drivers
 
 Name | Status | More Information
