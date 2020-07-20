@@ -6,7 +6,8 @@ Status | Min K8s Version | Max K8s Version | external-provisioner Version | exte
 --|--|--|--|--
 Alpha | 1.11 | 1.13 | 0.4 | 0.4
 Alpha | 1.13 | 1.13 | 1.0 | 1.0
-Beta | 1.14 | - | 1.1+ | 1.1+
+Beta | 1.14 | 1.17 | 1.1+ | 1.1+
+GA | 1.18 | - | 1.1+ | 1.1+
 
 ## Overview
 
