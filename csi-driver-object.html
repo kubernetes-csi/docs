@@ -175,6 +175,7 @@ metadata:
 spec:
   attachRequired: true
   podInfoOnMount: true
+  fsGroupPolicy: File # added in Kubernetes 1.19, this field is alpha
   volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
   - Persistent
   - Ephemeral
@@ -207,6 +208,23 @@ spec:
 </ul>
 </li>
 <li>For more information see <a href="pod-info.html">Pod Info on Mount</a>.</li>
+</ul>
+</li>
+<li><code>fsGroupPolicy</code>
+<ul>
+<li>This field was added in Kubernetes 1.19 and cannot be set when using an older Kubernetes release.</li>
+<li>This field is alpha.</li>
+<li>Controls if this CSI volume driver supports volume ownership and permission changes when volumes are mounted.</li>
+<li>The following modes are supported, and if not specified the default is <code>ReadWriteOnceWithFSType</code>:
+<ul>
+<li><code>None</code>: Indicates that volumes will be mounted with no modifications, as the CSI volume driver does not support these operations.</li>
+<li><code>File</code>: Indicates that the CSI volume driver supports volume ownership and permission change via fsGroup, and Kubernetes may use fsGroup to change permissions and ownership of the volume to match user requested fsGroup in the pod's SecurityPolicy regardless of fstype or access mode.</li>
+<li><code>ReadWriteOnceWithFSType</code>: Indicates that volumes will be examined to determine if volume ownership and permissions should be modified to match the pod's security policy. 
+Changes will only occur if the <code>fsType</code> is defined and the persistent volume's <code>accessModes</code> contains <code>ReadWriteOnly</code>. 
+This is the default behavior if no other FSGroupPolicy is defined.</li>
+</ul>
+</li>
+<li>For more information see <a href="support-fsgroup.html">CSI Driver fsGroup Support</a>.</li>
 </ul>
 </li>
 <li><code>volumeLifecycleModes</code>
