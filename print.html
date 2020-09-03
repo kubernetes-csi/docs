@@ -1994,6 +1994,9 @@ The <a href="https://github.com/kubernetes-csi/csi-driver-host-path#deployment">
 <blockquote>
 <p>NOTE: If you would like your driver to be added to this table, please open a pull request in <a href="https://github.com/kubernetes-csi/docs/pulls">this repo</a> updating this file. Other Features is allowed to be filled in Raw Block, Snapshot, Expansion and Cloning. If driver did not implement any Other Features, please leave it blank.</p>
 </blockquote>
+<blockquote>
+<p>DISCLAIMER: Information in this table has not been validated by Kubernetes SIG-Storage. Users who want to use these CSI drivers need to contact driver maintainers for driver capabilities.</p>
+</blockquote>
 <h2><a class="header" href="#production-drivers" id="production-drivers">Production Drivers</a></h2>
 <table><thead><tr><th>Name</th><th>CSI Driver Name</th><th>Compatible with CSI Version(s)</th><th>Description</th><th>Persistence (Beyond Pod Lifetime)</th><th>Supported Access Modes</th><th>Dynamic Provisioning</th><th>Other Features</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/AliyunContainerService/csi-plugin">Alicloud Disk</a></td><td><code>diskplugin.csi.alibabacloud.com</code></td><td>v1.0</td><td>A Container Storage Interface (CSI) Driver for Alicloud Disk</td><td>Persistent</td><td>Read/Write Single Pod</td><td>Yes</td><td>Raw Block, Snapshot</td></tr>
