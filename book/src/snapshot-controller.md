@@ -12,6 +12,7 @@ When Volume Snapshot is promoted to Beta in Kubernetes 1.17, the CSI external-sn
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version)
 --|--|--|--|--|--|--|--
+[external-snapshotter v3.0.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.0) | [release-3.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/snapshot-controller:v3.0.0 | v1.17 | - | v1.17
 [external-snapshotter v2.1.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.0) | [release-2.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/snapshot-controller:v2.1.0 | v1.17 | - | v1.17
 
 For more information on the beta version of the CSI external-snapshotter sidecar, see [this external-snapshotter page](external-snapshotter.md).
