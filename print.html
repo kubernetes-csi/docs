@@ -464,7 +464,7 @@ map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operat
 <p>For more information on the beta version of the CSI external-snapshotter sidecar, see <a href="external-snapshotter.html">this external-snapshotter page</a>.</p>
 <h2><a class="header" href="#description" id="description">Description</a></h2>
 <p>In the Beta version, the snapshot controller will be watching the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar only watches the Kubernetes API server for <code>VolumeSnapshotContent</code> CRD objects. The snapshot controller will be creating the <code>VolumeSnapshotContent</code> CRD object which triggers the CSI <code>external-snapshotter</code> sidecar to create a snapshot on the storage system.</p>
-<p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190709-csi-snapshot.md">here</a>.</p>
+<p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md">here</a>.</p>
 <p>For detailed information about volume snapshot and restore functionality, see <a href="snapshot-restore-feature.html">Volume Snapshot &amp; Restore</a>.</p>
 <p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md">https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md</a>.</p>
 <h2><a class="header" href="#deployment" id="deployment">Deployment</a></h2>
@@ -644,7 +644,7 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <h2><a class="header" href="#snapshot-beta" id="snapshot-beta">Snapshot Beta</a></h2>
 <h3><a class="header" href="#description-4" id="description-4">Description</a></h3>
 <p>In the Beta version, the snapshot controller will be watching the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar only watches the Kubernetes API server for <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.</p>
-<p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190709-csi-snapshot.md">here</a>.</p>
+<p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md">here</a>.</p>
 <p>For detailed information about volume snapshot and restore functionality, see <a href="snapshot-restore-feature.html">Volume Snapshot &amp; Restore</a>.</p>
 <h3><a class="header" href="#usage-3" id="usage-3">Usage</a></h3>
 <p>CSI drivers that support provisioning volume snapshots and the ability to provision new volumes using those snapshots should use this sidecar container, and advertise the CSI <code>CREATE_DELETE_SNAPSHOT</code> controller capability.</p>

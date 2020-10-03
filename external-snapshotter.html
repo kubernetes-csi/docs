@@ -159,7 +159,7 @@
 <h2><a class="header" href="#snapshot-beta" id="snapshot-beta">Snapshot Beta</a></h2>
 <h3><a class="header" href="#description" id="description">Description</a></h3>
 <p>In the Beta version, the snapshot controller will be watching the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar only watches the Kubernetes API server for <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.</p>
-<p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190709-csi-snapshot.md">here</a>.</p>
+<p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md">here</a>.</p>
 <p>For detailed information about volume snapshot and restore functionality, see <a href="snapshot-restore-feature.html">Volume Snapshot &amp; Restore</a>.</p>
 <h3><a class="header" href="#usage" id="usage">Usage</a></h3>
 <p>CSI drivers that support provisioning volume snapshots and the ability to provision new volumes using those snapshots should use this sidecar container, and advertise the CSI <code>CREATE_DELETE_SNAPSHOT</code> controller capability.</p>
