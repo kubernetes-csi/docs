@@ -3,6 +3,23 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.19
+
+### Deprecations
+* Behaviour of NodeExpandVolume being called between NodeStage and NodePublish is
+deprecated for CSI volumes. CSI drivers should support calling NodeExpandVolume
+after NodePublish if they have node EXPAND_VOLUME capability
+
+### Features
+* Beta
+    * CSI on Windows
+    * CSI migration for AzureDisk and vSphere drivers
+* Alpha
+    * CSI fsgroup policy
+    * Generic ephemeral volumes
+    * Storage capacity tracking
+    * Volume health monitoring
+
 ## Kubernetes 1.18
 
 ### Deprecations
