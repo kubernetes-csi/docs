@@ -148,8 +148,32 @@
                         <h1><a class="header" href="#kubernetes-changelog" id="kubernetes-changelog">Kubernetes Changelog</a></h1>
 <p>This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the <a href="features.html">Features section</a>.</p>
-<h2><a class="header" href="#kubernetes-118" id="kubernetes-118">Kubernetes 1.18</a></h2>
+<h2><a class="header" href="#kubernetes-119" id="kubernetes-119">Kubernetes 1.19</a></h2>
 <h3><a class="header" href="#deprecations" id="deprecations">Deprecations</a></h3>
+<ul>
+<li>Behaviour of NodeExpandVolume being called between NodeStage and NodePublish is
+deprecated for CSI volumes. CSI drivers should support calling NodeExpandVolume
+after NodePublish if they have node EXPAND_VOLUME capability</li>
+</ul>
+<h3><a class="header" href="#features" id="features">Features</a></h3>
+<ul>
+<li>Beta
+<ul>
+<li>CSI on Windows</li>
+<li>CSI migration for AzureDisk and vSphere drivers</li>
+</ul>
+</li>
+<li>Alpha
+<ul>
+<li>CSI fsgroup policy</li>
+<li>Generic ephemeral volumes</li>
+<li>Storage capacity tracking</li>
+<li>Volume health monitoring</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#kubernetes-118" id="kubernetes-118">Kubernetes 1.18</a></h2>
+<h3><a class="header" href="#deprecations-1" id="deprecations-1">Deprecations</a></h3>
 <ul>
 <li><code>storage.k8s.io/v1beta1</code> <code>CSIDriver</code> object has been deprecated and will be
 removed in a future release.</li>
@@ -157,7 +181,7 @@ removed in a future release.</li>
 target directory, in accordance with the CSI specification. CSI drivers may
 need to be updated accordingly to properly create and process the target path.</li>
 </ul>
-<h3><a class="header" href="#features" id="features">Features</a></h3>
+<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -184,12 +208,12 @@ need to be updated accordingly to properly create and process the target path.</
 <ul>
 <li>CSI 0.3 support has been removed. CSI 0.3 drivers will no longer function.</li>
 </ul>
-<h3><a class="header" href="#deprecations-1" id="deprecations-1">Deprecations</a></h3>
+<h3><a class="header" href="#deprecations-2" id="deprecations-2">Deprecations</a></h3>
 <ul>
 <li><code>storage.k8s.io/v1beta1</code> <code>CSINode</code> object has been deprecated and will be
 removed in a future release.</li>
 </ul>
-<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
+<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -206,7 +230,7 @@ removed in a future release.</li>
 <li><code>storage.k8s.io/v1</code> <code>CSINode</code> object introduced.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-116" id="kubernetes-116">Kubernetes 1.16</a></h2>
-<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
+<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -217,7 +241,7 @@ removed in a future release.</li>
 </li>
 </ul>
 <h2><a class="header" href="#kubernetes-115" id="kubernetes-115">Kubernetes 1.15</a></h2>
-<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
+<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
 <ul>
 <li>Volume capacity usage metrics</li>
 <li>Alpha
@@ -233,7 +257,7 @@ removed in a future release.</li>
 <ul>
 <li><code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs are no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
+<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -251,11 +275,11 @@ removed in a future release.</li>
 <li><code>storage.k8s.io/v1beta1</code> <code>CSINode</code> and <code>CSIDriver</code> objects introduced.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-113" id="kubernetes-113">Kubernetes 1.13</a></h2>
-<h3><a class="header" href="#deprecations-2" id="deprecations-2">Deprecations</a></h3>
+<h3><a class="header" href="#deprecations-3" id="deprecations-3">Deprecations</a></h3>
 <ul>
 <li>CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.17.</li>
 </ul>
-<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
+<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
 <ul>
 <li>GA support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">CSI spec
 1.0</a>.</li>
@@ -264,7 +288,7 @@ removed in a future release.</li>
 <h3><a class="header" href="#breaking-changes-2" id="breaking-changes-2">Breaking Changes</a></h3>
 <p>Kubelet device plugin registration is enabled by default, which requires CSI
 plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p>
-<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
+<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
 <ul>
 <li>Alpha
 <ul>
@@ -278,7 +302,7 @@ plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p
 introduced and have to be installed before deploying a CSI driver.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-111" id="kubernetes-111">Kubernetes 1.11</a></h2>
-<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
+<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">CSI spec
 0.3</a>.</li>
@@ -293,14 +317,14 @@ introduced and have to be installed before deploying a CSI driver.</li>
 <ul>
 <li>CSI spec 0.1 is no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
+<h3><a class="header" href="#features-9" id="features-9">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.2.0">CSI spec 0.2</a>.
 This added optional <code>NodeStageVolume</code> and <code>NodeUnstageVolume</code> calls which
 map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operations.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-19" id="kubernetes-19">Kubernetes 1.9</a></h2>
-<h3><a class="header" href="#features-9" id="features-9">Features</a></h3>
+<h3><a class="header" href="#features-10" id="features-10">Features</a></h3>
 <ul>
 <li>Alpha support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.1.0">CSI spec
 0.1</a>.</li>
