@@ -45,7 +45,7 @@ Cloning is also implemented by specifying a `kind:` of type `PersistentVolumeCla
 
 When provisioning a new volume, the CSI `external-provisioner` sets the `map<string, string> parameters` field in the CSI `CreateVolumeRequest` call to the key/values specified in the `StorageClass` it is handling.
 
-The CSI `external-provisioner` (v1.0.1+) also reserves the parameter keys prefixed with `csi.storage.k8s.io/`. Any keys prefixed with `csi.storage.k8s.io/` are not passed to the CSI driver as an opaque `parameter`.
+The CSI `external-provisioner` (v1.0.1+) also reserves the parameter keys prefixed with `csi.storage.k8s.io/`. Any `StorageClass` keys prefixed with `csi.storage.k8s.io/` are not passed to the CSI driver as an opaque `parameter`.
 
 The following reserved `StorageClass` parameter keys trigger behavior in the CSI `external-provisioner`:
 
@@ -77,6 +77,17 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-name: mysecret
   csi.storage.k8s.io/provisioner-secret-namespace: mynamespace
 ```
+
+### PersistentVolumeClaim and PersistentVolume Parameters
+
+The CSI `external-provisioner` (v1.6.0+) introduces the `--extra-create-metadata` flag, which automatically sets the following `map<string, string> parameters` in the CSI `CreateVolumeRequest`:
+
+* `csi.storage.k8s.io/pvc/name`
+* `csi.storage.k8s.io/pvc/namespace`
+* `csi.storage.k8s.io/pv/name`
+
+These parameters are not part of the `StorageClass`, but are internally generated using the name and namespace of the source `PersistentVolumeClaim` and `PersistentVolume`.
+
 ## Usage
 
 CSI drivers that support dynamic volume provisioning should use this sidecar container, and advertise the CSI `CREATE_DELETE_VOLUME` controller capability.
