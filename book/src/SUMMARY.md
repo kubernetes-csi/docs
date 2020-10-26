@@ -5,6 +5,7 @@
     - [Kubernetes Changelog](kubernetes-changelog.md)
     - [Kubernetes Cluster Controllers](kubernetes-cluster-controllers.md)
         - [Snapshot Controller](snapshot-controller.md)
+        - [Snapshot Validation Webhook](snapshot-validation-webhook.md)
     - [Sidecar Containers](sidecar-containers.md)
         - [Kubernetes Compatibility](kubernetes-compatibility.md)
         - [external-attacher](external-attacher.md)
