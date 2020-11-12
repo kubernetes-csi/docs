@@ -31,6 +31,7 @@
             - [Volume Snapshot & Restore](snapshot-restore-feature.md)
         - [Ephemeral Local Volumes](ephemeral-local-volumes.md)
         - [Volume Limits](volume-limits.md)
+        - [Token Requests](token-requests.md)
 - [Deploying a CSI Driver on Kubernetes](deploying.md)
     - [Example](example.md)
 - [Driver Testing](testing-drivers.md)
