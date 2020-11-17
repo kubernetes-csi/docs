@@ -1,0 +1,311 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Token Requests - Kubernetes CSI Developer Documentation</title>
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:500" rel="stylesheet" type="text/css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body class="light">
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            document.body.className = theme;
+            document.querySelector('html').className = theme + ' js';
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.1.</strong> Kubernetes Changelog</a></li><li><a href="kubernetes-cluster-controllers.html"><strong aria-hidden="true">2.2.</strong> Kubernetes Cluster Controllers</a></li><li><ol class="section"><li><a href="snapshot-controller.html"><strong aria-hidden="true">2.2.1.</strong> Snapshot Controller</a></li></ol></li><li><a href="sidecar-containers.html"><strong aria-hidden="true">2.3.</strong> Sidecar Containers</a></li><li><ol class="section"><li><a href="kubernetes-compatibility.html"><strong aria-hidden="true">2.3.1.</strong> Kubernetes Compatibility</a></li><li><a href="external-attacher.html"><strong aria-hidden="true">2.3.2.</strong> external-attacher</a></li><li><a href="external-provisioner.html"><strong aria-hidden="true">2.3.3.</strong> external-provisioner</a></li><li><a href="external-resizer.html"><strong aria-hidden="true">2.3.4.</strong> external-resizer</a></li><li><a href="external-snapshotter.html"><strong aria-hidden="true">2.3.5.</strong> external-snapshotter</a></li><li><a href="livenessprobe.html"><strong aria-hidden="true">2.3.6.</strong> livenessprobe</a></li><li><a href="node-driver-registrar.html"><strong aria-hidden="true">2.3.7.</strong> node-driver-registrar</a></li><li><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.3.8.</strong> cluster-driver-registrar</a></li></ol></li><li><a href="csi-objects.html"><strong aria-hidden="true">2.4.</strong> CSI objects</a></li><li><ol class="section"><li><a href="csi-driver-object.html"><strong aria-hidden="true">2.4.1.</strong> CSIDriver Object</a></li><li><a href="csi-node-object.html"><strong aria-hidden="true">2.4.2.</strong> CSINode Object</a></li></ol></li><li><a href="features.html"><strong aria-hidden="true">2.5.</strong> Features</a></li><li><ol class="section"><li><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.5.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.5.1.1.</strong> StorageClass Secrets</a></li><li><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.5.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li><a href="topology.html"><strong aria-hidden="true">2.5.2.</strong> Topology</a></li><li><a href="raw-block.html"><strong aria-hidden="true">2.5.3.</strong> Raw Block Volume</a></li><li><a href="skip-attach.html"><strong aria-hidden="true">2.5.4.</strong> Skip Attach</a></li><li><a href="pod-info.html"><strong aria-hidden="true">2.5.5.</strong> Pod Info on Mount</a></li><li><a href="volume-expansion.html"><strong aria-hidden="true">2.5.6.</strong> Volume expansion</a></li><li><a href="volume-datasources.html"><strong aria-hidden="true">2.5.7.</strong> Data Sources</a></li><li><ol class="section"><li><a href="volume-cloning.html"><strong aria-hidden="true">2.5.7.1.</strong> Cloning</a></li><li><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.5.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.5.8.</strong> Ephemeral Local Volumes</a></li><li><a href="volume-limits.html"><strong aria-hidden="true">2.5.9.</strong> Volume Limits</a></li><li><a href="token-requests.html" class="active"><strong aria-hidden="true">2.5.10.</strong> Token Requests</a></li></ol></li></ol></li><li><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar" class="menu-bar">
+                    <div id="menu-bar-sticky-container">
+                        <div class="left-buttons">
+                            <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                            <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                                <i class="fa fa-paint-brush"></i>
+                            </button>
+                            <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                            </ul>
+                            
+                            <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                                <i class="fa fa-search"></i>
+                            </button>
+                            
+                        </div>
+
+                        <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1>
+
+                        <div class="right-buttons">
+                            <a href="print.html" title="Print this book" aria-label="Print this book">
+                                <i id="print-button" class="fa fa-print"></i>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#token-requests" id="token-requests">Token Requests</a></h1>
+<h2><a class="header" href="#status" id="status">Status</a></h2>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
+<tr><td>Alpha</td><td>1.20</td><td>-</td></tr>
+</tbody></table>
+<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<p>This feature allows CSI drivers to impersonate the pods that they mount the
+volumes for. This improves the security posture in the mounting process where
+the volumes are ACL’ed on the pods’ service account without handing out
+unnecessary permissions to the CSI drivers’ service account.
+This feature is especially important for secret-handling CSI drivers, such as
+the secrets-store-csi-driver. Since these tokens can be rotated and short-lived,
+this feature also provides a knob for CSI drivers to receive NodePublishVolume
+RPC calls periodically with the new token. This knob is also useful when volumes
+are short-lived, e.g. certificates.</p>
+<blockquote>
+<p>See more details at the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/1855-csi-driver-service-account-token/README.md">design document</a>.</p>
+</blockquote>
+<h2><a class="header" href="#usage" id="usage">Usage</a></h2>
+<p>This feature adds two fields in <code>CSIDriver</code> spec:</p>
+<pre><code class="language-go">type CSIDriverSpec struct {
+    ... // existing fields
+
+    RequiresRepublish *bool
+    TokenRequests []TokenRequest
+}
+
+type TokenRequest struct {
+    Audience string
+    ExpirationSeconds *int64
+}
+</code></pre>
+<ul>
+<li>
+<p><strong><code>TokenRequest.Audience</code></strong>:</p>
+<ul>
+<li>This is a required field.</li>
+<li>Audiences should be distinct, otherwise the validation will fail.</li>
+<li>If it is empty string, the audience of the token is the <code>APIAudiences</code> of kube-apiserver.
+one of the audiences specified.</li>
+<li>See more about audience specification <a href="https://tools.ietf.org/html/rfc7519#section-4.1.3">here</a></li>
+</ul>
+</li>
+<li>
+<p><strong><code>TokenRequest.ExpirationSeconds</code></strong>:</p>
+<ul>
+<li>The field is optional.</li>
+<li>It has to be at least 10 minutes (600 seconds) and no more than <code>1 &lt;&lt; 32</code> seconds.</li>
+</ul>
+</li>
+<li>
+<p><strong><code>RequiresRepublish</code></strong>:</p>
+<ul>
+<li>This field is optional.</li>
+<li>If this is true, <code>NodePublishVolume</code> will be periodically called. When used
+with <code>TokenRequest</code>, the token will be refreshed if it expired.
+<code>NodePublishVolume</code> should only change the contents rather than the
+mount because container will not be restarted to reflect the mount
+change. The period between <code>NodePublishVolume</code> is 0.1s.</li>
+</ul>
+</li>
+</ul>
+<p>The token will be bounded to the pod that the CSI driver is mounting volumes for
+and will be set in <code>VolumeContext</code>:</p>
+<pre><code class="language-go">&quot;csi.storage.k8s.io/serviceAccount.tokens&quot;: {
+  &lt;audience&gt;: {
+    'token': &lt;token&gt;,
+    'expirationTimestamp': &lt;expiration timestamp in RFC3339 format&gt;,
+  },
+  ...
+}
+</code></pre>
+<p>If CSI driver doesn't find token recorded in the <code>volume_context</code>, it should return error in <code>NodePublishVolume</code> to inform Kubelet to retry.</p>
+<h3><a class="header" href="#example" id="example">Example</a></h3>
+<p>Here is an example of a <code>CSIDriver</code> object:</p>
+<pre><code class="language-yaml">apiVersion: storage.k8s.io/v1
+kind: CSIDriver
+metadata:
+  name: mycsidriver.example.com
+spec:
+  tokenRequests:
+    - audience: &quot;gcp&quot;
+    - audience: &quot;&quot;
+      expirationSeconds: 3600
+  requiresRepublish: true
+</code></pre>
+<h3><a class="header" href="#feature-gate" id="feature-gate">Feature gate</a></h3>
+<p>Kube apiserver must start with the <code>CSIServiceAccountTokenVolume</code> feature gate enabled:</p>
+<pre><code>--feature-gates=CSIServiceAccountTokenVolume=true
+</code></pre>
+<h3><a class="header" href="#example-csi-drivers" id="example-csi-drivers">Example CSI Drivers</a></h3>
+<ul>
+<li><a href="https://github.com/kubernetes-sigs/secrets-store-csi-driver">secrets-store-csi-driver</a>
+<ul>
+<li>With <a href="https://github.com/GoogleCloudPlatform/secrets-store-csi-driver-provider-gcp">GCP</a>,
+the driver will pass the token to GCP provider to exchange for GCP credentials, and then request
+secrets from Secret Manager.</li>
+<li>With <a href="https://github.com/hashicorp/secrets-store-csi-driver-provider-vault">Vault</a>,
+the Vault provider will send the token to Vault which will use the token in
+<code>TokenReview</code> request to authenticate.</li>
+</ul>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="volume-limits.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="deploying.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a href="volume-limits.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a href="deploying.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
