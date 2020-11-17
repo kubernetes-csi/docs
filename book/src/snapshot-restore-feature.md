@@ -2,11 +2,11 @@
 
 ## Status
 
-Status | Min K8s Version | Max K8s Version | snapshot-controller Version | CSI external-snapshotter sidecar Version | external-provisioner Version
---|--|--|--|--|--
-Alpha | 1.12 | 1.12 | | 0.4.0 <= version < 1.0 | 0.4.1 <= version < 1.0
-Alpha | 1.13 | 1.16 | | 1.0.1 <= version < 2.0 | 1.0.1 <= version < 1.5
-Beta  | 1.17 | - | 2.0+ | 2.0+ | 1.5+
+Status | Min K8s Version | Max K8s Version | snapshot-controller Version | snapshot-validation-webhook Version | CSI external-snapshotter sidecar Version | external-provisioner Version
+--|--|--|--|--|--|--
+Alpha | 1.12 | 1.12 | | | 0.4.0 <= version < 1.0 | 0.4.1 <= version < 1.0
+Alpha | 1.13 | 1.16 | | | 1.0.1 <= version < 2.0 | 1.0.1 <= version < 1.5
+Beta  | 1.17 | - | 2.0+ | 3.0+ | 2.0+ | 1.5+
 
 ## Overview
 
@@ -37,7 +37,7 @@ The Kubernetes CSI development team maintains the [external-snapshotter](externa
 
 With the promotion of Volume Snapshot to beta, the feature is now enabled by default on standard Kubernetes deployments instead of being opt-in. This involves a revamp of volume snapshot APIs.
 
-The schema definition for the custom resources (CRs) can be found [here](https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/pkg/apis/volumesnapshot/v1beta1/types.go). The CRDs are no longer automatically deployed by the sidecar. They should be installed by the Kubernetes distributions.
+The schema definition for the custom resources (CRs) can be found [here](https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/client/apis/volumesnapshot/v1beta1/types.go). The CRDs are no longer automatically deployed by the sidecar. They should be installed by the Kubernetes distributions.
 
 #### Hightlights in the snapshot v1beta1 APIs
 
@@ -55,15 +55,21 @@ The snapshot controller is deployed by the Kubernetes distributions and is respo
 
 The CSI external-snapshotter sidecar watches Kubernetes VolumeSnapshotContent CRD objects and triggers CreateSnapshot/DeleteSnapshot against a CSI endpoint.
 
+### Snapshot Validation Webhook
+
+There is a new validating webhook server which provides tightened validation on snapshot objects. This SHOULD be installed by the Kubernetes distros along with the snapshot-controller, not end users. It SHOULD be installed in all Kubernetes clusters that has the snapshot feature enabled. See [Snapshot Validation Webhook](snapshot-validation-webhook.md) for more details on how to use the webhook.
+
 ### Kubernetes Cluster Setup
 
 Volume snapshot is promoted to beta in Kubernetes 1.17 so the `VolumeSnapshotDataSource` feature gate is enabled by default.
 
 See the Deployment section of [Snapshot Controller](snapshot-controller.md) on how to set up the snapshot controller and CRDs.
 
+See the Deployment section of [Snapshot Validation Webhook](snapshot-validation-webhook.md) for more details on how to use the webhook.
+
 ### Test Snapshot Feature
 
-To test snapshot Beta version, use the following [example yaml files](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.0/examples/kubernetes).
+To test snapshot Beta version, use the following [example yaml files](https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0/examples/kubernetes).
 
 Create a _StorageClass_:
 ```
@@ -89,13 +95,6 @@ Create a _PVC_ from a _VolumeSnapshot_:
 ```
 kuberctl create -f restore.yaml
 ```
-
-#### PersistentVolumeClaim not Bound
-
-If a `PersistentVolumeClaim` is not bound, the attempt to create a volume snapshot from that `PersistentVolumeClaim` will fail. No retries will be attempted. An event will be logged to indicate that the `PersistentVolumeClaim` is not bound.
-
-Note that this could happen if the `PersistentVolumeClaim` spec and the `VolumeSnapshot` spec are in the same YAML file. In this case, when the `VolumeSnapshot` object is created, the `PersistentVolumeClaim` object is created but volume creation is not complete and therefore the `PersistentVolumeClaim` is not yet bound. You must wait until the `PersistentVolumeClaim` is bound and then create the snapshot.
-
 
 ## Snapshot Alpha
 ### Snapshot APIs
