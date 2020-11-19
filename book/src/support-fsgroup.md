@@ -4,7 +4,8 @@
 
 Status | Min K8s Version | Max K8s Version 
 --|--|--
-Alpha | 1.19 | -
+Alpha | 1.19 | 1.19
+Beta | 1.20 | -
 
 # Overview
 
