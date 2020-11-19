@@ -175,7 +175,7 @@ metadata:
 spec:
   attachRequired: true
   podInfoOnMount: true
-  fsGroupPolicy: File # added in Kubernetes 1.19, this field is alpha
+  fsGroupPolicy: File # added in Kubernetes 1.19, this field is beta as of Kubernetes 1.20
   volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
     - Persistent
     - Ephemeral
@@ -218,7 +218,7 @@ spec:
 <li><code>fsGroupPolicy</code>
 <ul>
 <li>This field was added in Kubernetes 1.19 and cannot be set when using an older Kubernetes release.</li>
-<li>This field is alpha.</li>
+<li>This field is beta in Kubernetes 1.20.</li>
 <li>Controls if this CSI volume driver supports volume ownership and permission changes when volumes are mounted.</li>
 <li>The following modes are supported, and if not specified the default is <code>ReadWriteOnceWithFSType</code>:
 <ul>
