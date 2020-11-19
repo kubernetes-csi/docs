@@ -41,7 +41,7 @@ The external components images are under active development. It can
 happen that they become incompatible with each other. If the
  issues above above have been ruled out, [contact the sig-storage
 team](https://github.com/kubernetes/community/tree/master/sig-storage) and/or
-[run the e2e test](https://github.com/kubernetes/community/blob/master/contributors/devel/e2e-tests.md#local-clusters):
+[run the e2e test](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-testing/e2e-tests.md#local-clusters):
 ```
 go run hack/e2e.go -- --provider=local --test --test_args="--ginkgo.focus=Feature:CSI"
 ```
