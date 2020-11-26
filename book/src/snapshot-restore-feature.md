@@ -146,6 +146,10 @@ Create a _PVC_ from a _VolumeSnapshot_:
 kuberctl create -f restore.yaml
 ```
 
+To create an invalid VolumeSnapshot:
+```
+kubectl create -f invalid-snapshot.yaml
+```
 #### PersistentVolumeClaim not Bound
 
 If a `PersistentVolumeClaim` is not bound, the attempt to create a volume snapshot from that `PersistentVolumeClaim` will fail. No retries will be attempted. An event will be logged to indicate that the `PersistentVolumeClaim` is not bound.
