@@ -36,6 +36,7 @@
         - [Volume Limits](volume-limits.md)
         - [Volume Health Monitoring](volume-health-monitor.md)
         - [Token Requests](token-requests.md)
+        - [FSGroup Support](support-fsgroup.md)
 - [Deploying a CSI Driver on Kubernetes](deploying.md)
     - [Example](example.md)
 - [Driver Testing](testing-drivers.md)
