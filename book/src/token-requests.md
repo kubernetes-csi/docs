@@ -94,10 +94,10 @@ spec:
 
 ### Feature gate
 
-Kube apiserver must start with the `CSIServiceAccountTokenVolume` feature gate enabled:
+Kube apiserver must start with the `CSIServiceAccountToken` feature gate enabled:
 
 ```
---feature-gates=CSIServiceAccountTokenVolume=true
+--feature-gates=CSIServiceAccountToken=true
 ```
 
 ### Example CSI Drivers
