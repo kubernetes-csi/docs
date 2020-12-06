@@ -3,6 +3,23 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.20
+
+### Breaking Changes
+* Kubelet no longer creates the target_path for NodePublishVolume
+in accordance with the CSI spec. Kubelet also no longer checks if staging and
+target paths are mounts or corrupted. CSI drivers need to be idempotent and do
+any necessary mount verification.
+
+### Features
+* GA
+    * Volume snapshots and restore
+* Beta
+    * CSI fsgroup policy
+    * Non-recusrive fsgroup ownership
+* Alpha
+    * Pod token requests (CSIServiceAccountToken)
+
 ## Kubernetes 1.19
 
 ### Deprecations
