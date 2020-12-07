@@ -34,6 +34,7 @@
             - [Volume Snapshot & Restore](snapshot-restore-feature.md)
         - [Ephemeral Local Volumes](ephemeral-local-volumes.md)
         - [Volume Limits](volume-limits.md)
+        - [Storage Capacity Tracking](storage-capacity-tracking.md)
         - [Volume Health Monitoring](volume-health-monitor.md)
         - [Token Requests](token-requests.md)
         - [FSGroup Support](support-fsgroup.md)
