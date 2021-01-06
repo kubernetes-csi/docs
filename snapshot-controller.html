@@ -160,21 +160,21 @@
 <p>In the Beta version, the snapshot controller will be watching the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar only watches the Kubernetes API server for <code>VolumeSnapshotContent</code> CRD objects. The snapshot controller will be creating the <code>VolumeSnapshotContent</code> CRD object which triggers the CSI <code>external-snapshotter</code> sidecar to create a snapshot on the storage system.</p>
 <p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md">here</a>.</p>
 <p>For detailed information about volume snapshot and restore functionality, see <a href="snapshot-restore-feature.html">Volume Snapshot &amp; Restore</a>.</p>
-<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md">https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md</a>.</p>
+<p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/README.md">https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/README.md</a>.</p>
 <h2><a class="header" href="#deployment" id="deployment">Deployment</a></h2>
 <p>Kubernetes distributors should bundle and deploy the controller and CRDs as part of their Kubernetes cluster management process (independent of any CSI Driver).</p>
 <p>If your cluster does not come pre-installed with the correct components, you may manually install these components by executing the following steps.</p>
 <p>Install Snapshot Beta CRDs per cluster:</p>
-<pre><code>kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
+<pre><code>kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
 
-kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
+kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
 
-kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
+kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
 </code></pre>
 <p>Install Snapshot Controller per cluster:</p>
-<pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
 
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
 </code></pre>
 
                     </main>
