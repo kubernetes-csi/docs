@@ -93,7 +93,7 @@ kubectl create -f snapshot.yaml
 
 Create a _PVC_ from a _VolumeSnapshot_:
 ```
-kuberctl create -f restore.yaml
+kubectl create -f restore.yaml
 ```
 
 ## Snapshot Alpha
