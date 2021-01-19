@@ -168,7 +168,7 @@
 <li>Kubelet to CSI Driver Communication
 <ul>
 <li>Kubelet directly issues CSI calls (like <code>NodeStageVolume</code>, <code>NodePublishVolume</code>, etc.) to CSI drivers via a Unix Domain Socket to mount and unmount volumes.</li>
-<li>Kubelet discovers CSI drivers (and the Unix Domain Socket to use to interact with a CSI driver) via the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-registration">kubelet plugin registration mechanism</a>.</li>
+<li>Kubelet discovers CSI drivers (and the Unix Domain Socket to use to interact with a CSI driver) via the <a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/pluginmanager/pluginwatcher/README.md">kubelet plugin registration mechanism</a>.</li>
 <li>Therefore, all CSI drivers deployed on Kubernetes MUST register themselves using the kubelet plugin registration mechanism on each supported node.</li>
 </ul>
 </li>

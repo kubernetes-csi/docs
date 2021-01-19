@@ -170,7 +170,7 @@
 <li>Kubelet to CSI Driver Communication
 <ul>
 <li>Kubelet directly issues CSI calls (like <code>NodeStageVolume</code>, <code>NodePublishVolume</code>, etc.) to CSI drivers via a Unix Domain Socket to mount and unmount volumes.</li>
-<li>Kubelet discovers CSI drivers (and the Unix Domain Socket to use to interact with a CSI driver) via the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-registration">kubelet plugin registration mechanism</a>.</li>
+<li>Kubelet discovers CSI drivers (and the Unix Domain Socket to use to interact with a CSI driver) via the <a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/pluginmanager/pluginwatcher/README.md">kubelet plugin registration mechanism</a>.</li>
 <li>Therefore, all CSI drivers deployed on Kubernetes MUST register themselves using the kubelet plugin registration mechanism on each supported node.</li>
 </ul>
 </li>
@@ -763,9 +763,9 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <tr><td><a href="https://github.com/kubernetes-csi/driver-registrar/releases/tag/v0.4.2">driver-registrar v0.4.2</a></td><td><a href="https://github.com/kubernetes-csi/driver-registrar/tree/release-0.4">release-0.4</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td>quay.io/k8scsi/driver-registrar:v0.4.2</td><td>v1.10</td><td>v1.16</td><td></td></tr>
 </tbody></table>
 <h2><a class="header" href="#description-8" id="description-8">Description</a></h2>
-<p>The CSI <code>node-driver-registrar</code> is a sidecar container that fetches driver information (using <code>NodeGetInfo</code>) from a CSI endpoint and registers it with the kubelet on that node using the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-registration">kubelet plugin registration mechanism</a>.</p>
+<p>The CSI <code>node-driver-registrar</code> is a sidecar container that fetches driver information (using <code>NodeGetInfo</code>) from a CSI endpoint and registers it with the kubelet on that node using the <a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/pluginmanager/pluginwatcher/README.md">kubelet plugin registration mechanism</a>.</p>
 <h2><a class="header" href="#usage-6" id="usage-6">Usage</a></h2>
-<p>Kubelet directly issues CSI <code>NodeGetInfo</code>, <code>NodeStageVolume</code>, and <code>NodePublishVolume</code> calls against CSI drivers. It uses the <a href="https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/#device-plugin-registration">kubelet plugin registration mechanism</a> to discover the unix domain socket to talk to the CSI driver. Therefore, all CSI drivers should use this sidecar container to register themselves with kubelet.</p>
+<p>Kubelet directly issues CSI <code>NodeGetInfo</code>, <code>NodeStageVolume</code>, and <code>NodePublishVolume</code> calls against CSI drivers. It uses the <a href="https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/pluginmanager/pluginwatcher/README.md">kubelet plugin registration mechanism</a> to discover the unix domain socket to talk to the CSI driver. Therefore, all CSI drivers should use this sidecar container to register themselves with kubelet.</p>
 <p>For detailed information (binary parameters, etc.), see the README of the relevant branch.</p>
 <h2><a class="header" href="#deployment-8" id="deployment-8">Deployment</a></h2>
 <p>The CSI <code>node-driver-registrar</code> is deployed per node. See <a href="deploying.html">deployment section</a> for more details.</p>
