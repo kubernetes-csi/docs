@@ -16,7 +16,7 @@ MDBOOK_ARCH = x86_64-unknown-linux-gnu
 endif
 
 # The mdbook version.
-MDBOOK_RELEASE = v0.3.1
+MDBOOK_RELEASE = v0.4.5
 
 # Download URL for mdbook and resulting file.
 MDBOOK_FILE = mdbook-$(MDBOOK_RELEASE)-$(MDBOOK_ARCH).tar.gz
@@ -24,9 +24,9 @@ MDBOOK_URL = https://github.com/rust-lang-nursery/mdBook/releases/download/$(MDB
 
 # As an extra sanity check, the hash of the downloaded file must match before it is used.
 ifeq  ($(shell uname),Darwin)
-MDBOOK_SHA1 = d53aded03d384b158fab9e08dea8c89d3219878a
+MDBOOK_SHA1 = 9656d6dedb7a56a30aeba8214186702e7824f18d
 else
-MDBOOK_SHA1 = add961cd0101f5a7b74d1a0b772ea80490ec93fb
+MDBOOK_SHA1 = dd51a3bc1d41092446b710c2f4b69054dc2ea666
 endif
 
 all: $(MDBOOK_BINARY)
