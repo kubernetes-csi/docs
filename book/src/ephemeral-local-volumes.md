@@ -32,7 +32,7 @@ However, the two features are targeted at different use cases and thus
 have different APIs and different implementations.
 
 > See the [CSI inline
-> volumes](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md)
+> volumes](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/596-csi-inline-volumes)
 > and [generic ephemeral
 > volumes](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1698-generic-ephemeral-volumes)
 > enhancement proposals for design details. The user facing
