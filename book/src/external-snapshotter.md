@@ -23,6 +23,31 @@ To use the snapshot beta feature, a snapshot controller is also required. For mo
 
 In the Beta version, the snapshot controller will be watching the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar only watches the Kubernetes API server for `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.
 
+#### VolumeSnapshotClass Parameters
+
+When provisioning a new volume snapshot, the CSI `external-snapshotter` sets the `map<string, string> parameters` field in the CSI `CreateSnapshotRequest` call to the key/values specified in the `VolumeSnapshotClass` it is handling.
+
+The CSI `external-snapshotter` also reserves the parameter keys prefixed with `csi.storage.k8s.io/`. Any `VolumeSnapshotClass` keys prefixed with `csi.storage.k8s.io/` are not passed to the CSI driver as an opaque `parameter`.
+
+The following reserved `VolumeSnapshotClass` parameter keys trigger behavior in the CSI `external-snapshotter`:
+
+* `csi.storage.k8s.io/snapshotter-secret-name` (v1.0.1+)
+* `csi.storage.k8s.io/snapshotter-secret-namespace` (v1.0.1+)
+* `csi.storage.k8s.io/snapshotter-list-secret-name` (v2.1.0+)
+* `csi.storage.k8s.io/snapshotter-list-secret-namespace` (v2.1.0+)
+
+For more information on how secrets are handled see [Secrets & Credentials](secrets-and-credentials.md).
+
+#### VolumeSnapshot and VolumeSnapshotContent Parameters
+
+The CSI `external-snapshotter` (v4.0.0+) introduces the `--extra-create-metadata` flag, which automatically sets the following `map<string, string> parameters` in the CSI `CreateSnapshotRequest`:
+
+* `csi.storage.k8s.io/volumesnapshot/name`
+* `csi.storage.k8s.io/volumesnapshot/namespace`
+* `csi.storage.k8s.io/volumesnapshotcontent/name`
+
+These parameters are internally generated using the name and namespace of the source `VolumeSnapshot` and `VolumeSnapshotContent`.
+
 For detailed snapshot beta design changes, see the design doc [here](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md).
 
 For detailed information about volume snapshot and restore functionality, see [Volume Snapshot & Restore](snapshot-restore-feature.md).
