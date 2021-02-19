@@ -1950,7 +1950,7 @@ pods are created and destroyed.</p>
 <p>However, the two features are targeted at different use cases and thus
 have different APIs and different implementations.</p>
 <blockquote>
-<p>See the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md">CSI inline
+<p>See the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/596-csi-inline-volumes">CSI inline
 volumes</a>
 and <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1698-generic-ephemeral-volumes">generic ephemeral
 volumes</a>
@@ -1991,6 +1991,14 @@ turns out to be insufficient is not needed</li>
 cloning volumes, etc.) are needed</li>
 <li>ephemeral inline volumes have to be supported on Kubernetes clusters
 which do not support generic ephemeral volumes</li>
+</ul>
+<p>A CSI driver is not suitable for CSI ephemeral inline volumes when:</p>
+<ul>
+<li>provisioning is not local to the node</li>
+<li>ephemeral volume creation requires volumeAttributes that should be restricted
+to an administrator, for example parameters that are otherwise set in a
+StorageClass or PV. Ephemeral inline volumes allow these attributes to be set
+directly in the Pod spec, and so are not restricted to an admin.</li>
 </ul>
 <p>Generic ephemeral inline volumes make the normal volume API (storage
 classes, <code>PersistentVolumeClaim</code>) usable for ephemeral inline
