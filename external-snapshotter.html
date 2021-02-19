@@ -178,6 +178,25 @@
 <h2><a class="header" href="#snapshot-beta" id="snapshot-beta">Snapshot Beta</a></h2>
 <h3><a class="header" href="#description" id="description">Description</a></h3>
 <p>In the Beta version, the snapshot controller will be watching the Kubernetes API server for <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar only watches the Kubernetes API server for <code>VolumeSnapshotContent</code> CRD objects. The CSI <code>external-snapshotter</code> sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.</p>
+<h4><a class="header" href="#volumesnapshotclass-parameters" id="volumesnapshotclass-parameters">VolumeSnapshotClass Parameters</a></h4>
+<p>When provisioning a new volume snapshot, the CSI <code>external-snapshotter</code> sets the <code>map&lt;string, string&gt; parameters</code> field in the CSI <code>CreateSnapshotRequest</code> call to the key/values specified in the <code>VolumeSnapshotClass</code> it is handling.</p>
+<p>The CSI <code>external-snapshotter</code> also reserves the parameter keys prefixed with <code>csi.storage.k8s.io/</code>. Any <code>VolumeSnapshotClass</code> keys prefixed with <code>csi.storage.k8s.io/</code> are not passed to the CSI driver as an opaque <code>parameter</code>.</p>
+<p>The following reserved <code>VolumeSnapshotClass</code> parameter keys trigger behavior in the CSI <code>external-snapshotter</code>:</p>
+<ul>
+<li><code>csi.storage.k8s.io/snapshotter-secret-name</code> (v1.0.1+)</li>
+<li><code>csi.storage.k8s.io/snapshotter-secret-namespace</code> (v1.0.1+)</li>
+<li><code>csi.storage.k8s.io/snapshotter-list-secret-name</code> (v2.1.0+)</li>
+<li><code>csi.storage.k8s.io/snapshotter-list-secret-namespace</code> (v2.1.0+)</li>
+</ul>
+<p>For more information on how secrets are handled see <a href="secrets-and-credentials.html">Secrets &amp; Credentials</a>.</p>
+<h4><a class="header" href="#volumesnapshot-and-volumesnapshotcontent-parameters" id="volumesnapshot-and-volumesnapshotcontent-parameters">VolumeSnapshot and VolumeSnapshotContent Parameters</a></h4>
+<p>The CSI <code>external-snapshotter</code> (v4.0.0+) introduces the <code>--extra-create-metadata</code> flag, which automatically sets the following <code>map&lt;string, string&gt; parameters</code> in the CSI <code>CreateSnapshotRequest</code>:</p>
+<ul>
+<li><code>csi.storage.k8s.io/volumesnapshot/name</code></li>
+<li><code>csi.storage.k8s.io/volumesnapshot/namespace</code></li>
+<li><code>csi.storage.k8s.io/volumesnapshotcontent/name</code></li>
+</ul>
+<p>These parameters are internally generated using the name and namespace of the source <code>VolumeSnapshot</code> and <code>VolumeSnapshotContent</code>.</p>
 <p>For detailed snapshot beta design changes, see the design doc <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md">here</a>.</p>
 <p>For detailed information about volume snapshot and restore functionality, see <a href="snapshot-restore-feature.html">Volume Snapshot &amp; Restore</a>.</p>
 <h3><a class="header" href="#usage" id="usage">Usage</a></h3>

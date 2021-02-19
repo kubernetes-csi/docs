@@ -191,7 +191,7 @@ For more information on how data sources are handled see <a href="volume-datasou
 <p>Cloning is also implemented by specifying a <code>kind:</code> of type <code>PersistentVolumeClaim</code> in the DataSource field of a Provision request.  It's the responsbility of the external-provisioner to verify that the claim specified in the DataSource object exists, is in the same storage class as the volume being provisioned and that the claim is currently <code>Bound</code>.</p>
 <h3><a class="header" href="#storageclass-parameters" id="storageclass-parameters">StorageClass Parameters</a></h3>
 <p>When provisioning a new volume, the CSI <code>external-provisioner</code> sets the <code>map&lt;string, string&gt; parameters</code> field in the CSI <code>CreateVolumeRequest</code> call to the key/values specified in the <code>StorageClass</code> it is handling.</p>
-<p>The CSI <code>external-provisioner</code> (v1.0.1+) also reserves the parameter keys prefixed with <code>csi.storage.k8s.io/</code>. Any keys prefixed with <code>csi.storage.k8s.io/</code> are not passed to the CSI driver as an opaque <code>parameter</code>.</p>
+<p>The CSI <code>external-provisioner</code> (v1.0.1+) also reserves the parameter keys prefixed with <code>csi.storage.k8s.io/</code>. Any <code>StorageClass</code> keys prefixed with <code>csi.storage.k8s.io/</code> are not passed to the CSI driver as an opaque <code>parameter</code>.</p>
 <p>The following reserved <code>StorageClass</code> parameter keys trigger behavior in the CSI <code>external-provisioner</code>:</p>
 <ul>
 <li><code>csi.storage.k8s.io/provisioner-secret-name</code></li>
@@ -218,6 +218,14 @@ parameters:
   csi.storage.k8s.io/provisioner-secret-name: mysecret
   csi.storage.k8s.io/provisioner-secret-namespace: mynamespace
 </code></pre>
+<h3><a class="header" href="#persistentvolumeclaim-and-persistentvolume-parameters" id="persistentvolumeclaim-and-persistentvolume-parameters">PersistentVolumeClaim and PersistentVolume Parameters</a></h3>
+<p>The CSI <code>external-provisioner</code> (v1.6.0+) introduces the <code>--extra-create-metadata</code> flag, which automatically sets the following <code>map&lt;string, string&gt; parameters</code> in the CSI <code>CreateVolumeRequest</code>:</p>
+<ul>
+<li><code>csi.storage.k8s.io/pvc/name</code></li>
+<li><code>csi.storage.k8s.io/pvc/namespace</code></li>
+<li><code>csi.storage.k8s.io/pv/name</code></li>
+</ul>
+<p>These parameters are not part of the <code>StorageClass</code>, but are internally generated using the name and namespace of the source <code>PersistentVolumeClaim</code> and <code>PersistentVolume</code>.</p>
 <h2><a class="header" href="#usage" id="usage">Usage</a></h2>
 <p>CSI drivers that support dynamic volume provisioning should use this sidecar container, and advertise the CSI <code>CREATE_DELETE_VOLUME</code> controller capability.</p>
 <p>For detailed information (binary parameters, RBAC rules, etc.), see <a href="https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md">https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md</a>.</p>
