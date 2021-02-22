@@ -4,24 +4,25 @@
 
 **Git Repository:** [https://github.com/kubernetes-csi/external-snapshotter](https://github.com/kubernetes-csi/external-snapshotter)
 
-**Status:** v2.0.0 and higher is Beta; version below v2.0.0 is Alpha
+**Status:** GA v4.0.0+
 
 ### CSI External-Snapshotter Sidecar
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
 --|--|--|--|--|--|--|--
-[external-snapshotter v3.0.2](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.2) | [release-3.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.2, | v1.17 | - | v1.17
-[external-snapshotter v2.1.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.0) | [release-2.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v2.1.0 | v1.17 | - | v1.17
-[external-snapshotter v1.2.2](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.2.2) | [release-1.2](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v1.2.2 | v1.13 | v1.16 | v1.14
-[external-snapshotter v0.4.2](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v0.4.2) | [release-0.4](https://github.com/kubernetes-csi/external-snapshotter/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/csi-snapshotter:v0.4.2 | v1.12 | v1.16 | v1.12
+[external-snapshotter v4.0.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.0) | [release-4.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0, | v1.20 | - | v1.20
+[external-snapshotter v3.0.3 (beta)](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.3) | [release-3.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3, | v1.17 | - | v1.17
+[external-snapshotter v2.1.4 (beta)](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.4) | [release-2.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v2.1.4 | v1.17 | - | v1.17
+[external-snapshotter v1.2.2 (alpha)](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.2.2) | [release-1.2](https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-snapshotter:v1.2.2 | v1.13 | v1.16 | v1.14
+[external-snapshotter v0.4.2 (alpha)](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v0.4.2) | [release-0.4](https://github.com/kubernetes-csi/external-snapshotter/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/csi-snapshotter:v0.4.2 | v1.12 | v1.16 | v1.12
 
-To use the snapshot beta feature, a snapshot controller is also required. For more information, see [this snapshot-controller page](snapshot-controller.md).
+To use the snapshot beta and GA feature, a snapshot controller is also required. For more information, see [this snapshot-controller page](snapshot-controller.md).
 
-## Snapshot Beta
+## Snapshot Beta/GA
 
 ### Description
 
-In the Beta version, the snapshot controller will be watching the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar only watches the Kubernetes API server for `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.
+Starting with the Beta version, the snapshot controller will be watching the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar only watches the Kubernetes API server for `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.
 
 #### VolumeSnapshotClass Parameters
 
