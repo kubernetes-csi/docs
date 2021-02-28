@@ -2,12 +2,12 @@
 
 - [Introduction](introduction.md)
 - [Developing a CSI Driver for Kubernetes](developing.md)
+    - [Versioning, Support, Compatibility Policies](project-policies.md)
     - [Kubernetes Changelog](kubernetes-changelog.md)
     - [Kubernetes Cluster Controllers](kubernetes-cluster-controllers.md)
         - [Snapshot Controller](snapshot-controller.md)
         - [Snapshot Validation Webhook](snapshot-validation-webhook.md)
     - [Sidecar Containers](sidecar-containers.md)
-        - [Kubernetes Compatibility](kubernetes-compatibility.md)
         - [external-attacher](external-attacher.md)
         - [external-provisioner](external-provisioner.md)
         - [external-resizer](external-resizer.md)
