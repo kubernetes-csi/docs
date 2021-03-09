@@ -197,7 +197,7 @@ spec:
 <li><code>None</code>: Indicates that volumes will be mounted with no modifications, as the CSI volume driver does not support these operations.</li>
 <li><code>File</code>: Indicates that the CSI volume driver supports volume ownership and permission change via fsGroup, and Kubernetes may use fsGroup to change permissions and ownership of the volume to match user requested fsGroup in the pod's SecurityPolicy regardless of fstype or access mode.</li>
 <li><code>ReadWriteOnceWithFSType</code>: Indicates that volumes will be examined to determine if volume ownership and permissions should be modified to match the pod's security policy. 
-Changes will only occur if the <code>fsType</code> is defined and the persistent volume's <code>accessModes</code> contains <code>ReadWriteOnly</code>. .</li>
+Changes will only occur if the <code>fsType</code> is defined and the persistent volume's <code>accessModes</code> contains <code>ReadWriteOnce</code>. .</li>
 </ul>
 </li>
 </ul>
