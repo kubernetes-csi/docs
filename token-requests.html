@@ -166,7 +166,8 @@
                         <h1><a class="header" href="#token-requests" id="token-requests">Token Requests</a></h1>
 <h2><a class="header" href="#status" id="status">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>1.20</td><td>-</td></tr>
+<tr><td>Alpha</td><td>1.20</td><td>1.20</td></tr>
+<tr><td>Beta</td><td>1.21</td><td>-</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>This feature allows CSI drivers to impersonate the pods that they mount the
@@ -253,6 +254,7 @@ spec:
 <p>Kube apiserver must start with the <code>CSIServiceAccountToken</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIServiceAccountToken=true
 </code></pre>
+<p>It is enabled by default in Kubernetes 1.21.</p>
 <h3><a class="header" href="#example-csi-drivers" id="example-csi-drivers">Example CSI Drivers</a></h3>
 <ul>
 <li><a href="https://github.com/kubernetes-sigs/secrets-store-csi-driver">secrets-store-csi-driver</a>

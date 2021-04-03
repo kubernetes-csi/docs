@@ -197,11 +197,11 @@ spec:
   volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
     - Persistent
     - Ephemeral
-  tokenRequests: # added in Kubernetes 1.20, this field is alpha
+  tokenRequests: # added in Kubernetes 1.20, this field is beta as of Kubernetes 1.21
     - audience: &quot;gcp&quot;
     - audience: &quot;&quot; # empty string means defaulting to the `--api-audiences` of kube-apiserver
       expirationSeconds: 3600
-  requiresRepublish: true # added in Kubernetes 1.20, this field is alpha
+  requiresRepublish: true # added in Kubernetes 1.20, this field is beta as of Kubernetes 1.21
 </code></pre>
 <p>These are the important fields:</p>
 <ul>
@@ -264,7 +264,7 @@ are listed) or instead of normal volumes (when it is the only entry in the list)
 <li><code>tokenRequests</code>
 <ul>
 <li>This field was added in Kubernetes 1.20 and cannot be set when using an older Kubernetes release.</li>
-<li>This field is alpha. Please make sure the feature gate is enabled via flag <code>--feature-gates=CSIServiceAccountToken=true</code>.</li>
+<li>This field is beta in 1.21 and enabled by default.</li>
 <li>If this field is specified, Kubelet will plumb down the bound service acocunt tokens of the pod as <code>volume_context</code> in the <code>NodePublishVolume</code>:
 <ul>
 <li><code>&quot;csi.storage.k8s.io/serviceAccount.tokens&quot;: {&quot;gcp&quot;:{&quot;token&quot;:&quot;&lt;token&gt;&quot;,&quot;expirationTimestamp&quot;:&quot;&lt;expiration timestamp in RFC3339&gt;&quot;}}</code></li>
@@ -277,7 +277,7 @@ are listed) or instead of normal volumes (when it is the only entry in the list)
 <li><code>requiresRepublish</code>
 <ul>
 <li>This field was added in Kubernetes 1.20 and cannot be set when using an older Kubernetes release.</li>
-<li>This field is alpha. Please make sure the feature gate is enabled via flag <code>--feature-gates=CSIServiceAccountToken=true</code>.</li>
+<li>This field is beta in 1.21 and enabled by default.</li>
 <li>If this field is <code>true</code>, Kubelet will periodically call <code>NodePublishVolume</code>. This is useful in the following scenarios:
 <ul>
 <li>If the volume mounted by CSI driver is short-lived.</li>
