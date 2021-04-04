@@ -22,6 +22,14 @@ A litmus test for not breaking compatibility is to replace the image of a
 component in an existing deployment without changing that deployment in any
 other way.
 
+To minimize the number of branches we need to support, we do not have a general
+policy for releasing new minor versions on older majors. We will make exceptions
+for work related to meeting production readiness requirements. Only the previous
+major version will be eligible for these exceptions, so long as the time between
+the previous major version and the current major version is under six months.
+For example, if "X.0.0" and "X+1.0.0" were released under six months apart,
+"X.0.0" would be eligible for new minor releases.
+
 ## Support
 
 The Kubernetes CSI project follows the broader Kubernetes project on support.
