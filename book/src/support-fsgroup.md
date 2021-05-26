@@ -11,7 +11,7 @@ Beta | 1.20 | -
 
 CSI Drivers can indicate whether or not they support modifying a volume's ownership or permissions when the volume is being mounted. This can be useful if the CSI Driver does not support the operation, or wishes to re-use volumes with constantly changing permissions.
 
-> See the [design document](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1682-csi-driver-skip-permission) for futher information.
+> See the [design document](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1682-csi-driver-skip-permission) for further information.
 
 # Example Usage
 When creating the CSI Driver object, `fsGroupPolicy` is defined in the driver's spec. The following shows the hostpath driver with `None` included, indicating that the volumes should not be modified when mounted:
