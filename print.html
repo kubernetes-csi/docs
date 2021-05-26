@@ -2346,7 +2346,7 @@ the Vault provider will send the token to Vault which will use the token in
 <h1><a class="header" href="#overview-13" id="overview-13">Overview</a></h1>
 <p>CSI Drivers can indicate whether or not they support modifying a volume's ownership or permissions when the volume is being mounted. This can be useful if the CSI Driver does not support the operation, or wishes to re-use volumes with constantly changing permissions.</p>
 <blockquote>
-<p>See the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1682-csi-driver-skip-permission">design document</a> for futher information.</p>
+<p>See the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1682-csi-driver-skip-permission">design document</a> for further information.</p>
 </blockquote>
 <h1><a class="header" href="#example-usage" id="example-usage">Example Usage</a></h1>
 <p>When creating the CSI Driver object, <code>fsGroupPolicy</code> is defined in the driver's spec. The following shows the hostpath driver with <code>None</code> included, indicating that the volumes should not be modified when mounted:</p>
