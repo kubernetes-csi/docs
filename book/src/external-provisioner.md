@@ -8,7 +8,6 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
 --|--|--|--|--|--|--|--
-
 [external-provisioner v2.2.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.2.0) | [release-2.2](https://github.com/kubernetes-csi/external-provisioner/tree/release-2.2) | [v1.4.0](https://github.com/container-storage-interface/spec/releases/tag/v1.4.0) | - | k8s.gcr.io/sig-storage/csi-provisioner:v2.2.0 | v1.17 | - | v1.21
 [external-provisioner v2.1.2](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.1.2) | [release-2.1](https://github.com/kubernetes-csi/external-provisioner/tree/release-2.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-provisioner:v2.1.2 | v1.17 | - | v1.19
 [external-provisioner v2.0.5](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.0.5) | [release-2.0](https://github.com/kubernetes-csi/external-provisioner/tree/release-2.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-provisioner:v2.0.5 | v1.17 | - | v1.19
