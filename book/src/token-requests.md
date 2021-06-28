@@ -5,7 +5,8 @@
 | Status | Min K8s Version | Max K8s Version |
 | ------ | --------------- | --------------- |
 | Alpha  | 1.20            | 1.20            |
-| Beta   | 1.21            | -               |
+| Beta   | 1.21            | 1.21            |
+| GA     | 1.22            | -               |
 
 ## Overview
 
@@ -101,7 +102,7 @@ Kube apiserver must start with the `CSIServiceAccountToken` feature gate enabled
 --feature-gates=CSIServiceAccountToken=true
 ```
 
-It is enabled by default in Kubernetes 1.21.
+It is enabled by default in Kubernetes 1.21 and cannot be disabled since 1.22.
 
 ### Example CSI Drivers
 
