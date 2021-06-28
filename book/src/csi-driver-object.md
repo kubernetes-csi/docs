@@ -34,11 +34,11 @@ spec:
   volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
     - Persistent
     - Ephemeral
-  tokenRequests: # added in Kubernetes 1.20, this field is beta as of Kubernetes 1.21
+  tokenRequests: # added in Kubernetes 1.20. See status at https://kubernetes-csi.github.io/docs/token-requests.html#status
     - audience: "gcp"
     - audience: "" # empty string means defaulting to the `--api-audiences` of kube-apiserver
       expirationSeconds: 3600
-  requiresRepublish: true # added in Kubernetes 1.20, this field is beta as of Kubernetes 1.21
+  requiresRepublish: true # added in Kubernetes 1.20. See status at https://kubernetes-csi.github.io/docs/token-requests.html#status
 ```
 
 These are the important fields:
@@ -80,14 +80,14 @@ These are the important fields:
     are listed) or instead of normal volumes (when it is the only entry in the list).
 - `tokenRequests`
   - This field was added in Kubernetes 1.20 and cannot be set when using an older Kubernetes release.
-  - This field is beta in 1.21 and enabled by default.
+  - This field is enabled by default in Kubernetes 1.21 and cannot be disabled since 1.22.
   - If this field is specified, Kubelet will plumb down the bound service acocunt tokens of the pod as `volume_context` in the `NodePublishVolume`:
     - `"csi.storage.k8s.io/serviceAccount.tokens": {"gcp":{"token":"<token>","expirationTimestamp":"<expiration timestamp in RFC3339>"}}`
     - If CSI driver doesn't find token recorded in the `volume_context`, it should return error in `NodePublishVolume` to inform Kubelet to retry.
     - Audiences should be distinct, otherwise the validation will fail. If the audience is "", it means the issued token has the same audience as kube-apiserver.
 - `requiresRepublish`
   - This field was added in Kubernetes 1.20 and cannot be set when using an older Kubernetes release.
-  - This field is beta in 1.21 and enabled by default.
+  - This field is enabled by default in Kubernetes 1.21 and cannot be disabled since 1.22.
   - If this field is `true`, Kubelet will periodically call `NodePublishVolume`. This is useful in the following scenarios:
     - If the volume mounted by CSI driver is short-lived.
     - If CSI driver requires valid service account tokens (enabled by the field `tokenRequests`) repeatedly.
