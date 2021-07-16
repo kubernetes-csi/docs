@@ -365,6 +365,17 @@ and their corresponding CSI components, please see each feature's individual pag
 <h1><a class="header" href="#kubernetes-changelog" id="kubernetes-changelog">Kubernetes Changelog</a></h1>
 <p>This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the <a href="features.html">Features section</a>.</p>
+<h2><a class="header" href="#kubernetes-121" id="kubernetes-121">Kubernetes 1.21</a></h2>
+<h3><a class="header" href="#features" id="features">Features</a></h3>
+<ul>
+<li>Beta
+<ul>
+<li>Pod token requests (CSIServiceAccountToken)</li>
+<li>Storage capacity tracking</li>
+<li>Generic ephemeral volumes</li>
+</ul>
+</li>
+</ul>
 <h2><a class="header" href="#kubernetes-120" id="kubernetes-120">Kubernetes 1.20</a></h2>
 <h3><a class="header" href="#breaking-changes" id="breaking-changes">Breaking Changes</a></h3>
 <ul>
@@ -373,7 +384,7 @@ in accordance with the CSI spec. Kubelet also no longer checks if staging and
 target paths are mounts or corrupted. CSI drivers need to be idempotent and do
 any necessary mount verification.</li>
 </ul>
-<h3><a class="header" href="#features" id="features">Features</a></h3>
+<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -399,7 +410,7 @@ any necessary mount verification.</li>
 deprecated for CSI volumes. CSI drivers should support calling NodeExpandVolume
 after NodePublish if they have node EXPAND_VOLUME capability</li>
 </ul>
-<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
+<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -425,7 +436,7 @@ removed in a future release.</li>
 target directory, in accordance with the CSI specification. CSI drivers may
 need to be updated accordingly to properly create and process the target path.</li>
 </ul>
-<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
+<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -457,7 +468,7 @@ need to be updated accordingly to properly create and process the target path.</
 <li><code>storage.k8s.io/v1beta1</code> <code>CSINode</code> object has been deprecated and will be
 removed in a future release.</li>
 </ul>
-<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
+<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -474,7 +485,7 @@ removed in a future release.</li>
 <li><code>storage.k8s.io/v1</code> <code>CSINode</code> object introduced.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-116" id="kubernetes-116">Kubernetes 1.16</a></h2>
-<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
+<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -485,7 +496,7 @@ removed in a future release.</li>
 </li>
 </ul>
 <h2><a class="header" href="#kubernetes-115" id="kubernetes-115">Kubernetes 1.15</a></h2>
-<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
+<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
 <ul>
 <li>Volume capacity usage metrics</li>
 <li>Alpha
@@ -501,7 +512,7 @@ removed in a future release.</li>
 <ul>
 <li><code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs are no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
+<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -523,7 +534,7 @@ removed in a future release.</li>
 <ul>
 <li>CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.17.</li>
 </ul>
-<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
+<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
 <ul>
 <li>GA support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">CSI spec
 1.0</a>.</li>
@@ -532,7 +543,7 @@ removed in a future release.</li>
 <h3><a class="header" href="#breaking-changes-3" id="breaking-changes-3">Breaking Changes</a></h3>
 <p>Kubelet device plugin registration is enabled by default, which requires CSI
 plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p>
-<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
+<h3><a class="header" href="#features-9" id="features-9">Features</a></h3>
 <ul>
 <li>Alpha
 <ul>
@@ -546,7 +557,7 @@ plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p
 introduced and have to be installed before deploying a CSI driver.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-111" id="kubernetes-111">Kubernetes 1.11</a></h2>
-<h3><a class="header" href="#features-9" id="features-9">Features</a></h3>
+<h3><a class="header" href="#features-10" id="features-10">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">CSI spec
 0.3</a>.</li>
@@ -561,14 +572,14 @@ introduced and have to be installed before deploying a CSI driver.</li>
 <ul>
 <li>CSI spec 0.1 is no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-10" id="features-10">Features</a></h3>
+<h3><a class="header" href="#features-11" id="features-11">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.2.0">CSI spec 0.2</a>.
 This added optional <code>NodeStageVolume</code> and <code>NodeUnstageVolume</code> calls which
 map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operations.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-19" id="kubernetes-19">Kubernetes 1.9</a></h2>
-<h3><a class="header" href="#features-11" id="features-11">Features</a></h3>
+<h3><a class="header" href="#features-12" id="features-12">Features</a></h3>
 <ul>
 <li>Alpha support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.1.0">CSI spec
 0.1</a>.</li>
@@ -583,11 +594,15 @@ map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operat
 <h2><a class="header" href="#status-and-releases" id="status-and-releases">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshotter">https://github.com/kubernetes-csi/external-snapshotter</a></p>
 <p><strong>Status:</strong> GA v4.0.0+</p>
-<h3><a class="header" href="#snapshot-controller-1" id="snapshot-controller-1">Snapshot Controller</a></h3>
 <p>When Volume Snapshot is promoted to Beta in Kubernetes 1.17, the CSI external-snapshotter sidecar controller is split into two controllers: a snapshot-controller and a CSI external-snapshotter sidecar. See the following table for snapshot-controller release information.</p>
+<h3><a class="header" href="#supported-versions" id="supported-versions">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.1.1">external-snapshotter v4.1.1</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.1">release-4.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-controller:v4.1.1</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.0">external-snapshotter v4.0.0</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0">release-4.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-controller:v4.0.0</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.3">external-snapshotter v3.0.3 (beta)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0">release-3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-controller:v3.0.3</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions" id="unsupported-versions">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.4">external-snapshotter v2.1.4 (beta)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1">release-2.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/snapshot-controller:v2.1.4</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
 </tbody></table>
 <p>For more information on the CSI external-snapshotter sidecar, see <a href="external-snapshotter.html">this external-snapshotter page</a>.</p>
@@ -614,11 +629,13 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 <h1><a class="header" href="#snapshot-validation-webhook" id="snapshot-validation-webhook">Snapshot Validation Webhook</a></h1>
 <h2><a class="header" href="#status-and-releases-1" id="status-and-releases-1">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshotter">https://github.com/kubernetes-csi/external-snapshotter</a></p>
-<p><strong>Status:</strong> v3.0.2 (Beta)</p>
-<h3><a class="header" href="#snapshot-validation-webhook-1" id="snapshot-validation-webhook-1">Snapshot Validation Webhook</a></h3>
+<p><strong>Status:</strong> GA as of 4.0.0</p>
 <p>There is a new validating webhook server which provides tightened validation on snapshot objects. This SHOULD be installed by the Kubernetes distros along with the snapshot-controller, not end users. It SHOULD be installed in all Kubernetes clusters that has the snapshot feature enabled.</p>
+<h3><a class="header" href="#supported-versions-1" id="supported-versions-1">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
-<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.2">snapshot-validation-webhook v3.0.2</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0">release-3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-validation-webhook:v3.0.2</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.1.1">snapshot-validation-webhook v4.1.1</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.1">release-4.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-validation-webhook:v4.1.0</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.0">snapshot-validation-webhook v4.0.0</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0">release-4.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-validation-webhook:v4.0.0</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.3">snapshot-validation-webhook v3.0.3</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0">release-3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/snapshot-validation-webhook:v3.0.3</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
 </tbody></table>
 <h2><a class="header" href="#description-1" id="description-1">Description</a></h2>
 <p>The snapshot validating webhook is an HTTP callback which responds to <a href="https://kubernetes.io/docs/reference/access-authn-authz/extensible-admission-controllers/">admission requests</a>. It is part of a larger <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1900-volume-snapshot-validation-webhook">plan</a> to tighten validation for volume snapshot objects. This webhook introduces the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1900-volume-snapshot-validation-webhook#backwards-compatibility">ratcheting validation</a> mechanism targeting the tighter validation. The cluster admin or Kubernetes distribution admin should install the webhook alongside the snapshot controllers and CRDs.</p>
@@ -661,9 +678,16 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 <h2><a class="header" href="#status-and-releases-2" id="status-and-releases-2">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-attacher">https://github.com/kubernetes-csi/external-attacher</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
+<h3><a class="header" href="#supported-versions-2" id="supported-versions-2">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v3.2.1">external-attacher v3.2.1</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-3.2">release-3.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-attacher:v3.2.1</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v3.1.0">external-attacher v3.1.0</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-3.1">release-3.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-attacher:v3.1.0</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v3.0.2">external-attacher v3.0.2</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-3.0">release-3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-attacher:v3.0.2</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-1" id="unsupported-versions-1">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v2.2.0">external-attacher v2.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-2.2">release-2.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-attacher:v2.2.0</td><td>v1.14</td><td>-</td><td>v1.17</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v2.1.0">external-attacher v2.1.0</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-2.1">release-2.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-attacher:v2.1.0</td><td>v1.14</td><td>-</td><td>v1.17</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v2.0.0">external-attacher v2.0.0</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-2.0">release-2.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-attacher:v2.0.0</td><td>v1.14</td><td>-</td><td>v1.15</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.2.1">external-attacher v1.2.1</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-1.2">release-1.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-attacher:v1.2.1</td><td>v1.13</td><td>-</td><td>v1.15</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-attacher/releases/tag/v1.1.1">external-attacher v1.1.1</a></td><td><a href="https://github.com/kubernetes-csi/external-attacher/tree/release-1.1">release-1.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-attacher:v1.1.1</td><td>v1.13</td><td>-</td><td>v1.14</td></tr>
@@ -680,10 +704,14 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 <h2><a class="header" href="#status-and-releases-3" id="status-and-releases-3">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-provisioner">https://github.com/kubernetes-csi/external-provisioner</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
+<h3><a class="header" href="#supported-versions-3" id="supported-versions-3">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
-<tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.2.0">external-provisioner v2.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-2.2">release-2.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.4.0">v1.4.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-provisioner:v2.2.0</td><td>v1.17</td><td>-</td><td>v1.21</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.2.2">external-provisioner v2.2.2</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-2.2">release-2.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.4.0">v1.4.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-provisioner:v2.2.2</td><td>v1.17</td><td>-</td><td>v1.21</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.1.2">external-provisioner v2.1.2</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-2.1">release-2.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-provisioner:v2.1.2</td><td>v1.17</td><td>-</td><td>v1.19</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v2.0.5">external-provisioner v2.0.5</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-2.0">release-2.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-provisioner:v2.0.5</td><td>v1.17</td><td>-</td><td>v1.19</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-2" id="unsupported-versions-2">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.6.1">external-provisioner v1.6.1</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-1.6">release-1.6</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-provisioner:v1.6.1</td><td>v1.13</td><td>-</td><td>v1.18</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.5.0">external-provisioner v1.5.0</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-1.5">release-1.5</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-provisioner:v1.5.0</td><td>v1.13</td><td>-</td><td>v1.17</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.4.0">external-provisioner v1.4.0</a></td><td><a href="https://github.com/kubernetes-csi/external-provisioner/tree/release-1.4">release-1.4</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-provisioner:v1.4.0</td><td>v1.13</td><td>-</td><td>v1.16</td></tr>
@@ -750,8 +778,14 @@ parameters:
 <h2><a class="header" href="#status-and-releases-4" id="status-and-releases-4">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-resizer">https://github.com/kubernetes-csi/external-resizer</a></p>
 <p><strong>Status:</strong> Beta starting with v0.3.0</p>
+<h3><a class="header" href="#supported-versions-4" id="supported-versions-4">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v1.2.0">external-resizer v1.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/release-1.2">release-1.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.2.0">v1.2.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-resizer:v1.2.0</td><td>v1.16</td><td>-</td><td>v1.21</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v1.1.0">external-resizer v1.1.0</a></td><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/release-1.1">release-1.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.2.0">v1.2.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-resizer:v1.1.0</td><td>v1.16</td><td>-</td><td>v1.16</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v1.0.1">external-resizer v1.0.1</a></td><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/release-1.0">release-1.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.2.0">v1.2.0</a></td><td>-</td><td>quay.io/k8scsi/csi-resizer:v1.0.1</td><td>v1.16</td><td>-</td><td>v1.16</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-3" id="unsupported-versions-3">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v0.5.0">external-resizer v0.5.0</a></td><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/release-0.5">release-0.5</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.2.0">v1.2.0</a></td><td>-</td><td>quay.io/k8scsi/csi-resizer:v0.5.0</td><td>v1.15</td><td>-</td><td>v1.16</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v0.2.0">external-resizer v0.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/release-0.2">release-0.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.1.0">v1.1.0</a></td><td>-</td><td>quay.io/k8scsi/csi-resizer:v0.2.0</td><td>v1.15</td><td>-</td><td>v1.15</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/v0.1.0">external-resizer v0.1.0</a></td><td><a href="https://github.com/kubernetes-csi/external-resizer/tree/release-0.1">release-0.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.1.0">v1.1.0</a></td><td>-</td><td>quay.io/k8scsi/csi-resizer:v0.1.0</td><td>v1.14</td><td>v1.14</td><td>v1.14</td></tr>
@@ -767,10 +801,14 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <h2><a class="header" href="#status-and-releases-5" id="status-and-releases-5">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshotter">https://github.com/kubernetes-csi/external-snapshotter</a></p>
 <p><strong>Status:</strong> GA v4.0.0+</p>
-<h3><a class="header" href="#csi-external-snapshotter-sidecar" id="csi-external-snapshotter-sidecar">CSI External-Snapshotter Sidecar</a></h3>
+<h3><a class="header" href="#supported-versions-5" id="supported-versions-5">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
-<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.0">external-snapshotter v4.0.0</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0">release-4.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0,</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
-<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.3">external-snapshotter v3.0.3 (beta)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0">release-3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3,</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.1.1">external-snapshotter v4.1.1</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.1">release-4.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-snapshotter:v4.1.1</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.0">external-snapshotter v4.0.0</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0">release-4.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0</td><td>v1.20</td><td>-</td><td>v1.20</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.3">external-snapshotter v3.0.3 (beta)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0">release-3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-4" id="unsupported-versions-4">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v2.1.4">external-snapshotter v2.1.4 (beta)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-2.1">release-2.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-snapshotter:v2.1.4</td><td>v1.17</td><td>-</td><td>v1.17</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v1.2.2">external-snapshotter v1.2.2 (alpha)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-1.2">release-1.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-snapshotter:v1.2.2</td><td>v1.13</td><td>v1.16</td><td>v1.14</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v0.4.2">external-snapshotter v0.4.2 (alpha)</a></td><td><a href="https://github.com/kubernetes-csi/external-snapshotter/tree/release-0.4">release-0.4</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td>quay.io/k8scsi/csi-snapshotter:v0.4.2</td><td>v1.12</td><td>v1.16</td><td>v1.12</td></tr>
@@ -821,8 +859,14 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <h2><a class="header" href="#status-and-releases-6" id="status-and-releases-6">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/livenessprobe">https://github.com/kubernetes-csi/livenessprobe</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
+<h3><a class="header" href="#supported-versions-6" id="supported-versions-6">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.3.0">livenessprobe v2.3.0</a></td><td><a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-2.3">release-2.3</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/livenessprobe:v2.3.0</td><td>v1.13</td><td>-</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.2.0">livenessprobe v2.2.0</a></td><td><a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-2.2">release-2.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/livenessprobe:v2.2.0</td><td>v1.13</td><td>-</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.1.0">livenessprobe v2.1.0</a></td><td><a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-2.1">release-2.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/livenessprobe:v2.1.0</td><td>v1.13</td><td>-</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-5" id="unsupported-versions-5">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.0.0">livenessprobe v2.0.0</a></td><td><a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-2.0">release-2.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/livenessprobe:v2.0.0</td><td>v1.13</td><td>-</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/livenessprobe/releases/tag/v1.1.0">livenessprobe v1.1.0</a></td><td><a href="https://github.com/kubernetes-csi/livenessprobe/tree/release-1.1">release-1.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/livenessprobe:v1.1.0</td><td>v1.13</td><td>-</td></tr>
 <tr><td>Unsupported.</td><td>No 0.x branch.</td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td>quay.io/k8scsi/livenessprobe:v0.4.1</td><td>v1.10</td><td>v1.16</td></tr>
@@ -838,8 +882,14 @@ triggers <code>ControllerExpandVolume</code> operations against a CSI endpoint i
 <h2><a class="header" href="#status-and-releases-7" id="status-and-releases-7">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/node-driver-registrar">https://github.com/kubernetes-csi/node-driver-registrar</a></p>
 <p><strong>Status:</strong> GA/Stable</p>
+<h3><a class="header" href="#supported-versions-7" id="supported-versions-7">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v2.2.0">node-driver-registrar v2.2.0</a></td><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/tree/release-2.2">release-2.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.2.0</td><td>v1.13</td><td>-</td><td></td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v2.1.0">node-driver-registrar v2.1.0</a></td><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/tree/release-2.1">release-2.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.1.0</td><td>v1.13</td><td>-</td><td></td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v2.0.0">node-driver-registrar v2.0.0</a></td><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/tree/release-2.0">release-2.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-node-driver-registrar:v2.0.0</td><td>v1.13</td><td>-</td><td></td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-6" id="unsupported-versions-6">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="kubernetes-compatibility.html#minimum-version">Min K8s Version</a></th><th><a href="kubernetes-compatibility.html#maximum-version">Max K8s Version</a></th><th><a href="kubernetes-compatibility.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v1.2.0">node-driver-registrar v1.2.0</a></td><td><a href="https://github.com/kubernetes-csi/node-driver-registrar/tree/release-1.2">release-1.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>-</td><td>quay.io/k8scsi/csi-node-driver-registrar:v1.2.0</td><td>v1.13</td><td>-</td><td></td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/driver-registrar/releases/tag/v0.4.2">driver-registrar v0.4.2</a></td><td><a href="https://github.com/kubernetes-csi/driver-registrar/tree/release-0.4">release-0.4</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td>quay.io/k8scsi/driver-registrar:v0.4.2</td><td>v1.10</td><td>v1.16</td><td></td></tr>
 </tbody></table>
@@ -891,8 +941,13 @@ their CSI driver.</p>
 <h2><a class="header" href="#status-and-releases-9" id="status-and-releases-9">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-health-monitor">https://github.com/kubernetes-csi/external-health-monitor</a></p>
 <p><strong>Status:</strong> Alpha </p>
+<h3><a class="header" href="#supported-versions-8" id="supported-versions-8">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th></tr></thead><tbody>
-<tr><td><a href="https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.2.0">external-health-monitor-controller v0.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.2">release-0.1</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.3.0">v1.3.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-external-health-monitor-controller:v0.2.0</td></tr>
+<tr><td><a href="https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.3.0">external-health-monitor-controller v0.3.0</a></td><td><a href="https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.3">release-0.3</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.3.0">v1.3.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-external-health-monitor-controller:v0.3.0</td></tr>
+</tbody></table>
+<h3><a class="header" href="#unsupported-versions-7" id="unsupported-versions-7">Unsupported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th></tr></thead><tbody>
+<tr><td><a href="https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.2.0">external-health-monitor-controller v0.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.2">release-0.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.3.0">v1.3.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-external-health-monitor-controller:v0.2.0</td></tr>
 </tbody></table>
 <h2><a class="header" href="#description-10" id="description-10">Description</a></h2>
 <p>The CSI <code>external-health-monitor-controller</code> is a sidecar container that is deployed together with the CSI controller driver, similar to how the CSI <code>external-provisioner</code> sidecar is deployed. It calls the CSI controller RPC <code>ListVolumes</code> or <code>ControllerGetVolume</code> to check the health condition of the CSI volumes and report events on <code>PersistentVolumeClaim</code> if the condition of a volume is <code>abnormal</code>.</p>
@@ -905,11 +960,14 @@ their CSI driver.</p>
 <h1><a class="header" href="#csi-external-health-monitor-agent" id="csi-external-health-monitor-agent">CSI external-health-monitor-agent</a></h1>
 <h2><a class="header" href="#status-and-releases-10" id="status-and-releases-10">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-health-monitor">https://github.com/kubernetes-csi/external-health-monitor</a></p>
-<p><strong>Status:</strong> Alpha </p>
+<p><strong>Status:</strong> Deprecated</p>
+<h3><a class="header" href="#unsupported-versions-8" id="unsupported-versions-8">Unsupported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.2.0">external-health-monitor-agent v0.2.0</a></td><td><a href="https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.2">release-0.2</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.3.0">v1.3.0</a></td><td>-</td><td>k8s.gcr.io/sig-storage/csi-external-health-monitor-agent:v0.2.0</td></tr>
 </tbody></table>
 <h2><a class="header" href="#description-11" id="description-11">Description</a></h2>
+<p><em>Note</em>: This sidecar has been deprecated and replaced with the CSIVolumeHealth feature
+in Kubernetes.</p>
 <p>The CSI <code>external-health-monitor-agent</code> is a sidecar container that is deployed together with the CSI node driver, similar to how the CSI <code>node-driver-registrar</code> sidecar is deployed. It calls the CSI node RPC <code>NodeGetVolumeStats</code> to check the health condition of the CSI volumes and report events on <code>Pod</code> if the condition of a volume is <code>abnormal</code>.</p>
 <h2><a class="header" href="#usage-9" id="usage-9">Usage</a></h2>
 <p>CSI drivers that support <code>VOLUME_CONDITION</code> and <code>NODE_GET_VOLUME_STATS</code> node capabilities should use this sidecar container.</p>
@@ -1165,7 +1223,7 @@ spec:
 <pre><code>$&gt; kubectl create -f https://raw.githubusercontent.com/kubernetes/csi-api/master/pkg/crd/manifests/csinodeinfo.yaml
 </code></pre>
 <p>Kubernetes v1.14+, uses the same Kubernetes feature flag, but because the feature is beta, it is enabled by default. And since the API type (as of beta) is built in to the Kubernetes API, installation of the CRD is no longer required.</p>
-<h1><a class="header" href="#features-12" id="features-12">Features</a></h1>
+<h1><a class="header" href="#features-13" id="features-13">Features</a></h1>
 <p>The Kubernetes implementation of CSI has multiple sub-features. This section describes these sub-features, their status (although support for CSI in Kubernetes is GA/stable, support of sub-features moves independently so sub-features maybe alpha or beta), and how to integrate them in to your CSI Driver.</p>
 <h1><a class="header" href="#secrets-and-credentials" id="secrets-and-credentials">Secrets and Credentials</a></h1>
 <p>Some drivers may require a secret in order to complete operations.</p>
@@ -1905,7 +1963,7 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 </ul>
 <p>The snapshot controller is deployed by the Kubernetes distributions and is responsible for watching the VolumeSnapshot CRD objects and manges the creation and deletion lifecycle of snapshots.</p>
 <p>The CSI external-snapshotter sidecar watches Kubernetes VolumeSnapshotContent CRD objects and triggers CreateSnapshot/DeleteSnapshot against a CSI endpoint.</p>
-<h3><a class="header" href="#snapshot-validation-webhook-2" id="snapshot-validation-webhook-2">Snapshot Validation Webhook</a></h3>
+<h3><a class="header" href="#snapshot-validation-webhook-1" id="snapshot-validation-webhook-1">Snapshot Validation Webhook</a></h3>
 <p>There is a new validating webhook server which provides tightened validation on snapshot objects. This SHOULD be installed by the Kubernetes distros along with the snapshot-controller, not end users. It SHOULD be installed in all Kubernetes clusters that has the snapshot feature enabled. See <a href="snapshot-validation-webhook.html">Snapshot Validation Webhook</a> for more details on how to use the webhook.</p>
 <h3><a class="header" href="#kubernetes-cluster-setup-2" id="kubernetes-cluster-setup-2">Kubernetes Cluster Setup</a></h3>
 <p>Volume snapshot is promoted to beta in Kubernetes 1.17 so the <code>VolumeSnapshotDataSource</code> feature gate is enabled by default.</p>
