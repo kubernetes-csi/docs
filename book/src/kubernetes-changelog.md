@@ -3,6 +3,14 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.21
+
+### Features
+* Beta
+    * Pod token requests (CSIServiceAccountToken)
+    * Storage capacity tracking
+    * Generic ephemeral volumes
+
 ## Kubernetes 1.20
 
 ### Breaking Changes
