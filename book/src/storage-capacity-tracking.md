@@ -15,7 +15,7 @@ storage capacity tracking, a node is chosen without knowing whether
 those volumes can be made available for the node. Volume creation is
 attempted and if that fails, the pod has to be rescheduled,
 potentially landing on the same node again. With storage capacity
-tracking, the scheduler filters our nodes which do not have enough
+tracking, the scheduler filters out nodes which do not have enough
 capacity.
 
 > For design information, see the [enhancement
