@@ -74,7 +74,7 @@ These are the important fields:
   - This field was added in Kubernetes 1.16 and cannot be set when using an older Kubernetes release.
   - This field is beta.
   - It informs Kubernetes about the volume modes that are supported by the driver.
-    This ensures that the driver [is not used incorrectly](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes) by users.
+    This ensures that the driver [is not used incorrectly](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/596-csi-inline-volumes/README.md#support-for-inline-csi-volumes) by users.
     The default is `Persistent`, which is the normal PVC/PV mechanism. `Ephemeral` enables
     [inline ephemeral volumes](ephemeral-local-volumes.md) in addition (when both
     are listed) or instead of normal volumes (when it is the only entry in the list).
