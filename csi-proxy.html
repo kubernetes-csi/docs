@@ -1,0 +1,269 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>CSI Proxy - Kubernetes CSI Developer Documentation</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="project-policies.html"><strong aria-hidden="true">2.1.</strong> Versioning, Support, Compatibility Policies</a></li><li class="chapter-item expanded "><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.2.</strong> Kubernetes Changelog</a></li><li class="chapter-item expanded "><a href="kubernetes-cluster-controllers.html"><strong aria-hidden="true">2.3.</strong> Kubernetes Cluster Controllers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="snapshot-controller.html"><strong aria-hidden="true">2.3.1.</strong> Snapshot Controller</a></li><li class="chapter-item expanded "><a href="snapshot-validation-webhook.html"><strong aria-hidden="true">2.3.2.</strong> Snapshot Validation Webhook</a></li><li class="chapter-item expanded "><a href="csi-proxy.html" class="active"><strong aria-hidden="true">2.3.3.</strong> CSI Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="sidecar-containers.html"><strong aria-hidden="true">2.4.</strong> Sidecar Containers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="external-attacher.html"><strong aria-hidden="true">2.4.1.</strong> external-attacher</a></li><li class="chapter-item expanded "><a href="external-provisioner.html"><strong aria-hidden="true">2.4.2.</strong> external-provisioner</a></li><li class="chapter-item expanded "><a href="external-resizer.html"><strong aria-hidden="true">2.4.3.</strong> external-resizer</a></li><li class="chapter-item expanded "><a href="external-snapshotter.html"><strong aria-hidden="true">2.4.4.</strong> external-snapshotter</a></li><li class="chapter-item expanded "><a href="livenessprobe.html"><strong aria-hidden="true">2.4.5.</strong> livenessprobe</a></li><li class="chapter-item expanded "><a href="node-driver-registrar.html"><strong aria-hidden="true">2.4.6.</strong> node-driver-registrar</a></li><li class="chapter-item expanded "><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.4.7.</strong> cluster-driver-registrar</a></li><li class="chapter-item expanded "><a href="external-health-monitor-controller.html"><strong aria-hidden="true">2.4.8.</strong> external-health-monitor-controller</a></li><li class="chapter-item expanded "><a href="external-health-monitor-agent.html"><strong aria-hidden="true">2.4.9.</strong> external-health-monitor-agent</a></li></ol></li><li class="chapter-item expanded "><a href="csi-objects.html"><strong aria-hidden="true">2.5.</strong> CSI objects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csi-driver-object.html"><strong aria-hidden="true">2.5.1.</strong> CSIDriver Object</a></li><li class="chapter-item expanded "><a href="csi-node-object.html"><strong aria-hidden="true">2.5.2.</strong> CSINode Object</a></li></ol></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">2.6.</strong> Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.6.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.6.1.1.</strong> StorageClass Secrets</a></li><li class="chapter-item expanded "><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.6.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li class="chapter-item expanded "><a href="topology.html"><strong aria-hidden="true">2.6.2.</strong> Topology</a></li><li class="chapter-item expanded "><a href="raw-block.html"><strong aria-hidden="true">2.6.3.</strong> Raw Block Volume</a></li><li class="chapter-item expanded "><a href="skip-attach.html"><strong aria-hidden="true">2.6.4.</strong> Skip Attach</a></li><li class="chapter-item expanded "><a href="pod-info.html"><strong aria-hidden="true">2.6.5.</strong> Pod Info on Mount</a></li><li class="chapter-item expanded "><a href="volume-expansion.html"><strong aria-hidden="true">2.6.6.</strong> Volume expansion</a></li><li class="chapter-item expanded "><a href="volume-datasources.html"><strong aria-hidden="true">2.6.7.</strong> Data Sources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="volume-cloning.html"><strong aria-hidden="true">2.6.7.1.</strong> Cloning</a></li><li class="chapter-item expanded "><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.6.7.2.</strong> Volume Snapshot &amp; Restore</a></li></ol></li><li class="chapter-item expanded "><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.6.8.</strong> Ephemeral Local Volumes</a></li><li class="chapter-item expanded "><a href="volume-limits.html"><strong aria-hidden="true">2.6.9.</strong> Volume Limits</a></li><li class="chapter-item expanded "><a href="storage-capacity-tracking.html"><strong aria-hidden="true">2.6.10.</strong> Storage Capacity Tracking</a></li><li class="chapter-item expanded "><a href="volume-health-monitor.html"><strong aria-hidden="true">2.6.11.</strong> Volume Health Monitoring</a></li><li class="chapter-item expanded "><a href="token-requests.html"><strong aria-hidden="true">2.6.12.</strong> Token Requests</a></li><li class="chapter-item expanded "><a href="support-fsgroup.html"><strong aria-hidden="true">2.6.13.</strong> FSGroup Support</a></li><li class="chapter-item expanded "><a href="csi-windows.html"><strong aria-hidden="true">2.6.14.</strong> CSI Windows</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li class="chapter-item expanded "><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li class="chapter-item expanded "><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">6.</strong> Troubleshooting</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#csi-proxy" id="csi-proxy">CSI Proxy</a></h1>
+<h2><a class="header" href="#status-and-releases" id="status-and-releases">Status and Releases</a></h2>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/csi-proxy">https://github.com/kubernetes-csi/csi-proxy</a></p>
+<p><strong>Status:</strong> V1 starting with v1.0.0</p>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
+<tr><td>v0.1.0</td><td>1.18</td><td>-</td></tr>
+<tr><td>v0.2.0+</td><td>1.18</td><td>-</td></tr>
+<tr><td>v1.0.0+</td><td>1.18</td><td>-</td></tr>
+</tbody></table>
+<h2><a class="header" href="#description" id="description">Description</a></h2>
+<p>CSI Proxy is a binary that exposes a set of gRPC APIs around storage operations over named pipes in Windows. A container, such as CSI node plugins, can mount the named pipes depending on operations it wants to exercise on the host and invoke the APIs.</p>
+<p>Each named pipe will support a specific version of an API (e.g. v1alpha1, v2beta1) that targets a specific area of storage (e.g. disk, volume, file, SMB, iSCSI). For example, <code>\\.\pipe\csi-proxy-filesystem-v1alpha1</code>, <code>\\.\pipe\csi-proxy-disk-v1beta1</code>. Any release of csi-proxy.exe binary will strive to maintain backward compatibility across as many prior stable versions of an API group as possible. Please see details in this <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-windows/1122-windows-csi-support">CSI Windows support KEP</a></p>
+<h2><a class="header" href="#usage" id="usage">Usage</a></h2>
+<p>Run csi-proxy.exe binary directly on a Windows node. The command line options are:</p>
+<ul>
+<li>
+<p><code>-kubelet-path</code>: This is the prefix path of the kubelet directory in the host file system (the default value is set to <code>C:\var\lib\kubelet</code>)</p>
+</li>
+<li>
+<p><code>-windows-service</code>: Configure as a Windows Service</p>
+</li>
+<li>
+<p><code>-log_file</code>: If non-empty, use this log file. (Note: must set <code>logtostdrr</code>=false if setting -log_file)</p>
+</li>
+</ul>
+<p>Note that <code>-kubelet-pod-path</code> and <code>-kubelet-csi-plugins-path</code> were used in prior 1.0.0 versions, and they are now replaced by new parameter <code>-kubelet-path</code></p>
+<p>For detailed information (binary parameters, etc.), see the README of the relevant branch.</p>
+<h2><a class="header" href="#deployment" id="deployment">Deployment</a></h2>
+<p>It the responsibility of the Kubernetes distribution or cluster admin to install csi-proxy. Directly run csi-proxy.exe binary or run it as a Windows Service on Kubernetes nodes.
+For example,</p>
+<pre><code>    $flags = &quot;-windows-service -log_file=\etc\kubernetes\logs\csi-proxy.log -logtostderr=false&quot;
+    sc.exe create csiproxy binPath= &quot;${env:NODE_DIR}\csi-proxy.exe $flags&quot;
+    sc.exe failure csiproxy reset= 0 actions= restart/10000
+    sc.exe start csiproxy
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="snapshot-validation-webhook.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="sidecar-containers.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="snapshot-validation-webhook.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="sidecar-containers.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+
+        
+
+    </body>
+</html>
