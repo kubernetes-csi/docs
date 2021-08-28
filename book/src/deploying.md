@@ -125,7 +125,7 @@ Another feature that CSI depends on is mount propagation.  It allows the sharing
 
 ### Examples
 
-- Simple deployment example using a single pod for all components: see the [hostpath example](example.html).
+- Simple deployment example using a single pod for all components: see the [hostpath example](example.md).
 - Full deployment example using a _DaemonSet_ for the node plugin and _StatefulSet_ for the controller plugin: TODO
 
 ## More information
