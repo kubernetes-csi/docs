@@ -10,7 +10,7 @@ Alpha | 0.1.0 | 0.1.0
 
 The External Health Monitor is part of Kubernetes implementation of [Container Storage Interface (CSI)](https://github.com/container-storage-interface/spec). It was introduced as an Alpha feature in Kubernetes v1.19.
 
-The [External Health Monitor](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1432-volume-health-monitor) is impelmeted as two components: `External Health Monitor Controller` and `External Health Monitor Agent`.
+The [External Health Monitor](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1432-volume-health-monitor) is implemented as two components: `External Health Monitor Controller` and `External Health Monitor Agent`.
 
 - External Health Monitor Controller:
   - The external health monitor controller will be deployed as a sidecar together with the CSI controller driver, similar to how the external-provisioner sidecar is deployed.
