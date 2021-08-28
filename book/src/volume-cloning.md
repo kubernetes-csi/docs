@@ -12,7 +12,7 @@ GA   | 1.18 | - | 1.6
 
 A Clone is defined as a duplicate of an existing Kubernetes Volume.  For more information on cloning in Kubernetes see the concepts doc for [Volume Cloning](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-cloning).  A storage provider that allows volume cloning as a create feature, may choose to implement volume cloning via a control-plan CSI RPC call.
 
-For details regarding the kuberentes API for volume cloning, please see [kubernetes concepts](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/).
+For details regarding the kubernetes API for volume cloning, please see [kubernetes concepts](https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/).
 
 ## Implementing Volume cloning functionality
 
