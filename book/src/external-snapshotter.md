@@ -10,9 +10,11 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
 --|--|--|--|--|--|--|--
+[external-snapshotter v4.2.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.2.1) | [release-4.2](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v4.2.1 | v1.20 | - | v1.22
 [external-snapshotter v4.1.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.1.1) | [release-4.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v4.1.1 | v1.20 | - | v1.20
 [external-snapshotter v4.0.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.0) | [release-4.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v4.0.0 | v1.20 | - | v1.20
 [external-snapshotter v3.0.3 (beta)](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v3.0.3) | [release-3.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-3.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/csi-snapshotter:v3.0.3 | v1.17 | - | v1.17
+
 
 ### Unsupported Versions
 
