@@ -1,4 +1,4 @@
-# CSI Windows Suppoort
+# CSI Windows Support
 
 ## Status
 

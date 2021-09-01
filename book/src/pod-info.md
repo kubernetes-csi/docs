@@ -45,7 +45,7 @@ The CSIDriver object should be manually included in the driver manifests.
 Previously, the [cluster-driver-registrar](cluster-driver-registrar.md) sidecar container could be used to create the object. Once the flags to this container are configured correctly, it will automatically create a [CSIDriver Object](csi-driver-object.md) when it starts with the correct fields set.
 
 ## Alpha Functionality
-In alpha, this feature was enabled by setting the `podInfoOnMountVersion` field in the `CSIDriver` Object CRD to to `v1`.
+In alpha, this feature was enabled by setting the `podInfoOnMountVersion` field in the `CSIDriver` Object CRD to `v1`.
 
 ```
 apiVersion: csi.storage.k8s.io/v1alpha1

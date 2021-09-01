@@ -39,7 +39,7 @@ With the promotion of Volume Snapshot to beta, the feature is now enabled by def
 
 The schema definition for the custom resources (CRs) can be found [here](https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/client/apis/volumesnapshot/v1beta1/types.go). The CRDs are no longer automatically deployed by the sidecar. They should be installed by the Kubernetes distributions.
 
-#### Hightlights in the snapshot v1beta1 APIs
+#### Highlights in the snapshot v1beta1 APIs
 
 * DeletionPolicy is a required field in both VolumeSnapshotClass and VolumeSnapshotContent. This way the user has to explicitly specify it, leaving no room for confusion.
 * VolumeSnapshotSpec has a required Source field. Source may be either a PersistentVolumeClaimName (if dynamically provisioning a snapshot) or VolumeSnapshotContentName (if pre-provisioning a snapshot).
