@@ -191,7 +191,7 @@
 <h3><a class="header" href="#snapshot-apis" id="snapshot-apis">Snapshot APIs</a></h3>
 <p>With the promotion of Volume Snapshot to beta, the feature is now enabled by default on standard Kubernetes deployments instead of being opt-in. This involves a revamp of volume snapshot APIs.</p>
 <p>The schema definition for the custom resources (CRs) can be found <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/client/apis/volumesnapshot/v1beta1/types.go">here</a>. The CRDs are no longer automatically deployed by the sidecar. They should be installed by the Kubernetes distributions.</p>
-<h4><a class="header" href="#hightlights-in-the-snapshot-v1beta1-apis" id="hightlights-in-the-snapshot-v1beta1-apis">Hightlights in the snapshot v1beta1 APIs</a></h4>
+<h4><a class="header" href="#highlights-in-the-snapshot-v1beta1-apis" id="highlights-in-the-snapshot-v1beta1-apis">Highlights in the snapshot v1beta1 APIs</a></h4>
 <ul>
 <li>DeletionPolicy is a required field in both VolumeSnapshotClass and VolumeSnapshotContent. This way the user has to explicitly specify it, leaving no room for confusion.</li>
 <li>VolumeSnapshotSpec has a required Source field. Source may be either a PersistentVolumeClaimName (if dynamically provisioning a snapshot) or VolumeSnapshotContentName (if pre-provisioning a snapshot).</li>

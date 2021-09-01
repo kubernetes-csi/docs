@@ -195,7 +195,7 @@ spec:
 <p>The CSIDriver object should be manually included in the driver manifests.</p>
 <p>Previously, the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container could be used to create the object. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
 <h2><a class="header" href="#alpha-functionality" id="alpha-functionality">Alpha Functionality</a></h2>
-<p>In alpha, this feature was enabled by setting the <code>podInfoOnMountVersion</code> field in the <code>CSIDriver</code> Object CRD to to <code>v1</code>.</p>
+<p>In alpha, this feature was enabled by setting the <code>podInfoOnMountVersion</code> field in the <code>CSIDriver</code> Object CRD to <code>v1</code>.</p>
 <pre><code>apiVersion: csi.storage.k8s.io/v1alpha1
 kind: CSIDriver
 metadata:

@@ -951,7 +951,7 @@ their CSI driver.</p>
 <h2><a class="header" href="#status-and-releases-9" id="status-and-releases-9">Status and Releases</a></h2>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/cluster-driver-registrar">https://github.com/kubernetes-csi/cluster-driver-registrar</a></p>
 <p><strong>Status:</strong> Alpha</p>
-<table><thead><tr><th>Latests stable release</th><th>Branch</th><th>Compatible with CSI Version</th><th>Container Image</th><th>Min k8s Version</th><th>Max k8s version</th></tr></thead><tbody>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Compatible with CSI Version</th><th>Container Image</th><th>Min k8s Version</th><th>Max k8s version</th></tr></thead><tbody>
 <tr><td><a href="https://github.com/kubernetes-csi/cluster-driver-registrar/releases/tag/v1.0.1">cluster-driver-registrar v1.0.1</a></td><td><a href="https://github.com/kubernetes-csi/cluster-driver-registrar/tree/release-1.0">release-1.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">v1.0.0</a></td><td>quay.io/k8scsi/csi-cluster-driver-registrar:v1.0.1</td><td>v1.13</td><td>-</td></tr>
 <tr><td><a href="https://github.com/kubernetes-csi/driver-registrar/releases/tag/v0.4.2">driver-registrar v0.4.2</a></td><td><a href="https://github.com/kubernetes-csi/driver-registrar/tree/release-0.4">release-0.4</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">v0.3.0</a></td><td>quay.io/k8scsi/driver-registrar:v0.4.2</td><td>v1.10</td><td>-</td></tr>
 </tbody></table>
@@ -1875,7 +1875,7 @@ spec:
 <p>The CSIDriver object should be manually included in the driver manifests.</p>
 <p>Previously, the <a href="cluster-driver-registrar.html">cluster-driver-registrar</a> sidecar container could be used to create the object. Once the flags to this container are configured correctly, it will automatically create a <a href="csi-driver-object.html">CSIDriver Object</a> when it starts with the correct fields set.</p>
 <h2><a class="header" href="#alpha-functionality-1" id="alpha-functionality-1">Alpha Functionality</a></h2>
-<p>In alpha, this feature was enabled by setting the <code>podInfoOnMountVersion</code> field in the <code>CSIDriver</code> Object CRD to to <code>v1</code>.</p>
+<p>In alpha, this feature was enabled by setting the <code>podInfoOnMountVersion</code> field in the <code>CSIDriver</code> Object CRD to <code>v1</code>.</p>
 <pre><code>apiVersion: csi.storage.k8s.io/v1alpha1
 kind: CSIDriver
 metadata:
@@ -1941,7 +1941,7 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 </tbody></table>
 <h2><a class="header" href="#overview-6" id="overview-6">Overview</a></h2>
 <p>A Clone is defined as a duplicate of an existing Kubernetes Volume.  For more information on cloning in Kubernetes see the concepts doc for <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#volume-cloning">Volume Cloning</a>.  A storage provider that allows volume cloning as a create feature, may choose to implement volume cloning via a control-plan CSI RPC call.</p>
-<p>For details regarding the kuberentes API for volume cloning, please see <a href="https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/">kubernetes concepts</a>.</p>
+<p>For details regarding the kubernetes API for volume cloning, please see <a href="https://kubernetes.io/docs/concepts/storage/volume-pvc-datasource/">kubernetes concepts</a>.</p>
 <h2><a class="header" href="#implementing-volume-cloning-functionality" id="implementing-volume-cloning-functionality">Implementing Volume cloning functionality</a></h2>
 <p>To implement volume cloning the CSI driver MUST:</p>
 <ol>
@@ -1987,7 +1987,7 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 <h3><a class="header" href="#snapshot-apis" id="snapshot-apis">Snapshot APIs</a></h3>
 <p>With the promotion of Volume Snapshot to beta, the feature is now enabled by default on standard Kubernetes deployments instead of being opt-in. This involves a revamp of volume snapshot APIs.</p>
 <p>The schema definition for the custom resources (CRs) can be found <a href="https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/client/apis/volumesnapshot/v1beta1/types.go">here</a>. The CRDs are no longer automatically deployed by the sidecar. They should be installed by the Kubernetes distributions.</p>
-<h4><a class="header" href="#hightlights-in-the-snapshot-v1beta1-apis" id="hightlights-in-the-snapshot-v1beta1-apis">Hightlights in the snapshot v1beta1 APIs</a></h4>
+<h4><a class="header" href="#highlights-in-the-snapshot-v1beta1-apis" id="highlights-in-the-snapshot-v1beta1-apis">Highlights in the snapshot v1beta1 APIs</a></h4>
 <ul>
 <li>DeletionPolicy is a required field in both VolumeSnapshotClass and VolumeSnapshotContent. This way the user has to explicitly specify it, leaving no room for confusion.</li>
 <li>VolumeSnapshotSpec has a required Source field. Source may be either a PersistentVolumeClaimName (if dynamically provisioning a snapshot) or VolumeSnapshotContentName (if pre-provisioning a snapshot).</li>
@@ -2292,7 +2292,7 @@ documentation</a>.</p>
 </tbody></table>
 <h2><a class="header" href="#overview-11" id="overview-11">Overview</a></h2>
 <p>The External Health Monitor is part of Kubernetes implementation of <a href="https://github.com/container-storage-interface/spec">Container Storage Interface (CSI)</a>. It was introduced as an Alpha feature in Kubernetes v1.19.</p>
-<p>The <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1432-volume-health-monitor">External Health Monitor</a> is impelmeted as two components: <code>External Health Monitor Controller</code> and <code>External Health Monitor Agent</code>.</p>
+<p>The <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1432-volume-health-monitor">External Health Monitor</a> is implemented as two components: <code>External Health Monitor Controller</code> and <code>External Health Monitor Agent</code>.</p>
 <ul>
 <li>
 <p>External Health Monitor Controller:</p>
@@ -2477,7 +2477,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 <p>To use this field, Kubernetes 1.19 binaries must start with the <code>CSIVolumeFSGroupPolicy</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIVolumeFSGroupPolicy=true
 </code></pre>
-<h1><a class="header" href="#csi-windows-suppoort" id="csi-windows-suppoort">CSI Windows Suppoort</a></h1>
+<h1><a class="header" href="#csi-windows-support" id="csi-windows-support">CSI Windows Support</a></h1>
 <h2><a class="header" href="#status-14" id="status-14">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Min CSI proxy Version</th><th>Min Node Driver Registrar Version</th></tr></thead><tbody>
 <tr><td>GA</td><td>1.19</td><td>1.0.0</td><td>1.3.0</td></tr>
@@ -2771,8 +2771,8 @@ The <a href="https://github.com/kubernetes-csi/csi-driver-host-path#deployment">
 <tr><td><a href="https://github.com/bigtera-ce/ceph-csi">Bigtera VirtualStor (block)</a></td><td><code>csi.block.bigtera.com</code></td><td>v0.3, v1.0.0, v1.1.0</td><td>A Container Storage Interface (CSI) Driver for Bigtera VirtualStor block storage</td><td>Persistent</td><td>Read/Write Single Pod</td><td>Yes</td><td>Raw Block, Snapshot, Expansion</td></tr>
 <tr><td><a href="https://github.com/bigtera-ce/ceph-csi">Bigtera VirtualStor (filesystem)</a></td><td><code>csi.fs.bigtera.com</code></td><td>v0.3, v1.0.0, v1.1.0</td><td>A Container Storage Interface (CSI)  Driver for Bigtera VirtualStor filesystem</td><td>Persistent</td><td>Read/Write Multiple Pods</td><td>Yes</td><td>Expansion</td></tr>
 <tr><td><a href="https://github.com/bizflycloud/csi-bizflycloud">BizFlyCloud Block Storage</a></td><td><code>volume.csi.bizflycloud.vn</code></td><td>v1.2</td><td>A Container Storage Interface (CSI) Driver for BizFly Cloud block storage</td><td>Persistent</td><td>Read/Write Single Pod</td><td>Yes</td><td>Raw Block, Snapshot, Expansion</td></tr>
-<tr><td><a href="https://github.com/ceph/ceph-csi">CephFS</a></td><td><code>cephfs.csi.ceph.com</code></td><td>v0.3, v1.0.0, v1.1.0, v1.2.0</td><td>A Container Storage Interface (CSI) Driver for CephFS</td><td>Persistent</td><td>Read/Write Multiple Pods</td><td>Yes</td><td>Expansion, Snapshot, Clone</td></tr>
-<tr><td><a href="https://github.com/ceph/ceph-csi">Ceph RBD</a></td><td><code>rbd.csi.ceph.com</code></td><td>v0.3, v1.0.0, v1.1.0, v1.2.0</td><td>A Container Storage Interface (CSI)  Driver for Ceph RBD</td><td>Persistent</td><td>Read/Write Single Pod</td><td>Yes</td><td>Raw Block, Snapshot, Expansion, Topology, Cloning</td></tr>
+<tr><td><a href="https://github.com/ceph/ceph-csi">CephFS</a></td><td><code>cephfs.csi.ceph.com</code></td><td>v0.3, &gt;=v1.0.0</td><td>A Container Storage Interface (CSI) Driver for CephFS</td><td>Persistent</td><td>Read/Write Multiple Pods</td><td>Yes</td><td>Expansion, Snapshot, Cloning</td></tr>
+<tr><td><a href="https://github.com/ceph/ceph-csi">Ceph RBD</a></td><td><code>rbd.csi.ceph.com</code></td><td>v0.3, &gt;=v1.0.0</td><td>A Container Storage Interface (CSI)  Driver for Ceph RBD</td><td>Persistent</td><td>Read/Write Single Pod</td><td>Yes</td><td>Raw Block, Snapshot, Expansion, Topology, Cloning</td></tr>
 <tr><td><a href="https://github.com/chubaofs/chubaofs-csi">ChubaoFS</a></td><td><code>csi.chubaofs.com</code></td><td>v1.0.0</td><td>A Container Storage Interface (CSI) Driver for ChubaoFS Storage</td><td>Persistent</td><td>Read/Write Multiple Pods</td><td>Yes</td><td></td></tr>
 <tr><td><a href="https://github.com/kubernetes/cloud-provider-openstack/tree/master/pkg/csi/cinder">Cinder</a></td><td><code>cinder.csi.openstack.org</code></td><td>v0.3, v1.0, v1.1.0, v1.2.0, v1.3.0</td><td>A Container Storage Interface (CSI) Driver for OpenStack Cinder</td><td>Persistent and Ephemeral</td><td>Depends on the storage backend used</td><td>Yes, if storage backend supports it</td><td>Raw Block, Snapshot, Expansion, Cloning, Topology</td></tr>
 <tr><td><a href="https://github.com/cloudscale-ch/csi-cloudscale">cloudscale.ch</a></td><td><code>csi.cloudscale.ch</code></td><td>v1.0</td><td>A Container Storage Interface (CSI) Driver for the <a href="https://www.cloudscale.ch/">cloudscale.ch</a> IaaS platform</td><td>Persistent</td><td>Read/Write Single Pod</td><td>Yes</td><td>Snapshot</td></tr>
@@ -2905,7 +2905,7 @@ E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/extern
 <h3><a class="header" href="#problems-with-the-external-components" id="problems-with-the-external-components">Problems with the external components</a></h3>
 <p>The external components images are under active development. It can
 happen that they become incompatible with each other. If the
-issues above above have been ruled out, <a href="https://github.com/kubernetes/community/tree/master/sig-storage">contact the sig-storage
+issues above have been ruled out, <a href="https://github.com/kubernetes/community/tree/master/sig-storage">contact the sig-storage
 team</a> and/or
 <a href="https://github.com/kubernetes/community/blob/master/contributors/devel/sig-testing/e2e-tests.md#local-clusters">run the e2e test</a>:</p>
 <pre><code>go run hack/e2e.go -- --provider=local --test --test_args=&quot;--ginkgo.focus=Feature:CSI&quot;
