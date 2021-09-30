@@ -182,7 +182,7 @@ Kubernetes 1.16 only allows using a CSI driver for an inline volume if
 its [`CSIDriver`](csi-driver-object.md) object explicitly declares
 that the driver supports that kind of usage in its
 `volumeLifecycleModes` field. This is a safeguard against accidentally
-[using a driver the wrong way](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes).
+[using a driver the wrong way](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/596-csi-inline-volumes#support-for-inline-csi-volumes).
 
 ### Feature gates
 
