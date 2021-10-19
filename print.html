@@ -2216,7 +2216,7 @@ or after the request to unpublish is returned.</p>
 its <a href="csi-driver-object.html"><code>CSIDriver</code></a> object explicitly declares
 that the driver supports that kind of usage in its
 <code>volumeLifecycleModes</code> field. This is a safeguard against accidentally
-<a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/20190122-csi-inline-volumes.md#support-for-inline-csi-volumes">using a driver the wrong way</a>.</p>
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/596-csi-inline-volumes#support-for-inline-csi-volumes">using a driver the wrong way</a>.</p>
 <h3><a class="header" href="#feature-gates" id="feature-gates">Feature gates</a></h3>
 <p>To use inline volume, Kubernetes 1.15 binaries must start with the <code>CSIInlineVolume</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIInlineVolume=true
