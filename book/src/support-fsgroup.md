@@ -5,7 +5,8 @@
 Status | Min K8s Version | Max K8s Version 
 --|--|--
 Alpha | 1.19 | 1.19
-Beta | 1.20 | -
+Beta | 1.20 | 1.22
+GA | 1.23 | -
 
 # Overview
 
@@ -47,3 +48,4 @@ To use this field, Kubernetes 1.19 binaries must start with the `CSIVolumeFSGrou
 ```
 --feature-gates=CSIVolumeFSGroupPolicy=true
 ```
+This is enabled by default on 1.20 and higher.
