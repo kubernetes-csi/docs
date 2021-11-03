@@ -10,6 +10,7 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) |
 --|--|--|--|--|--|--
+[livenessprobe v2.5.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.5.0) | [release-2.5](https://github.com/kubernetes-csi/livenessprobe/tree/release-2.5) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) |-| k8s.gcr.io/sig-storage/livenessprobe:v2.5.0 | v1.13 | -
 [livenessprobe v2.4.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.4.0) | [release-2.4](https://github.com/kubernetes-csi/livenessprobe/tree/release-2.4) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) |-| k8s.gcr.io/sig-storage/livenessprobe:v2.4.0 | v1.13 | -
 [livenessprobe v2.3.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.3.0) | [release-2.3](https://github.com/kubernetes-csi/livenessprobe/tree/release-2.3) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) |-| k8s.gcr.io/sig-storage/livenessprobe:v2.3.0 | v1.13 | -
 [livenessprobe v2.2.0](https://github.com/kubernetes-csi/livenessprobe/releases/tag/v2.2.0) | [release-2.2](https://github.com/kubernetes-csi/livenessprobe/tree/release-2.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) |-| k8s.gcr.io/sig-storage/livenessprobe:v2.2.0 | v1.13 | -
