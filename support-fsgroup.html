@@ -167,7 +167,8 @@
 <h1><a class="header" href="#status" id="status">Status</a></h1>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.19</td><td>1.19</td></tr>
-<tr><td>Beta</td><td>1.20</td><td>-</td></tr>
+<tr><td>Beta</td><td>1.20</td><td>1.22</td></tr>
+<tr><td>GA</td><td>1.23</td><td>-</td></tr>
 </tbody></table>
 <h1><a class="header" href="#overview" id="overview">Overview</a></h1>
 <p>CSI Drivers can indicate whether or not they support modifying a volume's ownership or permissions when the volume is being mounted. This can be useful if the CSI Driver does not support the operation, or wishes to re-use volumes with constantly changing permissions.</p>
@@ -206,6 +207,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 <p>To use this field, Kubernetes 1.19 binaries must start with the <code>CSIVolumeFSGroupPolicy</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIVolumeFSGroupPolicy=true
 </code></pre>
+<p>This is enabled by default on 1.20 and higher.</p>
 
                     </main>
 

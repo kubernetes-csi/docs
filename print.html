@@ -1054,7 +1054,7 @@ metadata:
 spec:
   attachRequired: true
   podInfoOnMount: true
-  fsGroupPolicy: File # added in Kubernetes 1.19, this field is beta as of Kubernetes 1.20
+  fsGroupPolicy: File # added in Kubernetes 1.19, this field is GA as of Kubernetes 1.23
   volumeLifecycleModes: # added in Kubernetes 1.16, this field is beta
     - Persistent
     - Ephemeral
@@ -1097,7 +1097,7 @@ spec:
 <li><code>fsGroupPolicy</code>
 <ul>
 <li>This field was added in Kubernetes 1.19 and cannot be set when using an older Kubernetes release.</li>
-<li>This field is beta in Kubernetes 1.20.</li>
+<li>This field is beta in Kubernetes 1.20 and GA in Kubernetes 1.23.</li>
 <li>Controls if this CSI volume driver supports volume ownership and permission changes when volumes are mounted.</li>
 <li>The following modes are supported, and if not specified the default is <code>ReadWriteOnceWithFSType</code>:
 <ul>
@@ -2443,7 +2443,8 @@ the Vault provider will send the token to Vault which will use the token in
 <h1><a class="header" href="#status-13" id="status-13">Status</a></h1>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.19</td><td>1.19</td></tr>
-<tr><td>Beta</td><td>1.20</td><td>-</td></tr>
+<tr><td>Beta</td><td>1.20</td><td>1.22</td></tr>
+<tr><td>GA</td><td>1.23</td><td>-</td></tr>
 </tbody></table>
 <h1><a class="header" href="#overview-13" id="overview-13">Overview</a></h1>
 <p>CSI Drivers can indicate whether or not they support modifying a volume's ownership or permissions when the volume is being mounted. This can be useful if the CSI Driver does not support the operation, or wishes to re-use volumes with constantly changing permissions.</p>
@@ -2482,6 +2483,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 <p>To use this field, Kubernetes 1.19 binaries must start with the <code>CSIVolumeFSGroupPolicy</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIVolumeFSGroupPolicy=true
 </code></pre>
+<p>This is enabled by default on 1.20 and higher.</p>
 <h1><a class="header" href="#csi-windows-support" id="csi-windows-support">CSI Windows Support</a></h1>
 <h2><a class="header" href="#status-14" id="status-14">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Min CSI proxy Version</th><th>Min Node Driver Registrar Version</th></tr></thead><tbody>
