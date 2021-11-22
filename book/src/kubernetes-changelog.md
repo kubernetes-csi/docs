@@ -3,6 +3,32 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.23
+
+### Features
+* GA
+    * CSI fsgroup policy
+    * Non-recusrive fsgroup ownership
+    * Generic ephemeral volumes
+* Beta
+    * Delegate fsgroup to CSI driver
+* Alpha
+    * Recover from Expansion Failure
+    * Honor PV Reclaim Policy
+    * RBD CSI Migration
+    * Portworx CSI migration
+
+## Kubernetes 1.22
+
+### Features
+* GA
+    * Windows CSI (CSI-Proxy API v1)
+    * Pod token requests (CSIServiceAccountToken)
+* Alpha
+    * ReadWriteOncePod access mode
+    * Delegate fsgroup to CSI driver
+    * Generic data populators
+
 ## Kubernetes 1.21
 
 ### Features
