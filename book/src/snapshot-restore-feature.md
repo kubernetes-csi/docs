@@ -17,7 +17,7 @@ Kubernetes CSI currently enables CSI Drivers to expose the following functionali
 1. Creation and deletion of volume snapshots via [Kubernetes native API](https://kubernetes.io/docs/concepts/storage/volume-snapshots/). 
 2. Creation of new volumes pre-populated with the data from a snapshot via Kubernetes [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-Note: Documentation under https://kubernetes.io/docs is for the latest Kubernetes release. Documentation for earlier releases are stored in different location. For example, this is the documentation location for [v1.16](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/).
+Note: Documentation under https://kubernetes.io/docs is for the latest Kubernetes release. Documentation for earlier releases are stored in different location. For example, this is the documentation location for [v1.16](https://kubernetes.io/docs/concepts/storage/volume-snapshots/).
 
 ## Implementing Snapshot & Restore Functionality in Your CSI Driver
 
@@ -99,7 +99,7 @@ kubectl create -f restore.yaml
 ## Snapshot Alpha
 ### Snapshot APIs
 
-Similar to the API for managing [Kubernetes Persistent Volumes](https://v1-16.docs.kubernetes.io/docs/concepts/storage/persistent-volumes/), the Kubernetes Volume Snapshots introduce three new API objects for managing snapshots: `VolumeSnapshot`, `VolumeSnapshotContent`, and `VolumeSnapshotClass`. See [Kubernetes Snapshot documentation](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/) for more details.
+Similar to the API for managing [Kubernetes Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/), the Kubernetes Volume Snapshots introduce three new API objects for managing snapshots: `VolumeSnapshot`, `VolumeSnapshotContent`, and `VolumeSnapshotClass`. See [Kubernetes Snapshot documentation](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) for more details.
 
 Unlike the core Kubernetes Persistent Volume objects, these Snapshot objects are defined as [Custom Resource Definitions](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#create-a-customresourcedefinition) (CRDs). This is because the Kubernetes project is moving away from having resource types pre-defined in the API server. This allows the API server to be reused for projects other than Kubernetes, and consumers (like Kubernetes) simply install the resource types they require as CRDs. Because the Snapshot API types are not built in to Kubernetes, they must be installed prior to use.
 
