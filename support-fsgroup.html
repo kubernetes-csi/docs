@@ -164,18 +164,20 @@
                 <div id="content" class="content">
                     <main>
                         <h1><a class="header" href="#csi-driver-fsgroup-support" id="csi-driver-fsgroup-support">CSI Driver fsGroup Support</a></h1>
-<h1><a class="header" href="#status" id="status">Status</a></h1>
+<p>There are two features related to supporting <code>fsGroup</code> for the CSI driver: CSI volume fsGroup policy and delegating fsGroup to CSI driver. For more information about using <code>fsGroup</code> in Kubernetes, please refer to the <a href="https://kubernetes.io/docs/tasks/configure-pod-container/security-context/">Kubernetes documentation on Pod security context</a>.</p>
+<h2><a class="header" href="#csi-volume-fsgroup-policy" id="csi-volume-fsgroup-policy">CSI Volume fsGroup Policy</a></h2>
+<h3><a class="header" href="#status" id="status">Status</a></h3>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.19</td><td>1.19</td></tr>
 <tr><td>Beta</td><td>1.20</td><td>1.22</td></tr>
 <tr><td>GA</td><td>1.23</td><td>-</td></tr>
 </tbody></table>
-<h1><a class="header" href="#overview" id="overview">Overview</a></h1>
+<h3><a class="header" href="#overview" id="overview">Overview</a></h3>
 <p>CSI Drivers can indicate whether or not they support modifying a volume's ownership or permissions when the volume is being mounted. This can be useful if the CSI Driver does not support the operation, or wishes to re-use volumes with constantly changing permissions.</p>
 <blockquote>
 <p>See the <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1682-csi-driver-skip-permission">design document</a> for further information.</p>
 </blockquote>
-<h1><a class="header" href="#example-usage" id="example-usage">Example Usage</a></h1>
+<h3><a class="header" href="#example-usage" id="example-usage">Example Usage</a></h3>
 <p>When creating the CSI Driver object, <code>fsGroupPolicy</code> is defined in the driver's spec. The following shows the hostpath driver with <code>None</code> included, indicating that the volumes should not be modified when mounted:</p>
 <pre><code class="language-yaml">apiVersion: storage.k8s.io/v1
 kind: CSIDriver
@@ -191,7 +193,7 @@ spec:
   podInfoOnMount: true
   fsGroupPolicy: None
 </code></pre>
-<h2><a class="header" href="#supported-modes" id="supported-modes">Supported Modes</a></h2>
+<h4><a class="header" href="#supported-modes" id="supported-modes">Supported Modes</a></h4>
 <ul>
 <li>The following modes are supported:
 <ul>
@@ -203,11 +205,36 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 </li>
 </ul>
 <p>If undefined, <code>fsGroupPolicy</code> will default to <code>ReadWriteOnceWithFSType</code>, keeping the previous behavior.</p>
-<h2><a class="header" href="#feature-gates" id="feature-gates">Feature Gates</a></h2>
+<h4><a class="header" href="#feature-gates" id="feature-gates">Feature Gates</a></h4>
 <p>To use this field, Kubernetes 1.19 binaries must start with the <code>CSIVolumeFSGroupPolicy</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIVolumeFSGroupPolicy=true
 </code></pre>
 <p>This is enabled by default on 1.20 and higher.</p>
+<h2><a class="header" href="#delegate-fsgroup-to-csi-driver" id="delegate-fsgroup-to-csi-driver">Delegate fsGroup to CSI Driver</a></h2>
+<h3><a class="header" href="#status-1" id="status-1">Status</a></h3>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
+<tr><td>Alpha</td><td>1.22</td><td>1.22</td></tr>
+<tr><td>Beta</td><td>1.23</td><td>-</td></tr>
+<tr><td>GA</td><td>-</td><td>-</td></tr>
+</tbody></table>
+<h3><a class="header" href="#overview-1" id="overview-1">Overview</a></h3>
+<p>For most drivers, kubelet applies the <code>fsGroup</code> specified in a Pod spec by recursively changing volume ownership during the mount process. This does not work for certain drivers. For example:</p>
+<ul>
+<li>A driver requires passing <code>fsGroup</code> to mount options in order for it to take effect.</li>
+<li>A driver needs to apply <code>fsGroup</code> at the stage step (<code>NodeStageVolume</code> in CSI; <code>MountDevice</code> in Kubernetes) instead of the mount step (<code>NodePublishVolume</code> in CSI; <code>SetUp/SetUpAt</code> in Kubernetes).</li>
+</ul>
+<p>This feature provides a mechanism for the driver to apply <code>fsGroup</code> instead of kubelet. Specifically, once the feature is enabled, it passes <code>fsGroup</code> to the CSI driver through <code>NodeStageVolume</code> and <code>NodePublishVolume</code> calls, and the kubelet <code>fsGroup</code> logic is disabled. The driver is expected to apply the <code>fsGroup</code> within one of these calls.</p>
+<p>If this feature is enabled in Kubernetes and a volume uses a driver that supports this feature, <code>CSIDriver.spec.fsGroupPolicy</code> and <code>Pod.spec.securityContext.fsGroupChangePolicy</code> are ignored.</p>
+<blockquote>
+<p>See the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/2317-fsgroup-on-mount/README.md">design document</a> and the description of the <code>VolumeCapability.MountVolume.volume_mount_group</code> field in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#createvolume">CSI spec</a> for further information.</p>
+</blockquote>
+<h3><a class="header" href="#usage" id="usage">Usage</a></h3>
+<p>The CSI driver must implement the <code>VOLUME_MOUNT_GROUP</code> node service capability. The Pod-specified <code>fsGroup</code> will be available in <code>NodeStageVolumeRequest</code> and <code>NodePublishVolumeRequest</code> via <code>VolumeCapability.MountVolume.VolumeMountGroup</code>.</p>
+<h4><a class="header" href="#feature-gates-1" id="feature-gates-1">Feature Gates</a></h4>
+<p>To use this field, Kubernetes 1.22 binaries must start with the <code>DelegateFSGroupToCSIDriver</code> feature gate enabled:</p>
+<pre><code>--feature-gates=DelegateFSGroupToCSIDriver=true
+</code></pre>
+<p>This is enabled by default on 1.23 and higher.</p>
 
                     </main>
 
