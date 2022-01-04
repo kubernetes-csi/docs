@@ -9,14 +9,15 @@ following [Semantic Versioning](https://semver.org/).
 Patch version releases only contain bug fixes that do not break any backwards
 compatibility.
 
-Minor version releases may contain new functionality that do not
-break any backwards compatibility (except for alpha features).
+Minor version releases may contain new functionality that do not break any
+backwards compatibility (except for alpha features). Minor version releases may
+also contain changes to RBAC requirements that are not opt-in, but these changes
+must be clearly communicated.
 
 Major version releases may contain new functionality or fixes that may break
 backwards compatibility with previous major releases. Changes that require a
-major version increase include: removing or changing API, flags, or behavior, new
-RBAC requirements that are not opt-in, new Kubernetes minimum version
-requirements.
+major version increase include: removing or changing API, flags, or behavior,
+new Kubernetes minimum version requirements.
 
 A litmus test for not breaking compatibility is to replace the image of a
 component in an existing deployment without changing that deployment in any
