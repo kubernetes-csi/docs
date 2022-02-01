@@ -24,7 +24,7 @@ Kubernetes and the [external-provisioner](external-provisioner.md) use these abi
 
 To support topology in a CSI driver, the following must be implemented:
 
-* The `PluginCapability` must support `VOLUME_ACCESSIBILITY_CONTRAINTS`.
+* The `PluginCapability` must support `VOLUME_ACCESSIBILITY_CONSTRAINTS`.
 * The plugin must fill in `accessible_topology` in `NodeGetInfoResponse`.
   This information will be used to populate the Kubernetes [CSINode object](csi-node-object.md) and add the topology labels to the Node object.
 * During `CreateVolume`, the topology information will get passed in through `CreateVolumeRequest.accessibility_requirements`.
