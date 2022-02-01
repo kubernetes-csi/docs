@@ -183,7 +183,7 @@
 <h2><a class="header" href="#implementing-topology-in-your-csi-driver" id="implementing-topology-in-your-csi-driver">Implementing Topology in your CSI Driver</a></h2>
 <p>To support topology in a CSI driver, the following must be implemented:</p>
 <ul>
-<li>The <code>PluginCapability</code> must support <code>VOLUME_ACCESSIBILITY_CONTRAINTS</code>.</li>
+<li>The <code>PluginCapability</code> must support <code>VOLUME_ACCESSIBILITY_CONSTRAINTS</code>.</li>
 <li>The plugin must fill in <code>accessible_topology</code> in <code>NodeGetInfoResponse</code>.
 This information will be used to populate the Kubernetes <a href="csi-node-object.html">CSINode object</a> and add the topology labels to the Node object.</li>
 <li>During <code>CreateVolume</code>, the topology information will get passed in through <code>CreateVolumeRequest.accessibility_requirements</code>.</li>
