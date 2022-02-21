@@ -60,7 +60,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [IBM Spectrum Scale](https://github.com/IBM/ibm-spectrum-scale-csi) | `spectrumscale.csi.ibm.com` | v1.0, v1.1, v1.3 | A Container Storage Interface (CSI) [Driver](https://www.ibm.com/docs/en/spectrum-scale-csi) for the IBM Spectrum Scale File System | Persistent | Read/Write Multiple Pod | Yes | Snapshot, Expansion, Cloning
 [IBM Cloud Block Storage VPC CSI Driver](https://github.com/kubernetes-sigs/ibm-vpc-block-csi-driver) | `vpc.block.csi.ibm.io` |
 v1.0 | A Container Storage Interface (CSI) [Driver](https://cloud.ibm.com/docs/containers?topic=containers-vpc-block) for IBM
-Cloud Kubernetes Service and Red Hat OpenShift on IBM Cloud | Persistent | Read/Write Single Pod | Yes | Raw Block, Expansion |
+Cloud Kubernetes Service and Red Hat OpenShift on IBM Cloud | Persistent | Read/Write Single Pod | Yes | Raw Block, Expansion 
 [Infinidat](https://github.com/Infinidat/infinibox-csi-driver) | `infinibox-csi-driver` | v1.0, v1.1 | A Container Storage Interface (CSI) Driver for Infinidat [InfiniBox](https://infinidat.com/en/products-technology/infinibox) | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
 [Inspur InStorage CSI](https://github.com/OpenInspur/instorage-k8s) | `csi-instorage` | v1.0 | A Container Storage Interface (CSI) Driver for inspur AS/HF/CS/CF Series Primary Storage, inspur AS13000 Series SDS Storage | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot, Expansion, Cloning
 [Intel PMEM-CSI](https://github.com/intel/pmem-csi) | `pmem-csi.intel.com` | v1.0 | A Container Storage Interface (CSI) driver for [PMEM](https://pmem.io/) from Intel | Persistent and Ephemeral | Read/Write Single Pod | Yes | Raw Block
