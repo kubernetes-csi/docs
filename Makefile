@@ -39,7 +39,7 @@ clobber: clean
 	rm -f mdbook
 
 # Start mdbook as web server.
-MDBOOK_HOSTNAME = localhost
+MDBOOK_HOSTNAME ?= localhost
 MDBOOK_PORT = 3000
 serve:
 	cd book && $(MDBOOK_BINARY) serve --hostname $(MDBOOK_HOSTNAME) --port $(MDBOOK_PORT)
