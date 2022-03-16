@@ -1,7 +1,7 @@
 # Drivers
 The following are a set of CSI driver which can be used with Kubernetes:
 
-> NOTE: If you would like your driver to be added to this table, please open a pull request in [this repo](https://github.com/kubernetes-csi/docs/pulls) updating this file. Other Features is allowed to be filled in Raw Block, Snapshot, Expansion and Cloning. If driver did not implement any Other Features, please leave it blank.
+> NOTE: If you would like your driver to be added to this table, please open a pull request in [this repo](https://github.com/kubernetes-csi/docs/pulls) updating this file. Other Features is allowed to be filled in Raw Block, Snapshot, Expansion, Cloning and Topology. If driver did not implement any Other Features, please leave it blank.
 
 > DISCLAIMER: Information in this table has not been validated by Kubernetes SIG-Storage. Users who want to use these CSI drivers need to contact driver maintainers for driver capabilities.
 
