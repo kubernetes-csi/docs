@@ -11,8 +11,8 @@
 # variables.
 #
 # The tool parses the Go files in the external-snapshotter's CRD package and
-# writes the content to the book/src/api.md file. The configuration of the tool
-# can be found in the hack/gen-api.json file.
+# writes the content to the book/api folder. The configuration of the tool can
+# be found in the hack/gen-api.json file.
 
 GEN_TOOL_REF=${GEN_TOOL_REF:-master}
 CSI_REF=${CSI_REF:-master}
@@ -40,4 +40,4 @@ $gen_tool_dir/gen-crd-api-reference-docs \
   -out-file="out.html"
 
 # add title to page
-printf "# API Documentation\n\n%s" "$(cat out.html)" > "$curr_dir"/book/src/api.md
+printf "# Volume Snapshot\n\n%s" "$(cat out.html)" > "$curr_dir"/book/src/api/volume-snapshot.md

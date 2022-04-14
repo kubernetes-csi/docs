@@ -14,7 +14,7 @@ To update the [CRD API documentation](book/src/api.md), run:
 ./hack/gen-api.sh
 ```
 
-The script uses the [gen-crd-api-reference-docs](https://github.com/ahmetb/gen-crd-api-reference-docs/) tool to generate a markdown document for the [CSI CRD API](https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/apis/volumesnapshot/v1). See the script for more information and supported configuration.
+The script uses the [gen-crd-api-reference-docs](https://github.com/ahmetb/gen-crd-api-reference-docs/) tool to generate a markdown document for the [VolumeSnapshot CRD API](https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/apis/volumesnapshot/v1). See the script for more information and supported configuration.
 
 ## Community, discussion, contribution, and support
 
