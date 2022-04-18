@@ -8,6 +8,14 @@ To make changes to the documentation, modify the files in [book/src](https://git
 
 Once the PR is reviewed and merged, the CI will automatically generate (using [mdbook](https://github.com/rust-lang-nursery/mdBook)) the HTML to serve and check it in to [src/_book](https://github.com/kubernetes-csi/docs/tree/master/book/src/_book).
 
+To update the [CRD API documentation](book/src/api.md), run:
+
+```sh
+./hack/gen-api.sh
+```
+
+The script uses the [gen-crd-api-reference-docs](https://github.com/ahmetb/gen-crd-api-reference-docs/) tool to generate a markdown document for the [VolumeSnapshot CRD API](https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/apis/volumesnapshot/v1). See the script for more information and supported configuration.
+
 ## Community, discussion, contribution, and support
 
 Learn how to engage with the Kubernetes community on the [community page](http://kubernetes.io/community/).

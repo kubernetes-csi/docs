@@ -46,4 +46,6 @@
     - [Unit Testing](unit-testing.md)
     - [Functional Testing](functional-testing.md)
 - [Drivers](drivers.md)
+- [API Reference](api.md)
+    - [Volume Snapshot](api/volume-snapshot.md)
 - [Troubleshooting](troubleshooting.md)
