@@ -458,9 +458,7 @@ state on release from its volume snapshot.</p>
 <div>
 <p>VolumeSnapshotContentSource represents the CSI source of a snapshot.
 Exactly one of its members must be set.
-Members in VolumeSnapshotContentSource are immutable.
-TODO(xiangqian): Add a webhook to ensure that VolumeSnapshotContentSource members
-will be immutable once specified.</p>
+Members in VolumeSnapshotContentSource are immutable.</p>
 </div>
 <table>
 <thead>
@@ -1032,5 +1030,5 @@ snapshot creation. Upon success, this error field will be cleared.</p>
 <hr/>
 <p><em>
 Generated with <code>gen-crd-api-reference-docs</code>
-on git commit <code>edf5a7b3</code>.
+on git commit <code>b20011c8</code>.
 </em></p>
