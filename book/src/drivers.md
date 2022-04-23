@@ -101,6 +101,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [SeaweedFS](https://github.com/seaweedfs/seaweedfs-csi-driver) | `seaweedfs-csi-driver` | v1.0 | A Container Storage Interface (CSI Driver for [SeaweedFS](https://github.com/chrislusf/seaweedfs)) | Persistent | Read/Write Multiple Pods | Yes |
 [Secrets Store CSI Driver](https://github.com/kubernetes-sigs/secrets-store-csi-driver) | `secrets-store.csi.k8s.io` | v0.0.10 | A Container Storage Interface (CSI) Driver for mounting secrets, keys, and certs stored in enterprise-grade external secrets stores as volumes. | Ephemeral | N/A | N/A | 
 [SmartX](http://www.smartx.com/?locale=en) | `csi-smtx-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SmartX ZBS Storage  | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
+[SMB](https://github.com/kubernetes-csi/csi-driver-smb) | `smb.csi.k8s.io` | v1.0 | A Container Storage Interface (CSI) Driver for SMB  | Persistent | Read/Write Multiple Pods | Yes | 
 [SODA](https://github.com/sodafoundation/nbp/tree/master/csi) | `csi-soda-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for [SODA](https://sodafoundation.io/) | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot
 [SPDK-CSI](https://github.com/spdk/spdk-csi) | `csi.spdk.io` | v1.1 | A Container Storage Interface (CSI) Driver for [SPDK](https://spdk.io/) | Persistent and Ephemeral | Read/Write Single Pod | Yes |
 [StorageOS](https://docs.storageos.com/docs/platforms/kubernetes/install/) | `storageos` | v0.3, v1.0 | A Container Storage Interface (CSI) Driver for [StorageOS](https://storageos.com/) | Persistent | Read/Write Multiple Pods | Yes |
@@ -134,6 +135,6 @@ Name | Status | More Information
 [HostPath](https://github.com/kubernetes-csi/csi-driver-host-path) | v1.2.0 | Only use for a single node tests. See the [Example](example.html) page for Kubernetes-specific instructions.
 [ImagePopulator](https://github.com/kubernetes-csi/csi-driver-image-populator) | Prototype | Driver that lets you use a container image as an ephemeral volume.
 [In-memory Sample Mock Driver](https://github.com/kubernetes-csi/csi-test/tree/master/mock/service) | v0.3.0 | The sample mock driver used for [csi-sanity](https://github.com/kubernetes-csi/csi-test/tree/master/cmd/csi-sanity)
-[NFS](https://github.com/kubernetes-csi/csi-driver-nfs) | Sample |
+[NFS](https://github.com/kubernetes-csi/csi-driver-nfs) | v3.1.0 | This driver allows Kubernetes to access NFS server on Linux node. 
 [Synology NAS](https://github.com/jparklab/synology-csi) | v1.0.0 | An unofficial (and unsupported) Container Storage Interface Driver for Synology NAS.
 [VFS Driver](https://github.com/thecodeteam/csi-vfs) | Released | A CSI plugin that provides a virtual file system.
