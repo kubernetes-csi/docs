@@ -172,7 +172,9 @@
 </tbody></table>
 <h3><a class="header" href="#generic-ephemeral-inline-volumes" id="generic-ephemeral-inline-volumes">Generic Ephemeral Inline Volumes</a></h3>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>1.19</td><td>-</td></tr>
+<tr><td>Alpha</td><td>1.19</td><td>1.20</td></tr>
+<tr><td>Beta</td><td>1.21</td><td>1.22</td></tr>
+<tr><td>GA</td><td>1.23</td><td></td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>Traditionally, volumes that are backed by CSI drivers can only be used
@@ -266,6 +268,15 @@ spec:
 supports dynamic provisioning of volumes. No other changes are needed
 in the driver in that case. Such a driver can also support CSI
 ephemeral inline volumes if desired.</p>
+<h2><a class="header" href="#security-considerations" id="security-considerations">Security Considerations</a></h2>
+<p>CSI driver vendors that choose to support ephemeral inline volumes are responsible for secure handling of these volumes, and special consideration needs to be given to what volumeAttributes are supported by the driver. As noted above, a CSI driver is not suitable for CSI ephemeral inline volumes when volume creation requires volumeAttributes that should be restricted to an administrator. These attributes are set directly in the Pod spec, and therefore are not automatically restricted to an administrator when used as an inline volume.</p>
+<p>CSI inline volumes are only intended to be used for ephemeral storage, and driver vendors should NOT allow usage of inline volumes for persistent storage unless they also provide a third party pod admission plugin to restrict usage of these volumes.</p>
+<p>Cluster administrators who need to restrict the CSI drivers that are
+allowed to be used as inline volumes within a Pod spec may do so by:</p>
+<ul>
+<li>Removing <code>Ephemeral</code> from <code>volumeLifecycleModes</code> in the CSIDriver spec, which prevents the driver from being used as an inline ephemeral volume.</li>
+<li>Using an admission webhook to restrict how this driver is used.</li>
+</ul>
 <h2><a class="header" href="#implementing-csi-ephemeral-inline-support" id="implementing-csi-ephemeral-inline-support">Implementing CSI ephemeral inline support</a></h2>
 <p>Drivers must be modified (or implemented specifically) to support CSI inline
 ephemeral workflows. When Kubernetes encounters an inline CSI volume embedded
@@ -313,6 +324,15 @@ NodePublishVolume on error or implement some kind of garbage collection.</p>
 <p>The driver is responsible of deleting the ephemeral volume once it has
 unpublished the volume. It MAY delete the volume before finishing the request,
 or after the request to unpublish is returned.</p>
+<h3><a class="header" href="#read-only-volumes" id="read-only-volumes">Read-Only Volumes</a></h3>
+<p>It is possible for a CSI driver to provide volumes to Pods as read-only while allowing them to be writeable on the node for kubelet, the driver, and the container runtime. This allows the CSI driver to dynamically update contents of the volume without exposing issues like <a href="https://github.com/kubernetes/kubernetes/issues/60814">CVE-2017-1002102</a>, since the volume is read-only for the end user. It also allows the <code>fsGroup</code> and SELinux context of files to be applied on the node so the Pod gets the volume with the expected permissions and SELinux label.</p>
+<p>To benefit from this behavior, the following can be implemented in the CSI driver:</p>
+<ul>
+<li>The driver provides an admission plugin that sets <code>ReadOnly: true</code> to all volumeMounts of such volumes. We can't trust that this will be done by every user on every pod.</li>
+<li>The driver checks that the <code>readonly</code> flag is set in all NodePublish requests. We can't trust that the admission plugin above is deployed on every cluster.</li>
+<li>When both conditions above are satisfied, the driver MAY ignore the <code>readonly</code> flag in <a href="https://github.com/container-storage-interface/spec/blob/5b0d4540158a260cb3347ef1c87ede8600afb9bf/csi.proto#L1375">NodePublish</a> and set up the volume as read-write. Ignoring the <code>readonly</code> flag in NodePublish is considered valid CSI driver behavior for inline ephemeral volumes.</li>
+</ul>
+<p>The presence of <code>ReadOnly: true</code> in the Pod spec tells kubelet to bind-mount the volume to the container as read-only, while the underlying mount is read-write on the host. This is the same behavior used for projected volumes like Secrets and ConfigMaps.</p>
 <h3><a class="header" href="#csidriver" id="csidriver">CSIDriver</a></h3>
 <p>Kubernetes 1.16 only allows using a CSI driver for an inline volume if
 its <a href="csi-driver-object.html"><code>CSIDriver</code></a> object explicitly declares
