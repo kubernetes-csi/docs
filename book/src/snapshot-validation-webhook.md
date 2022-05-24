@@ -12,6 +12,7 @@ There is a new validating webhook server which provides tightened validation on 
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version)
 --|--|--|--|--|--|--|--
+[snapshot-validation-webhook v6.0.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v6.0.0) | [release-6.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-6.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/snapshot-validation-webhook:v6.0.0 | v1.20 | - | v1.20
 [snapshot-validation-webhook v4.1.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.1.1) | [release-4.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/snapshot-validation-webhook:v4.1.0 | v1.20 | - | v1.20
 [snapshot-validation-webhook v4.0.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.0.1) | [release-4.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | k8s.gcr.io/sig-storage/snapshot-validation-webhook:v4.0.1 | v1.20 | - | v1.20
 
