@@ -132,10 +132,7 @@ spec:
   - name: external-attacher
     args:
     - --v=5
-    - --csi-address=$(ADDRESS)
-    env:
-    - name: ADDRESS
-      value: /csi/csi.sock
+    - --csi-address=/csi/csi.sock
     image: quay.io/k8scsi/csi-attacher:v0.2.0
     imagePullPolicy: Always
     volumeMounts:
