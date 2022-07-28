@@ -7,7 +7,8 @@
 Status | Min K8s Version | Max K8s Version
 --|--|--
 Alpha | 1.15 | 1.15
-Beta | >=1.16 | -
+Beta | 1.16 | 1.24
+GA | 1.25
 
 ### Generic Ephemeral Inline Volumes
 
@@ -202,20 +203,11 @@ The presence of `ReadOnly: true` in the Pod spec tells kubelet to bind-mount the
 
 ### CSIDriver
 
-Kubernetes 1.16 only allows using a CSI driver for an inline volume if
+Kubernetes only allows using a CSI driver for an inline volume if
 its [`CSIDriver`](csi-driver-object.md) object explicitly declares
 that the driver supports that kind of usage in its
 `volumeLifecycleModes` field. This is a safeguard against accidentally
 [using a driver the wrong way](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/596-csi-inline-volumes#support-for-inline-csi-volumes).
-
-### Feature gates
-
-To use inline volume, Kubernetes 1.15 binaries must start with the `CSIInlineVolume` feature gate enabled:
-```
---feature-gates=CSIInlineVolume=true
-```
-
-Kubernetes >= 1.16 no longer needs this as the feature is enabled by default.
 
 ## References
 
