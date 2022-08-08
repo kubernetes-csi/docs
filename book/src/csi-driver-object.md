@@ -39,6 +39,7 @@ spec:
     - audience: "" # empty string means defaulting to the `--api-audiences` of kube-apiserver
       expirationSeconds: 3600
   requiresRepublish: true # added in Kubernetes 1.20. See status at https://kubernetes-csi.github.io/docs/token-requests.html#status
+  seLinuxMount: true # Added in Kubernetest 1.25.
 ```
 
 These are the important fields:
@@ -92,6 +93,16 @@ These are the important fields:
     - If the volume mounted by CSI driver is short-lived.
     - If CSI driver requires valid service account tokens (enabled by the field `tokenRequests`) repeatedly.
   - CSI drivers should only atomically update the contents of the volume. Mount point change will not be seen by a running container.
+- `seLinuxMount`
+  - This field is alpha in Kubernetes 1.25. It must be explicitly enabled by setting feature gates `ReadWriteOncePod` and `SELinuxMountReadWriteOncePod`.
+  - The default value of this field is `false`.
+  - When set to `true`, corresponding CSI driver announces that all its volumes are *independent volumes* from Linux kernel point of view and each of them can be mounted with a different SELinux label mount option (`-o context=<SELinux label>`). 
+    Examples:
+    - A CSI driver that creates block devices formatted with a filesystem, such as `xfs` or `ext4`, can set `seLinuxMount: true`, because each volume has its own block device.
+    - A CSI driver whose volumes are **always** separate exports on a NFS server can set `seLinuxMount: true`, because each volume has its own NFS export and thus Linux kernel treats them as independent volumes.
+    - A CSI driver that **can** provide two volumes as subdirectories of a common NFS export must set `seLinuxMount: false`, because these two volumes are treated as a single volume by Linux kernel and must share the same `-o context=<SELinux label>` option.
+  - [See corresponding KEP](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/1710-selinux-relabeling/README.md#selinux-intro) for details.
+  - Always test Pods with various SELinux contexts with various volume configurations before setting this field to `true`!
 
 ## What creates the CSIDriver object?
 
