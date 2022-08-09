@@ -202,6 +202,7 @@ spec:
     - audience: &quot;&quot; # empty string means defaulting to the `--api-audiences` of kube-apiserver
       expirationSeconds: 3600
   requiresRepublish: true # added in Kubernetes 1.20. See status at https://kubernetes-csi.github.io/docs/token-requests.html#status
+  seLinuxMount: true # Added in Kubernetest 1.25.
 </code></pre>
 <p>These are the important fields:</p>
 <ul>
@@ -285,6 +286,22 @@ are listed) or instead of normal volumes (when it is the only entry in the list)
 </ul>
 </li>
 <li>CSI drivers should only atomically update the contents of the volume. Mount point change will not be seen by a running container.</li>
+</ul>
+</li>
+<li><code>seLinuxMount</code>
+<ul>
+<li>This field is alpha in Kubernetes 1.25. It must be explicitly enabled by setting feature gates <code>ReadWriteOncePod</code> and <code>SELinuxMountReadWriteOncePod</code>.</li>
+<li>The default value of this field is <code>false</code>.</li>
+<li>When set to <code>true</code>, corresponding CSI driver announces that all its volumes are <em>independent volumes</em> from Linux kernel point of view and each of them can be mounted with a different SELinux label mount option (<code>-o context=&lt;SELinux label&gt;</code>). 
+Examples:
+<ul>
+<li>A CSI driver that creates block devices formatted with a filesystem, such as <code>xfs</code> or <code>ext4</code>, can set <code>seLinuxMount: true</code>, because each volume has its own block device.</li>
+<li>A CSI driver whose volumes are <strong>always</strong> separate exports on a NFS server can set <code>seLinuxMount: true</code>, because each volume has its own NFS export and thus Linux kernel treats them as independent volumes.</li>
+<li>A CSI driver that <strong>can</strong> provide two volumes as subdirectories of a common NFS export must set <code>seLinuxMount: false</code>, because these two volumes are treated as a single volume by Linux kernel and must share the same <code>-o context=&lt;SELinux label&gt;</code> option.</li>
+</ul>
+</li>
+<li><a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/1710-selinux-relabeling/README.md#selinux-intro">See corresponding KEP</a> for details.</li>
+<li>Always test Pods with various SELinux contexts with various volume configurations before setting this field to <code>true</code>!</li>
 </ul>
 </li>
 </ul>
