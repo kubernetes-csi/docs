@@ -1179,7 +1179,7 @@ are listed) or instead of normal volumes (when it is the only entry in the list)
 <ul>
 <li>This field was added in Kubernetes 1.20 and cannot be set when using an older Kubernetes release.</li>
 <li>This field is enabled by default in Kubernetes 1.21 and cannot be disabled since 1.22.</li>
-<li>If this field is specified, Kubelet will plumb down the bound service acocunt tokens of the pod as <code>volume_context</code> in the <code>NodePublishVolume</code>:
+<li>If this field is specified, Kubelet will plumb down the bound service account tokens of the pod as <code>volume_context</code> in the <code>NodePublishVolume</code>:
 <ul>
 <li><code>&quot;csi.storage.k8s.io/serviceAccount.tokens&quot;: {&quot;gcp&quot;:{&quot;token&quot;:&quot;&lt;token&gt;&quot;,&quot;expirationTimestamp&quot;:&quot;&lt;expiration timestamp in RFC3339&gt;&quot;}}</code></li>
 <li>If CSI driver doesn't find token recorded in the <code>volume_context</code>, it should return error in <code>NodePublishVolume</code> to inform Kubelet to retry.</li>
