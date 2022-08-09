@@ -82,7 +82,7 @@ These are the important fields:
 - `tokenRequests`
   - This field was added in Kubernetes 1.20 and cannot be set when using an older Kubernetes release.
   - This field is enabled by default in Kubernetes 1.21 and cannot be disabled since 1.22.
-  - If this field is specified, Kubelet will plumb down the bound service acocunt tokens of the pod as `volume_context` in the `NodePublishVolume`:
+  - If this field is specified, Kubelet will plumb down the bound service account tokens of the pod as `volume_context` in the `NodePublishVolume`:
     - `"csi.storage.k8s.io/serviceAccount.tokens": {"gcp":{"token":"<token>","expirationTimestamp":"<expiration timestamp in RFC3339>"}}`
     - If CSI driver doesn't find token recorded in the `volume_context`, it should return error in `NodePublishVolume` to inform Kubelet to retry.
     - Audiences should be distinct, otherwise the validation will fail. If the audience is "", it means the issued token has the same audience as kube-apiserver.
