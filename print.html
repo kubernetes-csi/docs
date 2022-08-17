@@ -2136,7 +2136,8 @@ This sidecar container implements the logic for watching the Kubernetes API for 
 <h3><a class="header" href="#csi-ephemeral-inline-volumes" id="csi-ephemeral-inline-volumes">CSI Ephemeral Inline Volumes</a></h3>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.15</td><td>1.15</td></tr>
-<tr><td>Beta</td><td>&gt;=1.16</td><td>-</td></tr>
+<tr><td>Beta</td><td>1.16</td><td>1.24</td></tr>
+<tr><td>GA</td><td>1.25</td><td></td></tr>
 </tbody></table>
 <h3><a class="header" href="#generic-ephemeral-inline-volumes" id="generic-ephemeral-inline-volumes">Generic Ephemeral Inline Volumes</a></h3>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
@@ -2302,16 +2303,11 @@ or after the request to unpublish is returned.</p>
 </ul>
 <p>The presence of <code>ReadOnly: true</code> in the Pod spec tells kubelet to bind-mount the volume to the container as read-only, while the underlying mount is read-write on the host. This is the same behavior used for projected volumes like Secrets and ConfigMaps.</p>
 <h3><a class="header" href="#csidriver" id="csidriver">CSIDriver</a></h3>
-<p>Kubernetes 1.16 only allows using a CSI driver for an inline volume if
+<p>Kubernetes only allows using a CSI driver for an inline volume if
 its <a href="csi-driver-object.html"><code>CSIDriver</code></a> object explicitly declares
 that the driver supports that kind of usage in its
 <code>volumeLifecycleModes</code> field. This is a safeguard against accidentally
 <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/596-csi-inline-volumes#support-for-inline-csi-volumes">using a driver the wrong way</a>.</p>
-<h3><a class="header" href="#feature-gates" id="feature-gates">Feature gates</a></h3>
-<p>To use inline volume, Kubernetes 1.15 binaries must start with the <code>CSIInlineVolume</code> feature gate enabled:</p>
-<pre><code>--feature-gates=CSIInlineVolume=true
-</code></pre>
-<p>Kubernetes &gt;= 1.16 no longer needs this as the feature is enabled by default.</p>
 <h2><a class="header" href="#references" id="references">References</a></h2>
 <ul>
 <li><a href="https://github.com/kubernetes-csi/csi-driver-host-path/blob/9fdddc2061b9013286e01189b2bf3268276af99b/pkg/hostpath/nodeserver.go#L63-L82">CSI Host Path
@@ -2570,7 +2566,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 </li>
 </ul>
 <p>If undefined, <code>fsGroupPolicy</code> will default to <code>ReadWriteOnceWithFSType</code>, keeping the previous behavior.</p>
-<h4><a class="header" href="#feature-gates-1" id="feature-gates-1">Feature Gates</a></h4>
+<h4><a class="header" href="#feature-gates" id="feature-gates">Feature Gates</a></h4>
 <p>To use this field, Kubernetes 1.19 binaries must start with the <code>CSIVolumeFSGroupPolicy</code> feature gate enabled:</p>
 <pre><code>--feature-gates=CSIVolumeFSGroupPolicy=true
 </code></pre>
@@ -2595,7 +2591,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 </blockquote>
 <h3><a class="header" href="#usage-13" id="usage-13">Usage</a></h3>
 <p>The CSI driver must implement the <code>VOLUME_MOUNT_GROUP</code> node service capability. The Pod-specified <code>fsGroup</code> will be available in <code>NodeStageVolumeRequest</code> and <code>NodePublishVolumeRequest</code> via <code>VolumeCapability.MountVolume.VolumeMountGroup</code>.</p>
-<h4><a class="header" href="#feature-gates-2" id="feature-gates-2">Feature Gates</a></h4>
+<h4><a class="header" href="#feature-gates-1" id="feature-gates-1">Feature Gates</a></h4>
 <p>To use this field, Kubernetes 1.22 binaries must start with the <code>DelegateFSGroupToCSIDriver</code> feature gate enabled:</p>
 <pre><code>--feature-gates=DelegateFSGroupToCSIDriver=true
 </code></pre>
