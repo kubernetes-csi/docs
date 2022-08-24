@@ -123,28 +123,48 @@ Using the `CSIDriver` object, it is now possible to query Kubernetes to get a li
 
 ```
 $> kubectl get csidrivers.storage.k8s.io
-NAME                  CREATED AT
-hostpath.csi.k8s.io   2019-09-13T09:58:43Z
+NAME                      ATTACHREQUIRED   PODINFOONMOUNT   MODES                  AGE
+mycsidriver.example.com   true             true             Persistent,Ephemeral   2m46s
 ```
 
 Or get a more detailed view of your registered driver with:
 
 ```
 $> kubectl describe csidrivers.storage.k8s.io
-Name:         hostpath.csi.k8s.io
-Namespace:
+Name:         mycsidriver.example.com
+Namespace:    
 Labels:       <none>
-Annotations:  kubectl.kubernetes.io/last-applied-configuration:
-                {"apiVersion":"storage.k8s.io/v1","kind":"CSIDriver","metadata":{"annotations":{},"name":"hostpath.csi.k8s.io"},"spec":{"podInfoOnMou...
+Annotations:  <none>
 API Version:  storage.k8s.io/v1
 Kind:         CSIDriver
 Metadata:
-  Creation Timestamp:  2019-09-13T09:58:43Z
-  Resource Version:    341
-  Self Link:           /apis/storage.k8s.io/v1/csidrivers/hostpath.csi.k8s.io
-  UID:                 1860f2a1-85f8-4357-a933-c45e54f0c8e0
+  Creation Timestamp:  2022-04-07T05:58:06Z
+  Managed Fields:
+    API Version:  storage.k8s.io/v1
+    Fields Type:  FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .:
+          f:kubectl.kubernetes.io/last-applied-configuration:
+      f:spec:
+        f:attachRequired:
+        f:fsGroupPolicy:
+        f:podInfoOnMount:
+        f:requiresRepublish:
+        f:tokenRequests:
+        f:volumeLifecycleModes:
+          .:
+          v:"Ephemeral":
+          v:"Persistent":
+    Manager:         kubectl-client-side-apply
+    Operation:       Update
+    Time:            2022-04-07T05:58:06Z
+  Resource Version:  896
+  UID:               6cc7d513-6d72-4203-87d3-730f83884f89
 Spec:
   Attach Required:    true
+  Fs Group Policy:    File
   Pod Info On Mount:  true
   Volume Lifecycle Modes:
     Persistent
