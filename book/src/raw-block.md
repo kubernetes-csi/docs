@@ -62,7 +62,7 @@ for any creation request with an `AccessType` of `VolumeCapability_Mount`.
 
 The main difference between block volumes and mount volumes is the expected result of the `NodePublish()`.
 For mount volumes, the CO expects the result to be a mounted directory, at `TargetPath`. For block volumes,
-the CO expects there to be a device file at `TargetPath`. The device file can by a bind-mounted device from
+the CO expects there to be a device file at `TargetPath`. The device file can be a bind-mounted device from
 the hosts `/dev` file system, or it can be a device node created at that location using `mknod()`.
 
 It's desirable but not required to expose an unfiltered device node. For example, CSI plugins based on
