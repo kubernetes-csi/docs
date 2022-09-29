@@ -40,6 +40,7 @@
         - [Token Requests](token-requests.md)
         - [FSGroup Support](support-fsgroup.md)
         - [CSI Windows](csi-windows.md)
+        - [Volume Mode Conversion](prevent-volume-mode-conversion.md)
 - [Deploying a CSI Driver on Kubernetes](deploying.md)
     - [Example](example.md)
 - [Driver Testing](testing-drivers.md)
