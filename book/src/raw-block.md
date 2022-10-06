@@ -28,7 +28,7 @@ creating block volumes.
 
 The difference between a request for a mounted (file) volume and a block volume is the `VolumeCapabilities`
 field of the request. Note that this field is an array and the created volume must support ALL of the
-capabilities requested, or else return an error. If the `AccessType` method of a `VolumeCapability`
+capabilities requested, or else return an error. If the `AccessType` method of a `VolumeCapability` is
 `VolumeCapability_Block`, then the capability is requesting a raw block volume. Unlike mount volumes, block
 volumes don't have any specific capabilities that need to be validated, although access modes still
 apply.
