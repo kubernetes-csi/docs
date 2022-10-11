@@ -102,7 +102,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Seagate Exos X](https://github.com/Seagate/seagate-exos-x-csi) | `csi-exos-x.seagate.com` | v1.3 | CSI driver for [Seagate Exos X](https://www.seagate.com/products/storage/data-storage-systems/raid/) and OEM systems | Persistent | Read/Write Single Pod | Yes | Snapshot, Expansion, Cloning
 [SeaweedFS](https://github.com/seaweedfs/seaweedfs-csi-driver) | `seaweedfs-csi-driver` | v1.0 | A Container Storage Interface (CSI Driver for [SeaweedFS](https://github.com/chrislusf/seaweedfs)) | Persistent | Read/Write Multiple Pods | Yes |
 [Secrets Store CSI Driver](https://github.com/kubernetes-sigs/secrets-store-csi-driver) | `secrets-store.csi.k8s.io` | v0.0.10 | A Container Storage Interface (CSI) Driver for mounting secrets, keys, and certs stored in enterprise-grade external secrets stores as volumes. | Ephemeral | N/A | N/A | 
-[SmartX](http://www.smartx.com/?locale=en) | `csi-smtx-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SmartX ZBS Storage  | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
+[SmartX](https://www.smartx.com/?locale=en) | `csi-smtx-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for SmartX ZBS Storage  | Persistent | Read/Write Multiple Pods | Yes | Snapshot, Expansion
 [SMB](https://github.com/kubernetes-csi/csi-driver-smb) | `smb.csi.k8s.io` | v1.0 | This driver allows Kubernetes to access SMB Server on both Linux and Windows nodes  | Persistent | Read/Write Multiple Pods | Yes | 
 [SODA](https://github.com/sodafoundation/nbp/tree/master/csi) | `csi-soda-plugin` | v1.0 | A Container Storage Interface (CSI) Driver for [SODA](https://sodafoundation.io/) | Persistent | Read/Write Single Pod | Yes | Raw Block, Snapshot
 [SPDK-CSI](https://github.com/spdk/spdk-csi) | `csi.spdk.io` | v1.1 | A Container Storage Interface (CSI) Driver for [SPDK](https://spdk.io/) | Persistent and Ephemeral | Read/Write Single Pod | Yes |
@@ -125,7 +125,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Vultr Block Storage](https://github.com/vultr/vultr-csi) | `block.csi.vultr.com` | v1.2 | A Container Storage Interface (CSI) Driver for Vultr Block Storage | Persistent | Read/Write Single Pod | Yes | 
 [WekaIO](https://github.com/weka/csi-wekafs) | `csi.weka.io` | v1.0 | A Container Storage Interface (CSI) Driver for mounting WekaIO WekaFS filesystem as volumes | Persistent | Read/Write Multiple Pods | Yes | 
 [Yandex.Cloud](https://github.com/flant/yandex-csi-driver) | `yandex.csi.flant.com` | v1.2 | A Container Storage Interface (CSI) plugin for Yandex.Cloud Compute Disks  | Persistent | Read/Write Single Pod | Yes |
-[YanRongYun](http://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
+[YanRongYun](https://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Zadara-CSI](https://github.com/zadarastorage/zadara-csi) | `csi.zadara.com` | v1.0, v1.1 | A Container Storage Interface (CSI) plugin for Zadara VPSA Storage Array & VPSA All-Flash  | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
 
 </div>
