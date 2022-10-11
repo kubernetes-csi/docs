@@ -214,7 +214,7 @@ for any creation request with an <code>AccessType</code> of <code>VolumeCapabili
 <h2><a class="header" href="#differences-between-block-and-mount-volumes" id="differences-between-block-and-mount-volumes">Differences Between Block and Mount Volumes</a></h2>
 <p>The main difference between block volumes and mount volumes is the expected result of the <code>NodePublish()</code>.
 For mount volumes, the CO expects the result to be a mounted directory, at <code>TargetPath</code>. For block volumes,
-the CO expects there to be a device file at <code>TargetPath</code>. The device file can by a bind-mounted device from
+the CO expects there to be a device file at <code>TargetPath</code>. The device file can be a bind-mounted device from
 the hosts <code>/dev</code> file system, or it can be a device node created at that location using <code>mknod()</code>.</p>
 <p>It's desirable but not required to expose an unfiltered device node. For example, CSI plugins based on
 technologies that implement SCSI protocols should expect that pods consuming the block volumes they create
