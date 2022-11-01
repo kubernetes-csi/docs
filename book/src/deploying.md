@@ -99,7 +99,7 @@ on the host to see mounts created by the CSI driver container. See the example b
 
 
 ## Deploying
-Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md). 
+Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). 
 
 ## Enable privileged Pods
 
