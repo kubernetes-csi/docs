@@ -67,4 +67,4 @@ To implement a CSI driver using this mechanism, a CSI driver developer should:
 
 ## Reference Links
 
-* [Design Doc](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md)
+* [Design Doc](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md)

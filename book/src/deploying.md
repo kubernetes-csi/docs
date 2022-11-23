@@ -99,7 +99,7 @@ on the host to see mounts created by the CSI driver container. See the example b
 
 
 ## Deploying
-Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). 
+Deploying a CSI driver onto Kubernetes is highlighted in detail in [_Recommended Mechanism for Deploying CSI Drivers on Kubernetes_](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes). 
 
 ## Enable privileged Pods
 
@@ -129,4 +129,4 @@ Another feature that CSI depends on is mount propagation.  It allows the sharing
 - Full deployment example using a _DaemonSet_ for the node plugin and _StatefulSet_ for the controller plugin: TODO
 
 ## More information
-For more information, please read [_CSI Volume Plugins in Kubernetes Design Doc_](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md).
+For more information, please read [_CSI Volume Plugins in Kubernetes Design Doc_](https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md).
