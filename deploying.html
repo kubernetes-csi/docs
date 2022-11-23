@@ -242,7 +242,7 @@ on the host to see mounts created by the CSI driver container. See the example b
           type: Directory
 </code></pre>
 <h2><a class="header" href="#deploying" id="deploying">Deploying</a></h2>
-<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. </p>
+<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. </p>
 <h2><a class="header" href="#enable-privileged-pods" id="enable-privileged-pods">Enable privileged Pods</a></h2>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
 <p>Ensure your API server are started with the privileged flag:</p>
@@ -261,7 +261,7 @@ on the host to see mounts created by the CSI driver container. See the example b
 <li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: TODO</li>
 </ul>
 <h2><a class="header" href="#more-information" id="more-information">More information</a></h2>
-<p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
+<p>For more information, please read <a href="https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
 
                     </main>
 

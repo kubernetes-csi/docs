@@ -236,7 +236,7 @@ It aims to reduce boilerplate code and  simplify the overall process for CSI Dri
 </ol>
 <h2><a class="header" href="#reference-links" id="reference-links">Reference Links</a></h2>
 <ul>
-<li><a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md">Design Doc</a></li>
+<li><a href="https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md">Design Doc</a></li>
 </ul>
 <h1><a class="header" href="#developing-csi-driver-for-kubernetes" id="developing-csi-driver-for-kubernetes">Developing CSI Driver for Kubernetes</a></h1>
 <h2><a class="header" href="#remain-informed" id="remain-informed">Remain Informed</a></h2>
@@ -2809,7 +2809,7 @@ on the host to see mounts created by the CSI driver container. See the example b
           type: Directory
 </code></pre>
 <h2><a class="header" href="#deploying" id="deploying">Deploying</a></h2>
-<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. </p>
+<p>Deploying a CSI driver onto Kubernetes is highlighted in detail in <a href="https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md#recommended-mechanism-for-deploying-csi-drivers-on-kubernetes"><em>Recommended Mechanism for Deploying CSI Drivers on Kubernetes</em></a>. </p>
 <h2><a class="header" href="#enable-privileged-pods" id="enable-privileged-pods">Enable privileged Pods</a></h2>
 <p>To use CSI drivers, your Kubernetes cluster must allow privileged pods (i.e. <code>--allow-privileged</code> flag must be set to <code>true</code> for both the API server and the kubelet). This is the default in some environments (e.g. GCE, GKE, <code>kubeadm</code>).</p>
 <p>Ensure your API server are started with the privileged flag:</p>
@@ -2828,7 +2828,7 @@ on the host to see mounts created by the CSI driver container. See the example b
 <li>Full deployment example using a <em>DaemonSet</em> for the node plugin and <em>StatefulSet</em> for the controller plugin: TODO</li>
 </ul>
 <h2><a class="header" href="#more-information" id="more-information">More information</a></h2>
-<p>For more information, please read <a href="https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
+<p>For more information, please read <a href="https://github.com/kubernetes/design-proposals-archive/blob/main/storage/container-storage-interface.md"><em>CSI Volume Plugins in Kubernetes Design Doc</em></a>.</p>
 <h1><a class="header" href="#example-1" id="example-1">Example</a></h1>
 <p>The <a href="https://github.com/kubernetes-csi/csi-driver-host-path">Hostpath CSI driver</a> is a simple sample driver that provisions a directory on the host. It can be used as an example to get started writing a driver, however it is not meant for production use.
 The <a href="https://github.com/kubernetes-csi/csi-driver-host-path#deployment">deployment example</a> shows how to deploy and use that driver in Kubernetes.</p>
