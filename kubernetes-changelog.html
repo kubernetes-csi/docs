@@ -166,8 +166,65 @@
                         <h1><a class="header" href="#kubernetes-changelog" id="kubernetes-changelog">Kubernetes Changelog</a></h1>
 <p>This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the <a href="features.html">Features section</a>.</p>
-<h2><a class="header" href="#kubernetes-123" id="kubernetes-123">Kubernetes 1.23</a></h2>
+<h2><a class="header" href="#kubernetes-126" id="kubernetes-126">Kubernetes 1.26</a></h2>
 <h3><a class="header" href="#features" id="features">Features</a></h3>
+<ul>
+<li>GA
+<ul>
+<li>Delegate fsgroup to CSI driver</li>
+<li>Azure File CSI migration</li>
+<li>vSphere CSI migration</li>
+</ul>
+</li>
+<li>Alpha
+<ul>
+<li>Cross namespace volume provisioning</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#kubernetes-125" id="kubernetes-125">Kubernetes 1.25</a></h2>
+<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
+<ul>
+<li>GA
+<ul>
+<li>CSI ephemeral inline volumes</li>
+<li>Core CSI migration</li>
+<li>AWS EBS CSI migration</li>
+<li>GCE PD CSI migration</li>
+</ul>
+</li>
+<li>Beta
+<ul>
+<li>vSphere CSI Migration (on by default)</li>
+<li>Portworx CSI Migration (off-by-default)</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#kubernetes-124" id="kubernetes-124">Kubernetes 1.24</a></h2>
+<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
+<ul>
+<li>GA
+<ul>
+<li>Volume expansion</li>
+<li>Storage capacity tracking</li>
+<li>Azure Disk CSI Migration</li>
+<li>OpenStack Cinder CSI Migration</li>
+</ul>
+</li>
+<li>Beta
+<ul>
+<li>Volume populator</li>
+</ul>
+</li>
+<li>Alpha
+<ul>
+<li>SELinux relabeling with mount options</li>
+<li>Prevent volume mode conversion</li>
+</ul>
+</li>
+</ul>
+<h2><a class="header" href="#kubernetes-123" id="kubernetes-123">Kubernetes 1.23</a></h2>
+<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -179,6 +236,9 @@ details on individual features, visit the <a href="features.html">Features secti
 <li>Beta
 <ul>
 <li>Delegate fsgroup to CSI driver</li>
+<li>Azure Disk CSI Migration (on-by-default)</li>
+<li>AWS EBS CSI Migration (on-by-default)</li>
+<li>GCE PD CSI Migration (on-by-default)</li>
 </ul>
 </li>
 <li>Alpha
@@ -191,7 +251,7 @@ details on individual features, visit the <a href="features.html">Features secti
 </li>
 </ul>
 <h2><a class="header" href="#kubernetes-122" id="kubernetes-122">Kubernetes 1.22</a></h2>
-<h3><a class="header" href="#features-1" id="features-1">Features</a></h3>
+<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -208,7 +268,7 @@ details on individual features, visit the <a href="features.html">Features secti
 </li>
 </ul>
 <h2><a class="header" href="#kubernetes-121" id="kubernetes-121">Kubernetes 1.21</a></h2>
-<h3><a class="header" href="#features-2" id="features-2">Features</a></h3>
+<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -226,7 +286,7 @@ in accordance with the CSI spec. Kubelet also no longer checks if staging and
 target paths are mounts or corrupted. CSI drivers need to be idempotent and do
 any necessary mount verification.</li>
 </ul>
-<h3><a class="header" href="#features-3" id="features-3">Features</a></h3>
+<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -252,7 +312,7 @@ any necessary mount verification.</li>
 deprecated for CSI volumes. CSI drivers should support calling NodeExpandVolume
 after NodePublish if they have node EXPAND_VOLUME capability</li>
 </ul>
-<h3><a class="header" href="#features-4" id="features-4">Features</a></h3>
+<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -278,7 +338,7 @@ removed in a future release.</li>
 target directory, in accordance with the CSI specification. CSI drivers may
 need to be updated accordingly to properly create and process the target path.</li>
 </ul>
-<h3><a class="header" href="#features-5" id="features-5">Features</a></h3>
+<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -310,7 +370,7 @@ need to be updated accordingly to properly create and process the target path.</
 <li><code>storage.k8s.io/v1beta1</code> <code>CSINode</code> object has been deprecated and will be
 removed in a future release.</li>
 </ul>
-<h3><a class="header" href="#features-6" id="features-6">Features</a></h3>
+<h3><a class="header" href="#features-9" id="features-9">Features</a></h3>
 <ul>
 <li>GA
 <ul>
@@ -327,7 +387,7 @@ removed in a future release.</li>
 <li><code>storage.k8s.io/v1</code> <code>CSINode</code> object introduced.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-116" id="kubernetes-116">Kubernetes 1.16</a></h2>
-<h3><a class="header" href="#features-7" id="features-7">Features</a></h3>
+<h3><a class="header" href="#features-10" id="features-10">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -338,7 +398,7 @@ removed in a future release.</li>
 </li>
 </ul>
 <h2><a class="header" href="#kubernetes-115" id="kubernetes-115">Kubernetes 1.15</a></h2>
-<h3><a class="header" href="#features-8" id="features-8">Features</a></h3>
+<h3><a class="header" href="#features-11" id="features-11">Features</a></h3>
 <ul>
 <li>Volume capacity usage metrics</li>
 <li>Alpha
@@ -354,7 +414,7 @@ removed in a future release.</li>
 <ul>
 <li><code>csi.storage.k8s.io/v1alpha1</code> <code>CSINodeInfo</code> and <code>CSIDriver</code> CRDs are no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-9" id="features-9">Features</a></h3>
+<h3><a class="header" href="#features-12" id="features-12">Features</a></h3>
 <ul>
 <li>Beta
 <ul>
@@ -376,7 +436,7 @@ removed in a future release.</li>
 <ul>
 <li>CSI spec 0.2 and 0.3 are deprecated and support will be removed in Kubernetes 1.17.</li>
 </ul>
-<h3><a class="header" href="#features-10" id="features-10">Features</a></h3>
+<h3><a class="header" href="#features-13" id="features-13">Features</a></h3>
 <ul>
 <li>GA support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v1.0.0">CSI spec
 1.0</a>.</li>
@@ -385,7 +445,7 @@ removed in a future release.</li>
 <h3><a class="header" href="#breaking-changes-3" id="breaking-changes-3">Breaking Changes</a></h3>
 <p>Kubelet device plugin registration is enabled by default, which requires CSI
 plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p>
-<h3><a class="header" href="#features-11" id="features-11">Features</a></h3>
+<h3><a class="header" href="#features-14" id="features-14">Features</a></h3>
 <ul>
 <li>Alpha
 <ul>
@@ -399,7 +459,7 @@ plugins to use <code>driver-registrar:v0.3.0</code> to register with kubelet.</p
 introduced and have to be installed before deploying a CSI driver.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-111" id="kubernetes-111">Kubernetes 1.11</a></h2>
-<h3><a class="header" href="#features-12" id="features-12">Features</a></h3>
+<h3><a class="header" href="#features-15" id="features-15">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.3.0">CSI spec
 0.3</a>.</li>
@@ -414,14 +474,14 @@ introduced and have to be installed before deploying a CSI driver.</li>
 <ul>
 <li>CSI spec 0.1 is no longer supported.</li>
 </ul>
-<h3><a class="header" href="#features-13" id="features-13">Features</a></h3>
+<h3><a class="header" href="#features-16" id="features-16">Features</a></h3>
 <ul>
 <li>Beta support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.2.0">CSI spec 0.2</a>.
 This added optional <code>NodeStageVolume</code> and <code>NodeUnstageVolume</code> calls which
 map to Kubernetes <code>MountDevice</code> and <code>UnmountDevice</code> operations.</li>
 </ul>
 <h2><a class="header" href="#kubernetes-19" id="kubernetes-19">Kubernetes 1.9</a></h2>
-<h3><a class="header" href="#features-14" id="features-14">Features</a></h3>
+<h3><a class="header" href="#features-17" id="features-17">Features</a></h3>
 <ul>
 <li>Alpha support added for <a href="https://github.com/container-storage-interface/spec/releases/tag/v0.1.0">CSI spec
 0.1</a>.</li>
