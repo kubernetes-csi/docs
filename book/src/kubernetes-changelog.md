@@ -3,6 +3,42 @@
 This page summarizes major CSI changes made in each Kubernetes release. For
 details on individual features, visit the [Features section](features.md).
 
+## Kubernetes 1.26
+
+### Features
+* GA
+    * Delegate fsgroup to CSI driver
+    * Azure File CSI migration
+    * vSphere CSI migration
+* Alpha
+    * Cross namespace volume provisioning
+
+## Kubernetes 1.25
+
+### Features
+* GA
+    * CSI ephemeral inline volumes
+    * Core CSI migration
+    * AWS EBS CSI migration
+    * GCE PD CSI migration
+* Beta
+    * vSphere CSI Migration (on by default)
+    * Portworx CSI Migration (off-by-default)
+
+## Kubernetes 1.24
+
+### Features
+* GA
+    * Volume expansion
+    * Storage capacity tracking
+    * Azure Disk CSI Migration
+    * OpenStack Cinder CSI Migration
+* Beta
+    * Volume populator
+* Alpha
+    * SELinux relabeling with mount options
+    * Prevent volume mode conversion
+
 ## Kubernetes 1.23
 
 ### Features
@@ -12,6 +48,9 @@ details on individual features, visit the [Features section](features.md).
     * Generic ephemeral volumes
 * Beta
     * Delegate fsgroup to CSI driver
+    * Azure Disk CSI Migration (on-by-default)
+    * AWS EBS CSI Migration (on-by-default)
+    * GCE PD CSI Migration (on-by-default)
 * Alpha
     * Recover from Expansion Failure
     * Honor PV Reclaim Policy
