@@ -63,7 +63,7 @@ Status | Min K8s Version | Max K8s Version
 --|--|--
 Alpha | 1.22 | 1.22
 Beta | 1.23 | -
-GA | - | -
+GA | 1.26 | -
 
 ### Overview
 
@@ -71,7 +71,7 @@ For most drivers, kubelet applies the `fsGroup` specified in a Pod spec by recur
 * A driver requires passing `fsGroup` to mount options in order for it to take effect.
 * A driver needs to apply `fsGroup` at the stage step (`NodeStageVolume` in CSI; `MountDevice` in Kubernetes) instead of the mount step (`NodePublishVolume` in CSI; `SetUp/SetUpAt` in Kubernetes).
 
-This feature provides a mechanism for the driver to apply `fsGroup` instead of kubelet. Specifically, once the feature is enabled, it passes `fsGroup` to the CSI driver through `NodeStageVolume` and `NodePublishVolume` calls, and the kubelet `fsGroup` logic is disabled. The driver is expected to apply the `fsGroup` within one of these calls.
+This feature provides a mechanism for the driver to apply `fsGroup` instead of kubelet. Specifically, it passes `fsGroup` to the CSI driver through `NodeStageVolume` and `NodePublishVolume` calls, and the kubelet `fsGroup` logic is disabled. The driver is expected to apply the `fsGroup` within one of these calls.
 
 If this feature is enabled in Kubernetes and a volume uses a driver that supports this feature, `CSIDriver.spec.fsGroupPolicy` and `Pod.spec.securityContext.fsGroupChangePolicy` are ignored.
 
