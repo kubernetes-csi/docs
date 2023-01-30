@@ -215,7 +215,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.22</td><td>1.22</td></tr>
 <tr><td>Beta</td><td>1.23</td><td>-</td></tr>
-<tr><td>GA</td><td>-</td><td>-</td></tr>
+<tr><td>GA</td><td>1.26</td><td>-</td></tr>
 </tbody></table>
 <h3><a class="header" href="#overview-1" id="overview-1">Overview</a></h3>
 <p>For most drivers, kubelet applies the <code>fsGroup</code> specified in a Pod spec by recursively changing volume ownership during the mount process. This does not work for certain drivers. For example:</p>
@@ -223,7 +223,7 @@ Changes will only occur if the <code>fsType</code> is defined and the persistent
 <li>A driver requires passing <code>fsGroup</code> to mount options in order for it to take effect.</li>
 <li>A driver needs to apply <code>fsGroup</code> at the stage step (<code>NodeStageVolume</code> in CSI; <code>MountDevice</code> in Kubernetes) instead of the mount step (<code>NodePublishVolume</code> in CSI; <code>SetUp/SetUpAt</code> in Kubernetes).</li>
 </ul>
-<p>This feature provides a mechanism for the driver to apply <code>fsGroup</code> instead of kubelet. Specifically, once the feature is enabled, it passes <code>fsGroup</code> to the CSI driver through <code>NodeStageVolume</code> and <code>NodePublishVolume</code> calls, and the kubelet <code>fsGroup</code> logic is disabled. The driver is expected to apply the <code>fsGroup</code> within one of these calls.</p>
+<p>This feature provides a mechanism for the driver to apply <code>fsGroup</code> instead of kubelet. Specifically, it passes <code>fsGroup</code> to the CSI driver through <code>NodeStageVolume</code> and <code>NodePublishVolume</code> calls, and the kubelet <code>fsGroup</code> logic is disabled. The driver is expected to apply the <code>fsGroup</code> within one of these calls.</p>
 <p>If this feature is enabled in Kubernetes and a volume uses a driver that supports this feature, <code>CSIDriver.spec.fsGroupPolicy</code> and <code>Pod.spec.securityContext.fsGroupChangePolicy</code> are ignored.</p>
 <blockquote>
 <p>See the <a href="https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/2317-fsgroup-on-mount/README.md">design document</a> and the description of the <code>VolumeCapability.MountVolume.volume_mount_group</code> field in the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#createvolume">CSI spec</a> for further information.</p>
