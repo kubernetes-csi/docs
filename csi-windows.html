@@ -197,7 +197,7 @@ spec:
         kubernetes.io/os: windows
       containers:
         - name: csi-driver-registrar
-          image: k8s.gcr.io/sig-storage/csi-node-driver-registrar
+          image: registry.k8s.io/sig-storage/csi-node-driver-registrar
           args:
             - &quot;--v=5&quot;
             - &quot;--csi-address=unix://C:\\csi\\csi.sock&quot;
@@ -208,7 +208,7 @@ spec:
             - name: registration-dir
               mountPath: C:\registration
         - name: csi-driver
-          image: k8s.gcr.io/sig-storage/csi-driver:win-v1
+          image: registry.k8s.io/sig-storage/csi-driver:win-v1
           args:
             - &quot;--v=5&quot;
             - &quot;--endpoint=unix:/csi/csi.sock&quot;
