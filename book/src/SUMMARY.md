@@ -42,6 +42,7 @@
         - [CSI Windows](csi-windows.md)
         - [Volume Mode Conversion](prevent-volume-mode-conversion.md)
         - [Cross-Namespace Data Sources](cross-namespace-data-sources.md)
+        - [Volume Group Snapshot](group-snapshot.md)
 - [Deploying a CSI Driver on Kubernetes](deploying.md)
     - [Example](example.md)
 - [Driver Testing](testing-drivers.md)
