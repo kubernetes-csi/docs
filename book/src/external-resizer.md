@@ -8,7 +8,7 @@
 
 ### Supported Versions
 
-Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
 [external-resizer v1.7.0](https://github.com/kubernetes-csi/external-resizer/tree/v1.7.0)  | [release-1.7](https://github.com/kubernetes-csi/external-resizer/tree/release-1.7) |[v1.5.0](https://github.com/container-storage-interface/spec/releases/tag/v1.5.0) | - | registry.k8s.io/sig-storage/csi-resizer:v1.7.0  | v1.16 | - | v1.23
 [external-resizer v1.6.0](https://github.com/kubernetes-csi/external-resizer/tree/v1.6.0)  | [release-1.6](https://github.com/kubernetes-csi/external-resizer/tree/release-1.6) |[v1.5.0](https://github.com/container-storage-interface/spec/releases/tag/v1.5.0) | - | registry.k8s.io/sig-storage/csi-resizer:v1.6.0  | v1.16 | - | v1.23
@@ -16,7 +16,7 @@ Latest stable release | Branch | Min CSI Version | Max CSI Version | Container I
 
 ### Unsupported Versions
 
-Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version) |
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
 [external-resizer v1.4.0](https://github.com/kubernetes-csi/external-resizer/tree/v1.4.0)  | [release-1.4](https://github.com/kubernetes-csi/external-resizer/tree/release-1.4) |[v1.5.0](https://github.com/container-storage-interface/spec/releases/tag/v1.5.0) | - | registry.k8s.io/sig-storage/csi-resizer:v1.4.0  | v1.16 | - | v1.23
 [external-resizer v1.3.0](https://github.com/kubernetes-csi/external-resizer/tree/v1.3.0)  | [release-1.3](https://github.com/kubernetes-csi/external-resizer/tree/release-1.3) |[v1.5.0](https://github.com/container-storage-interface/spec/releases/tag/v1.5.0) | - | registry.k8s.io/sig-storage/csi-resizer:v1.3.0  | v1.16 | - | v1.22

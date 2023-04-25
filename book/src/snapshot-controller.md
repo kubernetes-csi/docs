@@ -10,7 +10,7 @@ When Volume Snapshot is promoted to Beta in Kubernetes 1.17, the CSI external-sn
 
 ### Supported Versions
 
-Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version)
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version)
 --|--|--|--|--|--|--|--
 [external-snapshotter v6.2.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v6.2.1) | [release-6.2](https://github.com/kubernetes-csi/external-snapshotter/tree/release-6.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/snapshot-controller:v6.2.1 | v1.20 | - | v1.24
 [external-snapshotter v6.1.0](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v6.1.0) | [release-6.1](https://github.com/kubernetes-csi/external-snapshotter/tree/release-6.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/snapshot-controller:v6.1.0 | v1.20 | - | v1.24
@@ -18,7 +18,7 @@ Latest stable release | Branch | Min CSI Version | Max CSI Version | Container I
 
 ### Unsupported Versions
 
-Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](kubernetes-compatibility.md#minimum-version) | [Max K8s Version](kubernetes-compatibility.md#maximum-version) | [Recommended K8s Version](kubernetes-compatibility.md#recommended-version)
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version)
 --|--|--|--|--|--|--|--
 [external-snapshotter v5.0.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v5.0.1) | [release-5.0](https://github.com/kubernetes-csi/external-snapshotter/tree/release-5.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/snapshot-controller:v5.0.1 | v1.20 | - | v1.22
 [external-snapshotter v4.2.1](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v4.2.1) | [release-4.2](https://github.com/kubernetes-csi/external-snapshotter/tree/release-4.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/snapshot-controller:v4.2.1 | v1.20 | - | v1.22
