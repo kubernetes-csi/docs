@@ -37,7 +37,7 @@ For detailed snapshot beta design changes, see the design doc [here](https://git
 
 For detailed information about volume snapshot and restore functionality, see [Volume Snapshot & Restore](snapshot-restore-feature.md).
 
-For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/release-3.0/README.md).
+For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md).
 
 ## Deployment
 
@@ -45,20 +45,10 @@ Kubernetes distributors should bundle and deploy the controller and CRDs as part
 
 If your cluster does not come pre-installed with the correct components, you may manually install these components by executing the following steps.
 
-Install Snapshot Beta CRDs per cluster:
-
 ```
-kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotclasses.yaml
-
-kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshotcontents.yaml
-
-kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/client/config/crd/snapshot.storage.k8s.io_volumesnapshots.yaml
-```
-
-Install Snapshot Controller per cluster:
-
-```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
-
-kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-3.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
+git clone https://github.com/kubernetes-csi/external-snapshotter/
+cd ./external-snapshotter
+git checkout release-6.2
+kubectl kustomize client/config/crd | kubectl create -f -
+kubectl -n kube-system kustomize deploy/kubernetes/snapshot-controller | kubectl create -f -
 ```
