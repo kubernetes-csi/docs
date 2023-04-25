@@ -16,7 +16,7 @@ CSI drivers (e.g. AzureDisk, GCE PD, etc.) are recommended to be deployed as con
 Please note that CSI controller level operations/sidecars are not supported on Windows.
 
 ## How to use the CSI Proxy for Windows?
-See how to install CSI Proxy in [csi-proxy.md#Deployment]
+See how to install CSI Proxy in the [Deployment chapter](csi-proxy.md#Deployment).
 
 For CSI driver authors, import CSI proxy client under github.com/kubernetes-csi/csi-proxy/client. There are six client API groups including disk, filesystem, iscsi, smb, system, volume. See [link](https://github.com/kubernetes-csi/csi-proxy/tree/master/client/groups) for details.
 As an example, please check how GCE PD Driver import disk, volume and filesystem client API groups [here](https://github.com/kubernetes-sigs/gcp-compute-persistent-disk-csi-driver/blob/release-1.2/pkg/mount-manager/safe-mounter_windows.go#L28)
