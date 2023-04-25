@@ -68,13 +68,13 @@ For detailed information about volume snapshot and restore functionality, see [V
 
 CSI drivers that support provisioning volume snapshots and the ability to provision new volumes using those snapshots should use this sidecar container, and advertise the CSI `CREATE_DELETE_SNAPSHOT` controller capability.
 
-For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/README.md).
+For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md).
 
 ### Deployment
 
 The CSI `external-snapshotter` is deployed as a sidecar controller. See [deployment section](deploying.md) for more details.
 
-For an example deployment, see [this example](https://github.com/kubernetes-csi/external-snapshotter/blob/release-2.0/deploy/kubernetes/csi-snapshotter/setup-csi-snapshotter.yaml) which deploys `external-snapshotter` and `external-provisioner` with the Hostpath CSI driver.
+For an example deployment, see [this example](https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/deploy/kubernetes/csi-snapshotter/setup-csi-snapshotter.yaml) which deploys `external-snapshotter` and `external-provisioner` with the Hostpath CSI driver.
 
 ## Snapshot Alpha
 
