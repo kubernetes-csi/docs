@@ -2542,7 +2542,8 @@ volumes for. This improves the security posture in the mounting process where
 the volumes are ACL’ed on the pods’ service account without handing out
 unnecessary permissions to the CSI drivers’ service account.
 This feature is especially important for secret-handling CSI drivers, such as
-the secrets-store-csi-driver. Since these tokens can be rotated and short-lived,
+the <a href="https://github.com/kubernetes-sigs/secrets-store-csi-driver">secrets-store-csi-driver</a>.
+Since these tokens can be rotated and short-lived,
 this feature also provides a knob for CSI drivers to receive NodePublishVolume
 RPC calls periodically with the new token. This knob is also useful when volumes
 are short-lived, e.g. certificates.</p>
@@ -2632,6 +2633,9 @@ secrets from Secret Manager.</li>
 <li>With <a href="https://github.com/hashicorp/secrets-store-csi-driver-provider-vault">Vault</a>,
 the Vault provider will send the token to Vault which will use the token in
 <code>TokenReview</code> request to authenticate.</li>
+<li>With <a href="https://github.com/Azure/secrets-store-csi-driver-provider-azure">Azure</a>,
+the driver will pass the token to Azure provider to exchange for Azure credentials, and then request
+secrets from Key Vault.</li>
 </ul>
 </li>
 </ul>
