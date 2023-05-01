@@ -17,7 +17,7 @@ Kubernetes CSI currently enables CSI Drivers to expose the following functionali
 1. Creation and deletion of volume snapshots via [Kubernetes native API](https://kubernetes.io/docs/concepts/storage/volume-snapshots/). 
 2. Creation of new volumes pre-populated with the data from a snapshot via Kubernetes [dynamic volume provisioning](https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/).
 
-Note: Documentation under https://kubernetes.io/docs is for the latest Kubernetes release. Documentation for earlier releases are stored in different location. For example, this is the documentation location for [v1.16](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/).
+Note: Documentation under [https://kubernetes.io/docs](https://kubernetes.io/docs) is for the latest Kubernetes release. Documentation for earlier releases are stored in different location. For example, this is the documentation location for [v1.16](https://v1-16.docs.kubernetes.io/docs/concepts/storage/volume-snapshots/).
 
 ## Implementing Snapshot & Restore Functionality in Your CSI Driver
 

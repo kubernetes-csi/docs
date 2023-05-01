@@ -33,7 +33,6 @@ E0306 16:34:50.992034       1 reflector.go:205] github.com/kubernetes-csi/extern
 ...
 ```
 
-Please see the [Kubernetes 1.9](Kubernetes-1.9.html) page.
 
 ### Problems with the external components
 
