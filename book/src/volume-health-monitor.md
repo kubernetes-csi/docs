@@ -4,7 +4,7 @@
 
 Status | Min K8s Version | Max K8s Version | external-health-monitor-controller Version
 --|--|--|--
-Alpha | 1.21 | - | 0.3.0
+Alpha | 1.21 | - | 0.8.0
 
 
 ## Overview
