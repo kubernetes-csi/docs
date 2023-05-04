@@ -2482,47 +2482,44 @@ documentation</a>.</p>
 </blockquote>
 <h1><a class="header" href="#volume-health-monitoring-feature" id="volume-health-monitoring-feature">Volume Health Monitoring Feature</a></h1>
 <h2><a class="header" href="#status-11" id="status-11">Status</a></h2>
-<table><thead><tr><th>Status</th><th>CSI external-health-monitor-controller sidecar Version</th><th>CSI external-health-monitor-agent sidecar Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>0.1.0</td><td>0.1.0</td></tr>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>external-health-monitor-controller Version</th></tr></thead><tbody>
+<tr><td>Alpha</td><td>1.21</td><td>-</td><td>0.8.0</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview-11" id="overview-11">Overview</a></h2>
-<p>The External Health Monitor is part of Kubernetes implementation of <a href="https://github.com/container-storage-interface/spec">Container Storage Interface (CSI)</a>. It was introduced as an Alpha feature in Kubernetes v1.19.</p>
-<p>The <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1432-volume-health-monitor">External Health Monitor</a> is implemented as two components: <code>External Health Monitor Controller</code> and <code>External Health Monitor Agent</code>.</p>
+<p>The External Health Monitor is part of Kubernetes implementation of <a href="https://github.com/container-storage-interface/spec">Container Storage Interface (CSI)</a>. It was introduced as an Alpha feature in Kubernetes v1.19. In Kubernetes 1.21, a second Alpha was done due to a design change which deprecated <a href="external-health-monitor-agent">External Health Monitor Agent</a>.</p>
+<p>The <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/1432-volume-health-monitor">External Health Monitor</a> is implemented as two components: <code>External Health Monitor Controller</code> and <code>Kubelet</code>.</p>
 <ul>
 <li>
 <p>External Health Monitor Controller:</p>
 <ul>
 <li>The external health monitor controller will be deployed as a sidecar together with the CSI controller driver, similar to how the external-provisioner sidecar is deployed.</li>
 <li>Trigger controller RPC to check the health condition of the CSI volumes.</li>
-<li>The external controller sidecar will also watch for node failure events. This component can be enabled by setting the <code>enable-node-watcher</code> flag to <code>true</code>. This will only have effects on local PVs now. When a node failure event is detected, an event will be reported on the PVC to indicate that pods using this PVC are on a failed node.</li>
+<li>The external controller sidecar will also watch for node failure events. This component can be enabled via a flag.</li>
 </ul>
 </li>
 <li>
-<p>External Health Monitor Agent:</p>
+<p>Kubelet:</p>
 <ul>
-<li>The external health monitor agent will be deployed as a sidecar together with the CSI node driver on every Kubernetes worker node.</li>
-<li>Trigger node RPC to check volume's mounting conditions.</li>
+<li>In addition to existing volume stats collected already, Kubelet will also check volume's mounting conditions collected from the same CSI node RPC and log events to Pods if volume condition is abnormal.</li>
 </ul>
 </li>
 </ul>
-<p>The External Health Monitor needs to invoke the following CSI interfaces</p>
+<p>The Volume Health Monitoring feature need to invoke the following CSI interfaces.</p>
 <ul>
 <li>External Health Monitor Controller:
 <ul>
-<li>ListVolumes</li>
+<li>ListVolumes (If both <code>ListVolumes</code> and <code>ControllerGetVolume</code> are supported, <code>ListVolumes</code> will be used)</li>
 <li>ControllerGetVolume</li>
 </ul>
 </li>
-<li>External Health Monitor Agent:
+<li>Kubelet:
 <ul>
 <li>NodeGetVolumeStats</li>
+<li>This feature in Kubelet is controlled by an Alpha feature gate <code>CSIVolumeHealth</code>.</li>
 </ul>
 </li>
 </ul>
-<p>The External Health Monitor Controller calls either <code>ListVolumes</code> or <code>ControllerGetVolume</code> CSI RPC and reports <code>VolumeConditionAbnormal</code> events with messages on PVCs if abnormal volume conditions are detected.</p>
-<p>The External Health Monitor Agent calls <code>NodeGetVolumeStats</code> CSI RPC and reports <code>VolumeConditionAbnormal</code> events with messages on Pods if abnormal volume conditions are detected.</p>
 <p>See <a href="external-health-monitor-controller.html">external-health-monitor-controller.md</a> for more details on the CSI <code>external-health-monitor-controller</code> sidecar.</p>
-<p>See <a href="external-health-monitor-agent.html">external-health-monitor-agent.md</a> for more details on the CSI <code>external-health-monitor-agent</code> sidecar.</p>
 <h1><a class="header" href="#token-requests" id="token-requests">Token Requests</a></h1>
 <h2><a class="header" href="#status-12" id="status-12">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th></tr></thead><tbody>
