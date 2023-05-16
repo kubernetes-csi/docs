@@ -4,7 +4,7 @@
 
 Status | Min K8s Version | Max K8s Version | external-provisioner Version
 -------|-----------------|-----------------|-----------------------------
-Alpha  | 1.26            | -               | 3.4.0
+Alpha  | 1.26            | -               | 3.4.0+
 
 ## Overview
 By default, a `VolumeSnapshot` is a namespace-scoped resource while a `VolumeSnapshotContent` is a cluster-scope resource.
