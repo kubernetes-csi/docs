@@ -10,6 +10,7 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
+[node-driver-registrar v2.8.0](https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v2.8.0) | [release-2.8](https://github.com/kubernetes-csi/node-driver-registrar/tree/release-2.8) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.8.0 | v1.13 | -
 [node-driver-registrar v2.7.0](https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v2.7.0) | [release-2.7](https://github.com/kubernetes-csi/node-driver-registrar/tree/release-2.7) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.7.0 | v1.13 | -
 [node-driver-registrar v2.6.3](https://github.com/kubernetes-csi/node-driver-registrar/releases/tag/v2.6.3) | [release-2.6](https://github.com/kubernetes-csi/node-driver-registrar/tree/release-2.6) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.6.3 | v1.13 | -
 
