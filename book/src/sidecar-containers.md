@@ -15,7 +15,7 @@ Benefits of these sidecar containers include:
 * Reduction of "boilerplate" code.
   * CSI Driver developers do not have to worry about complicated, "Kubernetes specific" code.
 * Separation of concerns.
-  * Code that interacts with the Kubernetes API is isolated from (and in a different container then) the code that implements the CSI interface.
+  * Code that interacts with the Kubernetes API is isolated from (and in a different container than) the code that implements the CSI interface.
 
 The Kubernetes development team maintains the following Kubernetes CSI Sidecar Containers:
 
