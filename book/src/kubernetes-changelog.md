@@ -10,11 +10,26 @@ details on individual features, visit the [Features section](features.md).
 * GA
     * [Automatic retroactive assignment of a default StorageClass](https://kubernetes.io/blog/2023/08/18/retroactive-default-storage-class-ga/)
     * [Non-graceful node shutdown](https://kubernetes.io/blog/2023/08/16/kubernetes-1-28-non-graceful-node-shutdown-ga/)
+* Alpha
+    * [PersistentVolume last phase transition time](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/3762-persistent-volume-last-phase-transition-time/README.md)
 * Removals:
     * [Removal of CSI Migration for GCE PD](https://github.com/kubernetes/enhancements/issues/1488)
 * Deprecations:
     * [Ceph RBD in-tree plugin](https://github.com/kubernetes/kubernetes/pull/118303)
     * [Ceph FS in-tree plugin](https://github.com/kubernetes/kubernetes/pull/118143)
+
+## Kubernetes 1.27
+
+### Features
+
+* Beta
+    * [StatefulSet PVC Auto-Deletion](https://kubernetes.io/blog/2023/05/04/kubernetes-1-27-statefulset-pvc-auto-deletion-beta/)
+    * [Robust VolumeManager reconstruction after kubelet restart](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3756-volume-reconstruction)
+    * [ReadWriteOncePod Access mode](https://kubernetes.io/blog/2023/04/20/read-write-once-pod-access-mode-beta/)
+    * [Speed up SELinux volume relabeling using mounts](https://kubernetes.io/blog/2023/04/18/kubernetes-1-27-efficient-selinux-relabeling-beta/)
+* Alpha
+    * [VolumeGroupSnapshot](https://kubernetes.io/blog/2023/05/08/kubernetes-1-27-volume-group-snapshot-alpha/)
+
 ## Kubernetes 1.26
 
 ### Features
