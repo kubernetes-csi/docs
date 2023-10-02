@@ -51,6 +51,13 @@ details on individual features, visit the [Features section](features.md).
 * Beta
     * vSphere CSI Migration (on by default)
     * Portworx CSI Migration (off-by-default)
+    * [CSI node expand secret](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3107-csi-nodeexpandsecret)
+    * [Prevent unauthorized volume mode converstion](https://github.com/kubernetes/enhancements/issues/3141)
+
+### Deprecation
+* In-tree plugin removal:
+    * AWS EBS
+    * Azure Disk
 
 ## Kubernetes 1.24
 
