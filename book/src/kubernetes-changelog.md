@@ -21,6 +21,8 @@ details on individual features, visit the [Features section](features.md).
 * Beta
     * [ReadWriteOncePod Access mode](https://kubernetes.io/blog/2023/04/20/read-write-once-pod-access-mode-beta/)
     * [Speed up SELinux volume relabeling using mounts](https://kubernetes.io/blog/2023/04/18/kubernetes-1-27-efficient-selinux-relabeling-beta/)
+    * [CSI node expand secret](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3107-csi-nodeexpandsecret)
+    * [Prevent unauthorized volume mode converstion](https://github.com/kubernetes/enhancements/issues/3141)
 * Alpha
     * [VolumeGroupSnapshot](https://kubernetes.io/blog/2023/05/08/kubernetes-1-27-volume-group-snapshot-alpha/)
 
@@ -45,9 +47,9 @@ details on individual features, visit the [Features section](features.md).
 * Beta
     * vSphere CSI Migration (on by default)
     * Portworx CSI Migration (off-by-default)
+* Alpha
     * [CSI node expand secret](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3107-csi-nodeexpandsecret)
-    * [Prevent unauthorized volume mode converstion](https://github.com/kubernetes/enhancements/issues/3141)
-
+    * [Speed up SELinux volume relabeling using mounts](https://kubernetes.io/blog/2023/04/18/kubernetes-1-27-efficient-selinux-relabeling-beta/)
 ### Deprecation
 * In-tree plugin removal:
     * AWS EBS
