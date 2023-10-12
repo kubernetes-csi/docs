@@ -22,7 +22,7 @@ details on individual features, visit the [Features section](features.md).
     * [ReadWriteOncePod Access mode](https://kubernetes.io/blog/2023/04/20/read-write-once-pod-access-mode-beta/)
     * [Speed up SELinux volume relabeling using mounts](https://kubernetes.io/blog/2023/04/18/kubernetes-1-27-efficient-selinux-relabeling-beta/)
     * [CSI node expand secret](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3107-csi-nodeexpandsecret)
-    * [Prevent unauthorized volume mode converstion](https://github.com/kubernetes/enhancements/issues/3141)
+    * [Prevent unauthorized volume mode converstion](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3141-prevent-volume-mode-conversion)
 * Alpha
     * [VolumeGroupSnapshot](https://kubernetes.io/blog/2023/05/08/kubernetes-1-27-volume-group-snapshot-alpha/)
 
