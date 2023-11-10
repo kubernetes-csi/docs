@@ -26,7 +26,7 @@ If your driver supports additional features, CSI "capabilities" can be used to a
   * The entire CSI `Controller` service is optional. This capability indicates the driver implement one or more of the methods in the CSI `Controller` service.
 * `VOLUME_ACCESSIBILITY_CONSTRAINTS` (`PluginCapability`)
   * This capability indicates the volumes for this driver may not be equally accessible from all nodes in the cluster, and that the driver will return additional topology related information that Kubernetes can use to schedule workloads more intelligently or influence where a volume will be provisioned.
-* `VolumeExpansion` (`PluginCapability`)
+* `EXPAND_VOLUME` (`PluginCapability`)
   * This capability indicates the driver supports resizing (expanding) volumes after creation.
 * `CREATE_DELETE_VOLUME` (`ControllerServiceCapability`)
   * This capability indicates the driver supports dynamic volume provisioning and deleting.
