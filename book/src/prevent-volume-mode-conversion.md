@@ -5,6 +5,8 @@
 Status | Min K8s Version | Max K8s Version | external-snapshotter Version | external-provisioner Version
 --|--|--|--|--
 Alpha | 1.24 | - | 6.0.1+ | 3.2.1+
+Beta | 1.28 | - | 7.0.0+ | 4.0.0+
+GA | 1.30 | - | 7.0.2+ | 4.0.1+
 
 ## Overview
 
@@ -21,11 +23,11 @@ the mode of a volume when a `PersistentVolumeClaim` is being created from an exi
 
 ## Usage
 
-To enable this feature, cluster administrators must:
+This feature is enabled by default and moved to GA with the Kubernetes 1.30 release.
+To use this feature, cluster administrators must:
 
-* Create `VolumeSnapshot` APIs with a minimum version of [`v6.0.1`](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/client%2Fv6.0.1).
-* Use `snapshot-controller` and `snapshot-validation-webhook` with a minimum version of `v6.0.1`.
-* Use `external-provisioner` with a minimum version of [`v3.2.1`](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.2.1).
-* Set `--prevent-volume-mode-conversion=true` flag in `snapshot-controller`, `snapshot-validation-webhook` and `external-provisioner`.
+* Create `VolumeSnapshot` APIs with a minimum version of [`v7.0.2`](https://github.com/kubernetes-csi/external-snapshotter/releases/tag/client%2Fv7.0.2).
+* Use `snapshot-controller` and `snapshot-validation-webhook` with a minimum version of `v7.0.2`.
+* Use `external-provisioner` with a minimum version of [`v4.0.1`](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v4.0.1).
 
-> For more information about how to use the feature, visit the [Kubernetes blog](https://kubernetes.io/blog/2022/05/18/prevent-unauthorised-volume-mode-conversion-alpha/) page. 
+> For more information about how to use the feature, visit the [Kubernetes blog](TODO: Add GA blog link) page. 
