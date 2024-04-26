@@ -112,6 +112,9 @@ The values of these parameters may be "templates". The `external-provisioner` wi
   * `${pvc.name}`
     * Replaced with the name of the `PersistentVolumeClaim` object that triggered provisioning.
     * Support added in CSI `external-provisioner` v1.2.0+
+  * `${pvc.annotations['<ANNOTATION_KEY>']}` (e.g. `${pvc.annotations['example.com/key']}`)
+    * Replaced with the value of the specified annotation from the `PersistentVolumeClaim` object that triggered provisioning
+    * Support added in CSI `external-provisioner` v4.0.2+
 * `csi.storage.k8s.io/provisioner-secret-namespace`
   * `${pv.name}`
     * Replaced with name of the `PersistentVolume` object being provisioned.
