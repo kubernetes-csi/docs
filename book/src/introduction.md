@@ -26,7 +26,7 @@ Kubernetes users interested in how to use a CSI driver should look at [kubernete
 
 Kubernetes is as minimally prescriptive about packaging and deployment of a CSI Volume Driver as possible.
 
-The only requirements are around how Kubernetes (master and node) components find and communicate with a CSI driver.
+The only requirements are around how Kubernetes (control plane and node) components find and communicate with a CSI driver.
 
 Specifically, the following is dictated by Kubernetes regarding CSI:
 
@@ -35,8 +35,8 @@ Specifically, the following is dictated by Kubernetes regarding CSI:
   * Kubelet discovers CSI drivers (and the Unix Domain Socket to use to interact with a CSI driver) via the [kubelet plugin registration mechanism](https://github.com/kubernetes/kubernetes/blob/master/pkg/kubelet/pluginmanager/pluginwatcher/README.md).
   * Therefore, all CSI drivers deployed on Kubernetes MUST register themselves using the kubelet plugin registration mechanism on each supported node.
 * Master to CSI Driver Communication
-  * Kubernetes master components do not communicate directly (via a Unix Domain Socket or otherwise) with CSI drivers.
-  * Kubernetes master components interact only with the Kubernetes API.
+  * Kubernetes control plane components do not communicate directly (via a Unix Domain Socket or otherwise) with CSI drivers.
+  * Kubernetes control plane components interact only with the Kubernetes API.
   * Therefore, CSI drivers that require operations that depend on the Kubernetes API (like volume create, volume attach, volume snapshot, etc.) MUST watch the Kubernetes API and trigger the appropriate CSI operations against it.
 
 Because these requirements are minimally prescriptive, CSI driver developers are free to implement and deploy their drivers as they see fit.

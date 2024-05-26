@@ -55,24 +55,24 @@ Topology feature gate enabled:
 
 ### Beta
 
-In the *Kubernetes cluster* the `CSINodeInfo` feature must be enabled on both Kubernetes master and nodes (refer to the [CSINode Object](csi-node-object.md) section for more info):
+In the *Kubernetes cluster* the `CSINodeInfo` feature must be enabled on both the Kubernetes control plane and nodes (refer to the [CSINode Object](csi-node-object.md) section for more info):
 
 ```
 --feature-gates=CSINodeInfo=true
 ```
 
-In order to fully function properly, all Kubernetes master and nodes must be on at least
+In order to fully function properly, the Kubernetes control plane and all nodes must be on at least
 Kubernetes 1.14. If a selected node is on a lower version, topology is ignored and not
 passed to the driver during `CreateVolume`.
 
 ### Alpha
 
 The alpha feature in the external-provisioner is not compatible across
-Kubernetes versions. In addition, Kubernetes master and node version skew and
+Kubernetes versions. In addition, Kubernetes control plane and node version skew and
 upgrades are not supported.
 
 The `CSINodeInfo`, `VolumeScheduling`, and `KubeletPluginsWatcher` feature gates
-must be enabled on both Kubernetes master and nodes.
+must be enabled on both the Kubernetes control plane and nodes.
 
 The [CSINodeInfo](csi-node-object.md) CRDs also have to be manually installed in the
 cluster.

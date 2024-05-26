@@ -111,7 +111,7 @@ In addition to these new CRD objects, a new, alpha `DataSource` field has been a
 
 ### Kubernetes Cluster Setup
 
-Since volume snapshot is an alpha feature in Kubernetes v1.12 to v1.16, you need to enable a new alpha feature gate called `VolumeSnapshotDataSource` in the Kubernetes master.
+Since volume snapshot is an alpha feature in Kubernetes v1.12 to v1.16, you need to enable a new alpha feature gate called `VolumeSnapshotDataSource` in the Kubernetes control plane.
 
 ```
 --feature-gates=VolumeSnapshotDataSource=true

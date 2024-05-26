@@ -87,7 +87,7 @@ The raw block feature requires the
 ## Kubernetes Cluster Setup
 
 The `BlockVolume` and `CSIBlockVolume` feature gates need to be enabled on
-all Kubernetes masters and nodes.
+the Kubernetes control plane and all nodes.
 
 ```
 --feature-gates=BlockVolume=true,CSIBlockVolume=true...
