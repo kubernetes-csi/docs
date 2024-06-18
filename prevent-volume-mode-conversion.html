@@ -167,6 +167,8 @@
 <h2><a class="header" href="#status" id="status">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>external-snapshotter Version</th><th>external-provisioner Version</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.24</td><td>-</td><td>6.0.1+</td><td>3.2.1+</td></tr>
+<tr><td>Beta</td><td>1.28</td><td>-</td><td>7.0.0+</td><td>4.0.0+</td></tr>
+<tr><td>GA</td><td>1.30</td><td>-</td><td>8.0.1+</td><td>5.0.1+</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>Malicious users can populate the <code>spec.volumeMode</code> field of a <code>PersistentVolumeClaim</code>
@@ -181,15 +183,15 @@ the mode of a volume when a <code>PersistentVolumeClaim</code> is being created 
 for more details on the background, design and discussions.</p>
 </blockquote>
 <h2><a class="header" href="#usage" id="usage">Usage</a></h2>
-<p>To enable this feature, cluster administrators must:</p>
+<p>This feature is enabled by default and moved to GA with the Kubernetes 1.30 release.
+To use this feature, cluster administrators must:</p>
 <ul>
-<li>Create <code>VolumeSnapshot</code> APIs with a minimum version of <a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/client%2Fv6.0.1"><code>v6.0.1</code></a>.</li>
-<li>Use <code>snapshot-controller</code> and <code>snapshot-validation-webhook</code> with a minimum version of <code>v6.0.1</code>.</li>
-<li>Use <code>external-provisioner</code> with a minimum version of <a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.2.1"><code>v3.2.1</code></a>.</li>
-<li>Set <code>--prevent-volume-mode-conversion=true</code> flag in <code>snapshot-controller</code>, <code>snapshot-validation-webhook</code> and <code>external-provisioner</code>.</li>
+<li>Create <code>VolumeSnapshot</code> APIs with a minimum version of <a href="https://github.com/kubernetes-csi/external-snapshotter/releases/tag/v8.0.1"><code>v8.0.1</code></a>.</li>
+<li>Use <code>snapshot-controller</code> and <code>snapshot-validation-webhook</code> with a minimum version of <code>v8.0.1</code>.</li>
+<li>Use <code>external-provisioner</code> with a minimum version of <a href="https://github.com/kubernetes-csi/external-provisioner/releases/tag/v5.0.1"><code>v5.0.1</code></a>.</li>
 </ul>
 <blockquote>
-<p>For more information about how to use the feature, visit the <a href="https://kubernetes.io/blog/2022/05/18/prevent-unauthorised-volume-mode-conversion-alpha/">Kubernetes blog</a> page. </p>
+<p>For more information about how to use the feature, visit the <a href="https://kubernetes.io/blog/2024/04/30/prevent-unauthorized-volume-mode-conversion-ga/">Kubernetes blog</a> page. </p>
 </blockquote>
 
                     </main>
