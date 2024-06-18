@@ -3,7 +3,7 @@
 ## Status
 
 Status | Min K8s Version | Max K8s Version | external-snapshotter Version | external-provisioner Version
---|--|--|--------|--
+--|--|--|--|--
 Alpha | 1.24 | - | 6.0.1+ | 3.2.1+
 Beta | 1.28 | - | 7.0.0+ | 4.0.0+
 GA | 1.30 | - | 8.0.1+ | 5.0.1+
