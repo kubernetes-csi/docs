@@ -8,6 +8,8 @@ Alpha | 1.12 | 1.12 | | | 0.4.0 <= version < 1.0 | 0.4.1 <= version < 1.0
 Alpha | 1.13 | 1.16 | | | 1.0.1 <= version < 2.0 | 1.0.1 <= version < 1.5
 Beta  | 1.17 | - | 2.0+ | 3.0+ | 2.0+ | 1.5+
 
+**IMPORTANT**: The validation logic for VolumeSnapshots and VolumeSnapshotContents has been replaced by CEL validation rules. The validating webhook is now only being used for VolumeSnapshotClasses to ensure that there's at most one default class per CSI Driver. The validation webhook is deprecated and will be removed in the next release.
+
 ## Overview
 
 Many storage systems provide the ability to create a "snapshot" of a persistent volume. A snapshot represents a point-in-time copy of a volume. A snapshot can be used either to provision a new volume (pre-populated with the snapshot data) or to restore the existing volume to a previous state (represented by the snapshot).
@@ -83,12 +85,12 @@ kubectl create -f pvc.yaml
 
 Create a _VolumeSnapshotClass_:
 ```
-kubectl create -f snapshotclass.yaml
+kubectl create -f snapshotclass-v1.yaml
 ```
 
 Create a _VolumeSnapshot_:
 ```
-kubectl create -f snapshot.yaml
+kubectl create -f snapshot-v1.yaml
 ```
 
 Create a _PVC_ from a _VolumeSnapshot_:
@@ -143,7 +145,7 @@ kubectl create -f snapshot.yaml
 
 Create a _PVC_ from a _VolumeSnapshot_:
 ```
-kuberctl create -f restore.yaml
+kubectl create -f restore.yaml
 ```
 
 #### PersistentVolumeClaim not Bound
