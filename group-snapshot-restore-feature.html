@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Volume Group Snapshot &amp; Restore - Kubernetes CSI Developer Documentation</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="project-policies.html"><strong aria-hidden="true">2.1.</strong> Versioning, Support, Compatibility Policies</a></li><li class="chapter-item expanded "><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.2.</strong> Kubernetes Changelog</a></li><li class="chapter-item expanded "><a href="kubernetes-cluster-controllers.html"><strong aria-hidden="true">2.3.</strong> Kubernetes Cluster Controllers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="snapshot-controller.html"><strong aria-hidden="true">2.3.1.</strong> Snapshot Controller</a></li><li class="chapter-item expanded "><a href="snapshot-validation-webhook.html"><strong aria-hidden="true">2.3.2.</strong> Snapshot Validation Webhook</a></li><li class="chapter-item expanded "><a href="csi-proxy.html"><strong aria-hidden="true">2.3.3.</strong> CSI Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="sidecar-containers.html"><strong aria-hidden="true">2.4.</strong> Sidecar Containers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="external-attacher.html"><strong aria-hidden="true">2.4.1.</strong> external-attacher</a></li><li class="chapter-item expanded "><a href="external-provisioner.html"><strong aria-hidden="true">2.4.2.</strong> external-provisioner</a></li><li class="chapter-item expanded "><a href="external-resizer.html"><strong aria-hidden="true">2.4.3.</strong> external-resizer</a></li><li class="chapter-item expanded "><a href="external-snapshotter.html"><strong aria-hidden="true">2.4.4.</strong> external-snapshotter</a></li><li class="chapter-item expanded "><a href="livenessprobe.html"><strong aria-hidden="true">2.4.5.</strong> livenessprobe</a></li><li class="chapter-item expanded "><a href="node-driver-registrar.html"><strong aria-hidden="true">2.4.6.</strong> node-driver-registrar</a></li><li class="chapter-item expanded "><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.4.7.</strong> cluster-driver-registrar</a></li><li class="chapter-item expanded "><a href="external-health-monitor-controller.html"><strong aria-hidden="true">2.4.8.</strong> external-health-monitor-controller</a></li><li class="chapter-item expanded "><a href="external-health-monitor-agent.html"><strong aria-hidden="true">2.4.9.</strong> external-health-monitor-agent</a></li></ol></li><li class="chapter-item expanded "><a href="csi-objects.html"><strong aria-hidden="true">2.5.</strong> CSI objects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csi-driver-object.html"><strong aria-hidden="true">2.5.1.</strong> CSIDriver Object</a></li><li class="chapter-item expanded "><a href="csi-node-object.html"><strong aria-hidden="true">2.5.2.</strong> CSINode Object</a></li></ol></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">2.6.</strong> Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.6.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.6.1.1.</strong> StorageClass Secrets</a></li><li class="chapter-item expanded "><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.6.1.2.</strong> VolumeSnapshotClass Secrets</a></li></ol></li><li class="chapter-item expanded "><a href="topology.html"><strong aria-hidden="true">2.6.2.</strong> Topology</a></li><li class="chapter-item expanded "><a href="raw-block.html"><strong aria-hidden="true">2.6.3.</strong> Raw Block Volume</a></li><li class="chapter-item expanded "><a href="skip-attach.html"><strong aria-hidden="true">2.6.4.</strong> Skip Attach</a></li><li class="chapter-item expanded "><a href="pod-info.html"><strong aria-hidden="true">2.6.5.</strong> Pod Info on Mount</a></li><li class="chapter-item expanded "><a href="volume-expansion.html"><strong aria-hidden="true">2.6.6.</strong> Volume expansion</a></li><li class="chapter-item expanded "><a href="volume-datasources.html"><strong aria-hidden="true">2.6.7.</strong> Data Sources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="volume-cloning.html"><strong aria-hidden="true">2.6.7.1.</strong> Cloning</a></li><li class="chapter-item expanded "><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.6.7.2.</strong> Volume Snapshot &amp; Restore</a></li><li class="chapter-item expanded "><a href="group-snapshot-restore-feature.html" class="active"><strong aria-hidden="true">2.6.7.3.</strong> Volume Group Snapshot &amp; Restore</a></li></ol></li><li class="chapter-item expanded "><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.6.8.</strong> Ephemeral Local Volumes</a></li><li class="chapter-item expanded "><a href="volume-limits.html"><strong aria-hidden="true">2.6.9.</strong> Volume Limits</a></li><li class="chapter-item expanded "><a href="storage-capacity-tracking.html"><strong aria-hidden="true">2.6.10.</strong> Storage Capacity Tracking</a></li><li class="chapter-item expanded "><a href="volume-health-monitor.html"><strong aria-hidden="true">2.6.11.</strong> Volume Health Monitoring</a></li><li class="chapter-item expanded "><a href="token-requests.html"><strong aria-hidden="true">2.6.12.</strong> Token Requests</a></li><li class="chapter-item expanded "><a href="support-fsgroup.html"><strong aria-hidden="true">2.6.13.</strong> FSGroup Support</a></li><li class="chapter-item expanded "><a href="csi-windows.html"><strong aria-hidden="true">2.6.14.</strong> CSI Windows</a></li><li class="chapter-item expanded "><a href="prevent-volume-mode-conversion.html"><strong aria-hidden="true">2.6.15.</strong> Volume Mode Conversion</a></li><li class="chapter-item expanded "><a href="cross-namespace-data-sources.html"><strong aria-hidden="true">2.6.16.</strong> Cross-Namespace Data Sources</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li class="chapter-item expanded "><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li class="chapter-item expanded "><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li class="chapter-item expanded "><a href="api.html"><strong aria-hidden="true">6.</strong> API Reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/volume-snapshot.html"><strong aria-hidden="true">6.1.</strong> Volume Snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">7.</strong> Troubleshooting</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#volume-group-snapshot-feature" id="volume-group-snapshot-feature">Volume Group Snapshot Feature</a></h1>
+<h2><a class="header" href="#status" id="status">Status</a></h2>
+<table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>snapshot-controller Version</th><th>snapshot-validation-webhook Version</th><th>CSI external-snapshotter sidecar Version</th><th>external-provisioner Version</th></tr></thead><tbody>
+<tr><td>Alpha</td><td>1.27</td><td>-</td><td>7.0+</td><td>7.0+</td><td>7.0+</td><td>4.0+</td></tr>
+</tbody></table>
+<p><strong>IMPORTANT</strong>: The validation logic for VolumeGroupSnapshots and VolumeGroupSnapshotContents has been replaced by CEL validation rules. The validating webhook is now only being used for VolumeGroupSnapshotClasses to ensure that there's at most one default class per CSI Driver. The validation webhook is deprecated and will be removed in the next release</p>
+<h2><a class="header" href="#overview" id="overview">Overview</a></h2>
+<p>Some storage systems provide the ability to create a crash consistent snapshot of
+multiple volumes. A group snapshot represents “copies” from multiple volumes that
+are taken at the same point-in-time. A group snapshot can be used either to rehydrate
+new volumes (pre-populated with the snapshot data) or to restore existing volumes to
+a previous state (represented by the snapshots).</p>
+<p>Kubernetes CSI currently enables CSI Drivers to expose the following
+functionality via the Kubernetes API:</p>
+<ol>
+<li>Creation and deletion of volume group snapshots via <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/apis/volumegroupsnapshot/v1alpha1">Kubernetes native
+API</a>.</li>
+<li>Creation of new volumes pre-populated with the data from a snapshot that is
+part of the volume group snapshot via Kubernetes <a href="https://kubernetes.io/docs/concepts/storage/dynamic-provisioning/">dynamic volume
+provisioning</a>.</li>
+</ol>
+<h2><a class="header" href="#implementing-volume-group-snapshot-functionality-in-your-csi-driver" id="implementing-volume-group-snapshot-functionality-in-your-csi-driver">Implementing Volume Group Snapshot Functionality in your CSI Driver</a></h2>
+<p>To implement the volume group snapshot feature, a CSI driver MUST:</p>
+<ul>
+<li>Implement a new group controller service.</li>
+<li>Implement group controller RPCs: <code>CreateVolumeGroupSnapshot</code>, <code>DeleteVolumeGroupSnapshot</code>, and <code>GetVolumeGroupSnapshot</code>.</li>
+<li>Add group controller capability <code>CREATE_DELETE_GET_VOLUME_GROUP_SNAPSHOT</code>.</li>
+</ul>
+<p>For details,  see the <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md">CSI spec</a>.</p>
+<h2><a class="header" href="#sidecar-deployment" id="sidecar-deployment">Sidecar Deployment</a></h2>
+<p>The Kubernetes CSI development team maintains the
+<a href="external-snapshotter.html">external-snapshotter</a> Kubernetes CSI <a href="sidecar-containers.html">Sidecar
+Containers</a>. This sidecar container implements the logic
+for watching the Kubernetes API objects and issuing the appropriate CSI volume
+group snapshot calls against a CSI endpoint. For more details, see
+<a href="external-snapshotter.html">external-snapshotter documentation</a>.</p>
+<h2><a class="header" href="#volume-group-snapshot-apis" id="volume-group-snapshot-apis">Volume Group Snapshot APIs</a></h2>
+<p>With the introduction of Volume Group Snapshot, the user can create and delete a
+group snapshot using Kubernetes APIs.</p>
+<p>The schema definition for the custom resources (CRs) can be found
+<a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/client/config/crd">here</a>.
+The CRDs should be installed by the Kubernetes distributions.</p>
+<p>There are 3 APIs:</p>
+<p><code>VolumeGroupSnapshot</code>
+: Created by a Kubernetes user (or perhaps by your own automation) to request
+creation of a volume group snapshot for multiple volumes.
+It contains information about the volume group snapshot operation such as the
+timestamp when the volume group snapshot was taken and whether it is ready to use.
+The creation and deletion of this object represents a desire to create or delete a
+cluster resource (a group snapshot).</p>
+<p><code>VolumeGroupSnapshotContent</code>
+: Created by the snapshot controller for a dynamically created VolumeGroupSnapshot.
+It contains information about the volume group snapshot including the volume group
+snapshot ID.
+This object represents a provisioned resource on the cluster (a group snapshot).
+The VolumeGroupSnapshotContent object binds to the VolumeGroupSnapshot for which it
+was created with a one-to-one mapping.</p>
+<p><code>VolumeGroupSnapshotClass</code>
+: Created by cluster administrators to describe how volume group snapshots should be
+created. including the driver information, the deletion policy, etc.</p>
+<h2><a class="header" href="#controller" id="controller">Controller</a></h2>
+<ul>
+<li>The controller logic for volume group snapshot is added to the snapshot
+controller and the CSI external-snapshotter sidecar.</li>
+</ul>
+<p>The snapshot controller is deployed by the Kubernetes distributions and is
+responsible for watching the VolumeGroupSnapshot CRD objects and manges the
+creation and deletion lifecycle of volume group snapshots.</p>
+<p>The CSI external-snapshotter sidecar watches Kubernetes
+VolumeGroupSnapshotContent CRD objects and triggers
+CreateVolumeGroupSnapshot/DeleteVolumeGroupSnapshot against a CSI endpoint.</p>
+<h2><a class="header" href="#snapshot-validation-webhook" id="snapshot-validation-webhook">Snapshot Validation Webhook</a></h2>
+<p>The validating webhook server is updated to validate volume group snapshot
+objects. This SHOULD be installed by the Kubernetes distros along with the
+snapshot-controller, not end users. It SHOULD be installed in all Kubernetes
+clusters that has the volume group snapshot feature enabled. See <a href="snapshot-validation-webhook.html">Snapshot
+Validation Webhook</a> for more details on how to
+use the webhook.</p>
+<h2><a class="header" href="#kubernetes-cluster-setup" id="kubernetes-cluster-setup">Kubernetes Cluster Setup</a></h2>
+<p>See the Deployment section of <a href="snapshot-controller.html">Snapshot Controller</a> on
+how to set up the snapshot controller and CRDs.</p>
+<p>See the Deployment section of <a href="snapshot-validation-webhook.html">Snapshot Validation
+Webhook</a> for more details on how to use the
+webhook.</p>
+<h2><a class="header" href="#test-volume-group-snapshot-feature" id="test-volume-group-snapshot-feature">Test Volume Group Snapshot Feature</a></h2>
+<p>To test volume group snapshot version, use the following <a href="https://github.com/kubernetes-csi/external-snapshotter/tree/master/examples/kubernetes">example yaml files</a>.</p>
+<p>Create a <em>StorageClass</em>:</p>
+<pre><code>kubectl create -f storageclass.yaml
+</code></pre>
+<p>Create <em>PVCs</em>:</p>
+<pre><code># This will create a PVC named hpvc
+kubectl create -f pvc.yaml
+
+# This will create a PVC named hpvc-2
+sed &quot;s/hpvc/hpvc-2/&quot; pvc.yaml | kubectl create -f -
+</code></pre>
+<p>Add a label to <em>PVC</em>:</p>
+<pre><code>kubectl label pvc hpvc hpvc-2 app.kubernetes.io/name=postgresql
+</code></pre>
+<p>Create a <em>VolumeGroupSnapshotClass</em>:</p>
+<pre><code>kubectl create -f groupsnapshotclass-v1alpha1.yaml
+</code></pre>
+<p>Create a <em>VolumeGroupSnapshot</em>:</p>
+<pre><code>kubectl create -f groupsnapshot-v1alpha1.yaml
+</code></pre>
+<p>Once the <em>VolumeGroupSnapshot</em> is ready, the <code>pvcVolumeSnapshotRefList</code> status field will contain the names of the generated <em>VolumeSnapshot</em> objects:</p>
+<pre><code>kubectl get volumegroupsnapshot new-groupsnapshot-demo  -o yaml | sed -n '/pvcVolumeSnapshotRefList/,$p'
+
+  pvcVolumeSnapshotRefList:
+  - persistentVolumeClaimRef:
+      name: hpvc
+    volumeSnapshotRef:
+      name: snapshot-4bcc4a322a473abf32babe3df5779d14349542b1f0eb6f9dab0466a85c59cd42-2024-06-19-12.35.17
+  - persistentVolumeClaimRef:
+      name: hpvc-2
+    volumeSnapshotRef:
+      name: snapshot-62bd0be591e1e10c22d51748cd4a53c0ae8bf52fabb482bee7bc51f8ff9d9589-2024-06-19-12.35.17
+  readyToUse: true
+</code></pre>
+<p>Create a <em>PVC</em> from a <em>VolumeSnapshot</em> that is part of the group snapshot:</p>
+<pre><code># In the command below, the volume snapshot name should be chosen from
+# the ones listed in the output of the previous command
+sed 's/new-snapshot-demo-v1/snapshot-4bcc4a322a473abf32babe3df5779d14349542b1f0eb6f9dab0466a85c59cd42-2024-06-19-12.35.17/' restore.yaml | kubectl create -f -
+</code></pre>
+<h2><a class="header" href="#examples" id="examples">Examples</a></h2>
+<p>See the <a href="drivers.html">Drivers</a> for a list of CSI drivers that implement the group snapshot feature.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="snapshot-restore-feature.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="ephemeral-local-volumes.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="snapshot-restore-feature.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="ephemeral-local-volumes.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="custom.js"></script>
+        
+
+        
+
+    </body>
+</html>
