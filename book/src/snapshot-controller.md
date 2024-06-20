@@ -34,9 +34,13 @@ For more information on the CSI external-snapshotter sidecar, see [this external
 
 The snapshot controller will be watching the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar only watches the Kubernetes API server for `VolumeSnapshotContent` CRD objects. The snapshot controller will be creating the `VolumeSnapshotContent` CRD object which triggers the CSI `external-snapshotter` sidecar to create a snapshot on the storage system.
 
+The snapshot controller will be watching for `VolumeGroupSnapshot` and `VolumeGroupSnapshotContent` CRD objects when Volume Group Snapshot support is enabled via the `--enable-volume-group-snapshots` option.
+
 For detailed snapshot beta design changes, see the design doc [here](https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/177-volume-snapshot/README.md).
 
 For detailed information about volume snapshot and restore functionality, see [Volume Snapshot & Restore](snapshot-restore-feature.md).
+
+For detailed information about volume group snapshot and restore functionality, see [Volume Snapshot & Restore](group-snapshot.md).
 
 For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md).
 

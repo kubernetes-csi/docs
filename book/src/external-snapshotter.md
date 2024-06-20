@@ -34,13 +34,17 @@ To use the snapshot beta and GA feature, a snapshot controller is also required.
 
 ### Description
 
-Starting with the Beta version, the snapshot controller will be watching the Kubernetes API server for `VolumeSnapshot` and `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar only watches the Kubernetes API server for `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar is also responsible for calling the CSI RPCs CreateSnapshot, DeleteSnapshot, and ListSnapshots.
+The CSI `external-snapshotter` sidecar watches the Kubernetes API server for `VolumeSnapshotContent` CRD objects. The CSI `external-snapshotter` sidecar is also responsible for calling the CSI RPCs `CreateSnapshot`, `DeleteSnapshot`, and `ListSnapshots`.
 
-#### VolumeSnapshotClass Parameters
+Volume Group Snapshot support can be enabled with the `--enable-volume-group-snapshots` option. When enabled, the CSI `external-snapshotter` sidecar watches the API server for `VolumeGroupSnapshotContent` CRD object, and will be responsible for calling the CSI RPCs `CreateVolumeGroupSnapshot`, `DeleteVolumeGroupSnapshot` and `GetVolumeGroupSnapshot`.
+
+#### VolumeSnapshotClass and VolumeGroupSnapshotClass Parameters
 
 When provisioning a new volume snapshot, the CSI `external-snapshotter` sets the `map<string, string> parameters` field in the CSI `CreateSnapshotRequest` call to the key/values specified in the `VolumeSnapshotClass` it is handling.
 
-The CSI `external-snapshotter` also reserves the parameter keys prefixed with `csi.storage.k8s.io/`. Any `VolumeSnapshotClass` keys prefixed with `csi.storage.k8s.io/` are not passed to the CSI driver as an opaque `parameter`.
+When volume group snapshot support is enabled, the `map<string, string> parameters` field is set in the CSI `CreateVolumeGroupSnapshotRequest` call to the key/values specified in the `VolumeGroupSnapshotClass` it is handling.
+
+The CSI `external-snapshotter` also reserves the parameter keys prefixed with `csi.storage.k8s.io/`. Any `VolumeSnapshotClass` or `VolumeGroupSnapshotClass` keys prefixed with `csi.storage.k8s.io/` are not passed to the CSI driver as an opaque `parameter`.
 
 The following reserved `VolumeSnapshotClass` parameter keys trigger behavior in the CSI `external-snapshotter`:
 
@@ -51,9 +55,9 @@ The following reserved `VolumeSnapshotClass` parameter keys trigger behavior in 
 
 For more information on how secrets are handled see [Secrets & Credentials](secrets-and-credentials.md).
 
-#### VolumeSnapshot and VolumeSnapshotContent Parameters
+#### VolumeSnapshot, VolumeSnapshotContent, VolumeGroupSnapshot and VolumeGroupSnapshotContent Parameters
 
-The CSI `external-snapshotter` (v4.0.0+) introduces the `--extra-create-metadata` flag, which automatically sets the following `map<string, string> parameters` in the CSI `CreateSnapshotRequest`:
+The CSI `external-snapshotter` (v4.0.0+) introduces the `--extra-create-metadata` flag, which automatically sets the following `map<string, string> parameters` in the CSI `CreateSnapshotRequest` and `CreateVolumeGroupSnapshotRequest`:
 
 * `csi.storage.k8s.io/volumesnapshot/name`
 * `csi.storage.k8s.io/volumesnapshot/namespace`
@@ -68,6 +72,8 @@ For detailed information about volume snapshot and restore functionality, see [V
 ### Usage
 
 CSI drivers that support provisioning volume snapshots and the ability to provision new volumes using those snapshots should use this sidecar container, and advertise the CSI `CREATE_DELETE_SNAPSHOT` controller capability.
+
+CSI drivers that support provisioning volume group snapshots should use this side container too, and advertise the CSI `CREATE_DELETE_GET_VOLUME_GROUP_SNAPSHOT` controller capability.
 
 For detailed information (binary parameters, RBAC rules, etc.), see [https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md](https://github.com/kubernetes-csi/external-snapshotter/blob/release-6.2/README.md).
 
