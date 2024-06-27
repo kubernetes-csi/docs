@@ -13,6 +13,7 @@
         - [external-provisioner](external-provisioner.md)
         - [external-resizer](external-resizer.md)
         - [external-snapshotter](external-snapshotter.md)
+        - [external-snapshot-metadata](external-snapshot-metadata.md)
         - [livenessprobe](livenessprobe.md)
         - [node-driver-registrar](node-driver-registrar.md)
         - [cluster-driver-registrar](cluster-driver-registrar.md) (deprecated)
