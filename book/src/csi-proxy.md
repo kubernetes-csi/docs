@@ -35,7 +35,7 @@ For detailed information (binary parameters, etc.), see the README of the releva
 
 ## Deployment
 
-It the responsibility of the Kubernetes distribution or cluster admin to install csi-proxy. Directly run csi-proxy.exe binary or run it as a Windows Service on Kubernetes nodes.
+It is the responsibility of the Kubernetes distribution or cluster admin to install csi-proxy. Directly run csi-proxy.exe binary or run it as a Windows Service on Kubernetes nodes.
 For example,
 
 ``` 
