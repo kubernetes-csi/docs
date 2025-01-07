@@ -25,6 +25,7 @@
         - [Secrets & Credentials](secrets-and-credentials.md)
             - [StorageClass Secrets](secrets-and-credentials-storage-class.md)
             - [VolumeSnapshotClass Secrets](secrets-and-credentials-volume-snapshot-class.md)
+            - [VolumeGroupSnapshotClass Secrets](secrets-and-credentials-volume-group-snapshot-class.md)
         - [Topology](topology.md)
         - [Raw Block Volume](raw-block.md)
         - [Skip Attach](skip-attach.md)
