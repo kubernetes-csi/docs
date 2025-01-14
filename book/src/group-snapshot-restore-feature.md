@@ -4,7 +4,8 @@
 
 Status | Min K8s Version | Max K8s Version | snapshot-controller Version | snapshot-validation-webhook Version | CSI external-snapshotter sidecar Version | external-provisioner Version
 --|--|--|--|--|--|--
-Alpha  | 1.27 | - | 7.0+ | 7.0+ | 7.0+ | 4.0+
+Alpha  | 1.27 | 1.32 | 7.0+ | 7.0+ | 7.0+ | 4.0+
+Beta  | 1.32 | - | 8.2+ | 8.2+ | 8.2+ | 5.1+
 
 **IMPORTANT**: The validation logic for VolumeGroupSnapshots and VolumeGroupSnapshotContents has been replaced by CEL validation rules. The validating webhook is now only being used for VolumeGroupSnapshotClasses to ensure that there's at most one default class per CSI Driver. The validation webhook is deprecated and will be removed in the next release
 
@@ -131,35 +132,34 @@ kubectl label pvc hpvc hpvc-2 app.kubernetes.io/name=postgresql
 
 Create a _VolumeGroupSnapshotClass_:
 ```
-kubectl create -f groupsnapshotclass-v1alpha1.yaml
+kubectl create -f groupsnapshotclass-v1beta1.yaml
 ```
 
 Create a _VolumeGroupSnapshot_:
 ```
-kubectl create -f groupsnapshot-v1alpha1.yaml
+kubectl create -f groupsnapshot-v1beta1.yaml
 ```
 
-Once the _VolumeGroupSnapshot_ is ready, the `pvcVolumeSnapshotRefList` status field will contain the names of the generated _VolumeSnapshot_ objects:
-```
-kubectl get volumegroupsnapshot new-groupsnapshot-demo  -o yaml | sed -n '/pvcVolumeSnapshotRefList/,$p'
+Once the _VolumeGroupSnapshot_ is ready, list the _VolumeSnapshot_ whose owner is the _VolumeGroupSnapshot_:
 
-  pvcVolumeSnapshotRefList:
-  - persistentVolumeClaimRef:
-      name: hpvc
-    volumeSnapshotRef:
-      name: snapshot-4bcc4a322a473abf32babe3df5779d14349542b1f0eb6f9dab0466a85c59cd42-2024-06-19-12.35.17
-  - persistentVolumeClaimRef:
-      name: hpvc-2
-    volumeSnapshotRef:
-      name: snapshot-62bd0be591e1e10c22d51748cd4a53c0ae8bf52fabb482bee7bc51f8ff9d9589-2024-06-19-12.35.17
-  readyToUse: true
+```
+kubectl get volumegroupsnapshot
+NAME                     READYTOUSE   VOLUMEGROUPSNAPSHOTCLASS      VOLUMEGROUPSNAPSHOTCONTENT                              CREATIONTIME   AGE
+new-groupsnapshot-demo   true         csi-hostpath-groupsnapclass   groupsnapcontent-fb7a1c20-54d3-444c-a604-b3ff0f4a8801   4m57s          5m26s
+```
+
+```
+kubectl get volumesnapshot -o=jsonpath='{range .items[?(@.metadata.ownerReferences[0].name=="new-groupsnapshot-demo")]}{.metadata.name}{"\n"}{end}'
+
+  snapshot-4dc1c53a29538b36e85003503a4bcac5dbde4cff59e81f1e3bb80b6c18c3fd03
+  snapshot-fbfe59eff570171765df664280910c3bf1a4d56e233a5364cd8cb0152a35965b
 ```
 
 Create a _PVC_ from a _VolumeSnapshot_ that is part of the group snapshot:
 ```
 # In the command below, the volume snapshot name should be chosen from
 # the ones listed in the output of the previous command
-sed 's/new-snapshot-demo-v1/snapshot-4bcc4a322a473abf32babe3df5779d14349542b1f0eb6f9dab0466a85c59cd42-2024-06-19-12.35.17/' restore.yaml | kubectl create -f -
+sed 's/new-snapshot-demo-v1/snapshot-4dc1c53a29538b36e85003503a4bcac5dbde4cff59e81f1e3bb80b6c18c3fd03/' restore.yaml | kubectl create -f -
 ```
 
 ## Examples
