@@ -166,7 +166,8 @@
                         <h1><a class="header" href="#volume-group-snapshot-feature" id="volume-group-snapshot-feature">Volume Group Snapshot Feature</a></h1>
 <h2><a class="header" href="#status" id="status">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>snapshot-controller Version</th><th>snapshot-validation-webhook Version</th><th>CSI external-snapshotter sidecar Version</th><th>external-provisioner Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>1.27</td><td>-</td><td>7.0+</td><td>7.0+</td><td>7.0+</td><td>4.0+</td></tr>
+<tr><td>Alpha</td><td>1.27</td><td>1.32</td><td>7.0+</td><td>7.0+</td><td>7.0+</td><td>4.0+</td></tr>
+<tr><td>Beta</td><td>1.32</td><td>-</td><td>8.2+</td><td>8.2+</td><td>8.2+</td><td>5.1+</td></tr>
 </tbody></table>
 <p><strong>IMPORTANT</strong>: The validation logic for VolumeGroupSnapshots and VolumeGroupSnapshotContents has been replaced by CEL validation rules. The validating webhook is now only being used for VolumeGroupSnapshotClasses to ensure that there's at most one default class per CSI Driver. The validation webhook is deprecated and will be removed in the next release</p>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
@@ -263,29 +264,25 @@ sed &quot;s/hpvc/hpvc-2/&quot; pvc.yaml | kubectl create -f -
 <pre><code>kubectl label pvc hpvc hpvc-2 app.kubernetes.io/name=postgresql
 </code></pre>
 <p>Create a <em>VolumeGroupSnapshotClass</em>:</p>
-<pre><code>kubectl create -f groupsnapshotclass-v1alpha1.yaml
+<pre><code>kubectl create -f groupsnapshotclass-v1beta1.yaml
 </code></pre>
 <p>Create a <em>VolumeGroupSnapshot</em>:</p>
-<pre><code>kubectl create -f groupsnapshot-v1alpha1.yaml
+<pre><code>kubectl create -f groupsnapshot-v1beta1.yaml
 </code></pre>
-<p>Once the <em>VolumeGroupSnapshot</em> is ready, the <code>pvcVolumeSnapshotRefList</code> status field will contain the names of the generated <em>VolumeSnapshot</em> objects:</p>
-<pre><code>kubectl get volumegroupsnapshot new-groupsnapshot-demo  -o yaml | sed -n '/pvcVolumeSnapshotRefList/,$p'
+<p>Once the <em>VolumeGroupSnapshot</em> is ready, list the <em>VolumeSnapshot</em> whose owner is the <em>VolumeGroupSnapshot</em>:</p>
+<pre><code>kubectl get volumegroupsnapshot
+NAME                     READYTOUSE   VOLUMEGROUPSNAPSHOTCLASS      VOLUMEGROUPSNAPSHOTCONTENT                              CREATIONTIME   AGE
+new-groupsnapshot-demo   true         csi-hostpath-groupsnapclass   groupsnapcontent-fb7a1c20-54d3-444c-a604-b3ff0f4a8801   4m57s          5m26s
+</code></pre>
+<pre><code>kubectl get volumesnapshot -o=jsonpath='{range .items[?(@.metadata.ownerReferences[0].name==&quot;new-groupsnapshot-demo&quot;)]}{.metadata.name}{&quot;\n&quot;}{end}'
 
-  pvcVolumeSnapshotRefList:
-  - persistentVolumeClaimRef:
-      name: hpvc
-    volumeSnapshotRef:
-      name: snapshot-4bcc4a322a473abf32babe3df5779d14349542b1f0eb6f9dab0466a85c59cd42-2024-06-19-12.35.17
-  - persistentVolumeClaimRef:
-      name: hpvc-2
-    volumeSnapshotRef:
-      name: snapshot-62bd0be591e1e10c22d51748cd4a53c0ae8bf52fabb482bee7bc51f8ff9d9589-2024-06-19-12.35.17
-  readyToUse: true
+  snapshot-4dc1c53a29538b36e85003503a4bcac5dbde4cff59e81f1e3bb80b6c18c3fd03
+  snapshot-fbfe59eff570171765df664280910c3bf1a4d56e233a5364cd8cb0152a35965b
 </code></pre>
 <p>Create a <em>PVC</em> from a <em>VolumeSnapshot</em> that is part of the group snapshot:</p>
 <pre><code># In the command below, the volume snapshot name should be chosen from
 # the ones listed in the output of the previous command
-sed 's/new-snapshot-demo-v1/snapshot-4bcc4a322a473abf32babe3df5779d14349542b1f0eb6f9dab0466a85c59cd42-2024-06-19-12.35.17/' restore.yaml | kubectl create -f -
+sed 's/new-snapshot-demo-v1/snapshot-4dc1c53a29538b36e85003503a4bcac5dbde4cff59e81f1e3bb80b6c18c3fd03/' restore.yaml | kubectl create -f -
 </code></pre>
 <h2><a class="header" href="#examples" id="examples">Examples</a></h2>
 <p>See the <a href="drivers.html">Drivers</a> for a list of CSI drivers that implement the group snapshot feature.</p>
