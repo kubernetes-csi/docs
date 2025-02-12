@@ -1,0 +1,339 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>external-snapshot-metadata - Kubernetes CSI Developer Documentation</title>
+        
+        
+
+
+        <!-- Custom HTML head -->
+        
+
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="This site documents how to develop and deploy a Container Storage Interface (CSI) driver on Kubernetes.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        
+        <link rel="icon" href="favicon.svg">
+        
+        
+        <link rel="shortcut icon" href="favicon.png">
+        
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        
+        <link rel="stylesheet" href="css/print.css" media="print">
+        
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        
+        <link rel="stylesheet" href="fonts/fonts.css">
+        
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+
+        
+    </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="introduction.html"><strong aria-hidden="true">1.</strong> Introduction</a></li><li class="chapter-item expanded "><a href="developing.html"><strong aria-hidden="true">2.</strong> Developing a CSI Driver for Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="project-policies.html"><strong aria-hidden="true">2.1.</strong> Versioning, Support, Compatibility Policies</a></li><li class="chapter-item expanded "><a href="kubernetes-changelog.html"><strong aria-hidden="true">2.2.</strong> Kubernetes Changelog</a></li><li class="chapter-item expanded "><a href="kubernetes-cluster-controllers.html"><strong aria-hidden="true">2.3.</strong> Kubernetes Cluster Controllers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="snapshot-controller.html"><strong aria-hidden="true">2.3.1.</strong> Snapshot Controller</a></li><li class="chapter-item expanded "><a href="snapshot-validation-webhook.html"><strong aria-hidden="true">2.3.2.</strong> Snapshot Validation Webhook</a></li><li class="chapter-item expanded "><a href="csi-proxy.html"><strong aria-hidden="true">2.3.3.</strong> CSI Proxy</a></li></ol></li><li class="chapter-item expanded "><a href="sidecar-containers.html"><strong aria-hidden="true">2.4.</strong> Sidecar Containers</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="external-attacher.html"><strong aria-hidden="true">2.4.1.</strong> external-attacher</a></li><li class="chapter-item expanded "><a href="external-provisioner.html"><strong aria-hidden="true">2.4.2.</strong> external-provisioner</a></li><li class="chapter-item expanded "><a href="external-resizer.html"><strong aria-hidden="true">2.4.3.</strong> external-resizer</a></li><li class="chapter-item expanded "><a href="external-snapshotter.html"><strong aria-hidden="true">2.4.4.</strong> external-snapshotter</a></li><li class="chapter-item expanded "><a href="livenessprobe.html"><strong aria-hidden="true">2.4.5.</strong> livenessprobe</a></li><li class="chapter-item expanded "><a href="node-driver-registrar.html"><strong aria-hidden="true">2.4.6.</strong> node-driver-registrar</a></li><li class="chapter-item expanded "><a href="cluster-driver-registrar.html"><strong aria-hidden="true">2.4.7.</strong> cluster-driver-registrar</a></li><li class="chapter-item expanded "><a href="external-health-monitor-controller.html"><strong aria-hidden="true">2.4.8.</strong> external-health-monitor-controller</a></li><li class="chapter-item expanded "><a href="external-health-monitor-agent.html"><strong aria-hidden="true">2.4.9.</strong> external-health-monitor-agent</a></li><li class="chapter-item expanded "><a href="external-snapshot-metadata.html" class="active"><strong aria-hidden="true">2.4.10.</strong> external-snapshot-metadata</a></li></ol></li><li class="chapter-item expanded "><a href="csi-objects.html"><strong aria-hidden="true">2.5.</strong> CSI objects</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="csi-driver-object.html"><strong aria-hidden="true">2.5.1.</strong> CSIDriver Object</a></li><li class="chapter-item expanded "><a href="csi-node-object.html"><strong aria-hidden="true">2.5.2.</strong> CSINode Object</a></li></ol></li><li class="chapter-item expanded "><a href="features.html"><strong aria-hidden="true">2.6.</strong> Features</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="secrets-and-credentials.html"><strong aria-hidden="true">2.6.1.</strong> Secrets &amp; Credentials</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="secrets-and-credentials-storage-class.html"><strong aria-hidden="true">2.6.1.1.</strong> StorageClass Secrets</a></li><li class="chapter-item expanded "><a href="secrets-and-credentials-volume-snapshot-class.html"><strong aria-hidden="true">2.6.1.2.</strong> VolumeSnapshotClass Secrets</a></li><li class="chapter-item expanded "><a href="secrets-and-credentials-volume-group-snapshot-class.html"><strong aria-hidden="true">2.6.1.3.</strong> VolumeGroupSnapshotClass Secrets</a></li></ol></li><li class="chapter-item expanded "><a href="topology.html"><strong aria-hidden="true">2.6.2.</strong> Topology</a></li><li class="chapter-item expanded "><a href="raw-block.html"><strong aria-hidden="true">2.6.3.</strong> Raw Block Volume</a></li><li class="chapter-item expanded "><a href="skip-attach.html"><strong aria-hidden="true">2.6.4.</strong> Skip Attach</a></li><li class="chapter-item expanded "><a href="pod-info.html"><strong aria-hidden="true">2.6.5.</strong> Pod Info on Mount</a></li><li class="chapter-item expanded "><a href="volume-expansion.html"><strong aria-hidden="true">2.6.6.</strong> Volume expansion</a></li><li class="chapter-item expanded "><a href="volume-datasources.html"><strong aria-hidden="true">2.6.7.</strong> Data Sources</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="volume-cloning.html"><strong aria-hidden="true">2.6.7.1.</strong> Cloning</a></li><li class="chapter-item expanded "><a href="snapshot-restore-feature.html"><strong aria-hidden="true">2.6.7.2.</strong> Volume Snapshot &amp; Restore</a></li><li class="chapter-item expanded "><a href="group-snapshot-restore-feature.html"><strong aria-hidden="true">2.6.7.3.</strong> Volume Group Snapshot &amp; Restore</a></li></ol></li><li class="chapter-item expanded "><a href="ephemeral-local-volumes.html"><strong aria-hidden="true">2.6.8.</strong> Ephemeral Local Volumes</a></li><li class="chapter-item expanded "><a href="volume-limits.html"><strong aria-hidden="true">2.6.9.</strong> Volume Limits</a></li><li class="chapter-item expanded "><a href="storage-capacity-tracking.html"><strong aria-hidden="true">2.6.10.</strong> Storage Capacity Tracking</a></li><li class="chapter-item expanded "><a href="volume-health-monitor.html"><strong aria-hidden="true">2.6.11.</strong> Volume Health Monitoring</a></li><li class="chapter-item expanded "><a href="token-requests.html"><strong aria-hidden="true">2.6.12.</strong> Token Requests</a></li><li class="chapter-item expanded "><a href="support-fsgroup.html"><strong aria-hidden="true">2.6.13.</strong> FSGroup Support</a></li><li class="chapter-item expanded "><a href="csi-windows.html"><strong aria-hidden="true">2.6.14.</strong> CSI Windows</a></li><li class="chapter-item expanded "><a href="prevent-volume-mode-conversion.html"><strong aria-hidden="true">2.6.15.</strong> Volume Mode Conversion</a></li><li class="chapter-item expanded "><a href="cross-namespace-data-sources.html"><strong aria-hidden="true">2.6.16.</strong> Cross-Namespace Data Sources</a></li><li class="chapter-item expanded "><a href="changed-block-tracking.html"><strong aria-hidden="true">2.6.17.</strong> Changed Block Tracking</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="deploying.html"><strong aria-hidden="true">3.</strong> Deploying a CSI Driver on Kubernetes</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="example.html"><strong aria-hidden="true">3.1.</strong> Example</a></li></ol></li><li class="chapter-item expanded "><a href="testing-drivers.html"><strong aria-hidden="true">4.</strong> Driver Testing</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="unit-testing.html"><strong aria-hidden="true">4.1.</strong> Unit Testing</a></li><li class="chapter-item expanded "><a href="functional-testing.html"><strong aria-hidden="true">4.2.</strong> Functional Testing</a></li></ol></li><li class="chapter-item expanded "><a href="drivers.html"><strong aria-hidden="true">5.</strong> Drivers</a></li><li class="chapter-item expanded "><a href="api.html"><strong aria-hidden="true">6.</strong> API Reference</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="api/volume-snapshot.html"><strong aria-hidden="true">6.1.</strong> Volume Snapshot</a></li></ol></li><li class="chapter-item expanded "><a href="troubleshooting.html"><strong aria-hidden="true">7.</strong> Troubleshooting</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                        
+                    </div>
+
+                    <h1 class="menu-title">Kubernetes CSI Developer Documentation</h1>
+
+                    <div class="right-buttons">
+                        
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        
+                        
+                    </div>
+                </div>
+
+                
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" name="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1><a class="header" href="#csi-external-snapshot-metadata" id="csi-external-snapshot-metadata">CSI external-snapshot-metadata</a></h1>
+<h2><a class="header" href="#status-and-releases" id="status-and-releases">Status and Releases</a></h2>
+<p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshot-metadata">https://github.com/kubernetes-csi/external-snapshot-metadata</a></p>
+<h3><a class="header" href="#supported-versions" id="supported-versions">Supported Versions</a></h3>
+<table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="project-policies.html#minimum-version">Min K8s Version</a></th><th><a href="project-policies.html#maximum-version">Max K8s Version</a></th><th><a href="project-policies.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
+<tr><td>v0.1.0</td><td><a href="https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v0.1.0">v0.1.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.10.0">v1.10.0</a></td><td>-</td><td>registry.k8s.io/sig-storage/csi-snapshot-metadata:v0.1.0</td><td>v1.33</td><td>-</td><td>v1.33</td></tr>
+</tbody></table>
+<h2><a class="header" href="#alpha" id="alpha">Alpha</a></h2>
+<h3><a class="header" href="#description" id="description">Description</a></h3>
+<p>This sidecar securely serves snapshot metadata to Kubernetes clients through the
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.
+This API is similar to the
+<a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#snapshot-metadata-service-rpcs">CSI SnapshotMetadata Service</a>
+but is designed to be used by Kuberetes authenticated and authorized backup applications.
+Its <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/proto/schema.proto">protobuf specification</a>
+is available in the sidecar repository. </p>
+<p>The sidecar authenticates and authorizes each Kubernetes backup application request made through the
+Kubernetes SnapshotMetadata Service API.
+It then acts as a proxy as it fetches the desired metadata from the CSI driver and
+streams it directly to the requesting application with no load on the Kubernetes API server.</p>
+<p>See <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-external-snapshot-metadata-sidecar">&quot;The External Snapshot Metadata Sidecar&quot;</a>
+section in the CSI Changed Block Tracking KEP for additional details on the sidecar.</p>
+<h3><a class="header" href="#usage" id="usage">Usage</a></h3>
+<p>Backup applications, identified by their authorized ServiceAccount objects,
+directly communicate with the sidecar using the
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.
+The authorization needed is described in the 
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#risks-and-mitigations">&quot;Risks and Mitigations&quot;</a>
+section of the CSI Changed Block Tracking KEP.
+In particular, this requires the ability to use the Kubernetes
+<a href="https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/">TokenRequest</a>
+API and to access the objects required to use the API.</p>
+<p>The availability of this optional feature is advertised to backup applications by the presence of a
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#snapshot-metadata-service-custom-resource">Snapshot Metadata Service CR</a>
+that is named for the CSI driver that provisioned the PersistentVolume and VolumeSnapshot objects involved.
+The CR contains a gRPC service endpoint and CA certificate, and an audience string for authentication.
+A backup application must use the Kubernetes
+<a href="https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-request-v1/">TokenRequest</a>
+API with the audience string to obtain a Kubernetes authentication token for use in the
+Kubernetes SnapshotMetadata Service API call.
+The backup application should establish trust for the CA certificate before making the gRPC call
+to the service endpoint.</p>
+<p>The Kubernetes SnapshotMetadata Service API uses a gRPC stream to return VolumeSnapshot metadata
+to the backup application. Metadata can be lengthy, so the API supports
+restarting an interrupted metadata request from an intermediate point in case of failure.
+The <a href="external-snapshot-metadata.html#resources">Resources</a> section below describes the
+programming artifacts available to support backup application use of this API.</p>
+<h3><a class="header" href="#deployment" id="deployment">Deployment</a></h3>
+<p>The CSI <code>external-snapshot-metadata</code> sidecar should be deployed by
+CSI drivers that support the
+<a href="./changed-block-tracking.html">Changed Block Tracking</a> feature.
+The sidecar must be deployed in the same pod as the CSI driver and
+will communicate with its gRPC <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#snapshot-metadata-service-rpcs">CSI SnapshotMetadata Service</a>
+and <a href="https://github.com/container-storage-interface/spec/blob/master/spec.md#identity-service-rpc">CSI Identity Service</a>
+over a UNIX domain socket.</p>
+<p>The sidecar should be configured to run under the authority of its
+CSI driver ServiceAccount, which must be authorized as described in the 
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#risks-and-mitigations">&quot;Risks and Mitigations&quot;</a>
+section of the CSI Changed Block Tracking KEP.
+In particular, this requires the ability to use the Kubernetes
+<a href="https://kubernetes.io/docs/reference/kubernetes-api/authentication-resources/token-review-v1/">TokenReview</a>
+and
+<a href="https://kubernetes.io/docs/reference/kubernetes-api/authorization-resources/subject-access-review-v1/">SubjectAccessReview</a>
+APIs.</p>
+<p>A Service object must be created to expose the endpoints of the
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>
+gRPC server implemented by the sidecar.</p>
+<p>A <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#snapshot-metadata-service-custom-resource">SnapshotMetadataService CR</a>,
+named for the CSI driver, must be created to advertise the
+availability of this optional feature to Kubernetes backup application clients.
+The CR contains the CA certificate and Service endpoint address
+of the sidecar and the audience string needed for the client
+authentication token.</p>
+<h3><a class="header" href="#resources" id="resources">Resources</a></h3>
+<p>The <a href="https://github.com/kubernetes-csi/external-snapshot-metadata">external-snapshot-metadata repository</a> contains
+the <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/proto/schema.proto">protobuf specification</a>
+of the
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.</p>
+<p>In addition, the repository has a number of useful artifacts to support Go language programs:</p>
+<ul>
+<li>
+<p>The
+<a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/client">Go client interface</a>
+for the Kubernetes SnapshotMetadata Service API.</p>
+</li>
+<li>
+<p>The
+<a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/pkg/iterator">pkg/iterator</a>
+client helper package.
+This may be used by backup applications instead of working directly with the 
+Kubernetes SnapshotMetadata Service gRPC client interfaces.
+The
+<a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/examples/snapshot-metadata-lister">snapshot-metadata-lister</a>
+example Go command illustrates the use of this helper package.</p>
+</li>
+<li>
+<p>Go language
+<a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/pkg/csiclientmocks">CSI SnapshotMetadataService API client mocks</a>.</p>
+</li>
+</ul>
+<p>The sample <a href="example.html">Hostpath CSI driver</a> has been extended to support the
+<a href="./changed-block-tracking.html">Changed Block Tracking</a> feature
+and provides an illustration on how to deploy a CSI driver.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                            <a rel="prev" href="external-health-monitor-agent.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+
+                        
+                            <a rel="next" href="csi-objects.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                    <a rel="prev" href="external-health-monitor-agent.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+
+                
+                    <a rel="next" href="csi-objects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                
+            </nav>
+
+        </div>
+
+        
+
+        
+
+        
+
+        
+        <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+
+        
+
+        
+        <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        <script type="text/javascript" src="custom.js"></script>
+        
+
+        
+
+    </body>
+</html>
