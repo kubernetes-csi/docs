@@ -20,6 +20,6 @@ This feature is enabled by default in the [external-provisioner](https://github.
 To take advantage of `VolumeAttibutesClass` feature:
 * The CSI driver must implement the `MODIFY_VOLUME` capability.
 * The Kubernetes administrator must create the `VolumeAttributesClass` with the relevant `parameters` for the `driverName`
-* The user can then patch the `PersistentVolume` under `spec.volumeAttributesClassName` to select or update the settings he needs for the volume.
+* The user can then patch the `PersistentVolumeClaim` under `spec.volumeAttributesClassName` to select or update the settings he needs for the volume.
 
 > For more information about how to use the feature, visit the [Kubernetes blog](https://kubernetes.io/blog/2024/08/15/kubernetes-1-31-volume-attributes-class/) page. 
