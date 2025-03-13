@@ -4,7 +4,7 @@
 
 Status | Min K8s Version | Max K8s Version | external-provisioner Version
 -------|-----------------|-----------------|-----------------------------
-Alpha  | 1.29            | -               | 5.0.2+
+Alpha  | 1.29            | -               | 4.0.0+
 Beta   | 1.31            | -               | 5.1.0+
 
 ## Overview
