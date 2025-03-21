@@ -46,6 +46,7 @@
         - [Volume Mode Conversion](prevent-volume-mode-conversion.md)
         - [Cross-Namespace Data Sources](cross-namespace-data-sources.md)
         - [Changed Block Tracking](changed-block-tracking.md)
+        - [Volume Attributes Class](volume-attributes.md)
 - [Deploying a CSI Driver on Kubernetes](deploying.md)
     - [Example](example.md)
 - [Driver Testing](testing-drivers.md)
