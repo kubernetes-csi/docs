@@ -73,7 +73,9 @@ on the host to see mounts created by the CSI driver container. See the example b
         - name: mountpoint-dir
           mountPath: /var/lib/kubelet/pods
           mountPropagation: "Bidirectional"
+      initContainers:
       - name: node-driver-registrar
+        restartPolicy: Always
         ...
         volumeMounts:
         - name: registration-dir
