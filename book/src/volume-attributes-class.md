@@ -2,10 +2,10 @@
 
 ## Status
 
-Status | Min K8s Version | Max K8s Version | external-provisioner Version
--------|-----------------|-----------------|-----------------------------
-Alpha  | 1.29            | -               | 4.0.0+
-Beta   | 1.31            | -               | 5.1.0+
+Status | Min K8s Version | Max K8s Version | external-provisioner  | external-resizer
+-------|-----------------|-----------------|-----------------------|-------------------------
+Alpha  | 1.29            | -               | v4.0.0                | v1.10.0
+Beta   | 1.31            | -               | v5.1.0                | v1.12.0
 
 ## Overview
 A `VolumeAttributesClass` is a cluster-scoped resource that can be used to control and change the settings of a `PersistentVolume`.
