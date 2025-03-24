@@ -9,18 +9,27 @@
 ### Supported Versions
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image
 --|--|--|--|--
+[external-health-monitor-controller v0.14.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.14.0) | [release-0.14](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.14) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.10.0
+[external-health-monitor-controller v0.13.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.13.0) | [release-0.13](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.13) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.9.0
+[external-health-monitor-controller v0.12.1](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.12.1) | [release-0.12](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.12) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.8.0
+
+### Unsupported Versions
+<details>
+
+<summary>List of previous versions</summary>
+
+Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image
+--|--|--|--|--
 [external-health-monitor-controller v0.10.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.10.0) | [release-0.8](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.8) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.10.0
 [external-health-monitor-controller v0.9.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.9.0) | [release-0.8](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.8) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.9.0
 [external-health-monitor-controller v0.8.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.8.0) | [release-0.8](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.8) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.8.0
-
-### Unsupported Versions
-Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image
---|--|--|--|--
 [external-health-monitor-controller v0.7.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.7.0) | [release-0.7](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.7) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.7.0
 [external-health-monitor-controller v0.6.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.6.0) | [release-0.6](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.6) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.6.0
 [external-health-monitor-controller v0.4.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.4.0) | [release-0.4](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.4) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.4.0
 [external-health-monitor-controller v0.3.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.3.0) | [release-0.3](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.3) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.3.0
 [external-health-monitor-controller v0.2.0](https://github.com/kubernetes-csi/external-health-monitor/releases/tag/v0.2.0) | [release-0.2](https://github.com/kubernetes-csi/external-health-monitor/tree/release-0.2) | [v1.3.0](https://github.com/container-storage-interface/spec/releases/tag/v1.3.0) | - | registry.k8s.io/sig-storage/csi-external-health-monitor-controller:v0.2.0
+
+</details>
 
 ## Description
 
