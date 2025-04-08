@@ -10,14 +10,20 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
-[external-provisioner v3.6.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.6.0) | [release-3.6](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.6) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.6.0 | v1.20 | - | v1.27
-[external-provisioner v3.5.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.5.0) | [release-3.5](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.5) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.5.0 | v1.20 | - | v1.26
-[external-provisioner v3.4.1](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.4.1) | [release-3.4](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.4) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.4.1 | v1.20 | - | v1.26
+[external-provisioner v5.2.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v5.2.0) | [release-5.2](https://github.com/kubernetes-csi/external-provisioner/tree/v5.2.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v5.2.0 | v1.20 | - | v1.29, v1.31 for beta features
+[external-provisioner v5.1.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v5.1.0) | [release-3.5](https://github.com/kubernetes-csi/external-provisioner/tree/release-5.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v5.1.0 | v1.20 | - | v1.29, v1.31 for beta features
+[external-provisioner v5.0.2](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v5.0.2) | [release-3.4](https://github.com/kubernetes-csi/external-provisioner/tree/release-5.0) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v5.0.2 | v1.20 | - | v1.27
 
 ### Unsupported Versions
+<details>
+
+<summary>List of previous versions</summary>
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
+[external-provisioner v3.6.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.6.0) | [release-3.6](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.6) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.6.0 | v1.20 | - | v1.27
+[external-provisioner v3.5.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.5.0) | [release-3.5](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.5) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.5.0 | v1.20 | - | v1.26
+[external-provisioner v3.4.1](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.4.1) | [release-3.4](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.4) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.4.1 | v1.20 | - | v1.26
 [external-provisioner v3.3.1](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.3.1) | [release-3.3](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.3) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.3.1 | v1.20 | - | v1.25
 [external-provisioner v3.2.2](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.2.2) | [release-3.2](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.2.2 | v1.20 | - | v1.22
 [external-provisioner v3.1.1](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v3.1.1) | [release-3.1](https://github.com/kubernetes-csi/external-provisioner/tree/release-3.1) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | registry.k8s.io/sig-storage/csi-provisioner:v3.1.1 | v1.20 | - | v1.22
@@ -31,6 +37,8 @@ Latest stable release | Branch | Min CSI Version | Max CSI Version | Container I
 [external-provisioner v1.3.1](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.3.1) | [release-1.3](https://github.com/kubernetes-csi/external-provisioner/tree/release-1.3) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-provisioner:v1.3.1 | v1.13 | v1.19 | v1.15
 [external-provisioner v1.2.0](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v1.2.2) | [release-1.2](https://github.com/kubernetes-csi/external-provisioner/tree/release-1.2) | [v1.0.0](https://github.com/container-storage-interface/spec/releases/tag/v1.0.0) | - | quay.io/k8scsi/csi-provisioner:v1.2.0 | v1.13 | v1.19 | v1.14
 [external-provisioner v0.4.2](https://github.com/kubernetes-csi/external-provisioner/releases/tag/v0.4.2) | [release-0.4](https://github.com/kubernetes-csi/external-provisioner/tree/release-0.4) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | [v0.3.0](https://github.com/container-storage-interface/spec/releases/tag/v0.3.0) | quay.io/k8scsi/csi-provisioner:v0.4.2 | v1.10 | v1.16 | v1.10
+
+</details>
 
 ## Description
 
