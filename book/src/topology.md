@@ -18,7 +18,24 @@ To enable orchestration systems, like Kubernetes, to work well with storage syst
 2. Ability for Kubernetes (users or components) to influence where a volume is provisioned (e.g. provision new volume in either "zone 1" or "zone 2").
 3. Ability for a CSI Driver to opaquely specify where a particular volume exists (e.g. "volume X" is accessible by all nodes in "zone 1" and "zone 2").
 
-Kubernetes and the [external-provisioner](external-provisioner.md) use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume).
+Kubernetes and the [external-provisioner](external-provisioner.md) use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume). This works like so:
+
+1. The CSI node plugin reports accessible topologies for the node.
+2. The external-provisioner generates accessibility requirements, derived from (where applicable): the StorageClass' `volumeBindingMode` value, the StorageClass' `allowedTopologies` value, the accessible topologies reported for the node, and the values for external-provisioner's `--strict-topology` and `--immediate-topology` arguments. The result is a set of *requisite* and *preferred* topologies. This is described below.
+3. The CSI controller plugin uses these accessibility requirements when requesting a volume from the storage system and when creating the resulting CSI Volume.
+
+The accessibility requirements used during CSI volume creation can therefore be visualized like so:
+
+[Delayed binding](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode)? | Strict topology? | [Allowed topologies](https://kubernetes.io/docs/concepts/storage/storage-classes/#allowed-topologies)? | Immediate Topology? | [Resulting accessibility requirements](https://github.com/container-storage-interface/spec/blob/master/spec.md#createvolume)
+:---: |:---:|:---:|:---:|:---|
+Yes | Yes | n/a | n/a | `Requisite` = `Preferred` = Selected node topology
+Yes | No  | No  | n/a | `Requisite` = Aggregated cluster topology<br>`Preferred` = `Requisite` with selected node topology as first element
+Yes | No  | Yes | n/a | `Requisite` = Allowed topologies<br>`Preferred` = `Requisite` with selected node topology as first element
+No | n/a | Yes | n/a | `Requisite` = Allowed topologies<br>`Preferred` = `Requisite` with randomly selected node topology as first element
+No | n/a | No  | Yes | `Requisite` = Aggregated cluster topology<br>`Preferred` = `Requisite` with randomly selected node topology as first element
+No | n/a | No  | No  | `Requisite` and `Preferred` both nil
+
+(Reproduced from the [external-provisioner documentation](https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md#topology-support))
 
 ## Implementing Topology in your CSI Driver
 
