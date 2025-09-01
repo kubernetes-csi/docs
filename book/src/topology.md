@@ -10,7 +10,7 @@ Beta | 1.14 | 1.16 | 1.1-1.4
 GA   | 1.17 | - | 1.5+
 
 ## Overview
-Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.
+Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, "racks" or "regions" and "zones" or some other grouping, and a given volume may be accessible only from one of those groups.
 
 To enable orchestration systems, like Kubernetes, to work well with storage systems which expose volumes that are not equally accessible by all nodes, the [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md) enables:
 

@@ -12,7 +12,7 @@ Beta  | 1.32 | - | 8.2+ | 8.2+ | 8.2+ | 5.1+
 ## Overview
 
 Some storage systems provide the ability to create a crash consistent snapshot of
-multiple volumes. A group snapshot represents “copies” from multiple volumes that
+multiple volumes. A group snapshot represents "copies" from multiple volumes that
 are taken at the same point-in-time. A group snapshot can be used either to rehydrate
 new volumes (pre-populated with the snapshot data) or to restore existing volumes to
 a previous state (represented by the snapshots).

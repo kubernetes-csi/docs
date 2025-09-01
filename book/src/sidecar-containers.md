@@ -4,7 +4,7 @@ Kubernetes CSI Sidecar Containers are a set of standard containers that aim to
 simplify the development and deployment of CSI Drivers on Kubernetes.
 
 These containers contain common logic to watch the Kubernetes API, trigger
-appropriate operations against the “CSI volume driver” container, and update the
+appropriate operations against the "CSI volume driver" container, and update the
 Kubernetes API as appropriate.
 
 The containers are intended to be bundled with third-party CSI driver containers and deployed together as pods.
