@@ -18,7 +18,7 @@ To enable orchestration systems, like Kubernetes, to work well with storage syst
 2. Ability for Kubernetes (users or components) to influence where a volume is provisioned (e.g. provision new volume in either "zone 1" or "zone 2").
 3. Ability for a CSI Driver to opaquely specify where a particular volume exists (e.g. "volume X" is accessible by all nodes in "zone 1" and "zone 2").
 
-Kubernetes and the [external-provisioner](external-provisioner.md) use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume),
+Kubernetes and the [external-provisioner](external-provisioner.md) use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume).
 
 ## Implementing Topology in your CSI Driver
 
@@ -29,23 +29,14 @@ To support topology in a CSI driver, the following must be implemented:
   This information will be used to populate the Kubernetes [CSINode object](csi-node-object.md) and add the topology labels to the Node object.
 * During `CreateVolume`, the topology information will get passed in through `CreateVolumeRequest.accessibility_requirements`.
 
-In the StorageClass object, both `volumeBindingMode` values of `Immediate` and
-`WaitForFirstConsumer` are supported.
+In the StorageClass object, both `volumeBindingMode` values of `Immediate` and `WaitForFirstConsumer` are supported.
 
-* If `Immediate` is set, then the
-  external-provisioner will pass in all available topologies in the cluster for
-  the driver.
-* If `WaitForFirstConsumer` is set, then the external-provisioner will wait for
-  the scheduler to pick a node. The topology of that selected node will then be
-  set as the first entry in `CreateVolumeRequest.accessibility_requirements.preferred`.
-  All remaining topologies are still included in the `requisite` and `preferred`
-  fields to support storage systems that span across multiple topologies.
+* If `Immediate` is set, then the external-provisioner will pass in all available topologies in the cluster for the driver.
+* If `WaitForFirstConsumer` is set, then the external-provisioner will wait for the scheduler to pick a node. The topology of that selected node will then be set as the first entry in `CreateVolumeRequest.accessibility_requirements.preferred`. All remaining topologies are still included in the `requisite` and `preferred` fields to support storage systems that span across multiple topologies.
 
 ## Sidecar Deployment
 
-The topology feature requires the
-[external-provisioner](external-provisioner.md) sidecar with the
-Topology feature gate enabled:
+The topology feature requires the [external-provisioner](external-provisioner.md) sidecar with the Topology feature gate enabled (default since external-provisioner v5.0):
 
 ```
 --feature-gates=Topology=true
