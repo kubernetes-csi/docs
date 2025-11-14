@@ -8,6 +8,7 @@ The CSI [external-provisioner](external-provisioner.md) sidecar container facili
 * `ControllerExpandVolumeRequest`
 * `NodeStageVolumeRequest`
 * `NodePublishVolumeRequest`
+* `ControllerModifyVolumeRequest`
 
 CSI `external-provisioner` v1.0.1+ supports the following keys in `StorageClass.parameters`:
 
@@ -23,6 +24,10 @@ CSI `external-provisioner` v1.0.1+ supports the following keys in `StorageClass.
 CSI `external-provisioner` v1.2.0+ adds support for the following keys in `StorageClass.parameters`:
 * `csi.storage.k8s.io/controller-expand-secret-name`
 * `csi.storage.k8s.io/controller-expand-secret-namespace`
+
+CSI `external-provisioner` v6.1.0+ adds support for the following keys in `StorageClass.parameters`:
+* `csi.storage.k8s.io/controller-modify-secret-name`
+* `csi.storage.k8s.io/controller-modify-secret-namespace`
 
 Cluster admins can populate the secret fields for the operations listed above with data from Kubernetes `Secret` objects by specifying these keys in the `StorageClass` object.
 
@@ -250,6 +255,43 @@ The values of these parameters may be "templates". The `external-provisioner` wi
   * `${pvc.annotations['<ANNOTATION_KEY>']}` (e.g. `${pvc.annotations['example.com/key']}`)
     * Replaced with the value of the specified annotation from the `PersistentVolumeClaim` object that triggered provisioning
 * `csi.storage.k8s.io/controller-expand-secret-namespace`
+  * `${pv.name}`
+    * Replaced with name of the `PersistentVolume` object being provisioned.
+  * `${pvc.namespace}`
+    * Replaced with namespace of the `PersistentVolumeClaim` object that triggered provisioning.
+
+### Controller Modify (VolumeAttributeClass) Secret
+
+The CSI `external-provisioner` (v6.1.0+) looks for the following keys in `StorageClass.parameters`:
+
+* `csi.storage.k8s.io/controller-modify-secret-name`
+* `csi.storage.k8s.io/controller-modify-secret-namespace`
+
+The value of both parameters, together, refer to the name and namespace of the `Secret` object in the Kubernetes API.
+
+If specified, the CSI `external-provisioner` adds the following annotations to the `PersistentVolume` object to refer to this secret once provisioning is successful:
+
+* `volume.kubernetes.io/controller-modify-secret-name`
+* `volume.kubernetes.io/controller-modify-secret-namespace`
+
+The `external-resizer` (v2.1.0+), attempts to fetch the secret referenced by the annotations on the `PersistentVolume`, if specified, before starting a volume resize (expand) operation. In case the `PersistentVolume` does not have the annotations, the secret referenced by the `CSIPersistentVolumeSource.ControllerExpandSecretRef` field is used.
+
+If no such secret exists in the Kubernetes API, or the `external-resizer` is unable to fetch it, the volume modification operation fails.
+
+If the secret is retrieved successfully, the `external-resizer` passes it to the CSI driver in the `ControllerModifyVolumeRequest.secrets` field.
+
+The values of these parameters may be "templates". The `external-provisioner` will automatically resolve templates at volume provision time, as detailed below:
+
+* `csi.storage.k8s.io/controller-modify-secret-name`
+  * `${pv.name}`
+    * Replaced with name of the `PersistentVolume` object being provisioned.
+  * `${pvc.namespace}`
+    * Replaced with namespace of the `PersistentVolumeClaim` object that triggered provisioning.
+  * `${pvc.name}`
+    * Replaced with the name of the `PersistentVolumeClaim` object that triggered provisioning.
+  * `${pvc.annotations['<ANNOTATION_KEY>']}` (e.g. `${pvc.annotations['example.com/key']}`)
+    * Replaced with the value of the specified annotation from the `PersistentVolumeClaim` object that triggered provisioning
+* `csi.storage.k8s.io/controller-modify-secret-namespace`
   * `${pv.name}`
     * Replaced with name of the `PersistentVolume` object being provisioned.
   * `${pvc.namespace}`
