@@ -10,7 +10,7 @@ Beta | 1.14 | 1.16 | 1.1-1.4
 GA   | 1.17 | - | 1.5+
 
 ## Overview
-Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, “racks” or “regions” and “zones” or some other grouping, and a given volume may be accessible only from one of those groups.
+Some storage systems expose volumes that are not equally accessible by all nodes in a Kubernetes cluster. Instead volumes may be constrained to some subset of node(s) in the cluster. The cluster may be segmented into, for example, "racks" or "regions" and "zones" or some other grouping, and a given volume may be accessible only from one of those groups.
 
 To enable orchestration systems, like Kubernetes, to work well with storage systems which expose volumes that are not equally accessible by all nodes, the [CSI spec](https://github.com/container-storage-interface/spec/blob/master/spec.md) enables:
 
@@ -18,7 +18,24 @@ To enable orchestration systems, like Kubernetes, to work well with storage syst
 2. Ability for Kubernetes (users or components) to influence where a volume is provisioned (e.g. provision new volume in either "zone 1" or "zone 2").
 3. Ability for a CSI Driver to opaquely specify where a particular volume exists (e.g. "volume X" is accessible by all nodes in "zone 1" and "zone 2").
 
-Kubernetes and the [external-provisioner](external-provisioner.md) use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume),
+Kubernetes and the [external-provisioner](external-provisioner.md) use these abilities to make intelligent scheduling and provisioning decisions (that Kubernetes can both influence and act on topology information for each volume). This works like so:
+
+1. The CSI node plugin reports accessible topologies for the node.
+2. The external-provisioner generates accessibility requirements, derived from (where applicable): the StorageClass' `volumeBindingMode` value, the StorageClass' `allowedTopologies` value, the accessible topologies reported for the node, and the values for external-provisioner's `--strict-topology` and `--immediate-topology` arguments. The result is a set of *requisite* and *preferred* topologies. This is described below.
+3. The CSI controller plugin uses these accessibility requirements when requesting a volume from the storage system and when creating the resulting CSI Volume.
+
+The accessibility requirements used during CSI volume creation can therefore be visualized like so:
+
+[Delayed binding](https://kubernetes.io/docs/concepts/storage/storage-classes/#volume-binding-mode)? | Strict topology? | [Allowed topologies](https://kubernetes.io/docs/concepts/storage/storage-classes/#allowed-topologies)? | Immediate Topology? | [Resulting accessibility requirements](https://github.com/container-storage-interface/spec/blob/master/spec.md#createvolume)
+:---: |:---:|:---:|:---:|:---|
+Yes | Yes | n/a | n/a | `Requisite` = `Preferred` = Selected node topology
+Yes | No  | No  | n/a | `Requisite` = Aggregated cluster topology<br>`Preferred` = `Requisite` with selected node topology as first element
+Yes | No  | Yes | n/a | `Requisite` = Allowed topologies<br>`Preferred` = `Requisite` with selected node topology as first element
+No | n/a | Yes | n/a | `Requisite` = Allowed topologies<br>`Preferred` = `Requisite` with randomly selected node topology as first element
+No | n/a | No  | Yes | `Requisite` = Aggregated cluster topology<br>`Preferred` = `Requisite` with randomly selected node topology as first element
+No | n/a | No  | No  | `Requisite` and `Preferred` both nil
+
+(Reproduced from the [external-provisioner documentation](https://github.com/kubernetes-csi/external-provisioner/blob/master/README.md#topology-support))
 
 ## Implementing Topology in your CSI Driver
 
@@ -29,23 +46,14 @@ To support topology in a CSI driver, the following must be implemented:
   This information will be used to populate the Kubernetes [CSINode object](csi-node-object.md) and add the topology labels to the Node object.
 * During `CreateVolume`, the topology information will get passed in through `CreateVolumeRequest.accessibility_requirements`.
 
-In the StorageClass object, both `volumeBindingMode` values of `Immediate` and
-`WaitForFirstConsumer` are supported.
+In the StorageClass object, both `volumeBindingMode` values of `Immediate` and `WaitForFirstConsumer` are supported.
 
-* If `Immediate` is set, then the
-  external-provisioner will pass in all available topologies in the cluster for
-  the driver.
-* If `WaitForFirstConsumer` is set, then the external-provisioner will wait for
-  the scheduler to pick a node. The topology of that selected node will then be
-  set as the first entry in `CreateVolumeRequest.accessibility_requirements.preferred`.
-  All remaining topologies are still included in the `requisite` and `preferred`
-  fields to support storage systems that span across multiple topologies.
+* If `Immediate` is set, then the external-provisioner will pass in all available topologies in the cluster for the driver.
+* If `WaitForFirstConsumer` is set, then the external-provisioner will wait for the scheduler to pick a node. The topology of that selected node will then be set as the first entry in `CreateVolumeRequest.accessibility_requirements.preferred`. All remaining topologies are still included in the `requisite` and `preferred` fields to support storage systems that span across multiple topologies.
 
 ## Sidecar Deployment
 
-The topology feature requires the
-[external-provisioner](external-provisioner.md) sidecar with the
-Topology feature gate enabled:
+The topology feature requires the [external-provisioner](external-provisioner.md) sidecar with the Topology feature gate enabled (default since external-provisioner v5.0):
 
 ```
 --feature-gates=Topology=true
