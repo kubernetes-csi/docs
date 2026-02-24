@@ -8,10 +8,10 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
-v0.1.0 | [v0.1.0](https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v0.1.0) | [v1.10.0](https://github.com/container-storage-interface/spec/releases/tag/v1.10.0) | - | registry.k8s.io/sig-storage/csi-snapshot-metadata:v0.1.0 | v1.33 | - | v1.33
+v0.3.0 | [v0.3.0](https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v0.3.0) | [v1.12.0](https://github.com/container-storage-interface/spec/releases/tag/v1.12.0) | - | registry.k8s.io/sig-storage/csi-snapshot-metadata:v0.3.0 | v1.36 | - | v1.36
 
 
-## Alpha
+## Beta
 
 ### Description
 This sidecar securely serves snapshot metadata to Kubernetes clients through the
@@ -87,13 +87,21 @@ availability of this optional feature to Kubernetes backup application clients.
 The CR contains the CA certificate and Service endpoint address
 of the sidecar and the audience string needed for the client
 authentication token.
+The related [SnapshotMetadataService CRD](https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml)
+should be installed by the Kubernetes distribution or the cluster administrator,
+and must exist prior to installing the CSI driver.
+The CSI driver installer must examine the version of the CRD, and should either
+fail the installation of the driver or not provide support for this optional feature
+if the CRD version is not supported.
 
 ### Resources
 
 The [external-snapshot-metadata repository](https://github.com/kubernetes-csi/external-snapshot-metadata) contains
 the [protobuf specification](https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/proto/schema.proto)
 of the
-[Kubernetes SnapshotMetadata Service API](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api).
+[Kubernetes SnapshotMetadata Service API](https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api)
+and the
+[SnapshotMetadataService CRD](https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml).
 
 In addition, the repository has a number of useful artifacts to support Go language programs:
 
