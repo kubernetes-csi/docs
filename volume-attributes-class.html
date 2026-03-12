@@ -168,6 +168,7 @@
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>external-provisioner</th><th>external-resizer</th></tr></thead><tbody>
 <tr><td>Alpha</td><td>1.29</td><td>-</td><td>v4.0.0</td><td>v1.10.0</td></tr>
 <tr><td>Beta</td><td>1.31</td><td>-</td><td>v5.1.0</td><td>v1.12.0</td></tr>
+<tr><td>GA</td><td>1.34</td><td>-</td><td>v6.0.0</td><td>v2.0.0</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>A <code>VolumeAttributesClass</code> is a cluster-scoped resource that can be used to control and change the settings of a <code>PersistentVolume</code>.
@@ -185,7 +186,7 @@ for more details on the background, design and discussions.</p>
 <li>The user can then patch the <code>PersistentVolumeClaim</code> under <code>spec.volumeAttributesClassName</code> to select or update the settings he needs for the volume.</li>
 </ul>
 <blockquote>
-<p>For more information about how to use the feature, visit the <a href="https://kubernetes.io/blog/2024/08/15/kubernetes-1-31-volume-attributes-class/">Kubernetes blog</a> page. </p>
+<p>For more information about how to use the feature, visit the <a href="https://kubernetes.io/docs/concepts/storage/volume-attributes-classes/">Kubernetes documentation</a> page. </p>
 </blockquote>
 
                     </main>
