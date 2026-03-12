@@ -400,7 +400,7 @@ Kubernetes core/v1.PersistentVolumeMode
 <td>
 <em>(Optional)</em>
 <p>SourceVolumeMode is the mode of the volume whose snapshot is taken.
-Can be either “Filesystem” or “Block”.
+Can be either "Filesystem" or “Block”.
 If not specified, it indicates the source volume&rsquo;s mode is unknown.
 This field is immutable.
 This field is an alpha field.</p>
@@ -617,7 +617,7 @@ Kubernetes core/v1.PersistentVolumeMode
 <td>
 <em>(Optional)</em>
 <p>SourceVolumeMode is the mode of the volume whose snapshot is taken.
-Can be either “Filesystem” or “Block”.
+Can be either "Filesystem" or “Block”.
 If not specified, it indicates the source volume&rsquo;s mode is unknown.
 This field is immutable.
 This field is an alpha field.</p>
