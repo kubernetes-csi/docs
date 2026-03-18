@@ -8,7 +8,7 @@
 
 Latest stable release | Branch | Min CSI Version | Max CSI Version | Container Image | [Min K8s Version](project-policies.md#minimum-version) | [Max K8s Version](project-policies.md#maximum-version) | [Recommended K8s Version](project-policies.md#recommended-version) |
 --|--|--|--|--|--|--|--
-v0.3.0 | [v0.3.0](https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v0.3.0) | [v1.12.0](https://github.com/container-storage-interface/spec/releases/tag/v1.12.0) | - | registry.k8s.io/sig-storage/csi-snapshot-metadata:v0.3.0 | v1.36 | - | v1.36
+v1.0.0 | [v1.0.0](https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v1.0.0) | [v1.12.0](https://github.com/container-storage-interface/spec/releases/tag/v1.12.0) | - | registry.k8s.io/sig-storage/csi-snapshot-metadata:v1.0.0 | v1.36 | - | v1.36
 
 
 ## Beta
