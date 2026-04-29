@@ -168,9 +168,9 @@
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshot-metadata">https://github.com/kubernetes-csi/external-snapshot-metadata</a></p>
 <h3><a class="header" href="#supported-versions" id="supported-versions">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="project-policies.html#minimum-version">Min K8s Version</a></th><th><a href="project-policies.html#maximum-version">Max K8s Version</a></th><th><a href="project-policies.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
-<tr><td>v0.1.0</td><td><a href="https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v0.1.0">v0.1.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.10.0">v1.10.0</a></td><td>-</td><td>registry.k8s.io/sig-storage/csi-snapshot-metadata:v0.1.0</td><td>v1.33</td><td>-</td><td>v1.33</td></tr>
+<tr><td>v1.0.0</td><td><a href="https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v1.0.0">v1.0.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.12.0">v1.12.0</a></td><td>-</td><td>registry.k8s.io/sig-storage/csi-snapshot-metadata:v1.0.0</td><td>v1.36</td><td>-</td><td>v1.36</td></tr>
 </tbody></table>
-<h2><a class="header" href="#alpha" id="alpha">Alpha</a></h2>
+<h2><a class="header" href="#beta" id="beta">Beta</a></h2>
 <h3><a class="header" href="#description" id="description">Description</a></h3>
 <p>This sidecar securely serves snapshot metadata to Kubernetes clients through the
 <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.
@@ -235,12 +235,20 @@ named for the CSI driver, must be created to advertise the
 availability of this optional feature to Kubernetes backup application clients.
 The CR contains the CA certificate and Service endpoint address
 of the sidecar and the audience string needed for the client
-authentication token.</p>
+authentication token.
+The related <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml">SnapshotMetadataService CRD</a>
+should be installed by the Kubernetes distribution or the cluster administrator,
+and must exist prior to installing the CSI driver.
+The CSI driver installer must examine the version of the CRD, and should either
+fail the installation of the driver or not provide support for this optional feature
+if the CRD version is not supported.</p>
 <h3><a class="header" href="#resources" id="resources">Resources</a></h3>
 <p>The <a href="https://github.com/kubernetes-csi/external-snapshot-metadata">external-snapshot-metadata repository</a> contains
 the <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/proto/schema.proto">protobuf specification</a>
 of the
-<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.</p>
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>
+and the
+<a href="https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml">SnapshotMetadataService CRD</a>.</p>
 <p>In addition, the repository has a number of useful artifacts to support Go language programs:</p>
 <ul>
 <li>

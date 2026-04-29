@@ -166,7 +166,7 @@
                         <h1><a class="header" href="#changed-block-tracking" id="changed-block-tracking">Changed Block Tracking</a></h1>
 <h2><a class="header" href="#status" id="status">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>Min CSI Version</th><th>Max CSI Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>1.33</td><td>-</td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.10.0">v1.10.0</a></td><td>-</td></tr>
+<tr><td>Beta</td><td>1.36</td><td>-</td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.12.0">v1.12.0</a></td><td>-</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview" id="overview">Overview</a></h2>
 <p>This optional feature provides a secure mechanism to obtain metadata
@@ -183,7 +183,10 @@ and must implement the
 <p>CSI drivers that implement this feature should deploy the
 <a href="./external-snapshot-metadata.html">external-snapshot-metadata</a>
 sidecar and create the associated 
-<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#snapshot-metadata-service-custom-resource">Snapshot Metadata Service CR</a>.</p>
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#snapshot-metadata-service-custom-resource">Snapshot Metadata Service CR</a>.
+The related <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml">SnapshotMetadataService CRD</a>
+should be installed by the Kubernetes distribution or the cluster
+administrator, and must exist prior to installing the CSI driver.</p>
 <p>The <code>external-snapshot-metadata</code> sidecar implements the server side of the
 <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.
 Backup applications obtain VolumeSnapshot metadata directly from the sidecar

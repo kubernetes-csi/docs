@@ -1282,9 +1282,9 @@ in Kubernetes.</p>
 <p><strong>Git Repository:</strong> <a href="https://github.com/kubernetes-csi/external-snapshot-metadata">https://github.com/kubernetes-csi/external-snapshot-metadata</a></p>
 <h3><a class="header" href="#supported-versions-9" id="supported-versions-9">Supported Versions</a></h3>
 <table><thead><tr><th>Latest stable release</th><th>Branch</th><th>Min CSI Version</th><th>Max CSI Version</th><th>Container Image</th><th><a href="project-policies.html#minimum-version">Min K8s Version</a></th><th><a href="project-policies.html#maximum-version">Max K8s Version</a></th><th><a href="project-policies.html#recommended-version">Recommended K8s Version</a></th></tr></thead><tbody>
-<tr><td>v0.1.0</td><td><a href="https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v0.1.0">v0.1.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.10.0">v1.10.0</a></td><td>-</td><td>registry.k8s.io/sig-storage/csi-snapshot-metadata:v0.1.0</td><td>v1.33</td><td>-</td><td>v1.33</td></tr>
+<tr><td>v1.0.0</td><td><a href="https://github.com/kubernetes-csi/external-snapshot-metadata/releases/tag/v1.0.0">v1.0.0</a></td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.12.0">v1.12.0</a></td><td>-</td><td>registry.k8s.io/sig-storage/csi-snapshot-metadata:v1.0.0</td><td>v1.36</td><td>-</td><td>v1.36</td></tr>
 </tbody></table>
-<h2><a class="header" href="#alpha" id="alpha">Alpha</a></h2>
+<h2><a class="header" href="#beta" id="beta">Beta</a></h2>
 <h3><a class="header" href="#description-13" id="description-13">Description</a></h3>
 <p>This sidecar securely serves snapshot metadata to Kubernetes clients through the
 <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.
@@ -1349,12 +1349,20 @@ named for the CSI driver, must be created to advertise the
 availability of this optional feature to Kubernetes backup application clients.
 The CR contains the CA certificate and Service endpoint address
 of the sidecar and the audience string needed for the client
-authentication token.</p>
+authentication token.
+The related <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml">SnapshotMetadataService CRD</a>
+should be installed by the Kubernetes distribution or the cluster administrator,
+and must exist prior to installing the CSI driver.
+The CSI driver installer must examine the version of the CRD, and should either
+fail the installation of the driver or not provide support for this optional feature
+if the CRD version is not supported.</p>
 <h3><a class="header" href="#resources" id="resources">Resources</a></h3>
 <p>The <a href="https://github.com/kubernetes-csi/external-snapshot-metadata">external-snapshot-metadata repository</a> contains
 the <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/tree/main/proto/schema.proto">protobuf specification</a>
 of the
-<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.</p>
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>
+and the
+<a href="https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml">SnapshotMetadataService CRD</a>.</p>
 <p>In addition, the repository has a number of useful artifacts to support Go language programs:</p>
 <ul>
 <li>
@@ -2297,14 +2305,14 @@ Topology feature gate enabled:</p>
 <pre><code>--feature-gates=Topology=true
 </code></pre>
 <h2><a class="header" href="#kubernetes-cluster-setup" id="kubernetes-cluster-setup">Kubernetes Cluster Setup</a></h2>
-<h3><a class="header" href="#beta" id="beta">Beta</a></h3>
+<h3><a class="header" href="#beta-1" id="beta-1">Beta</a></h3>
 <p>In the <em>Kubernetes cluster</em> the <code>CSINodeInfo</code> feature must be enabled on both Kubernetes master and nodes (refer to the <a href="csi-node-object.html">CSINode Object</a> section for more info):</p>
 <pre><code>--feature-gates=CSINodeInfo=true
 </code></pre>
 <p>In order to fully function properly, all Kubernetes master and nodes must be on at least
 Kubernetes 1.14. If a selected node is on a lower version, topology is ignored and not
 passed to the driver during <code>CreateVolume</code>.</p>
-<h3><a class="header" href="#alpha-1" id="alpha-1">Alpha</a></h3>
+<h3><a class="header" href="#alpha" id="alpha">Alpha</a></h3>
 <p>The alpha feature in the external-provisioner is not compatible across
 Kubernetes versions. In addition, Kubernetes master and node version skew and
 upgrades are not supported.</p>
@@ -3373,7 +3381,7 @@ for more details on the background, design and discussions.</p>
 <h1><a class="header" href="#changed-block-tracking" id="changed-block-tracking">Changed Block Tracking</a></h1>
 <h2><a class="header" href="#status-19" id="status-19">Status</a></h2>
 <table><thead><tr><th>Status</th><th>Min K8s Version</th><th>Max K8s Version</th><th>Min CSI Version</th><th>Max CSI Version</th></tr></thead><tbody>
-<tr><td>Alpha</td><td>1.33</td><td>-</td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.10.0">v1.10.0</a></td><td>-</td></tr>
+<tr><td>Beta</td><td>1.36</td><td>-</td><td><a href="https://github.com/container-storage-interface/spec/releases/tag/v1.12.0">v1.12.0</a></td><td>-</td></tr>
 </tbody></table>
 <h2><a class="header" href="#overview-19" id="overview-19">Overview</a></h2>
 <p>This optional feature provides a secure mechanism to obtain metadata
@@ -3390,7 +3398,10 @@ and must implement the
 <p>CSI drivers that implement this feature should deploy the
 <a href="./external-snapshot-metadata.html">external-snapshot-metadata</a>
 sidecar and create the associated 
-<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#snapshot-metadata-service-custom-resource">Snapshot Metadata Service CR</a>.</p>
+<a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#snapshot-metadata-service-custom-resource">Snapshot Metadata Service CR</a>.
+The related <a href="https://github.com/kubernetes-csi/external-snapshot-metadata/blob/3a139dd44d4ffa01343a91bed40996b1db56fd38/client/config/crd/cbt.storage.k8s.io_snapshotmetadataservices.yaml">SnapshotMetadataService CRD</a>
+should be installed by the Kubernetes distribution or the cluster
+administrator, and must exist prior to installing the CSI driver.</p>
 <p>The <code>external-snapshot-metadata</code> sidecar implements the server side of the
 <a href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-storage/3314-csi-changed-block-tracking#the-kubernetes-snapshotmetadata-service-api">Kubernetes SnapshotMetadata Service API</a>.
 Backup applications obtain VolumeSnapshot metadata directly from the sidecar
