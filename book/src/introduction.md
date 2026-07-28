@@ -60,9 +60,9 @@ To implement a CSI driver using this mechanism, a CSI driver developer should:
     * See [Developing CSI Driver](developing.md) for more information.
 2. Unit test it using csi-sanity.
     * See [Driver - Unit Testing](unit-testing.md) for more information.
-4. Define Kubernetes API YAML files that deploy the CSI driver container along with appropriate sidecar containers.
+3. Define Kubernetes API YAML files that deploy the CSI driver container along with appropriate sidecar containers.
     * See [Deploying in Kubernetes](deploying.md) for more information.
-5. Deploy the driver on a Kubernetes cluster and run end-to-end functional tests on it.
+4. Deploy the driver on a Kubernetes cluster and run end-to-end functional tests on it.
     * See [Driver - Functional Testing](functional-testing.md)
 
 ## Reference Links
