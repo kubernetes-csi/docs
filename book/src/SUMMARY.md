@@ -36,6 +36,7 @@
             - [Cloning](volume-cloning.md)
             - [Volume Snapshot & Restore](snapshot-restore-feature.md)
             - [Volume Group Snapshot & Restore](group-snapshot-restore-feature.md)
+            - [Volume Snapshot Topology](snapshot-topology-feature.md)
         - [Ephemeral Local Volumes](ephemeral-local-volumes.md)
         - [Volume Limits](volume-limits.md)
         - [Storage Capacity Tracking](storage-capacity-tracking.md)
