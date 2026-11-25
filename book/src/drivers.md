@@ -150,6 +150,7 @@ Name | CSI Driver Name | Compatible with CSI Version(s) | Description | Persiste
 [Yandex.Cloud](https://github.com/flant/yandex-csi-driver) | `yandex.csi.flant.com` | v1.2 | A Container Storage Interface (CSI) plugin for Yandex.Cloud Compute Disks  | Persistent | Read/Write Single Pod | Yes |
 [YanRongYun](https://www.yanrongyun.com/) | ? | v1.0 | A Container Storage Interface (CSI) Driver for YanRong YRCloudFile Storage  | Persistent | Read/Write Multiple Pods | Yes | 
 [Zadara-CSI](https://github.com/zadarastorage/zadara-csi) | `csi.zadara.com` | v1.0, v1.1 | A Container Storage Interface (CSI) plugin for Zadara VPSA Storage Array & VPSA All-Flash  | Persistent | Read/Write Multiple Pods | Yes | Raw Block, Snapshot, Expansion, Cloning
+[ZeroFS](https://github.com/Barre/ZeroFS/tree/main/zerofs/zerofs-csi) | `csi.zerofs.net` | v1.12.0 | A Container Storage Interface (CSI) Driver for [ZeroFS](https://www.zerofs.net), which serves S3-compatible object storage as POSIX filesystems; volumes are 9P FUSE mounts of a shared ZeroFS gateway | Persistent | Read/Write Multiple Pods | Yes |
 
 </div>
 
